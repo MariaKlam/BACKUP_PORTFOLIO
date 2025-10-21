@@ -1,0 +1,143 @@
+---
+/* src/layouts/Base.astro */
+const {
+  title = "Maria Klammer – Portfolio",
+  bodyClass = "",
+  noWrap = false,        // render <slot/> without the centered .wrap
+  hideFooter = false,    // hide footer for full-bleed demos
+  mainClass = ""         // extra class on <main>
+} = Astro.props;
+
+const here = Astro.url.pathname;
+const isActive = (href: string) => (href === "/" ? here === "/" : here === href || here.startsWith(href + "/"));
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+
+    <!-- Instant theme to avoid flash -->
+    <script is:inline>
+      (function () {
+        const KEY = 'theme';
+        const saved = localStorage.getItem(KEY);
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="/styles/main.css" />
+    <slot name="head" />
+  </head>
+
+ 
+  <body class="menu__container has-thin-sidebar has-double-thin-sidebar menu--sidebar"
+      style="--card: var(--bg)">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand-name" href="/">Maria Klammer</a>
+        <nav class="nav">
+          <a href="/work"    aria-current={isActive("/work")    ? "page" : undefined}>Work</a>
+          <a href="/about"   aria-current={isActive("/about")   ? "page" : undefined}>About</a>
+          <a href="/contact" aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
+        </nav>
+        <div class="theme-toggle" role="group" aria-label="Theme">
+          <button type="button" data-theme-btn="light" aria-pressed="true">Light</button>
+          <button type="button" data-theme-btn="dark"  aria-pressed="false">Dark</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- main content slot -->
+    { noWrap ? <slot /> : <main class="content"><div class="wrap"><slot /></div></main> }
+
+    { !hideFooter && <footer class="site-footer">© {new Date().getFullYear()} Maria Klammer — All rights reserved.</footer> }
+   
+
+    <!-- Theme toggle wiring -->
+  <!-- Theme toggle wiring (multi-instance + persistent) -->
+<script>
+  (function () {
+    const KEY = 'theme';
+    const html = document.documentElement;
+
+    function reflect(mode) {
+      // update aria-pressed on every toggle button
+      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+        const want = btn.getAttribute('data-theme-btn');
+        btn.setAttribute('aria-pressed', String(
+          (mode === 'dark' && want === 'dark') || (mode !== 'dark' && want === 'light')
+        ));
+      });
+    }
+
+    function setTheme(mode) {
+      if (mode === 'dark') html.setAttribute('data-theme', 'dark');
+      else html.removeAttribute('data-theme');
+      reflect(mode);
+      try { localStorage.setItem(KEY, mode); } catch {}
+    }
+
+    // initial mode
+    const saved = localStorage.getItem(KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = (saved === 'dark' || saved === 'light') ? saved : (prefersDark ? 'dark' : 'light');
+    setTheme(initial);
+
+    // click anywhere: if it’s a theme button, switch
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-theme-btn]');
+      if (!btn) return;
+      const mode = btn.getAttribute('data-theme-btn');
+      if (mode === 'light' || mode === 'dark') setTheme(mode);
+    });
+
+    // keep in sync with OS changes (optional)
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    mq.addEventListener?.('change', e => {
+      const saved = localStorage.getItem(KEY);
+      if (saved !== 'dark' && saved !== 'light') setTheme(e.matches ? 'dark' : 'light');
+    });
+  })();
+</script>
+
+
+    <!-- Spotlight / reveal scripts (no-ops if no .cover-card present) -->
+    <script is:inline>
+      (function () {
+        const cards = document.querySelectorAll('.cover-card');
+        cards.forEach(el => {
+          el.addEventListener('pointermove', e => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+            el.style.setProperty('--my', (e.clientY - r.top)  + 'px');
+          });
+          el.addEventListener('pointerleave', () => {
+            el.style.removeProperty('--mx'); el.style.removeProperty('--my');
+          });
+        });
+      })();
+    </script>
+    <script is:inline>
+      (() => {
+        const els = document.querySelectorAll('.cover-card');
+        if (!('IntersectionObserver' in window) || !els.length) {
+          els.forEach(el => el.classList.add('reveal-in'));
+          return;
+        }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('reveal-in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+        els.forEach(el => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+---
+import Base from "../layouts/Base.astro";
+
+const projects = [
+  // 01 — FEATURED (left)
+  {
+    title: "Unified Navigation System",
+    role: "Architecture · UX",
+    tech: ["HTML", "CSS", "JS"],
+    design: ["UX/UI", "Navigation"],
+    link: "/case-studies/nav-system",
+    summary:
+      "Single markup powering topnav/sidebar, mobile overlay, and a11y-first behavior across apps."
+  },
+
+  // 02 — UI Library & Token System
+  {
+    title: "UI Library & Token System",
+    role: "Design System · Frontend",
+    tech: ["HTML", "CSS", "JS"],
+    design: ["Design Tokens", "Component Library"],
+    link: "/case-studies/ui-library-tokens",
+    summary:
+      "Composable tokens + components, docs, and roll-out strategy for scalable product UI."
+  },
+
+  // 03 — Accessible Date Range Picker
+  {
+    title: "Accessible Date Range Picker",
+    role: "Frontend · Accessibility",
+    tech: ["HTML", "CSS", "JS"],
+    design: ["UX/UI", "A11y"],
+    link: "/case-studies/date-range",
+    summary:
+      "Keyboard-first, screen-reader friendly date range with zero-framework JS."
+  },
+
+  // 04 — Dashboard & Application Patterns
+  {
+    title: "Dashboard & Application Patterns",
+    role: "UX/UI · FE",
+    tech: ["HTML", "CSS", "JS"],
+    design: ["Dashboards", "Patterns"],
+    link: "/case-studies/app-patterns",
+    summary:
+      "Layout, forms, modals, and table patterns used in backoffice and operational apps."
+  },
+
+  // 05 — Visual Explorations
+  {
+    title: "Visual Explorations",
+    role: "Personal",
+    tech: ["Procreate", "Figma", "SVG"],
+    design: ["Illustration", "Visual Design"],
+    link: "/personal/visual-explorations",
+    summary:
+      "Sketches, drawings, and small visual experiments that inform my product taste."
+  },
+  {
+  title: "Login Experience",
+  role: "UX/UI · FE",
+  tech: ["HTML", "CSS", "JS"],
+  design: ["Auth", "Forms"],
+  link: "/case-studies/login-experience",
+  summary:
+    "Accessible, brand-consistent sign-in and recovery flows with form guidelines."
+},
+{
+  title: "Form Components & Modal System",
+  role: "Frontend · Patterns",
+  tech: ["HTML", "CSS", "JS"],
+  design: ["Forms", "Interactions"],
+  link: "/case-studies/forms-modals",
+  summary:
+    "Reusable inputs, validation states, and modal patterns to keep interactions consistent."
+}
+];
+
+const rightProjects = projects.slice(1); // start the right list at 02
+---
+
+<Base title="Work — Maria Klammer">
+  <div class="work-split">
+  <!-- LEFT: sticky hero shows project 01 -->
+  <aside class="left">
+    <section class="intro-block">
+      <h1 class="page-title">Selected Work</h1>
+      <p class="lede">Front-end & UX/UI developer crafting navigation systems, accessible UI
+        patterns, and lean design tokens. Pragmatic, standards-first; frameworks
+        only when they earn their keep.</p>
+    </section>
+
+    <a href={projects[0].link} class="feature-card">
+      <div class="num">01.</div>
+      <h3>{projects[0].title}</h3>
+      <p class="meta">{projects[0].role}</p>
+      <p class="summary">{projects[0].summary}</p>
+      <div class="chips">{projects[0].tech.map(t => <span class="chip">{t}</span>)}</div>
+      {projects[0].design?.length && (
+        <div class="chips">{projects[0].design.map(d => <span class="chip">{d}</span>)}</div>
+      )}
+    </a>
+  </aside>
+
+  <!-- RIGHT: index starts at 02, closed by default -->
+  <aside class="right" id="projList">
+    <ol class="project-list">
+      {rightProjects.map((p, i) => (
+        <li class="project-row" data-idx={i + 2}>
+          <a class="row-link" href={p.link}>
+            <span class="row-num">{String(i + 2).padStart(2,"0")}.</span>
+            <span class="row-title">{p.title}</span>
+
+            <span class="row-arrow" aria-hidden="true">
+            <!-- inline in your row-link -->
+<!-- replace your arrow element with this -->
+<svg class="row-arrow-svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="42" height="42" viewBox="0 0 512 512">
+<path d="M0 0 C7.25017518 4.56552198 13.43003605 10.33744764 19.45080549 16.38437575 C20.62592788 17.55270148 20.62592788 17.55270148 21.82479012 18.74462974 C24.42710481 21.33436719 27.02230334 23.93111501 29.61750776 26.52797621 C31.49045366 28.39493288 33.36377625 30.26150484 35.23753339 32.12764663 C39.78469507 36.65826615 44.32635479 41.19436165 48.86581149 45.73269997 C52.55739207 49.42332726 56.25055385 53.11236484 59.94481832 56.80030555 C70.43529312 67.27318993 80.92158821 77.75023363 91.40252014 88.23266832 C91.96637133 88.79659942 92.53022251 89.36053051 93.1111601 89.94155043 C93.67570414 90.50617624 94.24024819 91.07080205 94.82189963 91.65253773 C103.97543226 100.80688363 113.13890729 109.95120494 122.30692669 119.09104029 C131.73686454 128.49221873 141.15929232 137.90086717 150.57399857 147.31729972 C155.85331831 152.59728209 161.13564475 157.87417148 166.42607671 163.14302176 C170.9286431 167.62733655 175.42415823 172.11857713 179.91083159 176.61879549 C182.19722585 178.91169807 184.48771913 181.2002125 186.78497869 183.48223609 C189.28128698 185.96306048 191.7648593 188.45599525 194.24572736 190.95224684 C194.96528236 191.66151472 195.68483736 192.37078259 196.42619705 193.10154343 C205.44314363 202.24195459 209.50246353 210.38828816 209.46369916 223.1546852 C209.0264543 242.83736274 188.92960504 256.74036593 175.97761518 269.70009536 C174.15791709 271.52443057 172.3384136 273.3489599 170.51908857 275.17366713 C165.60879955 280.09741917 160.69484301 285.01749954 155.78003055 289.93673581 C152.7057368 293.0138082 149.63217436 296.09161036 146.55873471 299.16953582 C138.02975869 307.71068055 129.49985357 316.25089497 120.96648961 324.78765601 C120.42266431 325.33170088 119.878839 325.87574575 119.31853414 326.43627683 C118.77352205 326.9815072 118.22850996 327.52673757 117.66698235 328.08849007 C116.56284278 329.19307309 115.45870477 330.29765767 114.3545683 331.40224379 C113.80689527 331.95013826 113.25922223 332.49803273 112.69495304 333.06253006 C103.80477861 341.95665959 94.92139024 350.8575344 86.04086964 359.76130198 C76.89867159 368.92723702 67.75083511 378.08751315 58.59734339 387.24217016 C53.46773331 392.37269479 48.3405419 397.50558464 43.21958524 402.64474791 C38.40832223 407.47305855 33.58938123 412.29358826 28.76520139 417.10899276 C26.99898016 418.87444391 25.23531047 420.64245207 23.47442609 422.41322631 C21.06563353 424.83475045 18.64770652 427.2467814 16.22734052 429.65672988 C15.53734303 430.35478377 14.84734553 431.05283767 14.13643903 431.77204472 C5.70191808 440.1222285 -2.46494612 445.76713174 -14.65470904 445.73378676 C-24.62203516 445.6804066 -30.80941133 442.97128542 -38.05314654 436.21816176 C-45.18593934 428.80504086 -47.27726162 421.70387377 -47.2013399 411.46962661 C-46.72743251 394.1353237 -32.24644973 383.61411497 -20.7950899 372.19814223 C-19.50292332 370.90625833 -18.21097809 369.61415299 -16.91923541 368.32184523 C-13.44070892 364.84303391 -9.95912588 361.36729666 -6.47695249 357.89213628 C-2.82765839 354.24912814 0.81877072 350.60325453 4.46551496 346.95769423 C11.3586967 340.06761042 18.25442174 333.18007791 25.15108228 326.2934764 C33.00802687 318.44774089 40.8621044 310.59913791 48.71595186 302.75030226 C64.86006128 286.61662238 81.0077371 270.48651601 97.15779096 254.35878676 C96.36598357 254.35818967 95.57417618 254.35759259 94.75837463 254.3569774 C47.8281787 254.32108254 0.89804711 254.26444214 -46.03208937 254.18086581 C-51.66720062 254.17084837 -57.30231215 254.16100423 -62.93742388 254.15126723 C-64.62019596 254.14835517 -64.62019596 254.14835517 -66.33696343 254.14538428 C-84.50114416 254.11436421 -102.66531226 254.0973836 -120.82951449 254.08559254 C-139.46802336 254.07318103 -158.10646593 254.04567959 -176.74493295 254.0041737 C-188.24562605 253.97903836 -199.74620918 253.96566952 -211.24693014 253.96735719 C-219.13368423 253.96738695 -227.02032632 253.95275761 -234.90703677 253.92662248 C-239.45709435 253.91197663 -244.00692225 253.90377354 -248.55699939 253.91298407 C-252.72608519 253.92128049 -256.89470981 253.91109026 -261.06372727 253.88645014 C-262.5685957 253.88077371 -264.07350794 253.88177084 -265.57836305 253.89027432 C-276.53859686 253.94688041 -286.00126485 252.82285256 -294.31095904 245.06191176 C-301.70462195 236.83834791 -303.42410971 228.12433041 -303.15470904 217.34706801 C-302.68038269 208.96137346 -299.06751381 201.95584976 -292.84220904 196.35878676 C-286.43431897 191.54005343 -280.3348175 189.11326899 -272.23179072 189.09707373 C-271.59003915 189.09307767 -270.94828758 189.08908161 -270.28708899 189.08496445 C-268.14006984 189.07400936 -265.99330925 189.07718869 -263.84626788 189.08031386 C-262.29016166 189.07530991 -260.73405803 189.06943382 -259.17795807 189.06276113 C-254.90450909 189.04695915 -250.63112585 189.04353034 -246.35765117 189.04211253 C-241.74828756 189.03841884 -237.13896003 189.0232635 -232.52961749 189.00949782 C-224.5444694 188.98722022 -216.55933415 188.97220994 -208.57416171 188.96213073 C-197.02893627 188.94754737 -185.48375552 188.9220115 -173.9385563 188.89379944 C-155.20739638 188.84832521 -136.47623004 188.811713 -117.74504107 188.78066176 C-99.54906604 188.75047881 -81.35310675 188.7161297 -63.15715045 188.67616957 C-62.03561645 188.67370803 -60.91408245 188.67124648 -59.75856258 188.66871034 C-54.13217544 188.65633578 -48.50578849 188.64387924 -42.87940162 188.63138193 C3.79964063 188.52780469 50.47870244 188.43860454 97.15779096 188.35878676 C96.45118487 187.65586784 95.74457877 186.95294892 95.01656038 186.22872943 C77.8119553 169.11298116 60.61893569 151.98566238 43.43795472 134.84619921 C35.12904419 126.55790079 26.81643022 118.27338186 18.49494916 109.99770278 C11.24070455 102.78336697 3.99355389 95.56199232 -3.24521875 88.33213103 C-7.0771972 84.5053604 -10.91259928 80.682171 -14.7565214 76.86739463 C-18.37749855 73.27365012 -21.98888647 69.6705383 -25.59327143 66.06015509 C-26.91479519 64.73972804 -28.23972777 63.42270207 -29.56837481 62.10944289 C-39.5364854 52.25110759 -47.0115848 44.34833735 -47.15470904 29.67128676 C-47.18157913 23.05079546 -46.37428924 18.08915464 -42.84220904 12.35878676 C-42.30595904 11.32753676 -41.76970904 10.29628676 -41.21720904 9.23378676 C-31.79649309 -2.17023781 -13.52301106 -7.65862435 0 0 Z " fill="currentColor" transform="translate(302.8422090411186,34.64121323823929)"/>
+</svg>
+            
+            </span>
+          </a>
+          <div class="row-details">
+            <p class="row-meta">{p.role}</p>
+            {p.summary && <p class="row-summary">{p.summary}</p>}
+            <div class="chips">{p.tech.map(t => <span class="chip">{t}</span>)}</div>
+            {p.design?.length && (
+              <div class="chips">{p.design.map(d => <span class="chip">{d}</span>)}</div>
+            )}
+          <span class="row-eye" aria-hidden="true">
+           <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="30" height="30" viewBox="0 0 30 30" version="1.1" id="svg822" inkscape:version="0.92.4 (f8dce91, 2019-08-02)" sodipodi:docname="design.svg">
+  <defs id="defs816">
+    <inkscape:path-effect only_selected="false" apply_with_weight="true" apply_no_weight="true" helper_size="0" steps="2" weight="33.333333" is_visible="true" id="path-effect1025" effect="bspline"/>
+    <inkscape:path-effect only_selected="false" apply_with_weight="true" apply_no_weight="true" helper_size="0" steps="2" weight="33.333333" is_visible="true" id="path-effect1021" effect="bspline"/>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="17.833333" inkscape:cx="19.485981" inkscape:cy="13.037383" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="true" units="px" inkscape:window-width="1366" inkscape:window-height="713" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" showguides="false" inkscape:guide-bbox="true">
+    <sodipodi:guide position="21.126168,22.794393" orientation="1,0" id="guide1575" inkscape:locked="false"/>
+    <sodipodi:guide position="22.682243,23.285047" orientation="1,0" id="guide1635" inkscape:locked="false"/>
+    <sodipodi:guide position="22.682243,7.6455921" orientation="0,1" id="guide1639" inkscape:locked="false"/>
+    <sodipodi:guide position="18.859863,18.859863" orientation="1,0" id="guide1242" inkscape:locked="false"/>
+    <inkscape:grid type="xygrid" id="grid1103"/>
+  </sodipodi:namedview>
+  <metadata id="metadata819">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-289.0625)">
+    <path style="opacity:1;fill:currentColor;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M 8.2832031,5.453125 5.453125,8.2832031 6.515625,9.34375 7.9296875,7.9296875 8.6367188,8.6367188 7.2226562,10.050781 l 1.4140626,1.414063 1.4140622,-1.414063 0.707031,0.707031 -1.414062,1.414063 1.414062,1.414063 2.828126,-2.828126 z M 21.283203,5.8886719 18.617188,8.5546875 21.445312,11.382812 24.111328,8.7167969 C 23.72822,8.1781369 23.307331,7.6589012 22.824219,7.1757812 22.341109,6.6926712 21.821837,6.2718019 21.283203,5.8886719 Z M 17.203125,9.96875 6.5957031,20.576172 5.8886719,24.111328 9.4238281,23.404297 20.03125,12.796875 Z m 2.039063,6.445312 -2.828126,2.828126 1.414063,1.414062 1.414063,-1.414062 0.707031,0.707031 -1.414063,1.414062 1.414063,1.414063 1.414062,-1.414063 0.707031,0.707031 -1.414062,1.414063 1.060547,1.0625 2.830078,-2.830078 z" transform="translate(0,289.0625)" id="rect1114" inkscape:connector-curvature="0"/>
+  </g>
+</svg>
+          </span>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </aside>
+</div>
+
+<script is:inline>
+(() => {
+  const list = document.getElementById('projList');
+  if (!list) return;
+
+  const rows = [...list.querySelectorAll('.project-row')];
+
+  // helper
+  const openOnly = (row) => rows.forEach(r => r.classList.toggle('is-open', r === row));
+
+  // Expand on hover / focus
+  rows.forEach(r => r.addEventListener('pointerenter', () => openOnly(r)));
+  list.addEventListener('focusin', e => {
+    const r = e.target.closest('.project-row');
+    if (r) openOnly(r);
+  });
+
+  // Collapse everything when pointer leaves the list area
+  list.addEventListener('pointerleave', () => {
+    rows.forEach(r => r.classList.remove('is-open'));
+  });
+
+  // IMPORTANT: no default “open first” and no scroll auto-open
+})();
+</script>
+<script is:inline>
+  const leftCard = document.querySelector('.feature-card');
+  const rightCol = document.querySelector('.right');
+  const syncHeights = () => {
+    if (!leftCard || !rightCol) return;
+    const h = leftCard.getBoundingClientRect().height;
+    rightCol.style.minHeight = `${h}px`;
+  };
+  new ResizeObserver(syncHeights).observe(document.body);
+  window.addEventListener('load', syncHeights);
+  window.addEventListener('resize', syncHeights);
+</script>
+<script is:inline>
+  const onScroll = () => {
+    document.documentElement.classList.toggle('has-scrolled', window.scrollY > 2);
+  };
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+</script>
+</Base>

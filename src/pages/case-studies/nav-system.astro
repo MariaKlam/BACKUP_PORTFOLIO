@@ -1,0 +1,436 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/nav.css";
+
+
+---
+
+<Base title="Case Study: Unified Navigation (Private)"
+      bodyClass="menu--sidebar"                 /* or menu--topnav */
+      noWrap={true}                             /* we’ll place things ourselves */
+      hideFooter={true}>
+
+  <!-- Overlay + support panel (static) -->
+<input hidden type="checkbox" id="toggleSidebarOptions" />
+<label for="toggleSidebarOptions" class="support-overlay" id="supportOverlayLeft" aria-hidden="true"></label>
+
+<section class="sidebar-extra-wrapper" id="supportPanel" hidden>
+  <div class="container__support" id="supportFormContent">
+    <form class="sendEmailForm" id="sendForm">
+      <div class="container__heading">
+        <div>
+          <h3 class="mb-2 text-always-light">Contact support</h3>
+          <span class="text-always-light">Tell us what you need help with.</span>
+        </div>
+      </div>
+
+      <div class="gap-4 w-full form form__label-above">
+        <div class="form__item text-always-light">
+          <label for="email">Email<span class="required-asterisk">*</span></label>
+          <input id="email" required type="email" class="field field__input" placeholder="you@company.com" />
+        </div>
+
+        <div class="form__item text-always-light">
+          <label for="phone">Phone <span class="optional">(optional)</span></label>
+          <input id="phone" type="tel" class="field field__input" placeholder="+372 5555 5555" />
+        </div>
+      </div>
+
+      <div class="form__label-above text-always-light">
+        <div class="form__item text-always-light">
+          <label for="topic">Topic<span class="required-asterisk">*</span></label>
+          <div class="select-wrapper">
+            <select id="topic" class="select__field">
+              <option value="POS">POS</option>
+              <option value="Backoffice">Backoffice</option>
+              <option value="GOERP">GOERP</option>
+              <option value="Other">Other</option>
+            </select>
+            <span class="select-icon"><i class="icon-Chevron-Down"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__label-above text-always-light">
+        <div class="form__item text-always-light">
+          <label for="description">Description<span class="required-asterisk">*</span> <span class="optional">(min 10 chars)</span></label>
+          <textarea id="description" required class="textarea" rows="5" placeholder="Describe the issue…"></textarea>
+        </div>
+      </div>
+
+      <div id="attachment-files-list" class="attachment-files-list"></div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <div class="flex gap-2">
+          <button type="submit" class="btn btn__primary">Submit</button>
+          <button type="reset" class="btn btn__neutral">Reset</button>
+        </div>
+
+        <label class="btn btn__neutral ml-auto">
+          <i class="icon-Attachment font-sm"></i>
+          <input hidden type="file" multiple accept="image/*,.pdf,.doc,.docx,.xlsx,.xls,.csv,.zip,.rar,.7zip,.asice" class="fileInput" />
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <label for="toggleSidebarOptions" class="support-panel__close text-always-light">
+    <i class="icon-Close"></i>
+  </label>
+</section>
+
+<!-- MASTER TOGGLE (mobile) -->
+<input type="checkbox" id="menuMasterToggle" hidden />
+<div class="master-menu_mobile-header">
+  <label for="menuMasterToggle" class="master-hamburger-button">
+    <i class="icon-Menu-Hamburger"></i>
+    <i class="icon-Close"></i>
+  </label>
+</div>
+
+<div class="mobile-menu-overlay">
+  <div class="thin-sidebar-group">
+    <!-- Left: Company mini sidebar -->
+    <aside class="extra-thin-sidebar company-sidebar">
+      <div class="thin-sidebar-icons">
+        <div class="account-switch-wrapper" id="accountSwitchWrapper2">
+          <ul id="locationList2" class="flex-col">
+            <!-- Active account (hardcoded) -->
+            <li class="company-sidebar__item company-sidebar__item--has-submenu" data-number="14224">
+              <div class="thin-sidebar-item company-sidebar__trigger">
+                <a href="#" class="account-switch-btn item--active">
+                  <span class="sidebar-icon-wrapper">
+                    <span class="company-name sidebar-icon">MK</span>
+                  </span>
+                  <span class="label">Maria</span>
+                  <span class="label" id="selectedLocation2" data-session="14224">#14224</span>
+                </a>
+              </div>
+            </li>
+
+            <!-- Users button -->
+            <li class="thin-sidebar-item flex-col align-center">
+              <a href="#" class="btn btn__secondary">
+                <i class="icon-Person-1-Group"></i>
+              </a>
+              <span class="label">Users</span>
+            </li>
+          </ul>
+
+          <div class="sidebar-divider mb-1"></div>
+
+          <!-- Other accounts list (example) -->
+          <div class="scroll-account-wrapper mt-1">
+            <ul class="scrollable-account-list">
+              <li class="company-sidebar__item company-sidebar__item--has-submenu searchable-account location-item flex-col" data-name="Demo Co" data-number="1311313">
+                <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+                  <span class="sidebar-icon company-badge">DC</span>
+                  <span class="label mt-1">Demo Co</span>
+                  <span class="label">#1311313</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Sticky actions -->
+          <div class="sticky-actions mb-auto">
+            <div class="thin-sidebar-item flex-col align-center company-sidebar__item--has-submenu mt-1">
+              <div class="thin-sidebar-item flex-col align-center company-sidebar__item--has-submenu mt-1">
+                    <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+                      <span class="company-search-svg">
+                         <svg width="21" height="20" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5254 7.16671C13.012 7.16678 14.2174 8.3721 14.2174 9.85876C14.2174 10.432 14.036 10.9625 13.7305 11.3991L15.696 13.3646L15.7559 13.4388C15.859 13.5952 15.8592 13.7995 15.7559 13.9558L15.696 14.0293C15.5355 14.1898 15.2878 14.2095 15.1055 14.0892L15.0312 14.0293L13.0658 12.0638C12.6291 12.3694 12.0986 12.5508 11.5254 12.5508C10.0387 12.5508 8.83341 11.3454 8.83333 9.85876C8.83333 8.37206 10.0387 7.16671 11.5254 7.16671ZM11.5254 8.10616C10.5575 8.10616 9.77279 8.89087 9.77279 9.85876C9.77286 10.8266 10.5575 11.6114 11.5254 11.6114C12.4932 11.6113 13.2779 10.8265 13.278 9.85876C13.278 8.89092 12.4932 8.10624 11.5254 8.10616Z" fill="currentColor"/>
+                            <path d="M4.9987 2.68494C5.11994 2.68494 5.2392 2.7029 5.35612 2.73962C5.47316 2.77627 5.58658 2.83286 5.69596 2.9089L8.96289 5.23572C9.08672 5.32578 9.15482 5.44492 9.16732 5.59249C9.17965 5.74016 9.13269 5.86964 9.02669 5.97986C8.9363 6.07659 8.83136 6.12929 8.71224 6.13806C8.59299 6.14692 8.48164 6.11765 8.37825 6.05017L5.11523 3.72986C5.08112 3.70419 5.04278 3.6908 5 3.6908C4.95722 3.6908 4.91888 3.70419 4.88477 3.72986L1.75651 5.93559C1.72651 5.95703 1.70434 5.98317 1.68945 6.01306C1.6745 6.04286 1.66671 6.07466 1.66667 6.10876V10.4616C1.66668 10.5215 1.68618 10.5703 1.72461 10.6088C1.76303 10.6472 1.8119 10.6667 1.87174 10.6667H3.03841C3.09819 10.6667 3.1471 10.6472 3.18555 10.6088C3.22408 10.5703 3.24347 10.5215 3.24349 10.4616V8.51306C3.24349 8.23188 3.34212 7.9926 3.53906 7.79561C3.73606 7.59861 3.9754 7.50004 4.25651 7.50004H5.74349C6.0246 7.50004 6.26394 7.59861 6.46094 7.79561C6.65788 7.9926 6.75651 8.23188 6.75651 8.51306V11.1667C6.75651 11.3083 6.70846 11.4271 6.61263 11.5228C6.51685 11.6187 6.39764 11.6667 6.25586 11.6667C6.11433 11.6666 5.99545 11.6186 5.89974 11.5228C5.80417 11.4271 5.75651 11.3083 5.75651 11.1667V8.50004H4.24349V10.4616C4.24347 10.793 4.1253 11.0766 3.88932 11.3125C3.65332 11.5485 3.36974 11.6667 3.03841 11.6667H1.87174C1.54034 11.6667 1.25681 11.5485 1.02083 11.3125C0.784854 11.0766 0.666687 10.793 0.666666 10.4616V6.11918C0.66667 5.92271 0.711517 5.73767 0.800781 5.56384C0.890114 5.38984 1.01511 5.24805 1.17578 5.13871L4.30404 2.9089C4.41342 2.83286 4.52643 2.77627 4.64258 2.73962C4.75877 2.70292 4.87751 2.68495 4.9987 2.68494Z" fill="currentColor"/>
+                            <path d="M13.4616 0.333374C13.793 0.333395 14.0765 0.451562 14.3125 0.687541C14.5485 0.92352 14.6666 1.20705 14.6667 1.53845V5.36658C14.6667 5.50824 14.6187 5.62746 14.5228 5.72335C14.427 5.81897 14.3082 5.86654 14.1667 5.86658C14.025 5.86658 13.9062 5.81895 13.8105 5.72335C13.7148 5.62746 13.6667 5.50824 13.6667 5.36658V1.53845C13.6666 1.4786 13.6471 1.42974 13.6087 1.39132C13.5703 1.35289 13.5214 1.33339 13.4616 1.33337H7.66667C7.60678 1.33337 7.55732 1.35287 7.51888 1.39132C7.48064 1.4297 7.46161 1.47875 7.46159 1.53845V2.09639C7.46155 2.23796 7.41353 2.35667 7.31771 2.45251C7.22188 2.54823 7.10314 2.59634 6.96159 2.5964C6.81988 2.5964 6.70111 2.5482 6.60547 2.45251C6.50973 2.35667 6.46163 2.23798 6.46159 2.09639V1.51827C6.46159 1.1944 6.57785 0.915815 6.81055 0.682983C7.04344 0.450095 7.32248 0.333374 7.64648 0.333374H13.4616Z" fill="currentColor"/>
+                            <path d="M11.9551 2.74353C12.0354 2.74353 12.1058 2.7738 12.166 2.83403C12.2262 2.89425 12.2565 2.96463 12.2565 3.04496V3.62179C12.2565 3.70212 12.2262 3.7725 12.166 3.83272C12.1058 3.89295 12.0354 3.92322 11.9551 3.92322H11.3783C11.2979 3.92322 11.2275 3.89295 11.1673 3.83272C11.1071 3.7725 11.0768 3.70212 11.0768 3.62179V3.04496C11.0768 2.96463 11.1071 2.89425 11.1673 2.83403C11.2275 2.7738 11.2979 2.74353 11.3783 2.74353H11.9551Z" fill="currentColor"/>
+                          </svg>
+                      </span>
+                      <span class="label">Find Company</span>
+                    </div>
+                </div>
+              <div class="company-sidebar__submenu">
+                <div class="company-sidebar__submenu-userinfo flex-col" id="accountSearchWrapper">
+                  <div class="sidebar-search-wrapper">
+                    <i class="icon-Search"></i>
+                    <input id="accountSearchInput" class="sidebar-search-input" type="text" placeholder="Search company…" />
+                  </div>
+                  <ul id="accountSearchResults" class="search-results-list justify-between"></ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="thin-sidebar-item flex-col align-center mt-1">
+              <a href="#" class="btn btn__secondary"><i class="icon-Plus"></i></a>
+              <span class="label">Add company</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-divider mb-1"></div>
+
+      <!-- Bottom: settings/help/logout/theme -->
+      <ul class="thin-sidebar--settings-container">
+        <li class="company-sidebar__item company-sidebar__item--has-submenu">
+          <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+            <span class="sidebar-icon"><i class="icon-Settings"></i></span>
+            <span class="label">Settings</span>
+          </div>
+          <div class="company-sidebar__submenu--below">
+            <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Key"></i><span>Change password</span></a>
+            <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Lock-Locked"></i><span>Two-step auth</span></a>
+
+            <div class="company-sidebar__item company-sidebar__item--has-submenu thin-sidebar__language-switch">
+              <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center mb-1">
+                <span class="sidebar-icon"><i class="icon-Globe"></i></span>
+                <span class="label">Language</span>
+              </div>
+              <div class="company-sidebar__submenu--below nested-submenu">
+                <div class="company-sidebar__submenu-options">
+                  <a href="#" class="company-sidebar__submenu-option item--active">English</a>
+                  <a href="#" class="company-sidebar__submenu-option">Estonian</a>
+                  <a href="#" class="company-sidebar__submenu-option">Spanish</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="company-sidebar__item company-sidebar__item--has-submenu">
+          <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+            <span class="sidebar-icon"><i class="icon-Alert-Circle"></i></span>
+            <span class="label">Help</span>
+          </div>
+          <div class="company-sidebar__submenu--below">
+            <a href="https://wiki.erply.com" class="company-sidebar__link flex align-center" target="_blank" rel="noreferrer">
+              <i class="icon-Catalogue-With-Text"></i><span>Wiki</span>
+            </a>
+            <label for="toggleSidebarOptions" class="company-sidebar__link flex align-center" aria-controls="supportPanel" aria-expanded="false">
+              <i class="icon-Edit-Cheque"></i><span>Create ticket</span>
+            </label>
+            <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Person-3-Default"></i><span>Support agent</span></a>
+          </div>
+        </li>
+
+        <li>
+          <button class="thin-sidebar-item flex-col align-center" type="button">
+            <span class="sidebar-icon"><i class="icon-Sign-Out"></i></span>
+            <span class="label">Logout</span>
+          </button>
+        </li>
+
+        <li>
+          <div class="theme-toggle theme-toggle--xs" role="group" aria-label="Theme">
+            <button type="button" data-theme-btn="light" aria-pressed="true">
+              <i class="icon-Theme-Light" aria-hidden="true"></i>
+              <span class="sr-only">Light</span>
+            </button>
+            <button type="button" data-theme-btn="dark" aria-pressed="false">
+              <i class="icon-Theme-Dark" aria-hidden="true"></i>
+              <span class="sr-only">Dark</span>
+            </button>
+          </div>
+        </li>
+          
+      </ul>
+    </aside>
+
+    <!-- Right: App switcher thin sidebar -->
+    <aside class="extra-thin-sidebar extra-thin-sidebar--second">
+      <div class="extra-thin-sidebar_header">
+      <form method="post" class="toggleFavoriteForm">
+      
+            <button type="submit" aria-label="Toggle favorite" class="favorite-toggle-button">
+              <i class="icon-Star"></i>
+            </button>
+          </form>
+        <button class="btn btn__secondary action-button--back"><i class="icon-Arrow-Left"></i></button>
+        <ul class="thin-sidebar-icons">
+          <li class="thin-sidebar-item">
+            <a href="#"><span class="sidebar-icon"><i class="icon-Box-Closed"></i></span><span class="label">Inventory</span></a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#"><span class="sidebar-icon"><i class="icon-Person-2-Group"></i></span><span class="label">Customers</span></a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#" title="Emails">
+              <span class="sidebar-icon"><i class="icon-Email"></i></span>
+              <span class="label">Emails</span>
+            </a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#" title="Locations">
+              <span class="sidebar-icon"><i class="icon-Location"></i></span>
+              <span class="label">Locations</span>
+             </a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#" title="App Store">
+              <span class="sidebar-icon"><i class="icon-Plus-Circle"></i></span>
+              <span class="label">App Store</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="mt-auto p-2">
+   
+            <button data-toggle-menu class="btn hide-on-mobile mt-2">
+          
+                <svg class="icon-rotate-up" width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M2.25635 0.916687C1.83538 0.916687 1.47868 1.06285 1.18701 1.35451C0.89554 1.64611 0.750026 2.00223 0.75 2.42303V13.577C0.750026 13.9978 0.89554 14.3539 1.18701 14.6455C1.47868 14.9372 1.83538 15.0834 2.25635 15.0834H12.1595C12.5805 15.0834 12.9372 14.9372 13.2288 14.6455C13.5204 14.3539 13.6666 13.9979 13.6667 13.577V2.42303C13.6666 2.00218 13.5204 1.64613 13.2288 1.35451C12.9372 1.06285 12.5805 0.916687 12.1595 0.916687H2.25635ZM7.77067 13.8334H2.25635C2.19218 13.8334 2.13309 13.8063 2.07975 13.7528C2.02648 13.6996 2.00003 13.641 2 13.577V2.42303C2.00003 2.35901 2.02648 2.30049 2.07975 2.24725C2.13309 2.19378 2.19218 2.16669 2.25635 2.16669H7.77067V13.8334Z" fill="currentColor"/>
+                </svg>
+           
+         
+         
+            </button>
+          </form>
+        </div>
+    </aside>
+  </div>
+
+  <!-- Main nav (sidebar/topnav switches via body class) -->
+  <nav class="menu menu--sidebar" aria-label="Main Navigation">
+    <div class="menu__header flex">
+      <a class="badge app__badge" href="#"><i class="icon-Box-Closed"></i></a>
+      <h2 class="menu__title">Static demo of navigation menu</h2>
+    </div>
+
+    <div class="menu__center">
+      <!-- Group 1 -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="icon-Chart-Bar"></i>
+          <span class="sidebar__label">Overview</span>
+        </label>
+        <div class="sub-menu_down" id="submenu_panel_g1">
+          <ul>
+            <li><a class="font-sm" href="#"><i class="icon-Chart-Line"></i><span>Analytics</span></a></li>
+            <li><a class="font-sm" href="#"><i class="icon-List"></i><span>Activity</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Group 2 with 3rd-level sections -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="icon-Settings"></i>
+          <span class="sidebar__label">Configuration</span>
+        </label>
+        <div class="sub-menu_down">
+          <div class="sidebar__third-level-menu">
+            <div class="submenu-section">
+              <h4 class="submenu-heading">General</h4>
+              <ul>
+                <li><a class="font-sm" href="#"><i class="icon-Globe"></i><span>Localization</span></a></li>
+                <li><a class="font-sm" href="#"><i class="icon-Person-1-Default"></i><span>Users</span></a></li>
+              </ul>
+            </div>
+            <div class="submenu-section">
+              <h4 class="submenu-heading">Advanced</h4>
+              <ul>
+                <li><a class="font-sm" href="#"><i class="icon-Key"></i><span>API Keys</span></a></li>
+                <li><a class="font-sm" href="#"><i class="icon-Lock-Locked"></i><span>Security</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaf -->
+      <div class="sidebar-group">
+        <a href="#" class="sidebar__item">
+          <i class="icon-Cart-Trolley"></i><span class="sidebar__label">Orders</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Topnav-only footer trigger (kept minimal) -->
+    <div class="flex only-topnav ml-auto gap-3 align-center">
+      <label class="landing-link" for="toggleTopnavFooter" title="App updated">
+        <i class="icon-Checkmark-Round text-green mr-1" aria-hidden="true"></i>
+        <span class="text-green">v.</span><span class="text-green">1.0.0</span>
+      </label>
+      <label class="menu__item name-initial"><span id="userInitials">MK</span></label>
+      <div class="flex-col">
+        <span class="company-name" title="Demo Company">Demo Company</span>
+        <span class="sidebar-label" id="selectedLocation">142242425</span>
+      </div>
+    </div>
+    <input type="checkbox" id="toggleTopnavFooter" hidden />
+    <div class="menu__footer-wrapper">
+      <div class="menu__version">
+        <div class="flex align-center justify-between">
+          <span class="badge badge__uptodate"><i class="icon-Checkmark-Round"></i>App up to date</span>
+          <div class="flex"><span class="label">v.</span><span class="ml-1">1.0.0</span></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+  <!-- your case study content -->
+   <article class="container-narrow">
+    <h1>Unified Navigation System</h1>
+    <p class="meta">Role: Frontend & UX • Timeline: 2024–2025 • Tech: HTML, CSS, JS</p>
+
+    <h2>Context & Problem</h2>
+    <p>Multiple apps used duplicated markup for sidebar/topnav with inconsistent behavior and a11y gaps…</p>
+
+    <h2>Approach</h2>
+    <ul>
+      <li>Single base markup toggled between sidebar and topnav via outer class</li>
+      <li>Mobile overlay with ESC / outside click / focus trap</li>
+      <li>Checkbox/radio for submenus; minimal JS</li>
+    </ul>
+
+    <h2>Outcome</h2>
+    <ul>
+      <li>Removed duplicate HTML across views</li>
+      <li>Improved consistency + accessibility</li>
+      <li>Faster onboarding with documented patterns</li>
+    </ul>
+
+    <div class="demo-controls">
+      <button class="btn" data-toggle-menu>Toggle: Sidebar / Topnav</button>
+ 
+    </div>
+  </article>
+   <!-- Page-scoped script: ESM module so it treeshakes -->
+  <script type="module">
+  import { initNavCaseStudy } from "../../scripts/nav-page.ts";
+  initNavCaseStudy();
+</script>
+
+</Base>
+<!-- tiny demo JS for toggles -->
+<script is:inline>
+  // Flip sidebar/topnav
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-toggle-menu]');
+    if (!btn) return;
+    document.body.classList.toggle('menu--sidebar');
+    document.body.classList.toggle('menu--topnav');
+  });
+
+  // Optional: open/close submenus (checkbox-free version)
+  document.querySelectorAll('.sidebar-group[data-caret] > label.sidebar__item')
+    .forEach(lbl => {
+      lbl.addEventListener('click', () => {
+        const wrap = lbl.closest('.sidebar-group');
+        wrap?.classList.toggle('is-open');
+      });
+    });
+</script>
+
+<script is:inline>
+  addEventListener('click', e => {
+    const btn = e.target.closest('[data-toggle-menu]');
+    if (!btn) return;
+    const nav = document.querySelector('.menu');
+    nav?.classList.toggle('menu--sidebar');
+    nav?.classList.toggle('menu--topnav');
+  });
+</script>
+

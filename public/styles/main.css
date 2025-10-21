@@ -1,0 +1,515 @@
+/* ======================================
+   TOKENS
+====================================== */
+:root {
+  --bg: #fff;
+  --fg: #0f0f10;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --card: #fff;
+  --accent: #3b82f6;
+  --num-bg: #0f0f10;
+
+  --main-max: 1400px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --pad: 1rem;
+  --r: 16px;
+
+  /* Arrow */
+  --arrow-thick: 2px;
+  --arrow-head: 10px;
+  --arrow-len: 22px;
+
+  /* Theme pill active fill (light) */
+  --toggle-on: color-mix(in oklab, var(--bg) 90%, var(--fg));
+
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0b0c10;
+  --fg: #e9e9ee;
+  --muted: #9aa1ad;
+  --border: #1f2430;
+  --card: #11131a;
+  --accent: #60a5fa;
+  --num-bg: #fff;
+
+  /* Theme pill active fill (dark) */
+  --toggle-on: color-mix(in oklab, var(--bg) 78%, var(--fg));
+  color-scheme: dark;
+}
+
+/* ======================================
+   BASE
+====================================== */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scrollbar-gutter: stable both-edges;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ======================================
+   SHARED CONTAINER
+   (apply to .header-inner and .wrap)
+====================================== */
+.header-inner,
+.wrap {
+  max-width: var(--main-max);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* ======================================
+   HEADER (full-bleed bar; inner handles layout)
+====================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 8%, transparent);
+  transition: box-shadow 0.18s ease;
+}
+.has-scrolled .site-header {
+  box-shadow: 0 6px 16px -12px color-mix(in oklab, var(--fg) 25%, transparent);
+}
+
+/* header content aligns to page grid */
+.site-header .header-inner {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Brand + nav */
+.brand-name {
+  font: 800 14px/1 "Inter Tight", system-ui;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+.nav {
+  justify-self: center;
+}
+.nav a {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg);
+  padding: 0.25rem 0.45rem;
+  border-radius: 6px;
+  opacity: 0.9;
+}
+.nav a:hover {
+  opacity: 1;
+}
+.nav a[aria-current="page"] {
+  background: color-mix(in oklab, var(--fg) 10%, transparent);
+  font-weight: 700;
+}
+
+/* Theme toggle — segmented pill */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--fg) 4%, transparent);
+}
+.theme-toggle .slash {
+  display: none;
+}
+.theme-toggle button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 9999px;
+  padding: 0.42rem 0.8rem;
+  font: 600 11px/1 "Inter Tight", system-ui;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.15s, background-color 0.15s;
+}
+.theme-toggle button:hover {
+  color: var(--fg);
+}
+.theme-toggle button[aria-pressed="true"] {
+  background: var(--toggle-on);
+  color: var(--fg);
+  border: 0;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--fg) 10%, transparent);
+}
+.theme-toggle:focus-within {
+  box-shadow: none;
+}
+:root[data-theme="dark"] .theme-toggle {
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  border-color: color-mix(in oklab, var(--fg) 12%, transparent);
+}
+
+/* ======================================
+   INTRO
+====================================== */
+.page-title {
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.2vw + 1rem, 4.5rem);
+  line-height: 1.02;
+  margin: 0.6rem 0 0.5rem;
+  text-wrap: balance;
+}
+.lede {
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1.55rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ======================================
+   LAYOUT (left hero + right list)
+====================================== */
+.site {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+.site-main {
+  flex: 1;
+}
+.site-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 24px var(--pad);
+  color: var(--muted);
+  border-top: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  background: color-mix(in oklab, var(--bg) 98%, transparent);
+}
+:root[data-theme="dark"] .site-footer {
+  background: color-mix(in oklab, var(--bg) 97%, transparent);
+}
+
+/* wrap matches header width; no extra side padding here */
+.wrap {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Section grid sits inside .wrap (no extra max-width) */
+.work-split {
+  display: grid;
+  grid-template-columns: 5.25fr 6.75fr;
+  gap: 32px;
+  margin: 0;
+  padding: calc(var(--pad) * 2) 0; /* vertical only */
+  align-items: stretch;
+}
+
+/* LEFT sticky hero */
+.left {
+  align-self: start;
+}
+.intro-block {
+  margin: 0 0 14px;
+}
+
+.feature-card {
+  position: sticky;
+  top: calc(72px + 12px);
+  display: block;
+  text-decoration: none;
+  background: var(--card);
+  color: var(--fg);
+  border-radius: var(--r);
+  padding: 24px 24px 20px;
+  box-shadow: 0 0 0 1px var(--border);
+  transition: transform 0.2s ease !important;
+  will-change: transform;
+  contain: paint;
+}
+.feature-card:hover {
+  transform: translateY(-2px);
+}
+.feature-card .num {
+  font-weight: 900;
+  font-size: clamp(1.7rem, 2.4vw + 1rem, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--num-bg);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.feature-card h3 {
+  margin: 6px 0 0;
+  font-weight: 900;
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.8rem);
+  line-height: 1.05;
+}
+.feature-card h3::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 10px;
+  background: color-mix(in oklab, var(--fg) 16%, transparent);
+}
+:root[data-theme="dark"] .feature-card h3::after {
+  background: color-mix(in oklab, var(--fg) 24%, transparent);
+}
+.feature-card .meta {
+  color: var(--muted);
+  margin-top: 6px;
+}
+.feature-card .summary {
+  margin: 8px 0 6px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+.chip {
+  padding: 0.22rem 0.48rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: color-mix(in oklab, var(--card) 80%, transparent);
+}
+
+/* RIGHT list */
+.right {
+  display: flex;
+}
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 auto;
+}
+.project-row {
+  border-bottom: 1.5px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  transition: background-color 0.25s ease;
+}
+.project-row:first-child {
+  border-top: 0;
+}
+
+/* Match the left card surface when a row is hovered/open */
+.project-row:hover,
+.project-row.is-open {
+  background: var(--card);
+}
+
+/* If you still want a faint hover hint in light mode, do it on the outline */
+:root:not([data-theme="dark"]) .project-row:hover {
+  background-color: #f9f9fa;
+}
+
+/* Remove the old darker hover backgrounds */
+.project-row:hover,
+:root[data-theme="dark"] .project-row:hover {
+  background: var(--card);
+}
+
+.row-link {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 8px;
+  color: inherit;
+  text-decoration: none;
+}
+.row-link:hover .row-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.row-num {
+  font-weight: 900;
+  font-size: clamp(1.8rem, 2vw + 1rem, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--num-bg);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.row-title {
+  font-weight: 800;
+  font-size: clamp(1.05rem, 0.7vw + 1rem, 1.35rem);
+}
+
+/* Arrow: shaft touching filled triangle */
+/* arrow column still `auto` in your grid */
+.row-link {
+  grid-template-columns: 100px 1fr auto;
+}
+
+/* Collapsible details */
+.row-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 8px;
+  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
+}
+.project-row.is-open .row-details {
+  max-height: 260px;
+  opacity: 1;
+  padding: 6px 8px 14px;
+}
+.row-meta {
+  color: var(--muted);
+  margin: 2px 0 6px;
+}
+.row-summary {
+  margin: 0 0 6px;
+}
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+@media (max-width: 1099px) {
+  .work-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .feature-card {
+    position: static;
+  }
+  .row-link {
+    grid-template-columns: 80px 1fr auto;
+  }
+}
+
+/* ======================================
+   Optional page fade (only when .theme-fade is on <html>)
+====================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-fade body {
+    transition: background-color 0.18s linear, color 0.18s linear !important;
+  }
+}
+/*Eye icon*/
+/* make the details panel the positioning context */
+/* make sure the details panel is the positioning context */
+.project-row .row-details {
+  position: relative;
+  overflow: hidden; /* already true in your CSS, but keep it here */
+}
+
+/* Eye: tucked into the bottom-right so it gets clipped ~halfway */
+.row-eye {
+  position: absolute;
+  right: 62px;
+  top: -24px; /* override previous top */
+
+  transform: rotate(22deg) skewX(-6deg) scale(0.85);
+  transform-origin: 50% 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, bottom 0.22s ease;
+  color: currentColor;
+  z-index: 1;
+}
+
+/* show when open (slightly more tilt and size) */
+.project-row.is-open .row-eye {
+  opacity: 1;
+  transform: rotate(0deg) skewX(0deg) scale(0.9);
+}
+
+/* only on the 3rd right-column row (02, 03, **04**) */
+.project-list > li:not(:nth-child(3)) .row-eye {
+  display: none;
+}
+
+/* size the SVG a bit smaller overall */
+.row-eye svg {
+  width: clamp(96px, 14vw, 160px);
+  height: auto;
+}
+/* Make the details panel the positioning context + clip the icon */
+.project-row .row-details {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Icon: sit in the bottom-right and be clipped about half-way */
+.row-eye {
+  position: absolute;
+  right: 40px; /* a touch closer to the arrow */
+  bottom: -36px; /* push it down so it's half hidden */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, bottom 0.22s ease;
+  color: currentColor; /* SVG should use fill="currentColor" */
+  z-index: 1;
+}
+
+/* On expand: nudge up a bit, reduce tilt, grow slightly */
+.project-row.is-open .row-eye {
+  opacity: 1;
+  bottom: -18px;
+}
+
+/* Only show on the 3rd right-column row (the tokens row) */
+.project-list > li:not(:nth-child(3)) .row-eye {
+  display: none;
+}
+
+/* Size (illustration-ish, but responsive) */
+.row-eye svg {
+  width: clamp(88px, 15vw, 160px);
+  height: auto;
+}
+
+/* --- Contrast softening --- */
+/* Light theme: a tiny soften so it doesn't scream */
+:root:not([data-theme="dark"]) .row-eye {
+  color: color-mix(in oklab, var(--fg) 90%, var(--bg));
+}
+
+/* Dark theme: soften white to ~85% so it blends */
+:root[data-theme="dark"] .row-eye {
+  color: color-mix(
+    in oklab,
+    var(--fg) 85%,
+    var(--bg)
+  ); /* ≈ rgba(255,255,255,.85) */
+}
+/* If your browser lacks color-mix, add a safe fallback: */
+:root[data-theme="dark"] .row-eye {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.project-list {
+  padding-bottom: 260px;
+}

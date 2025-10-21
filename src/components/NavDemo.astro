@@ -1,0 +1,355 @@
+---
+import "../styles/nav.css"; // keep if nav.css is under src/styles
+// If your CSS is in /public/styles/nav.css, remove this line and
+// include <link rel="stylesheet" href="/styles/nav.css"> in the page <head>.
+---
+<!-- Overlay + support panel (static) -->
+<input hidden type="checkbox" id="toggleSidebarOptions" />
+<label for="toggleSidebarOptions" class="support-overlay" id="supportOverlayLeft" aria-hidden="true"></label>
+
+<section class="sidebar-extra-wrapper" id="supportPanel" hidden>
+  <div class="container__support" id="supportFormContent">
+    <form class="sendEmailForm" id="sendForm">
+      <div class="container__heading">
+        <div>
+          <h3 class="mb-2 text-always-light">Contact support</h3>
+          <span class="text-always-light">Tell us what you need help with.</span>
+        </div>
+      </div>
+
+      <div class="gap-4 w-full form form__label-above">
+        <div class="form__item text-always-light">
+          <label for="email">Email<span class="required-asterisk">*</span></label>
+          <input id="email" required type="email" class="field field__input" placeholder="you@company.com" />
+        </div>
+
+        <div class="form__item text-always-light">
+          <label for="phone">Phone <span class="optional">(optional)</span></label>
+          <input id="phone" type="tel" class="field field__input" placeholder="+372 5555 5555" />
+        </div>
+      </div>
+
+      <div class="form__label-above text-always-light">
+        <div class="form__item text-always-light">
+          <label for="topic">Topic<span class="required-asterisk">*</span></label>
+          <div class="select-wrapper">
+            <select id="topic" class="select__field">
+              <option value="POS">POS</option>
+              <option value="Backoffice">Backoffice</option>
+              <option value="GOERP">GOERP</option>
+              <option value="Other">Other</option>
+            </select>
+            <span class="select-icon"><i class="icon-Chevron-Down"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__label-above text-always-light">
+        <div class="form__item text-always-light">
+          <label for="description">Description<span class="required-asterisk">*</span> <span class="optional">(min 10 chars)</span></label>
+          <textarea id="description" required class="textarea" rows="5" placeholder="Describe the issue…"></textarea>
+        </div>
+      </div>
+
+      <div id="attachment-files-list" class="attachment-files-list"></div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <div class="flex gap-2">
+          <button type="submit" class="btn btn__primary">Submit</button>
+          <button type="reset" class="btn btn__neutral">Reset</button>
+        </div>
+
+        <label class="btn btn__neutral ml-auto">
+          <i class="icon-Attachment font-sm"></i>
+          <input hidden type="file" multiple accept="image/*,.pdf,.doc,.docx,.xlsx,.xls,.csv,.zip,.rar,.7zip,.asice" class="fileInput" />
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <label for="toggleSidebarOptions" class="support-panel__close text-always-light">
+    <i class="icon-Close"></i>
+  </label>
+</section>
+
+<!-- MASTER TOGGLE (mobile) -->
+<input type="checkbox" id="menuMasterToggle" hidden />
+<div class="master-menu_mobile-header">
+  <label for="menuMasterToggle" class="master-hamburger-button">
+    <i class="icon-Menu-Hamburger"></i>
+    <i class="icon-Close"></i>
+  </label>
+</div>
+
+<div class="mobile-menu-overlay">
+  <div class="thin-sidebar-group">
+    <!-- Left: Company mini sidebar -->
+    <aside class="extra-thin-sidebar company-sidebar">
+      <div class="thin-sidebar-icons">
+        <div class="account-switch-wrapper" id="accountSwitchWrapper2">
+          <ul id="locationList2" class="flex-col">
+            <!-- Active account (hardcoded) -->
+            <li class="company-sidebar__item company-sidebar__item--has-submenu" data-number="142242425">
+              <div class="thin-sidebar-item company-sidebar__trigger">
+                <a href="#" class="account-switch-btn item--active">
+                  <span class="sidebar-icon-wrapper">
+                    <span class="company-name sidebar-icon">MK</span>
+                  </span>
+                  <span class="label">Maria</span>
+                  <span class="label" id="selectedLocation2" data-session="142242425">#142242425</span>
+                </a>
+              </div>
+            </li>
+
+            <!-- Users button -->
+            <li class="thin-sidebar-item flex-col align-center">
+              <a href="#" class="btn btn__secondary">
+                <i class="icon-Person-1-Group"></i>
+              </a>
+              <span class="label">Users</span>
+            </li>
+          </ul>
+
+          <div class="sidebar-divider mb-1"></div>
+
+          <!-- Other accounts list (example) -->
+          <div class="scroll-account-wrapper mt-1">
+            <ul class="scrollable-account-list">
+              <li class="company-sidebar__item company-sidebar__item--has-submenu searchable-account location-item flex-col" data-name="Demo Co" data-number="1311313">
+                <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+                  <span class="sidebar-icon company-badge">DC</span>
+                  <span class="label mt-1">Demo Co</span>
+                  <span class="label">#1311313</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Sticky actions -->
+          <div class="sticky-actions mb-auto">
+            <div class="thin-sidebar-item flex-col align-center company-sidebar__item--has-submenu mt-1">
+              <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+                <span class="company-search-svg">
+                  <!-- tiny magnifier -->
+                  <svg width="21" height="20" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><circle cx="7" cy="7" r="4"/><path d="M10.5 10.5l3 3"/></svg>
+                </span>
+                <span class="label">Find company</span>
+              </div>
+              <div class="company-sidebar__submenu">
+                <div class="company-sidebar__submenu-userinfo flex-col" id="accountSearchWrapper">
+                  <div class="sidebar-search-wrapper">
+                    <i class="icon-Search"></i>
+                    <input id="accountSearchInput" class="sidebar-search-input" type="text" placeholder="Search company…" />
+                  </div>
+                  <ul id="accountSearchResults" class="search-results-list justify-between"></ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="thin-sidebar-item flex-col align-center mt-1">
+              <a href="#" class="btn btn__secondary"><i class="icon-Plus"></i></a>
+              <span class="label">Add company</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-divider mb-1"></div>
+
+      <!-- Bottom: settings/help/logout/theme -->
+      <ul class="thin-sidebar--settings-container">
+        <li class="company-sidebar__item company-sidebar__item--has-submenu">
+          <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+            <span class="sidebar-icon"><i class="icon-Settings"></i></span>
+            <span class="label">Settings</span>
+          </div>
+          <div class="company-sidebar__submenu--below">
+            <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Key"></i><span>Change password</span></a>
+            <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Lock-Locked"></i><span>Two-step auth</span></a>
+
+            <div class="company-sidebar__item company-sidebar__item--has-submenu thin-sidebar__language-switch">
+              <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center mb-1">
+                <span class="sidebar-icon"><i class="icon-Globe"></i></span>
+                <span class="label">Language</span>
+              </div>
+              <div class="company-sidebar__submenu--below nested-submenu">
+                <div class="company-sidebar__submenu-options">
+                  <a href="#" class="company-sidebar__submenu-option item--active">English</a>
+                  <a href="#" class="company-sidebar__submenu-option">Estonian</a>
+                  <a href="#" class="company-sidebar__submenu-option">Spanish</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="company-sidebar__item company-sidebar__item--has-submenu">
+          <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+            <span class="sidebar-icon"><i class="icon-Alert-Circle"></i></span>
+            <span class="label">Help</span>
+          </div>
+          <div class="company-sidebar__submenu--below">
+            <a href="https://wiki.erply.com" class="company-sidebar__link flex align-center" target="_blank" rel="noreferrer">
+              <i class="icon-Catalogue-With-Text"></i><span>Wiki</span>
+            </a>
+            <label for="toggleSidebarOptions" class="company-sidebar__link flex align-center" aria-controls="supportPanel" aria-expanded="false">
+              <i class="icon-Edit-Cheque"></i><span>Create ticket</span>
+            </label>
+            <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Person-3-Default"></i><span>Support agent</span></a>
+          </div>
+        </li>
+
+        <li>
+          <button class="thin-sidebar-item flex-col align-center" type="button">
+            <span class="sidebar-icon"><i class="icon-Sign-Out"></i></span>
+            <span class="label">Logout</span>
+          </button>
+        </li>
+
+        <li>
+          <div class="theme-toggle-wrapper mb-2 hide-on-topnav" id="themeToggle">
+            <div id="lightMode" class="theme-toggle-light">
+              <label class="theme-toggle-button"><i class="icon-Theme-Light"></i></label>
+            </div>
+            <div id="darkMode" class="theme-toggle-dark">
+              <label class="theme-toggle-button"><i class="icon-Theme-Dark"></i></label>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Right: App switcher thin sidebar -->
+    <aside class="extra-thin-sidebar extra-thin-sidebar--second">
+      <div class="extra-thin-sidebar_header">
+        <button class="btn btn__secondary action-button--back"><i class="icon-Arrow-Left"></i></button>
+        <ul class="thin-sidebar-icons">
+          <li class="thin-sidebar-item">
+            <a href="#"><span class="sidebar-icon"><i class="icon-Box-Closed"></i></span><span class="label">Inventory</span></a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#"><span class="sidebar-icon"><i class="icon-Box-Closed"></i></span><span class="label">Reports</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-auto p-2">
+        <!-- Position toggle demo (no server post) -->
+       <button data-toggle-menu>Sidebar / Topnav</button>
+
+
+      </div>
+    </aside>
+  </div>
+
+  <!-- Main nav (sidebar/topnav switches via body class) -->
+  <nav class="menu menu--sidebar" aria-label="Main Navigation">
+    <div class="menu__header flex">
+      <a class="badge app__badge" href="#"><i class="icon-Box-Closed"></i></a>
+      <h2 class="menu__title">Demo App</h2>
+    </div>
+
+    <div class="menu__center">
+      <!-- Group 1 -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="icon-Chart-Line"></i>
+          <span class="sidebar__label">Overview</span>
+        </label>
+        <div class="sub-menu_down" id="submenu_panel_g1">
+          <ul>
+            <li><a class="font-sm" href="#"><i class="icon-Chart-Line"></i><span>Analytics</span></a></li>
+            <li><a class="font-sm" href="#"><i class="icon-List"></i><span>Activity</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Group 2 with 3rd-level sections -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="icon-Settings"></i>
+          <span class="sidebar__label">Configuration</span>
+        </label>
+        <div class="sub-menu_down">
+          <div class="sidebar__third-level-menu">
+            <div class="submenu-section">
+              <h4 class="submenu-heading">General</h4>
+              <ul>
+                <li><a class="font-sm" href="#"><i class="icon-Globe"></i><span>Localization</span></a></li>
+                <li><a class="font-sm" href="#"><i class="icon-Person-1-Default"></i><span>Users</span></a></li>
+              </ul>
+            </div>
+            <div class="submenu-section">
+              <h4 class="submenu-heading">Advanced</h4>
+              <ul>
+                <li><a class="font-sm" href="#"><i class="icon-Key"></i><span>API Keys</span></a></li>
+                <li><a class="font-sm" href="#"><i class="icon-Lock-Locked"></i><span>Security</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaf -->
+      <div class="sidebar-group">
+        <a href="#" class="sidebar__item">
+          <i class="icon-List"></i><span class="sidebar__label">Orders</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Topnav-only footer trigger (kept minimal) -->
+    <div class="flex only-topnav ml-auto gap-3 align-center">
+      <label class="landing-link" for="toggleTopnavFooter" title="App updated">
+        <i class="icon-Checkmark-Round text-green mr-1" aria-hidden="true"></i>
+        <span class="text-green">v.</span><span class="text-green">1.0.0</span>
+      </label>
+      <label class="menu__item name-initial"><span id="userInitials">MK</span></label>
+      <div class="flex-col">
+        <span class="company-name" title="Demo Company">Demo Company</span>
+        <span class="sidebar-label" id="selectedLocation">142242425</span>
+      </div>
+    </div>
+    <input type="checkbox" id="toggleTopnavFooter" hidden />
+    <div class="menu__footer-wrapper">
+      <div class="menu__version">
+        <div class="flex align-center justify-between">
+          <span class="badge badge__uptodate"><i class="icon-Checkmark-Round"></i>App up to date</span>
+          <div class="flex"><span class="label">v.</span><span class="ml-1">1.0.0</span></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- tiny demo JS for toggles -->
+<script is:inline>
+  // Flip sidebar/topnav
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-toggle-menu]');
+    if (!btn) return;
+    document.body.classList.toggle('menu--sidebar');
+    document.body.classList.toggle('menu--topnav');
+  });
+
+  // Optional: open/close submenus (checkbox-free version)
+  document.querySelectorAll('.sidebar-group[data-caret] > label.sidebar__item')
+    .forEach(lbl => {
+      lbl.addEventListener('click', () => {
+        const wrap = lbl.closest('.sidebar-group');
+        wrap?.classList.toggle('is-open');
+      });
+    });
+</script>
+
+<script is:inline>
+  addEventListener('click', e => {
+    const btn = e.target.closest('[data-toggle-menu]');
+    if (!btn) return;
+    const nav = document.querySelector('.menu');
+    nav?.classList.toggle('menu--sidebar');
+    nav?.classList.toggle('menu--topnav');
+  });
+</script>
+
+
