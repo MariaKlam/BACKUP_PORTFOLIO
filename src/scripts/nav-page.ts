@@ -1,790 +1,396 @@
-// src/scripts/nav-page.ts
-// Keep only what's used on this demo page
+/* Minimal, framework-agnostic wiring for your demo UI
+   Safe to call multiple times (guards prevent double-binding) */
 
-const onDomReady = (fn: () => void) =>
+const ready = (fn: () => void) =>
   document.readyState === "loading"
     ? document.addEventListener("DOMContentLoaded", fn, { once: true })
     : fn();
 
-/* MAIN MENU ASSET SUPPORT FORM */
-function sentSupportFormSidebar() {
-  const panel = document.querySelector<HTMLElement>("#supportPanel");
-  const cb = document.querySelector<HTMLInputElement>("#toggleSidebarOptions");
-  if (!panel || !cb) return;
+const $ = <T extends Element = HTMLElement>(
+  s: string,
+  r: ParentNode = document
+) => r.querySelector<T>(s);
+const $$ = <T extends Element = HTMLElement>(
+  s: string,
+  r: ParentNode = document
+) => Array.from(r.querySelectorAll<T>(s));
 
-  // prevent re-init
-  if (panel.dataset.sfsInit === "1" && panel.dataset.sfsFormInit === "1")
-    return;
+export function initNavLite() {
+  // avoid rebinding when Astro rehydrates / swaps pages
+  if ((document.body as any)._navLiteInit) return;
+  (document.body as any)._navLiteInit = true;
 
-  const $ = <T extends Element = HTMLElement>(
-    sel: string,
-    root: Element | Document = panel
-  ) => root.querySelector<T>(sel)!;
-  const $$ = (sel: string, root: Element | Document = panel) =>
-    Array.from(root.querySelectorAll(sel));
+  ready(() => {
+    wireLayoutToggle();
+    wireCaretOpeners();
+    wireHamburger();
+    wireCompanySubmenus();
+    wireSupportPanel();
+    wireCompanySearch();
+  });
+}
 
-  const formWrap = () =>
-    $("#supportFormContent") ||
-    $("#sendForm, form.sendEmailForm")?.parentElement ||
-    panel;
-  const form = () =>
-    $("#sendForm, form.sendEmailForm") as HTMLFormElement | null;
-  const successBox = () => $("#supportSuccess");
-  const errorBox = () => $("#supportError");
+/* 0) Sidebar <-> Topnav toggle (covers both of your first two inline scripts) */
+function wireLayoutToggle() {
+  if ((document.body as any)._navLiteLayout) return;
+  (document.body as any)._navLiteLayout = true;
 
-  const showForm = () => {
-    formWrap()?.classList.remove("hidden");
-    successBox()?.classList.add("hidden");
-    errorBox()?.classList.add("hidden");
-  };
-  const showSuccess = () => {
-    formWrap()?.classList.add("hidden");
-    successBox()?.classList.remove("hidden");
-    errorBox()?.classList.add("hidden");
-  };
-  const showError = () => {
-    formWrap()?.classList.add("hidden");
-    successBox()?.classList.add("hidden");
-    errorBox()?.classList.remove("hidden");
-  };
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as Element).closest("[data-toggle-menu]");
+    if (!btn) return;
 
-  const hardReset = () => {
-    const f = form();
-    if (f) {
-      f.querySelectorAll<HTMLInputElement>("input[type='hidden']").forEach(
-        (h) => {
-          if (/^EMSApi\.Api\./.test(h.name)) h.remove();
+    // flip on <body>
+    document.body.classList.toggle("menu--sidebar");
+    document.body.classList.toggle("menu--topnav");
+
+    // also flip the .menu element (your second inline block did this)
+    const nav = document.querySelector(".menu");
+    nav?.classList.toggle("menu--sidebar");
+    nav?.classList.toggle("menu--topnav");
+  });
+}
+
+/* 0.5) Section caret open/close (for .sidebar-group[data-caret]) */
+/* 0.5) Main nav groups (third-level) */
+function wireCaretOpeners() {
+  if ((document.body as any)._navLiteCarets) return;
+  (document.body as any)._navLiteCarets = true;
+
+  const groups = Array.from(
+    document.querySelectorAll<HTMLElement>(".menu .sidebar-group[data-caret]")
+  );
+  const headers = groups
+    .map((g) => g.querySelector<HTMLElement>(".sidebar__item")!)
+    .filter(Boolean);
+
+  groups.forEach((group, idx) => {
+    const label = group.querySelector<HTMLElement>(".sidebar__item");
+    const panel = group.querySelector<HTMLElement>(".sub-menu_down");
+    if (!label || !panel) return;
+
+    if (!panel.id) panel.id = `menu-sub-${idx}`;
+    label.setAttribute("role", "button");
+    label.setAttribute("tabindex", "0");
+    label.setAttribute("aria-controls", panel.id);
+    label.setAttribute("aria-expanded", "false");
+
+    const open = () => {
+      groups.forEach((g) => {
+        if (g !== group) {
+          g.classList.remove("is-open");
+          g.querySelector<HTMLElement>(".sidebar__item")?.setAttribute(
+            "aria-expanded",
+            "false"
+          );
         }
-      );
-      f.reset();
-    }
-    $$(".attachment-files-list").forEach((c: any) => (c.innerHTML = ""));
-    $("#description-error")?.classList.add("hidden");
-    showForm();
-  };
-
-  // ---- open/close wiring (once) ----
-  if (!panel.dataset.sfsInit) {
-    panel.dataset.sfsInit = "1";
-
-    const opener = document.querySelector<HTMLLabelElement>(
-      'label[for="toggleSidebarOptions"]'
-    );
-    const syncAria = () =>
-      opener?.setAttribute("aria-expanded", cb.checked ? "true" : "false");
-
-    opener?.addEventListener("keydown", (e) => {
-      if (e.key === " " || e.key === "Enter") {
-        e.preventDefault();
-        cb.checked = !cb.checked;
-        cb.dispatchEvent(new Event("change", { bubbles: true }));
-      }
-    });
-    opener?.addEventListener(
-      "mousedown",
-      (e) => {
-        e.stopPropagation();
-        setTimeout(syncAria);
-      },
-      true
-    );
-    opener?.addEventListener(
-      "click",
-      (e) => {
-        e.stopPropagation();
-        setTimeout(syncAria);
-      },
-      true
-    );
-
-    document.addEventListener(
-      "click",
-      (e) => {
-        const t = e.target as Element;
-        if (
-          t.closest("#toggleSidebarOptions") ||
-          t.closest('label[for="toggleSidebarOptions"]')
-        )
-          return;
-        const clickedInside =
-          panel.contains(t) ||
-          (typeof (e as any).composedPath === "function" &&
-            (e as any).composedPath().includes(panel));
-        if (cb.checked && !clickedInside) {
-          cb.checked = false;
-          cb.dispatchEvent(new Event("change", { bubbles: true }));
-          hardReset();
-        }
-      },
-      true
-    );
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && cb.checked) {
-        cb.checked = false;
-        cb.dispatchEvent(new Event("change", { bubbles: true }));
-        hardReset();
-      }
-    });
-
-    $(".support-panel__close")?.addEventListener("click", () => {
-      setTimeout(hardReset);
-    });
-
-    cb.addEventListener("change", () => {
-      if (cb.checked) showForm();
-      syncAria();
-    });
-    syncAria();
-  }
-
-  // ---- form + attachments (once) ----
-  if (!panel.dataset.sfsFormInit) {
-    const f = form();
-    if (!f) return;
-    panel.dataset.sfsFormInit = "1";
-
-    // hidden iframe sink
-    let sink = document.getElementById(
-      "supportFormSink"
-    ) as HTMLIFrameElement | null;
-    if (!sink) {
-      sink = document.createElement("iframe");
-      sink.id = "supportFormSink";
-      sink.name = "supportFormSink";
-      sink.style.display = "none";
-      document.body.appendChild(sink);
-    }
-    f.setAttribute("target", "supportFormSink");
-
-    // stop overlay-close from file label
-    $$(".fileInput").forEach((inp: HTMLInputElement) => {
-      const lbl = inp.closest("label");
-      if (lbl)
-        ["mousedown", "click"].forEach((evt) =>
-          lbl.addEventListener(evt, (e) => e.stopPropagation(), true)
-        );
-    });
-
-    const listEls = $$(".attachment-files-list") as HTMLElement[];
-    const mkHidden = (n: string, v: string) => {
-      const i = document.createElement("input");
-      i.type = "hidden";
-      i.name = n;
-      i.value = v;
-      f.appendChild(i);
-      return i;
+      });
+      group.classList.add("is-open");
+      label.setAttribute("aria-expanded", "true");
     };
+    const close = () => {
+      group.classList.remove("is-open");
+      label.setAttribute("aria-expanded", "false");
+    };
+    const toggle = () =>
+      group.classList.contains("is-open") ? close() : open();
 
-    $$(".fileInput").forEach((inp: HTMLInputElement, i: number) => {
-      inp.addEventListener("change", () => {
-        const list = listEls[i];
-        if (!list) return;
-
-        let idx = Array.from(listEls).reduce(
-          (sum, el) => sum + el.querySelectorAll(".file-attachment").length,
-          0
-        );
-
-        Array.from(inp.files || []).forEach((file) => {
-          const fr = new FileReader();
-          fr.onload = (ev) => {
-            const b64 =
-              String((ev.target as FileReader).result).split(",")[1] || "";
-            const h1 = mkHidden(
-              `EMSApi.Api.Json.sendEmail.string.files.${idx}.content`,
-              b64
-            );
-            const h2 = mkHidden(
-              `EMSApi.Api.Json.sendEmail.string.files.${idx}.contentType`,
-              file.type || ""
-            );
-            const h3 = mkHidden(
-              `EMSApi.Api.Json.sendEmail.string.files.${idx}.disposition`,
-              "attachment"
-            );
-            const h4 = mkHidden(
-              `EMSApi.Api.Json.sendEmail.string.files.${idx}.filename`,
-              file.name || "file"
-            );
-
-            const row = document.createElement("div");
-            row.className = "flex align-center mt-2 file-attachment";
-            row.id = `fileContainer${idx}`;
-            row.innerHTML = `<p>${file.name}</p><button type="button" aria-label="Remove"><i class="icon-Trash-Empty-Filled font-lg" aria-hidden="true"></i></button>`;
-
-            const btn = row.querySelector("button")!;
-            btn.addEventListener("mousedown", (e) => e.stopPropagation(), true);
-            btn.addEventListener("click", (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              row.remove();
-              h1.remove();
-              h2.remove();
-              h3.remove();
-              h4.remove();
-            });
-
-            list.appendChild(row);
-            idx++;
-          };
-          fr.readAsDataURL(file);
-        });
-
-        inp.value = "";
-      });
-    });
-
-    f.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const desc =
-        (
-          document.getElementById("description") as HTMLTextAreaElement
-        )?.value.trim() || "";
-      if (desc.length < 10) {
-        document
-          .getElementById("description-error")
-          ?.classList.remove("hidden");
-        (
-          document.getElementById("description") as HTMLTextAreaElement
-        )?.focus();
-        return;
+    label.addEventListener("click", toggle);
+    label.addEventListener("keydown", (e) => {
+      const k = (e as KeyboardEvent).key;
+      if (k === "Enter" || k === " ") {
+        e.preventDefault();
+        toggle();
       }
-      document.getElementById("description-error")?.classList.add("hidden");
-
-      const email =
-        (document.getElementById("email") as HTMLInputElement)?.value || "";
-      const topic =
-        (document.getElementById("topic") as HTMLSelectElement)?.value ||
-        "Other";
-      const phone =
-        (document.getElementById("phone") as HTMLInputElement)?.value || "-";
-      const account = f.dataset.account || "-";
-      const clientCode = f.dataset.clientCode || "-";
-      const timestamp = f.dataset.timestamp || "";
-      const timezone = f.dataset.timezone || "";
-      const mailbox = f.dataset.mailbox || "";
-      const supportEmail = f.dataset.supportEmail || "";
-
-      const safe = (s: string) =>
-        String(s).replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      const html = `<html><body>
-        <p><strong>Email:</strong> ${safe(email)}</p>
-        <p><strong>Phone:</strong> ${safe(phone)}</p>
-        <p><strong>Topic:</strong> ${safe(topic)}</p>
-        <p><strong>Description:</strong></p>
-        <div>${safe(desc).replace(/\n/g, "<br>")}</div>
-        <hr><p><strong>Submitted at:</strong> ${safe(timestamp)} (${safe(
-        timezone
-      )})</p>
-        <p><strong>Client Code / Account:</strong> ${safe(clientCode)} / ${safe(
-        account
-      )}</p>
-      </body></html>`;
-
-      const hid = (n: string, v: string) => {
-        const i = document.createElement("input");
-        i.type = "hidden";
-        i.name = n;
-        i.value = v;
-        f.appendChild(i);
-      };
-      hid("EMSApi.Api.Post.sendEmail", "api/v2/message");
-      hid(
-        "EMSApi.Api.Json.sendEmail.string.subject",
-        `[Support Request] ${topic} — ${email}`
-      );
-      hid("EMSApi.Api.Json.sendEmail.string.type", "email");
-      hid("EMSApi.Api.Json.sendEmail.string.bodies.0.contentType", "text/html");
-      hid("EMSApi.Api.Json.sendEmail.string.bodies.0.content", btoa(html));
-
-      hid("EMSApi.Api.Json.sendEmail.string.contacts.0.address", mailbox);
-      hid("EMSApi.Api.Json.sendEmail.string.contacts.0.name", mailbox);
-      hid("EMSApi.Api.Json.sendEmail.string.contacts.0.type", "from");
-
-      hid("EMSApi.Api.Json.sendEmail.string.contacts.1.address", supportEmail);
-      hid("EMSApi.Api.Json.sendEmail.string.contacts.1.name", supportEmail);
-      hid("EMSApi.Api.Json.sendEmail.string.contacts.1.type", "to");
-
-      showSuccess();
-
-      let responded = false;
-      const sinkEl = document.getElementById(
-        "supportFormSink"
-      ) as HTMLIFrameElement;
-      const onLoad = () => {
-        responded = true;
-        sinkEl.removeEventListener("load", onLoad);
-        hardReset();
-        successBox()?.classList.remove("hidden");
-        formWrap()?.classList.add("hidden");
-      };
-      sinkEl.addEventListener("load", onLoad);
-
-      setTimeout(() => {
-        if (!responded) showError();
-      }, 8000);
-      f.submit();
+      if (k === "Escape") {
+        e.preventDefault();
+        close();
+      }
+      if (k === "ArrowDown" || k === "ArrowUp" || k === "Home" || k === "End") {
+        e.preventDefault();
+        let i = headers.indexOf(label);
+        if (k === "ArrowDown") i = (i + 1) % headers.length;
+        if (k === "ArrowUp") i = (i - 1 + headers.length) % headers.length;
+        if (k === "Home") i = 0;
+        if (k === "End") i = headers.length - 1;
+        headers[i]?.focus();
+      }
     });
-  }
-}
-
-/* MENU ASSET TOPNAV STICKY */
-function initTopnavAutoOffset() {
-  const nav = document.querySelector<HTMLElement>("nav.menu.menu--topnav");
-  if (!nav || nav.dataset.topnavOffsetInit === "1") return;
-  nav.dataset.topnavOffsetInit = "1";
-
-  const root = document.documentElement;
-  let last = -1;
-  let scheduled = false;
-
-  const measureAndSet = () => {
-    scheduled = false;
-    const h = Math.round(nav.getBoundingClientRect().height);
-    if (h > 0 && h !== last) {
-      last = h;
-      root.style.setProperty("--topnav-height", h + "px");
-    }
-  };
-  const schedule = () => {
-    if (!scheduled) {
-      scheduled = true;
-      requestAnimationFrame(measureAndSet);
-    }
-  };
-
-  const ro = new ResizeObserver(schedule);
-  ro.observe(nav);
-
-  addEventListener("resize", schedule);
-  (document as any).fonts?.ready?.then(schedule);
-  if (document.readyState === "complete") schedule();
-  else addEventListener("load", schedule, { once: true });
-}
-
-/* COMPANY SIDEBAR ACCOUNT SWITCHING (single source of truth) */
-function initializeCompanySidebarAccountSwitcher() {
-  const wrapper = document.querySelector(
-    ".company-sidebar"
-  ) as HTMLElement | null;
-  const selectedLocation = wrapper?.querySelector(
-    "#selectedLocation2"
-  ) as HTMLElement | null;
-  const selectedAccountInput = wrapper?.querySelector(
-    "#selectedAccount2"
-  ) as HTMLInputElement | null;
-  const postActionRedirectInput = wrapper?.querySelector(
-    "#postActionRedirect2"
-  ) as HTMLInputElement | null;
-  const accountSwitchForm = wrapper?.querySelector(
-    "#accountSwitchForm2"
-  ) as HTMLFormElement | null;
-  const locationList = wrapper?.querySelector(
-    "#locationList2"
-  ) as HTMLElement | null;
-
-  const searchWrapper = document.querySelector(
-    "#accountSearchWrapper"
-  ) as HTMLElement | null;
-  const searchInput = searchWrapper?.querySelector(
-    "#accountSearchInput"
-  ) as HTMLInputElement | null;
-  const resultList = searchWrapper?.querySelector(
-    "#accountSearchResults"
-  ) as HTMLElement | null;
-
-  if (
-    !wrapper ||
-    !locationList ||
-    !selectedLocation ||
-    !selectedAccountInput ||
-    !postActionRedirectInput ||
-    !accountSwitchForm
-  )
-    return;
-  if (wrapper.dataset.switchInit === "1") return;
-  wrapper.dataset.switchInit = "1";
-
-  function getBaseURL() {
-    return window.location.origin;
-  }
-  function extractBasePathFromURL() {
-    const validPaths = [
-      "start-main-page",
-      "start-main-ems-page",
-      "start-CRM-page",
-      "start-ecommerce-page",
-      "start-invoicing-page",
-      "start-page",
-      "start-POS-page",
-      "start-support-page",
-    ];
-    const segments = window.location.pathname.split("/");
-    return validPaths.find((p) => segments.includes(p)) || "start-main-page";
-  }
-  function getClientLanguageAndPage() {
-    const segments = window.location.pathname.split("/");
-    const language = segments.find((s) => /^[a-z]{2}$/.test(s)) || "en";
-    const currentPage = extractBasePathFromURL();
-    return { language, currentPage };
-  }
-
-  function switchAccount(newClientCode: string) {
-    localStorage.setItem("selectedAccount", newClientCode);
-    const { language, currentPage } = getClientLanguageAndPage();
-    const baseLoginURL = `https://go.erply.com/?clientCode=${newClientCode}`;
-    const basePlatformURL = getBaseURL();
-    const newTargetURL = `${basePlatformURL}/${newClientCode}/${language}/${currentPage}`;
-
-    selectedLocation.innerText = newClientCode;
-    selectedAccountInput.value = newClientCode;
-    postActionRedirectInput.value = `${baseLoginURL}&target=${encodeURIComponent(
-      newTargetURL
-    )}`;
-    accountSwitchForm.submit();
-  }
-
-  wrapper.addEventListener("click", (event) => {
-    const t = event.target as Element;
-    const selectedItem = t.closest(".location-item") as HTMLElement | null;
-    const triggerBtn = t.closest(
-      ".account-switch-trigger"
-    ) as HTMLElement | null;
-    const newClientCode =
-      selectedItem?.dataset.number || triggerBtn?.dataset.number || null;
-    if (newClientCode) switchAccount(newClientCode);
   });
 
-  if (searchInput && resultList) {
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.trim().toLowerCase();
-      resultList.innerHTML = "";
-      if (!query) return;
+  // Click outside closes any open group
+  // add/replace this part inside wireCaretOpeners()
+  document.addEventListener(
+    "click",
+    (e) => {
+      const t = e.target as Element;
+      if (
+        t.closest(".menu .sidebar-group") || // header area
+        t.closest(".menu .sub-menu_down") // the panel itself
+      )
+        return;
 
-      const accounts = wrapper.querySelectorAll<HTMLElement>(
-        ".searchable-account, .location-item"
-      );
-      accounts.forEach((acc) => {
-        const name = (acc.dataset.name || "").toLowerCase();
-        const number = (acc.dataset.number || "").toLowerCase();
-        if (name.includes(query) || number.includes(query)) {
-          const li = document.createElement("li");
-          li.className = "location-item";
-          li.dataset.number = acc.dataset.number || "";
-          li.innerHTML = `<span class="account-name">${
-            acc.dataset.name || ""
-          }</span><span class="account-number">#${
-            acc.dataset.number || ""
-          }</span>`;
-          resultList.appendChild(li);
-        }
+      groups.forEach((g) => {
+        g.classList.remove("is-open");
+        g.querySelector<HTMLElement>(".sidebar__item")?.setAttribute(
+          "aria-expanded",
+          "false"
+        );
       });
-    });
-  }
-
-  // Hide current account in list
-  const currentAccount = selectedLocation.dataset.session;
-  if (currentAccount) {
-    wrapper.querySelectorAll<HTMLElement>(".location-item").forEach((item) => {
-      item.style.display = item.dataset.number === currentAccount ? "none" : "";
-    });
-  }
+    },
+    true // capture so it fires before bubbling clicks
+  );
 }
 
-/* THIN COMPANY SIDEBAR - 3 LEVEL MENU */
-function initializeSidebarSubmenus() {
-  const root = document.querySelector(".company-sidebar");
-  if (!root || (root as HTMLElement).dataset.submenusInit === "1") return;
-  (root as HTMLElement).dataset.submenusInit = "1";
+/* 1) Mobile hamburger → overlay (replaces your IIFE inline block) */
+function wireHamburger() {
+  if ((document.body as any)._navLiteHamburger) return;
+  (document.body as any)._navLiteHamburger = true;
 
-  document.querySelectorAll<HTMLElement>(".nested-submenu").forEach((sub) => {
-    sub.classList.remove("submenu--locked", "submenu--visible");
-    sub.style.display = "none";
+  const btn = document.querySelector<HTMLLabelElement>(
+    ".master-menu_mobile-header .master-hamburger-button"
+  );
+  const overlay = document.querySelector<HTMLElement>(".mobile-menu-overlay");
+  if (!btn || !overlay) return;
+
+  const setState = (open: boolean) => {
+    document.body.classList.toggle("mobile-open", open);
+    btn.classList.toggle("is-open", open);
+    btn.setAttribute("aria-expanded", String(open));
+  };
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    setState(!document.body.classList.contains("mobile-open"));
   });
 
-  document
-    .querySelectorAll<HTMLElement>(".company-sidebar__item--has-submenu")
-    .forEach((item) => {
-      const trigger = item.querySelector(
-        ".company-sidebar__trigger, .thin-sidebar-item"
+  // close on ESC
+  document.addEventListener("keydown", (e) => {
+    if ((e as KeyboardEvent).key === "Escape") setState(false);
+  });
+
+  // close on backdrop click (not when clicking inside panels)
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) setState(false);
+  });
+
+  // also close if clicking anywhere outside overlay while open
+  document.addEventListener(
+    "click",
+    (e) => {
+      if (!document.body.classList.contains("mobile-open")) return;
+      const t = e.target as Element;
+      if (
+        t.closest(".mobile-menu-overlay") ||
+        t.closest(".master-hamburger-button")
+      )
+        return;
+      setState(false);
+    },
+    true
+  );
+}
+
+/* 2) Company thin-sidebar: open/close subsections (Settings, Help, Language, etc.) */
+/* 2) Company thin-sidebar: open/close subsections (Settings, Help, Language, etc.) */
+function wireCompanySubmenus() {
+  const roots = $$(".company-sidebar") as HTMLElement[];
+  if (!roots.length) return;
+
+  // Already wired?
+  if ((document.body as any)._navLiteCompany) return;
+  (document.body as any)._navLiteCompany = true;
+
+  // Per-root setup
+  const initRoot = (root: HTMLElement) => {
+    if (root.dataset.subInit === "1") return;
+    root.dataset.subInit = "1";
+
+    // Start hidden
+    $$(
+      ".company-sidebar__submenu, .company-sidebar__submenu--below",
+      root
+    ).forEach((el) => {
+      el.classList.remove("submenu--open", "submenu--locked");
+      (el as HTMLElement).style.display = "none";
+    });
+
+    // Toggle per item
+    $$(".company-sidebar__item--has-submenu", root).forEach((item) => {
+      const trigger = $(
+        ".company-sidebar__trigger, .thin-sidebar-item",
+        item
       ) as HTMLElement | null;
-      if (!trigger) return;
-
-      const submenuId = trigger.getAttribute("data-submenu-id");
-      const externalSubmenu = submenuId
-        ? document.getElementById(submenuId)
-        : null;
-      const inlineSubmenu = item.querySelector(
-        ".company-sidebar__submenu, .company-sidebar__submenu--below"
+      const submenu = $(
+        ".company-sidebar__submenu, .company-sidebar__submenu--below",
+        item
       ) as HTMLElement | null;
-      const submenu = (externalSubmenu || inlineSubmenu) as HTMLElement | null;
-      if (!submenu) return;
+      if (!trigger || !submenu) return;
 
-      let hideTimeout: any;
-      const isDesktop = () => window.innerWidth > 1024;
-
-      const showSubmenu = () => {
-        if (!submenu.classList.contains("submenu--below")) {
-          if (submenuId && isDesktop()) {
-            const itemRect = trigger.getBoundingClientRect();
-            const parentRect = trigger
-              .closest(".thin-sidebar-icons")
-              ?.getBoundingClientRect();
-            const topOffset = itemRect.top - (parentRect?.top || 0);
-            submenu.style.top = `${topOffset}px`;
-          } else {
-            submenu.style.top = "";
-          }
-        } else {
-          submenu.style.top = "";
+      const open = () => {
+        // Close OTHER top-level menus in the same root
+        if (!item.closest(".company-sidebar__submenu--below")) {
+          $$(
+            ".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open",
+            root
+          ).forEach((el) => {
+            if (el !== submenu) {
+              el.classList.remove("submenu--open", "submenu--locked");
+              (el as HTMLElement).style.display = "none";
+            }
+          });
+          $$(".company-sidebar__item.item--hovered", root).forEach((i) =>
+            i.classList.remove("item--hovered")
+          );
         }
-        submenu.classList.add("submenu--visible");
-        submenu.style.display = "";
+        submenu.classList.add("submenu--open", "submenu--locked");
+        submenu.style.display = "block";
         item.classList.add("item--hovered");
-        clearTimeout(hideTimeout);
       };
 
-      const hideSubmenu = () => {
-        if (submenu.classList.contains("submenu--locked")) return;
-        hideTimeout = setTimeout(() => {
-          submenu.classList.remove("submenu--visible");
-          item.classList.remove("item--hovered");
-        }, 150);
-      };
-
-      const lockSubmenu = () => {
-        const isNested =
-          item.closest(".company-sidebar__submenu--below") !== null;
-        if (!isNested) {
-          document
-            .querySelectorAll<HTMLElement>(
-              ".company-sidebar__item--has-submenu > .company-sidebar__submenu--below.submenu--locked, .company-sidebar__item--has-submenu > .company-sidebar__submenu--below.submenu--visible"
-            )
-            .forEach((other) => {
-              other.classList.remove("submenu--locked", "submenu--visible");
-              other.style.display = "none";
-            });
-          document
-            .querySelectorAll<HTMLElement>(
-              ".company-sidebar__item.item--hovered"
-            )
-            .forEach((otherItem) => {
-              otherItem.classList.remove("item--hovered");
-            });
-        }
-        if (!isNested) submenu.classList.add("submenu--locked");
-        item.classList.add("item--hovered");
-        showSubmenu();
+      const close = () => {
+        submenu.classList.remove("submenu--open", "submenu--locked");
+        submenu.style.display = "none";
+        item.classList.remove("item--hovered");
       };
 
       trigger.addEventListener("click", (e) => {
         e.stopPropagation();
-        if ((e.target as Element).closest("#accountSearchWrapper")) return;
+        submenu.classList.contains("submenu--open") ? close() : open();
+      });
 
-        const isNested =
-          item.closest(".company-sidebar__submenu--below") !== null;
-        const isOpen = submenu.classList.contains("submenu--locked");
-        if (isOpen) {
-          submenu.classList.remove("submenu--locked", "submenu--visible");
-          submenu.style.display = "none";
-          item.classList.remove("item--hovered");
-        } else {
-          lockSubmenu();
+      trigger.addEventListener("keydown", (e) => {
+        const k = (e as KeyboardEvent).key;
+        if (k === "Enter" || k === " ") {
+          e.preventDefault();
+          trigger.click();
         }
       });
     });
+  };
 
-  // Close everything on outside click
-  document.addEventListener("click", (event) => {
-    const t = event.target as Element;
-    const isInside =
-      t.closest(".company-sidebar__item--has-submenu") ||
-      t.closest(".company-sidebar__submenu") ||
-      t.closest(".company-sidebar__submenu--below");
-    if (!isInside) {
-      document
-        .querySelectorAll<HTMLElement>(".submenu--locked, .submenu--visible")
-        .forEach((submenu) => {
-          submenu.classList.remove("submenu--locked", "submenu--visible");
-          submenu.style.display = "none";
-        });
-      document
-        .querySelectorAll<HTMLElement>(".company-sidebar__item.item--hovered")
-        .forEach((item) => {
-          item.classList.remove("item--hovered");
-        });
-    }
-  });
+  roots.forEach(initRoot);
 
-  // Close thin sidebar radios on outside click
-  document.addEventListener("click", (event) => {
-    const isInsideThin =
-      (event.target as Element).closest(".sidebar-group") ||
-      (event.target as Element).closest(".sub-menu_down");
-    if (!isInsideThin) {
-      document
-        .querySelectorAll<HTMLInputElement>('input[name="aside_menu"]')
-        .forEach((radio) => {
-          radio.checked = false;
-        });
-    }
-  });
-}
-
-/* Optional utility – keeps “has-scroll” class in sync for the thin app list */
-function adjustMenuAssetScrollbar() {
-  const el = document.querySelector<HTMLElement>(
-    "aside.extra-thin-sidebar.extra-thin-sidebar--second .thin-sidebar-icons"
-  );
-  if (!el || el.dataset.scrollInit === "1") return;
-  el.dataset.scrollInit = "1";
-
-  const hasOverflow = () =>
-    el.scrollHeight - el.clientHeight > 1 &&
-    getComputedStyle(el).overflowY !== "visible";
-
-  const update = () => el.classList.toggle("has-scroll", hasOverflow());
-
-  requestAnimationFrame(() => {
-    update();
-    setTimeout(update, 50);
-  });
-  addEventListener("resize", update);
-  new MutationObserver(update).observe(el, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-  });
-  if ("ResizeObserver" in window) new ResizeObserver(update).observe(el);
-  (document as any).fonts?.ready?.then(update).catch(() => {});
-}
-
-/** PUBLIC: call this from the Astro page */
-export function initNavCaseStudy() {
-  onDomReady(() => {
-    sentSupportFormSidebar();
-    initTopnavAutoOffset();
-    initializeCompanySidebarAccountSwitcher();
-    initializeSidebarSubmenus();
-    adjustMenuAssetScrollbar();
-    initDotMenus();
-
-    // One clean handler for sidebar/topnav flip (demo)
-    if (!(document.body as any).dataset.toggleBound) {
-      addEventListener("click", (e) => {
-        const btn = (e.target as HTMLElement).closest("[data-toggle-menu]");
-        if (!btn) return;
-        document.body.classList.toggle("menu--sidebar");
-        document.body.classList.toggle("menu--topnav");
-
-        // ensure offset updates when switching into topnav
-        initTopnavAutoOffset();
-      });
-      (document.body as any).dataset.toggleBound = "1";
-    }
-  });
-  function px(n: number) {
-    return `${Math.max(0, Math.round(n || 0))}px`;
-  }
-  function w(el?: Element | null) {
-    if (!el) return 0;
-    const r = (el as HTMLElement).getBoundingClientRect();
-    return r.width || 0;
-  }
-
-  function updateRails() {
-    const body = document.body;
-
-    // left thin rail (company icons)
-    const thinLeft = document.querySelector(".company-sidebar");
-
-    // main menu: only count it when it's actually a sidebar
-    const nav = document.querySelector("nav.menu");
-    const menuIsSidebar =
-      body.classList.contains("menu--sidebar") &&
-      nav?.classList.contains("menu--sidebar");
-
-    // right thin rail (app switcher)
-    const thinRight = document.querySelector(".extra-thin-sidebar--second");
-
-    const leftRails = w(thinLeft) + (menuIsSidebar ? w(nav) : 0);
-    const rightRail = w(thinRight);
-
-    document.documentElement.style.setProperty("--left-rails", px(leftRails));
-    document.documentElement.style.setProperty("--right-rail", px(rightRail));
-  }
-
-  // keep vars fresh whenever things change size or mode
-  const ro = new ResizeObserver(updateRails);
-  [".company-sidebar", "nav.menu", ".extra-thin-sidebar--second"].forEach(
-    (sel) => {
-      const el = document.querySelector(sel);
-      if (el) ro.observe(el);
-    }
-  );
-
-  // watch class flips (sidebar <-> topnav)
-  new MutationObserver(updateRails).observe(document.body, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
-  const navEl = document.querySelector("nav.menu");
-  if (navEl)
-    new MutationObserver(updateRails).observe(navEl, {
-      attributes: true,
-      attributeFilter: ["class"],
+  // ---- Global closers (affect ALL roots) ----
+  const closeAllEverywhere = () => {
+    $$(
+      ".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open"
+    ).forEach((el) => {
+      el.classList.remove("submenu--open", "submenu--locked");
+      (el as HTMLElement).style.display = "none";
     });
+    $$(".company-sidebar__item.item--hovered").forEach((i) =>
+      i.classList.remove("item--hovered")
+    );
+  };
 
-  // run once + after your demo toggle clicks
-  addEventListener("load", updateRails);
-  addEventListener("resize", updateRails);
-  document.addEventListener("click", (e) => {
-    if ((e.target as Element).closest("[data-toggle-menu]")) {
-      requestAnimationFrame(updateRails);
-    }
+  // Close on outside click: outside BOTH sidebars
+  document.addEventListener(
+    "click",
+    (e) => {
+      const t = e.target as Node;
+      const clickedInsideAny = roots.some((r) => r.contains(t));
+      if (!clickedInsideAny) closeAllEverywhere();
+    },
+    true
+  ); // capture so it runs before bubbled handlers
+
+  // ESC closes everywhere
+  document.addEventListener("keydown", (e) => {
+    if ((e as KeyboardEvent).key === "Escape") closeAllEverywhere();
   });
-  updateRails();
 }
 
-function setRailsVars() {
-  const thinLeft = document.querySelector<HTMLElement>(".company-sidebar");
-  const mainMenu = document.querySelector<HTMLElement>(
-    "nav.menu.menu--sidebar"
-  ); // only wide when sidebar mode
-  const thinRight = document.querySelector<HTMLElement>(
-    ".extra-thin-sidebar--second"
+/* 3) Support panel (left overlay with form) */
+function wireSupportPanel() {
+  const cb = $("#toggleSidebarOptions") as HTMLInputElement | null;
+  const panel = $("#supportPanel") as HTMLElement | null;
+  const opener = $(
+    'label[for="toggleSidebarOptions"]'
+  ) as HTMLLabelElement | null;
+  if (!cb || !panel || !opener) return;
+
+  const reflect = () => {
+    opener.setAttribute("aria-expanded", cb.checked ? "true" : "false");
+    panel.hidden = false; // keep node in DOM; visibility handled by CSS via :checked
+  };
+  cb.addEventListener("change", reflect);
+  reflect();
+
+  // Close on outside click
+  document.addEventListener(
+    "click",
+    (e) => {
+      if (!cb.checked) return;
+      const t = e.target as Element;
+      if (
+        t.closest("#supportPanel") ||
+        t.closest('label[for="toggleSidebarOptions"]')
+      )
+        return;
+      cb.checked = false;
+      cb.dispatchEvent(new Event("change", { bubbles: true }));
+    },
+    true
   );
 
-  const w = (el?: HTMLElement | null) =>
-    el ? Math.round(el.getBoundingClientRect().width) : 0;
+  // ESC closes
+  document.addEventListener("keydown", (e) => {
+    if ((e as KeyboardEvent).key === "Escape" && cb.checked) {
+      cb.checked = false;
+      cb.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  });
 
-  const leftRails = w(thinLeft) + w(mainMenu); // thin-left + main sidebar (0 in topnav mode)
-  const rightRail = w(thinRight);
-
-  document.documentElement.style.setProperty("--left-rails", leftRails + "px");
-  document.documentElement.style.setProperty("--right-rail", rightRail + "px");
+  // Don’t let file input labels close the overlay
+  $$(".fileInput", panel).forEach((inp) => {
+    const lbl = (inp as HTMLInputElement).closest("label");
+    if (!lbl) return;
+    ["mousedown", "click"].forEach((evt) =>
+      lbl.addEventListener(evt, (ev) => ev.stopPropagation(), true)
+    );
+  });
 }
 
-// keep it updated on resize, sidebar toggle, etc.
-const ro = new ResizeObserver(setRailsVars);
-[".company-sidebar", "nav.menu", ".extra-thin-sidebar--second"].forEach(
-  (sel) => {
-    const el = document.querySelector(sel);
-    if (el) ro.observe(el);
-  }
-);
+/* 4) Company search (filters small list and mirrors into results UL) */
+function wireCompanySearch() {
+  const wrap = $("#accountSearchWrapper") as HTMLElement | null;
+  if (!wrap) return;
+  const input = $("#accountSearchInput", wrap) as HTMLInputElement | null;
+  const results = $("#accountSearchResults", wrap) as HTMLElement | null;
+  const pool = $$(
+    ".searchable-account, .location-item",
+    $(".company-sidebar") || undefined
+  ) as HTMLElement[];
+  if (!input || !results) return;
 
-addEventListener("resize", setRailsVars);
-addEventListener("load", setRailsVars);
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    results.innerHTML = "";
+    if (!q) return;
 
-// also run after your “[data-toggle-menu]” click flips classes
-document.addEventListener("click", (e) => {
-  if ((e.target as Element).closest("[data-toggle-menu]")) {
-    requestAnimationFrame(setRailsVars);
-  }
-});
+    pool.forEach((el) => {
+      const name = (el.dataset.name || "").toLowerCase();
+      const num = (el.dataset.number || "").toLowerCase();
+      if (name.includes(q) || num.includes(q)) {
+        const li = document.createElement("li");
+        li.className = "location-item";
+        li.dataset.number = el.dataset.number || "";
+        li.innerHTML = `<span class="account-name">${
+          el.dataset.name || ""
+        }</span>
+                        <span class="account-number">#${
+                          el.dataset.number || ""
+                        }</span>`;
+        results.appendChild(li);
+      }
+    });
+  });
 
-// run once on init
-setRailsVars();
+  results.addEventListener("click", (e) => {
+    const li = (e.target as Element).closest(
+      ".location-item"
+    ) as HTMLElement | null;
+    if (!li) return;
+    input.value = `${li.dataset.number || ""}`;
+  });
+}

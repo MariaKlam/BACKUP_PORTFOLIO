@@ -540,16 +540,17 @@ strong {
   font-weight: 700;
 }
 
-body.dark-mode {
+body.dark-mode,
+html[data-theme="dark"] {
   /*Text*/
   --main-txt-clr: rgba(222, 228, 234, 1);
-  --link-main-clr: rgba(0, 98, 224, 1);
+  --link-main-clr: #7ad0ff;
   --link-sec-clr: #64676a;
   --text-light: #edf4f3;
 
   --text-white: #000;
   --text-grey: #64676a;
-  --text-blue: rgba(22, 110, 232, 1);
+  --text-blue: #7ad0ff;
   --text-red: #ff444c;
   --text-green: rgb(70, 163, 94);
 
@@ -714,7 +715,7 @@ body.dark-mode {
   --thin-sidebar-opened-submenu-bg: #1b1c21;
   --sidebar-border: #2e3740;
   --sidebar-shadow: 1px 0 0 rgba(255, 255, 255, 0.05);
-  --sidebar-submenu-open: #1f2026;
+  --sidebar-submenu-open: #191a1c;
   --thin-sidebar-blue-hover: #7ad0ff;
   --thin-sidebar-arrow-hover: #7ad0ff;
   --sidebar-label: (222, 228, 234, 1);
@@ -3894,12 +3895,6 @@ button:disabled:hover {
   color: var(--text-light);
 }
 
-/*Aside card on right*/
-aside.card {
-  width: 366px;
-  height: 100%;
-}
-
 .card {
   border: 1px solid var(--border-main-clr);
   border-radius: 8px;
@@ -3916,11 +3911,6 @@ aside.card {
 
 #Close {
   cursor: pointer;
-}
-
-/* Aside card next to form */
-aside.card {
-  display: none;
 }
 
 /* When the checkbox is checked, display the aside card */
@@ -4750,12 +4740,10 @@ User must see only one highlighted page at a time to avoid confusion*/
 /*Sidebar Third Levels*/
 .sidebar__third-level-menu {
   border-bottom: 1px solid var(--border-light-clr);
-  padding-bottom: 0.5rem;
 }
 
 .sub-menu_down .sidebar__third-level-menu {
   border-bottom: none;
-  padding-bottom: 0.5rem;
 }
 
 .sidebar__third-level-menu ul {
@@ -6920,16 +6908,6 @@ menu__app {
 .menu__item.name-initial {
   cursor: pointer;
   outline: none;
-}
-.name-initial span {
-  opacity: 0;
-  color: transparent;
-}
-
-.name-initial span.ready {
-  opacity: 1;
-  visibility: visible;
-  color: #000203;
 }
 
 .menu__extra-section {
@@ -11375,7 +11353,7 @@ body.hide-menus .menu--sidebar {
 
 .sidebar__item i {
   font-size: 22px;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 }
 
 .sidebar__item.item--active {
@@ -11621,6 +11599,8 @@ body.layout--column.has-thin-sidebar main {
 .has-thin-sidebar .sub-menu_down {
   overflow-x: auto;
   box-sizing: border-box;
+  border-radius: 8px;
+  padding-left: 38px;
 }
 
 /* Aligned and constrained menu */
@@ -11870,7 +11850,7 @@ body.layout--column.has-thin-sidebar main {
 }
 
 .has-double-thin-sidebar .menu--sidebar {
-  margin-left: 140px;
+  margin-left: 144px;
   width: 220px;
 }
 
@@ -12159,6 +12139,7 @@ body.has-double-thin-sidebar .menu--topnav ~ .extra-thin-sidebar--second {
   color: white;
   border-radius: 6px;
   transition: background 0.2s;
+  text-transform: uppercase;
 }
 
 .company-sidebar__submenu-option:hover {
@@ -12196,7 +12177,6 @@ body.has-double-thin-sidebar .menu--topnav ~ .extra-thin-sidebar--second {
 }
 
 .company-sidebar__submenu-option.item--active {
-  background-color: #1f2b42;
   font-weight: normal !important;
 }
 
@@ -12333,7 +12313,7 @@ body.has-double-thin-sidebar .menu--topnav ~ .extra-thin-sidebar--second {
 .sidebar-search-input {
   border-radius: 4px;
   padding: 9px 6px;
-  background: #161a1d;
+  background: var(--thin-bg);
   border: 1px solid #43474c;
   color: #fff;
 }
@@ -13024,7 +13004,6 @@ ul:not(.thin-sidebar--settings-container)
   padding-bottom: 0.1rem;
   background-color: var(--thin-sidebar-opened-submenu-bg);
   border-radius: 0 0 8px 8px;
-  display: none;
   text-align: center;
   z-index: 10;
   gap: 1rem;
@@ -13047,7 +13026,7 @@ ul:not(.thin-sidebar--settings-container)
 }
 
 .thin-sidebar__language-switch .company-sidebar__submenu--below {
-  width: 54px !important;
+  width: 56px !important;
 }
 
 .company-sidebar__submenu-option {
@@ -13115,7 +13094,7 @@ ul:not(.thin-sidebar--settings-container)
 }
 
 .favorite-toggle-button:hover i {
-  color: var(--blue-clr-hover);
+  color: var(--blue-clr);
 }
 
 /* The star button itself */
@@ -13177,13 +13156,6 @@ ul:not(.thin-sidebar--settings-container)
   color: var(--blue-clr-hover);
 }
 
-.company-sidebar__submenu--below {
-  display: none;
-}
-.company-sidebar__submenu--below.submenu--visible {
-  display: block;
-}
-
 /* MENU V3 LINK AND DROPDOWN*/
 
 /* Chevron base + rotate when open */
@@ -13192,8 +13164,9 @@ ul:not(.thin-sidebar--settings-container)
   transition: transform 0.25s ease, color 0.15s ease;
   transform-origin: center;
   cursor: pointer;
-  margin-right: 0.5rem;
-  font-size: 1.2rem;
+  margin-right: 1rem;
+  font-size: 1.4rem;
+  margin-left: 2px;
 }
 
 .menu
@@ -13695,20 +13668,6 @@ ul:not(.thin-sidebar--settings-container)
   overflow: visible;
   position: relative;
 }*/
-
-/* hover – target the label/span, not just the parent */
-.sidebar__item:hover .sidebar__label,
-.sidebar-group:hover .sidebar__item .sidebar__label,
-.sidebar__item:hover i {
-  color: color-mix(in srgb, var(--blue-clr) 80%, black 20%) !important;
-}
-
-/* DARK: make hover a bit lighter */
-html.dark-mode .sidebar__item:hover .sidebar__label,
-html.dark-mode .sidebar-group:hover .sidebar__item .sidebar__label,
-html.dark-mode .sidebar__item:hover i {
-  color: color-mix(in srgb, var(--blue-clr) 80%, white 20%) !important;
-}
 
 li.muted.empty {
   color: #888;
@@ -22028,12 +21987,6 @@ body.menu--sidebar.site-header {
   z-index: 50;
 }
 
-/* Make the demo article not be squeezed by the sidebars visually */
-.container-narrow {
-  margin: 24px auto;
-  padding: 0 24px;
-}
-
 /* Small helpers so your thin sidebars don’t overlap */
 .company-sidebar,
 .extra-thin-sidebar--second {
@@ -22056,11 +22009,6 @@ body.menu--sidebar.site-header {
   display: block;
 }
 
-/* --- company thin sidebar submenus --- */
-.company-sidebar__submenu,
-.company-sidebar__submenu--below {
-  display: none;
-}
 .company-sidebar__submenu.submenu--visible,
 .company-sidebar__submenu--below.submenu--visible {
   display: block;
@@ -22152,7 +22100,6 @@ body.menu--sidebar.site-header {
 .item--active,
 .company-sidebar__submenu-option.item--active,
 .sidebar-group.is-open > label.sidebar__item {
-  background: color-mix(in oklab, var(--fg) 12%, transparent);
   color: var(--text-main-clr);
 }
 
@@ -22161,8 +22108,6 @@ body.menu--sidebar.site-header {
 .company-sidebar__submenu--below {
   background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 10px 24px -16px color-mix(in oklab, var(--fg) 35%, transparent),
-    0 2px 6px -4px color-mix(in oklab, var(--fg) 20%, transparent);
 }
 
 /* File/utility buttons inside menus */
@@ -22170,17 +22115,6 @@ body.menu--sidebar.site-header {
 .btn__secondary,
 .btn__neutral {
   color: var(--fg);
-}
-.btn:hover,
-.btn__secondary:hover,
-.btn__neutral:hover {
-  background: color-mix(in oklab, var(--fg) 10%, transparent);
-}
-
-/* Icons follow currentColor so they flip with theme */
-[class^="icon-"],
-[class*=" icon-"] {
-  color: currentColor;
 }
 
 /* Support overlay backdrop adapts to theme */
@@ -22199,16 +22133,6 @@ body.menu--sidebar.site-header {
   display: none;
 }
 .sidebar-group.is-open > .sub-menu_down {
-  display: block;
-}
-
-/* Thin sidebar nested submenus (open when JS adds the class) */
-.company-sidebar__submenu,
-.company-sidebar__submenu--below {
-  display: none;
-}
-.company-sidebar__submenu.submenu--visible,
-.company-sidebar__submenu--below.submenu--visible {
   display: block;
 }
 
@@ -22264,6 +22188,12 @@ article {
 body.menu__container {
   display: flex;
   min-height: 100dvh;
+  width: 100%;
+}
+
+/* Only when the menu is on the side */
+body.menu--sidebar.has-double-thin-sidebar .site-header {
+  margin-left: 360px;
 }
 
 /* When menu flips to topnav, stack everything vertically */
@@ -22274,8 +22204,6 @@ body.menu--topnav.menu__container {
 
 /* Optional: make the topnav sticky and use your tokens */
 body.menu--topnav nav.menu.menu--topnav {
-  position: sticky;
-  top: 0;
   z-index: 20;
   background: var(--card);
 }
@@ -22310,17 +22238,15 @@ nav.menu.menu--sidebar {
 article.container-narrow {
   color: var(--fg);
   background: var(--bg);
-  max-width: var(--content-max);
   padding: 0 var(--content-gutter);
 }
 
 /* Sidebar mode: push the article clear of the rails */
 body.menu--sidebar article.container-narrow {
-  /* leave space for left thin rail + menu + a gutter; keep right rail space */
-  margin-left: calc(var(--thin-left) + var(--menu-w) + var(--content-gutter));
-  margin-right: calc(var(--thin-right) + var(--content-gutter));
   padding-top: 16px;
   padding-bottom: 64px;
+  flex: 1;
+  overflow-y: auto;
 }
 
 /* Topnav mode: center the article like a normal page */
@@ -22408,5 +22334,502 @@ article.container-narrow * {
 /* Give the three header zones a tiny breathing room themselves */
 .site-header .brand-name,
 .site-header .nav {
-  padding-inline: 8px;
+  padding-inline: 15px;
+}
+
+:root {
+  /* tune these to your UI */
+  --thin-w: 72px; /* one thin sidebar width */
+  --menu-w: 300px; /* main menu (sidebar) width */
+  --content-gutter: clamp(16px, 3vw, 28px);
+}
+
+/* body flags you already use */
+body.has-thin-sidebar {
+  --thin-left: var(--thin-w);
+}
+body.has-double-thin-sidebar {
+  --thin-right: var(--thin-w);
+}
+/* fallbacks */
+body:not(.has-thin-sidebar) {
+  --thin-left: 0px;
+}
+body:not(.has-double-thin-sidebar) {
+  --thin-right: 0px;
+}
+.menu__container,
+.menu__container main,
+.menu__container .content,
+.menu__container .wrap,
+.container-narrow,
+article {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Sidebar mode: push content to the free area and cap its width nicely */
+body.menu--sidebar .container-narrow {
+  /* push off the left sidebars + menu; keep a gutter */
+  margin-left: calc(
+    var(--thin-left, 0px) + var(--menu-w, 0px) + var(--content-gutter)
+  );
+
+  padding-top: 16px;
+  padding-bottom: 60px;
+}
+
+/* If you also render .content/.wrap around the article, offset them too */
+body.menu--sidebar .content,
+body.menu--sidebar .wrap {
+  padding-left: calc(
+    var(--thin-left, 0px) + var(--menu-w, 0px) + var(--content-gutter)
+  );
+  padding-right: calc(var(--thin-right, 0px) + var(--content-gutter));
+  max-width: none; /* prevent an old max-width from squeezing it */
+}
+/* Desktop: sticky works fine when rails are stable */
+@media (min-width: 1025px) {
+  .menu.menu--topnav {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header, 40);
+  }
+  /* no extra offset needed because sticky reserves space */
+}
+
+/* Mobile / tablet: use fixed so layout doesn't shift */
+@media (max-width: 1024px) {
+  .menu.menu--topnav {
+    position: fixed;
+    top: 0;
+    /* honor your left/right rails so it never overlaps them */
+    left: var(--left-rails, 0px);
+    right: var(--right-rail, 0px);
+    width: auto;
+    z-index: var(--z-header, 40);
+  }
+
+  /* Give the content room under the fixed bar */
+  .site-main,
+  .content,
+  main {
+    margin-top: var(--topnav-height, 56px);
+  }
+}
+
+/* Sidebar mode = row (as you have today) */
+body.menu__container {
+  display: flex;
+}
+
+/* Topnav mode = stack things vertically */
+body.menu__container.menu--topnav {
+  display: block; /* or: display:flex; flex-direction: column; */
+}
+
+/* Make the topnav span the full width and sit above content */
+body.menu--topnav nav.menu.menu--topnav {
+  position: sticky; /* or fixed, if you prefer */
+  top: 0;
+  z-index: 50;
+}
+
+/* Let the case-study/article center under the topnav */
+body.menu--topnav article.container-narrow,
+body.menu--topnav main.content,
+body.menu--topnav .wrap {
+  max-width: 1400px; /* whatever you use */
+  padding-inline: var(--content-gutter, 16px);
+}
+
+/* Kill any sidebar-mode left/right offsets while in topnav */
+body.menu--topnav {
+  --left-rails: 0px;
+  --right-rail: 0px;
+}
+body.menu--topnav article.container-narrow {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* (Optional) enforce vertical stack on small screens, just in case */
+@media (max-width: 1024px) {
+  body.menu__container.menu--topnav {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* Mobile-only behaviour */
+@media (max-width: 1024px) {
+  /* Slide-in overlay container */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: color-mix(in oklab, var(--fg) 55%, transparent);
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    z-index: 1000;
+  }
+  body.mobile-open .mobile-menu-overlay {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Panels inside overlay */
+  .mobile-menu-overlay .extra-thin-sidebar,
+  .mobile-menu-overlay .company-sidebar {
+    width: min(86vw, 360px);
+    height: 100%;
+    overflow: auto;
+    background: var(--card, var(--bg));
+  }
+
+  /* Hamburger -> X swap only in mobile-open */
+  .master-hamburger-button .icon-Close {
+    display: none;
+  }
+  body.mobile-open .master-hamburger-button .icon-Menu-Hamburger {
+    display: none;
+  }
+  body.mobile-open .master-hamburger-button .icon-Close {
+    display: inline-block;
+  }
+}
+/* hamburger icon swap (you already added these) */
+.master-hamburger-button .icon-Close {
+  display: none;
+}
+.master-hamburger-button.is-open .icon-Menu-Hamburger {
+  display: none;
+}
+.master-hamburger-button.is-open .icon-Close {
+  display: inline-block;
+}
+
+.company-sidebar__submenu--below.submenu--open,
+.company-sidebar__submenu.submenu--open {
+  display: block;
+}
+
+/* mobile overlay visibility (paired with #menuMasterToggle) */
+body.mobile-open .mobile-menu-overlay {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/*Company sidebar help, setting etc*/
+.company-sidebar__submenu--below,
+.company-sidebar__submenu {
+  display: none;
+}
+
+.company-sidebar__submenu--below.submenu--open,
+.company-sidebar__submenu.submenu--open {
+  display: block;
+  background-color: #1c212d;
+  border: none;
+} /* no !important */
+/* ===== Thin company sidebar: open-state styles ===== */
+
+/* tweak these if your tokens differ */
+:root {
+  --thin-bg: #1c212d; /* base panel bg */
+  --thin-bg-hover: color-mix(in oklab, var(--fg) 6%, var(--card));
+  --thin-text: var(--fg);
+}
+
+/* 1) “Selected” look when the item is open */
+.company-sidebar__item.item--hovered > .company-sidebar__trigger,
+.company-sidebar__item--has-submenu > .company-sidebar__trigger:focus-visible {
+  background: var(--thin-bg);
+  outline: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.company-sidebar__item.item--hovered .sidebar-icon,
+.company-sidebar__item.item--hovered .label,
+.company-sidebar__item.item--hovered .sidebar-icon i {
+  color: var(--thin-sidebar-blue-hover);
+}
+
+/* 2) The submenu “card” below (same visual shell everywhere) */
+.company-sidebar__submenu--below,
+.company-sidebar__submenu {
+  background: var(--thin-bg);
+}
+
+/* only show when JS opens it */
+.company-sidebar__submenu--below {
+  display: none;
+}
+.company-sidebar__submenu {
+  display: none;
+}
+.company-sidebar__submenu--below.submenu--open,
+.company-sidebar__submenu.submenu--open {
+  display: block !important;
+}
+/* labels + icons tint on hover, dark theme */
+body.dark-mode nav.menu .sidebar__item:hover,
+body.dark-mode nav.menu .sidebar__item:hover .sidebar__label,
+body.dark-mode nav.menu .sidebar__item:hover i,
+body.dark-mode .company-sidebar .thin-sidebar-item:hover,
+body.dark-mode .company-sidebar .thin-sidebar-item:hover .label,
+body.dark-mode .company-sidebar .thin-sidebar-item:hover i,
+body.dark-mode .extra-thin-sidebar .thin-sidebar-item:hover,
+body.dark-mode .extra-thin-sidebar .thin-sidebar-item:hover .label,
+body.dark-mode .extra-thin-sidebar .thin-sidebar-item:hover i {
+  color: #7ad0ff; /* or var(--blue-clr) */
+}
+
+/* default sidebar item colors */
+.sidebar__item {
+  color: var(--label-main-clr);
+}
+.sidebar__item i {
+  color: currentColor;
+} /* icons follow text color */
+
+/* When a group is open → tint the trigger row blue */
+.sidebar-group.is-open > label.sidebar__item,
+.sidebar-group.is-open > label.sidebar__item .sidebar__label,
+.sidebar-group.is-open > label.sidebar__item i {
+  color: var(--text-blue);
+}
+
+/* Keyboard open (focus inside) also tints */
+.sidebar-group:focus-within > label.sidebar__item {
+  color: var(--text-blue);
+}
+
+/* Optional: subtle left accent while open */
+.sidebar-group.is-open > label.sidebar__item {
+  position: relative;
+}
+/* Content grid */
+.doc-grid {
+  --content-gutter: 24px;
+  --max-text: 72ch; /* readable line length */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px var(--content-gutter) 48px;
+  font: 16px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto;
+}
+
+.doc-grid h1 {
+  font: 16px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto;
+}
+.doc-grid h2 {
+  font: 12px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto;
+}
+
+article.container-narrow .feature-card h2 {
+  font-weight: 800;
+  font-size: clamp(18px, 2vw, 22px);
+  margin: 18px 0 8px;
+}
+
+.doc-main {
+  max-width: var(--max-text);
+}
+
+/* Right column appears on ≥ 1100px */
+@media (min-width: 1100px) {
+  .doc-grid {
+    grid-template-columns: minmax(0, 1fr) 620px;
+  }
+  .doc-aside {
+    position: sticky;
+    top: 88px; /* below your top bar */
+  }
+}
+
+/* Card styling (theme-aware via your CSS variables) */
+.card {
+  background: var(--system-clr-bg-default);
+  border: 1px solid var(--border-main-clr);
+  border-radius: 8px;
+  padding: 16px 18px;
+  box-shadow: var(--sidebar-shadow, 0 1px 0 var(--shadow));
+}
+.card-title {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+}
+.tight {
+  margin: 0;
+  padding-left: 1rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tight li {
+  margin: 0 0 6px;
+}
+
+/* Demo note */
+.demo-note {
+  margin-top: 16px;
+  font-size: 0.925rem;
+  color: var(--text-light);
+}
+
+/* Make sure the page can scroll if content is taller */
+body .doc-grid {
+  overflow: visible;
+} /* grid container should not clip */
+/* Page wrapper: matches Work page edge gutters */
+.case-study {
+  --page-x: clamp(16px, 3vw, 32px);
+  --content-max: 1080px; /* main text width (not too wide) */
+  --aside-w: 320px; /* right card width */
+  --grid-gap: 20px; /* tighter than before */
+}
+
+/* Host article */
+.case-study article.doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, var(--aside-w));
+  gap: var(--grid-gap);
+  align-items: start;
+  padding: 0 var(--page-x) 64px;
+  margin: 0 auto;
+  max-width: calc(var(--content-max) + var(--aside-w) + var(--grid-gap));
+}
+
+/* Main column — limit measure so body text isn’t too wide */
+.case-study .doc-main {
+  max-width: var(--content-max);
+}
+
+/* Right card: sticky & compact */
+.case-study .doc-aside {
+  position: sticky;
+  top: 92px; /* under the top bar */
+  height: fit-content;
+  margin-left: auto;
+}
+
+/* Stack on tablets/phones */
+@media (max-width: 1100px) {
+  .case-study article.doc-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+  .case-study .doc-aside {
+    position: static;
+    order: -1; /* card first on narrow, optional */
+    margin-bottom: 16px;
+  }
+}
+/* ===== Feature card – readability upgrade (scoped) ===== */
+article.container-narrow.doc-grid .feature-card {
+  /* space + surface */
+  padding: 22px 22px 18px 22px;
+  border-radius: 14px;
+  border: 1px solid
+    color-mix(in oklab, var(--border-main-clr) 85%, var(--blue-clr) 15%);
+  background: color-mix(
+    in oklab,
+    var(--system-clr-bg-default) 98%,
+    transparent
+  );
+  box-shadow: 0 1px 0 var(--shadow), 0 12px 24px -18px rgba(0, 0, 0, 0.5);
+
+  /* typography rhythm */
+  line-height: 1.55;
+  letter-spacing: 0.1px;
+
+  /* subtle left accent for scannability */
+  position: sticky;
+  isolation: isolate; /* ensure ::before sits under content */
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content list */
+article.container-narrow.doc-grid .feature-card .tight {
+  grid-column: 1 / -1; /* span full width under heading */
+  margin: 6px 0 0;
+  padding-left: 1.2rem;
+}
+article.container-narrow.doc-grid .feature-card .tight li {
+  margin: 0 0 10px;
+}
+article.container-narrow.doc-grid .feature-card .tight li strong {
+  font-weight: 700;
+}
+
+/* Inline code & kbd — higher contrast chips */
+article.container-narrow.doc-grid .feature-card code,
+article.container-narrow.doc-grid .feature-card kbd {
+  font-size: 0.92em;
+  background: color-mix(
+    in oklab,
+    var(--system-clr-light-active) 85%,
+    transparent
+  );
+  border: 1px solid var(--border-main-clr);
+  border-radius: 6px;
+  padding: 0 0.35em;
+}
+
+/* Demo note – separated and easier to scan */
+article.container-narrow.doc-grid .feature-card .demo-note {
+  grid-column: 1 / -1;
+  margin-top: auto;
+  padding: 10px 12px;
+  font-size: 0.92rem;
+  color: var(--text-light);
+  border: 1px dashed var(--border-main-clr);
+  border-radius: 10px;
+  background: color-mix(
+    in oklab,
+    var(--system-clr-bg-default) 96%,
+    transparent
+  );
+}
+
+/* Hover/focus affordances (subtle, industrial) */
+@media (prefers-reduced-motion: no-preference) {
+  article.container-narrow.doc-grid .feature-card {
+    transition: border-color 0.18s ease, box-shadow 0.18s ease,
+      outline-color 0.18s ease;
+  }
+}
+article.container-narrow.doc-grid .feature-card:hover {
+  border-color: color-mix(
+    in oklab,
+    var(--border-main-clr) 65%,
+    var(--blue-clr) 35%
+  );
+}
+article.container-narrow.doc-grid .feature-card:focus-within {
+  border-color: transparent;
+}
+
+/* Compact when the aside stacks */
+@media (max-width: 1100px) {
+  article.container-narrow.doc-grid .feature-card {
+    position: static;
+    padding: 16px 16px 14px;
+    gap: 8px 12px;
+  }
+  article.container-narrow.doc-grid .feature-card .num {
+    font-size: clamp(1.6rem, 1.2rem + 1vw, 2.1rem);
+  }
 }

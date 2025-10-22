@@ -10,7 +10,15 @@ import "../../styles/nav.css";
       noWrap={true}                             /* we’ll place things ourselves */
       hideFooter={true}>
 
-  <!-- Overlay + support panel (static) -->
+<script type="module">
+  import { initNavLite } from '/src/scripts/nav-page.ts';   // ← absolute path
+  // run on first load
+  initNavLite();
+  // also run when Astro swaps pages client-side
+  addEventListener('astro:page-load', initNavLite);
+</script>
+
+ <!-- Overlay + support panel (static) -->
 <input hidden type="checkbox" id="toggleSidebarOptions" />
 <label for="toggleSidebarOptions" class="support-overlay" id="supportOverlayLeft" aria-hidden="true"></label>
 
@@ -179,20 +187,6 @@ import "../../styles/nav.css";
           <div class="company-sidebar__submenu--below">
             <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Key"></i><span>Change password</span></a>
             <a href="#" class="company-sidebar__link flex align-center"><i class="icon-Lock-Locked"></i><span>Two-step auth</span></a>
-
-            <div class="company-sidebar__item company-sidebar__item--has-submenu thin-sidebar__language-switch">
-              <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center mb-1">
-                <span class="sidebar-icon"><i class="icon-Globe"></i></span>
-                <span class="label">Language</span>
-              </div>
-              <div class="company-sidebar__submenu--below nested-submenu">
-                <div class="company-sidebar__submenu-options">
-                  <a href="#" class="company-sidebar__submenu-option item--active">English</a>
-                  <a href="#" class="company-sidebar__submenu-option">Estonian</a>
-                  <a href="#" class="company-sidebar__submenu-option">Spanish</a>
-                </div>
-              </div>
-            </div>
           </div>
         </li>
 
@@ -202,7 +196,7 @@ import "../../styles/nav.css";
             <span class="label">Help</span>
           </div>
           <div class="company-sidebar__submenu--below">
-            <a href="https://wiki.erply.com" class="company-sidebar__link flex align-center" target="_blank" rel="noreferrer">
+            <a href="#" class="company-sidebar__link flex align-center" target="_blank" rel="noreferrer">
               <i class="icon-Catalogue-With-Text"></i><span>Wiki</span>
             </a>
             <label for="toggleSidebarOptions" class="company-sidebar__link flex align-center" aria-controls="supportPanel" aria-expanded="false">
@@ -304,12 +298,18 @@ import "../../styles/nav.css";
           <i class="icon-Chart-Bar"></i>
           <span class="sidebar__label">Overview</span>
         </label>
-        <div class="sub-menu_down" id="submenu_panel_g1">
-          <ul>
-            <li><a class="font-sm" href="#"><i class="icon-Chart-Line"></i><span>Analytics</span></a></li>
-            <li><a class="font-sm" href="#"><i class="icon-List"></i><span>Activity</span></a></li>
-          </ul>
+         <div class="sub-menu_down">
+          <div class="sidebar__third-level-menu">
+            <div class="submenu-section">
+              <ul>
+                <li><a class="font-sm" href="#"><span>Dashboard</span></a></li>
+                <li><a class="font-sm" href="#"><span>Time logs</span></a></li>
+              </ul>
+            </div>
+           
+          </div>
         </div>
+       
       </div>
 
       <!-- Group 2 with 3rd-level sections -->
@@ -321,29 +321,36 @@ import "../../styles/nav.css";
         <div class="sub-menu_down">
           <div class="sidebar__third-level-menu">
             <div class="submenu-section">
-              <h4 class="submenu-heading">General</h4>
               <ul>
-                <li><a class="font-sm" href="#"><i class="icon-Globe"></i><span>Localization</span></a></li>
-                <li><a class="font-sm" href="#"><i class="icon-Person-1-Default"></i><span>Users</span></a></li>
+                <li><a class="font-sm" href="#"><span>Localization</span></a></li>
+                <li><a class="font-sm" href="#"><span>Users</span></a></li>
               </ul>
             </div>
-            <div class="submenu-section">
-              <h4 class="submenu-heading">Advanced</h4>
-              <ul>
-                <li><a class="font-sm" href="#"><i class="icon-Key"></i><span>API Keys</span></a></li>
-                <li><a class="font-sm" href="#"><i class="icon-Lock-Locked"></i><span>Security</span></a></li>
-              </ul>
-            </div>
+           
           </div>
         </div>
       </div>
 
-      <!-- Leaf -->
-      <div class="sidebar-group">
-        <a href="#" class="sidebar__item">
-          <i class="icon-Cart-Trolley"></i><span class="sidebar__label">Orders</span>
-        </a>
+      <!-- Group 3 with 3rd-level sections -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="icon-Cart-Trolley"></i>
+          <span class="sidebar__label">Orders</span>
+        </label>
+        <div class="sub-menu_down">
+          <div class="sidebar__third-level-menu">
+            <div class="submenu-section">
+              <ul>
+                <li><a class="font-sm" href="#"><span>Sales</span></a></li>
+                <li><a class="font-sm" href="#"><span>Invoices</span></a></li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
       </div>
+
+      
     </div>
 
     <!-- Topnav-only footer trigger (kept minimal) -->
@@ -371,7 +378,10 @@ import "../../styles/nav.css";
 </div>
 
   <!-- your case study content -->
-   <article class="container-narrow">
+<!-- your case study content -->
+<article class="container-narrow doc-grid">
+
+  <div class="doc-main">
     <h1>Unified Navigation System</h1>
     <p class="meta">Role: Frontend & UX • Timeline: 2024–2025 • Tech: HTML, CSS, JS</p>
 
@@ -385,52 +395,60 @@ import "../../styles/nav.css";
       <li>Checkbox/radio for submenus; minimal JS</li>
     </ul>
 
+    <h2>Behavior & Accessibility</h2>
+    <ul>
+      <li><strong>Keyboard:</strong> Enter/Space toggles sections, ESC closes.</li>
+      <li><strong>Outside click:</strong> Closes submenus, support panel, overlays.</li>
+      <li><strong>Mobile overlay:</strong> Hamburger toggles, scroll lock, aria-expanded.</li>
+    </ul>
+
     <h2>Outcome</h2>
     <ul>
-      <li>Removed duplicate HTML across views</li>
+      <li>Removed duplicate HTML across all app views</li>
       <li>Improved consistency + accessibility</li>
-      <li>Faster onboarding with documented patterns</li>
+      <li>Shared JSON + single asset enables rapid changes</li>
     </ul>
 
     <div class="demo-controls">
-      <button class="btn" data-toggle-menu>Toggle: Sidebar / Topnav</button>
- 
-    </div>
-  </article>
-   <!-- Page-scoped script: ESM module so it treeshakes -->
-  <script type="module">
-  import { initNavCaseStudy } from "../../scripts/nav-page.ts";
-  initNavCaseStudy();
-</script>
+  <button class="btn" data-toggle-menu>Toggle: Sidebar / Topnav</button>
+</div>
+
+   
+  </div>
+
+  <aside class="doc-aside feature-card">
+    <div class="num">01.</div>
+      <h2>Menu Architecture & Structure</h2>
+
+    <ol class="tight">
+       <li>
+      <strong>Company Sidebar (Level 1)</strong> —  
+      A vertical thin sidebar always visible on desktop. It contains user identity, company switcher, language, theme toggle, and help/support entry points.
+      Submenus open below and close automatically on outside click or <kbd>ESC</kbd>.
+    </li>
+    <li>
+      <strong>Bookmarks / Favorites (Level 2)</strong> —  
+      A thin sidebar that lists user’s favorite or pinned apps. State is stored via CaFa configuration (<code>goerp-favorite-apps</code>),
+      so the same favorites appear across sessions. Clicking a star toggles app visibility here instantly.
+    </li>
+    <li>
+      <strong>App Navigation (Level 3)</strong> —  
+      Each app imports a shared menu asset that builds its structure from JSON.  
+      The menu can switch between <em>sidebar</em> and <em>topnav</em> layouts using the same markup,
+      controlled by outer classes (<code>.menu--sidebar</code> / <code>.menu--topnav</code>).
+    </li>
+    </ol>
+
+    <!-- Optional note about demo limitations -->
+    <p class="demo-note">
+      This is a minimal interactive demo: focus trapping, roving tabindex,
+      full screen reader labelling, and persisted favorites are omitted for brevity.
+    </p>
+  </aside>
+</article>
+
+
 
 </Base>
-<!-- tiny demo JS for toggles -->
-<script is:inline>
-  // Flip sidebar/topnav
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-toggle-menu]');
-    if (!btn) return;
-    document.body.classList.toggle('menu--sidebar');
-    document.body.classList.toggle('menu--topnav');
-  });
 
-  // Optional: open/close submenus (checkbox-free version)
-  document.querySelectorAll('.sidebar-group[data-caret] > label.sidebar__item')
-    .forEach(lbl => {
-      lbl.addEventListener('click', () => {
-        const wrap = lbl.closest('.sidebar-group');
-        wrap?.classList.toggle('is-open');
-      });
-    });
-</script>
-
-<script is:inline>
-  addEventListener('click', e => {
-    const btn = e.target.closest('[data-toggle-menu]');
-    if (!btn) return;
-    const nav = document.querySelector('.menu');
-    nav?.classList.toggle('menu--sidebar');
-    nav?.classList.toggle('menu--topnav');
-  });
-</script>
 

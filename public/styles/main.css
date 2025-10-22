@@ -58,6 +58,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scrollbar-gutter: stable both-edges;
+  display: flex;
+  flex-direction: column;
 }
 a {
   color: var(--accent);
@@ -389,6 +391,10 @@ a {
   color: var(--muted);
   margin: 2px 0 6px;
 }
+
+.meta-list {
+  padding-left: 12px;
+}
 .row-summary {
   margin: 0 0 6px;
 }
@@ -510,6 +516,42 @@ a {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.project-list {
-  padding-bottom: 260px;
+/* If you prefer CSS only, you can set it roughly to the left card height */
+@media (min-width: 1000px) {
+  .right {
+    max-height: 680px;
+  } /* tweak to your left feature-card height */
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-section {
+  align-items: flex-end;
+  justify-content: center;
+  gap: 40px;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Make the heading explicitly inherit the same family (and style it) */
+.heading-main {
+  font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.2vw + 1rem, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 0;
 }
