@@ -32,6 +32,14 @@ const isActive = (href: string) => (href === "/" ? here === "/" : here === href 
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+  :root { --ui-font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; }
+  body { font-family: var(--ui-font); }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@300..700" rel="stylesheet">
     <slot name="head" />
   </head>
 
@@ -105,6 +113,37 @@ const isActive = (href: string) => (href === "/" ? here === "/" : here === href 
     });
   })();
 </script>
+<script is:inline>
+  (function () {
+    const html = document.documentElement;
+    const KEY = 'theme';
+
+    function setAria(btn){
+      const dark = html.getAttribute('data-theme') === 'dark';
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+
+    // Single-button toggle
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-theme-toggle]');
+      if(!btn) return;
+      const dark = html.getAttribute('data-theme') === 'dark';
+      const next = dark ? 'light' : 'dark';
+      // reuse your existing setTheme if available; else do it here:
+      if (typeof setTheme === 'function') setTheme(next);
+      else {
+        if (next === 'dark') html.setAttribute('data-theme','dark');
+        else html.removeAttribute('data-theme');
+        try { localStorage.setItem(KEY, next); } catch {}
+      }
+      setAria(btn);
+    });
+
+    // Initialize aria-label on load
+    const one = document.querySelector('[data-theme-toggle]');
+    if (one) setAria(one);
+  })();
+</script>
 
 
     <!-- Spotlight / reveal scripts (no-ops if no .cover-card present) -->
@@ -141,5 +180,6 @@ const isActive = (href: string) => (href === "/" ? here === "/" : here === href 
         els.forEach(el => io.observe(el));
       })();
     </script>
+    
   </body>
 </html>

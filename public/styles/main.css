@@ -237,7 +237,7 @@ a {
   align-self: start;
 }
 .intro-block {
-  margin: 0 0 14px;
+  margin: 0 0 38px;
 }
 
 .feature-card {
@@ -537,12 +537,16 @@ a {
   justify-content: center;
   gap: 40px;
 }
-.flex-col {
+.about-section .flex-col {
   display: flex;
   flex-direction: column;
 
   font-size: 16px;
   line-height: 1.6;
+}
+
+.flex-col p {
+  max-width: 700px;
 }
 
 /* Make the heading explicitly inherit the same family (and style it) */
@@ -554,4 +558,28 @@ a {
   line-height: 1.1;
   letter-spacing: -0.01em;
   margin-bottom: 0;
+}
+.about-avatar {
+  margin-left: auto;
+}
+/* only on About if you want — e.g. body.about */
+.about-avatar {
+  position: fixed;
+  right: 0;
+  bottom: 40px;
+  aspect-ratio: 1 / 1;
+  pointer-events: none; /* never intercept clicks */
+  z-index: 0; /* behind footer/content */
+}
+
+.site-footer {
+  position: relative;
+  z-index: 1; /* ensure it sits above the avatar */
+}
+
+/* Optional: hide in print or on very small screens */
+@media (max-width: 480px), print {
+  .about-avatar {
+    display: none;
+  }
 }

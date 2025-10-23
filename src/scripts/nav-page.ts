@@ -48,6 +48,24 @@ function wireLayoutToggle() {
     nav?.classList.toggle("menu--sidebar");
     nav?.classList.toggle("menu--topnav");
   });
+
+  // rotate on click
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-toggle-menu]");
+    if (!btn) return;
+    btn.classList.toggle("is-open");
+  });
+
+  // keyboard support
+  document.addEventListener("keydown", (e) => {
+    if (
+      (e.key !== "Enter" && e.key !== " ") ||
+      !e.target.closest("[data-toggle-menu]")
+    )
+      return;
+    e.preventDefault();
+    e.target.click();
+  });
 }
 
 /* 0.5) Section caret open/close (for .sidebar-group[data-caret]) */
@@ -352,45 +370,99 @@ function wireSupportPanel() {
 }
 
 /* 4) Company search (filters small list and mirrors into results UL) */
+/* 4) Company search (filters small list and mirrors into results UL) */
 function wireCompanySearch() {
-  const wrap = $("#accountSearchWrapper") as HTMLElement | null;
+  const wrap = document.getElementById(
+    "accountSearchWrapper"
+  ) as HTMLElement | null;
   if (!wrap) return;
-  const input = $("#accountSearchInput", wrap) as HTMLInputElement | null;
-  const results = $("#accountSearchResults", wrap) as HTMLElement | null;
-  const pool = $$(
-    ".searchable-account, .location-item",
-    $(".company-sidebar") || undefined
-  ) as HTMLElement[];
+
+  const input = document.getElementById(
+    "accountSearchInput"
+  ) as HTMLInputElement | null;
+  const results = document.getElementById(
+    "accountSearchResults"
+  ) as HTMLElement | null;
+  const submenu = document.getElementById(
+    "accountSearchWrapperContainer"
+  ) as HTMLElement | null; // the panel
+  const trigger = wrap
+    .closest(".company-sidebar__item--has-submenu")
+    ?.querySelector(".company-sidebar__trigger") as HTMLElement | null;
+
+  // pool of accounts to search from the left sidebar
+  const pool = Array.from(
+    (document.querySelector(".company-sidebar") || document) // scope if present
+      .querySelectorAll<HTMLElement>(".searchable-account, .location-item")
+  );
+
   if (!input || !results) return;
 
-  input.addEventListener("input", () => {
-    const q = input.value.trim().toLowerCase();
+  // helper: open-state to tint the icon (no classes; aria-expanded only)
+  const setOpenState = (open: boolean) => {
+    if (trigger) trigger.setAttribute("aria-expanded", String(open));
+    if (submenu) {
+      if (open) submenu.removeAttribute("hidden");
+      else submenu.setAttribute("hidden", "");
+    }
+  };
+
+  const renderNoResults = (query: string) => {
+    const li = document.createElement("li");
+    li.className = "no-results";
+    li.setAttribute("aria-live", "polite");
+    li.textContent = `No results for “${query}”.`;
+    results.appendChild(li);
+  };
+
+  const renderMatches = (q: string) => {
+    const query = q.trim().toLowerCase();
     results.innerHTML = "";
-    if (!q) return;
+
+    if (!query) {
+      setOpenState(false);
+      return;
+    }
+
+    let matches = 0;
 
     pool.forEach((el) => {
       const name = (el.dataset.name || "").toLowerCase();
       const num = (el.dataset.number || "").toLowerCase();
-      if (name.includes(q) || num.includes(q)) {
+      if (name.includes(query) || num.includes(query)) {
         const li = document.createElement("li");
         li.className = "location-item";
         li.dataset.number = el.dataset.number || "";
-        li.innerHTML = `<span class="account-name">${
-          el.dataset.name || ""
-        }</span>
-                        <span class="account-number">#${
-                          el.dataset.number || ""
-                        }</span>`;
+        li.innerHTML = `
+          <span class="account-name">${el.dataset.name || ""}</span>
+          <span class="account-number">#${el.dataset.number || ""}</span>
+        `;
         results.appendChild(li);
+        matches++;
       }
     });
-  });
+
+    if (matches === 0) renderNoResults(q);
+
+    // keep the icon blue while user is searching / panel visible
+    setOpenState(true);
+  };
+
+  input.addEventListener("input", () => renderMatches(input.value));
 
   results.addEventListener("click", (e) => {
     const li = (e.target as Element).closest(
       ".location-item"
     ) as HTMLElement | null;
     if (!li) return;
-    input.value = `${li.dataset.number || ""}`;
+    input.value = li.dataset.number || "";
+    // You can close the panel here if you want:
+    // setOpenState(false);
+  });
+
+  // optional: keep icon blue while input focused, clear when blurred with empty value
+  input.addEventListener("focus", () => setOpenState(true));
+  input.addEventListener("blur", () => {
+    if (!input.value.trim()) setOpenState(false);
   });
 }
