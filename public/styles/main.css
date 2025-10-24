@@ -615,21 +615,3 @@ a {
     padding: 4px 2px;
   }
 }
-
-body.dark-mode,
-html[data-theme="dark"] {
-  --blue-clr: #7ad0ff;
-}
-
-:root {
-  --blue-clr: rgba(22, 110, 232, 1);
-}
-
-.link-btn {
-  color: var(--blue-clr);
-}
-
-.link-btn:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}

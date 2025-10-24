@@ -16331,12 +16331,12 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
 .company-sidebar__item--has-submenu.item--hovered
   .company-sidebar__trigger
   .label {
-  color: var(--blue-clr);
+  color: var(--thin-sidebar-blue-hover);
 }
 
 /* focus ring for keyboard */
 .company-sidebar__trigger:focus-visible .btn {
-  outline: 2px solid var(--blue-clr);
+  outline: 2px solid var(--thin-sidebar-blue-hover);
   outline-offset: 2px;
 }
 
