@@ -1,6 +1,7 @@
 /* Minimal, framework-agnostic wiring for your demo UI
    Safe to call multiple times (guards prevent double-binding) */
 
+/* ---------- tiny utils ---------- */
 const ready = (fn: () => void) =>
   document.readyState === "loading"
     ? document.addEventListener("DOMContentLoaded", fn, { once: true })
@@ -8,16 +9,44 @@ const ready = (fn: () => void) =>
 
 const $ = <T extends Element = HTMLElement>(
   s: string,
-  r: ParentNode = document
-) => r.querySelector<T>(s);
+  r: ParentNode | Document = document
+) => r.querySelector<T>(s) as T | null;
 const $$ = <T extends Element = HTMLElement>(
   s: string,
-  r: ParentNode = document
+  r: ParentNode | Document = document
 ) => Array.from(r.querySelectorAll<T>(s));
 
+/* Focus the trigger after ESC without showing a ring */
+// Suppress any focus ring for a single animation frame
+function quietProgrammaticFocus(el: HTMLElement | null) {
+  if (!el) return;
+  document.documentElement.classList.add("suppress-focus-ring");
+  el.focus({ preventScroll: true });
+  requestAnimationFrame(() => {
+    document.documentElement.classList.remove("suppress-focus-ring");
+  });
+}
+
+// (optional) find a truly focusable child inside a trigger
+function getFocusable(el: HTMLElement | null): HTMLElement | null {
+  if (!el) return null;
+  const selector = [
+    "button",
+    "a[href]",
+    'input:not([type="hidden"])',
+    "select",
+    "textarea",
+    "[tabindex]:not([tabindex='-1'])",
+    "label[for]",
+  ].join(",");
+  return (
+    el.matches(selector) ? el : el.querySelector(selector)
+  ) as HTMLElement | null;
+}
+
+/* ---------- public init ---------- */
 export function initNavLite() {
-  // avoid rebinding when Astro rehydrates / swaps pages
-  if ((document.body as any)._navLiteInit) return;
+  if ((document.body as any)._navLiteInit) return; // avoid rebinding in SPA swaps
   (document.body as any)._navLiteInit = true;
 
   ready(() => {
@@ -30,53 +59,45 @@ export function initNavLite() {
   });
 }
 
-/* 0) Sidebar <-> Topnav toggle (covers both of your first two inline scripts) */
+/* ---------- 0) Sidebar <-> Topnav toggle ---------- */
 function wireLayoutToggle() {
   if ((document.body as any)._navLiteLayout) return;
   (document.body as any)._navLiteLayout = true;
 
+  // flip body + .menu
   document.addEventListener("click", (e) => {
-    const btn = (e.target as Element).closest("[data-toggle-menu]");
+    const btn = (e.target as Element | null)?.closest("[data-toggle-menu]");
     if (!btn) return;
 
-    // flip on <body>
     document.body.classList.toggle("menu--sidebar");
     document.body.classList.toggle("menu--topnav");
 
-    // also flip the .menu element (your second inline block did this)
     const nav = document.querySelector(".menu");
     nav?.classList.toggle("menu--sidebar");
     nav?.classList.toggle("menu--topnav");
-  });
 
-  // rotate on click
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-toggle-menu]");
-    if (!btn) return;
-    btn.classList.toggle("is-open");
+    (btn as HTMLElement).classList.toggle("is-open");
   });
 
   // keyboard support
   document.addEventListener("keydown", (e) => {
-    if (
-      (e.key !== "Enter" && e.key !== " ") ||
-      !e.target.closest("[data-toggle-menu]")
-    )
-      return;
+    const targetEl = e.target as Element | null;
+    if (!targetEl?.closest("[data-toggle-menu]")) return;
+    if (e.key !== "Enter" && e.key !== " ") return;
     e.preventDefault();
-    e.target.click();
+    (targetEl as HTMLElement).click();
   });
 }
 
-/* 0.5) Section caret open/close (for .sidebar-group[data-caret]) */
-/* 0.5) Main nav groups (third-level) */
+/* ---------- 0.5) Main nav groups (third-level) ---------- */
 function wireCaretOpeners() {
   if ((document.body as any)._navLiteCarets) return;
   (document.body as any)._navLiteCarets = true;
 
-  const groups = Array.from(
-    document.querySelectorAll<HTMLElement>(".menu .sidebar-group[data-caret]")
-  );
+  const groups = $<HTMLElement>(".menu")
+    ? ($$(".menu .sidebar-group[data-caret]") as HTMLElement[])
+    : [];
+
   const headers = groups
     .map((g) => g.querySelector<HTMLElement>(".sidebar__item")!)
     .filter(Boolean);
@@ -135,18 +156,16 @@ function wireCaretOpeners() {
     });
   });
 
-  // Click outside closes any open group
-  // add/replace this part inside wireCaretOpeners()
+  // Click outside closes any open group (capture to run early)
   document.addEventListener(
     "click",
     (e) => {
       const t = e.target as Element;
       if (
-        t.closest(".menu .sidebar-group") || // header area
-        t.closest(".menu .sub-menu_down") // the panel itself
+        t.closest(".menu .sidebar-group") ||
+        t.closest(".menu .sub-menu_down")
       )
         return;
-
       groups.forEach((g) => {
         g.classList.remove("is-open");
         g.querySelector<HTMLElement>(".sidebar__item")?.setAttribute(
@@ -155,11 +174,11 @@ function wireCaretOpeners() {
         );
       });
     },
-    true // capture so it fires before bubbling clicks
+    true
   );
 }
 
-/* 1) Mobile hamburger → overlay (replaces your IIFE inline block) */
+/* ---------- 1) Mobile hamburger → overlay ---------- */
 function wireHamburger() {
   if ((document.body as any)._navLiteHamburger) return;
   (document.body as any)._navLiteHamburger = true;
@@ -181,17 +200,14 @@ function wireHamburger() {
     setState(!document.body.classList.contains("mobile-open"));
   });
 
-  // close on ESC
   document.addEventListener("keydown", (e) => {
     if ((e as KeyboardEvent).key === "Escape") setState(false);
   });
 
-  // close on backdrop click (not when clicking inside panels)
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) setState(false);
   });
 
-  // also close if clicking anywhere outside overlay while open
   document.addEventListener(
     "click",
     (e) => {
@@ -208,31 +224,42 @@ function wireHamburger() {
   );
 }
 
-/* 2) Company thin-sidebar: open/close subsections (Settings, Help, Language, etc.) */
-/* 2) Company thin-sidebar: open/close subsections (Settings, Help, Language, etc.) */
+/* ---------- 2) Company submenus (toggle, outside, ESC) ---------- */
 function wireCompanySubmenus() {
   const roots = $$(".company-sidebar") as HTMLElement[];
   if (!roots.length) return;
-
-  // Already wired?
   if ((document.body as any)._navLiteCompany) return;
   (document.body as any)._navLiteCompany = true;
 
-  // Per-root setup
   const initRoot = (root: HTMLElement) => {
     if (root.dataset.subInit === "1") return;
     root.dataset.subInit = "1";
 
-    // Start hidden
-    $$(
-      ".company-sidebar__submenu, .company-sidebar__submenu--below",
-      root
-    ).forEach((el) => {
-      el.classList.remove("submenu--open", "submenu--locked");
-      (el as HTMLElement).style.display = "none";
-    });
+    let lastOpener: HTMLElement | null = null;
 
-    // Toggle per item
+    const closeAll = (exceptSubmenu: HTMLElement | null = null) => {
+      $$(
+        ".company-sidebar__submenu, .company-sidebar__submenu--below",
+        root
+      ).forEach((el) => {
+        if (exceptSubmenu && el === exceptSubmenu) return;
+        el.classList.remove("submenu--open", "submenu--locked");
+        (el as HTMLElement).style.display = "none";
+        const owner = el.closest(
+          ".company-sidebar__item--has-submenu"
+        ) as HTMLElement | null;
+        owner?.classList.remove("item--hovered");
+        const trig = owner?.querySelector(
+          ".company-sidebar__trigger"
+        ) as HTMLElement | null;
+        trig?.setAttribute("aria-expanded", "false");
+      });
+    };
+
+    // reset start state
+    closeAll(null);
+
+    // wire each item
     $$(".company-sidebar__item--has-submenu", root).forEach((item) => {
       const trigger = $(
         ".company-sidebar__trigger, .thin-sidebar-item",
@@ -245,35 +272,25 @@ function wireCompanySubmenus() {
       if (!trigger || !submenu) return;
 
       const open = () => {
-        // Close OTHER top-level menus in the same root
-        if (!item.closest(".company-sidebar__submenu--below")) {
-          $$(
-            ".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open",
-            root
-          ).forEach((el) => {
-            if (el !== submenu) {
-              el.classList.remove("submenu--open", "submenu--locked");
-              (el as HTMLElement).style.display = "none";
-            }
-          });
-          $$(".company-sidebar__item.item--hovered", root).forEach((i) =>
-            i.classList.remove("item--hovered")
-          );
-        }
+        if (!item.closest(".company-sidebar__submenu--below"))
+          closeAll(submenu);
         submenu.classList.add("submenu--open", "submenu--locked");
         submenu.style.display = "block";
         item.classList.add("item--hovered");
+        trigger.setAttribute("aria-expanded", "true");
+        lastOpener = trigger;
       };
 
       const close = () => {
         submenu.classList.remove("submenu--open", "submenu--locked");
         submenu.style.display = "none";
         item.classList.remove("item--hovered");
+        trigger.setAttribute("aria-expanded", "false");
       };
 
       trigger.addEventListener("click", (e) => {
         e.stopPropagation();
-        submenu.classList.contains("submenu--open") ? close() : open();
+        (submenu.classList.contains("submenu--open") ? close : open)();
       });
 
       trigger.addEventListener("keydown", (e) => {
@@ -284,41 +301,30 @@ function wireCompanySubmenus() {
         }
       });
     });
+
+    // outside click: close everything
+    document.addEventListener("click", (e) => {
+      if (!root.contains(e.target as Node)) closeAll(null);
+    });
+
+    // ESC: close everything and return focus silently to the last opener
+    document.addEventListener("keydown", (e) => {
+      if ((e as KeyboardEvent).key !== "Escape") return;
+      const hadOpen =
+        $$(
+          ".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open",
+          root
+        ).length > 0;
+      closeAll(null);
+      if (hadOpen)
+        quietProgrammaticFocus(getFocusable(lastOpener) || lastOpener);
+    });
   };
 
   roots.forEach(initRoot);
-
-  // ---- Global closers (affect ALL roots) ----
-  const closeAllEverywhere = () => {
-    $$(
-      ".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open"
-    ).forEach((el) => {
-      el.classList.remove("submenu--open", "submenu--locked");
-      (el as HTMLElement).style.display = "none";
-    });
-    $$(".company-sidebar__item.item--hovered").forEach((i) =>
-      i.classList.remove("item--hovered")
-    );
-  };
-
-  // Close on outside click: outside BOTH sidebars
-  document.addEventListener(
-    "click",
-    (e) => {
-      const t = e.target as Node;
-      const clickedInsideAny = roots.some((r) => r.contains(t));
-      if (!clickedInsideAny) closeAllEverywhere();
-    },
-    true
-  ); // capture so it runs before bubbled handlers
-
-  // ESC closes everywhere
-  document.addEventListener("keydown", (e) => {
-    if ((e as KeyboardEvent).key === "Escape") closeAllEverywhere();
-  });
 }
 
-/* 3) Support panel (left overlay with form) */
+/* ---------- 3) Support panel (left overlay with form) ---------- */
 function wireSupportPanel() {
   const cb = $("#toggleSidebarOptions") as HTMLInputElement | null;
   const panel = $("#supportPanel") as HTMLElement | null;
@@ -329,7 +335,7 @@ function wireSupportPanel() {
 
   const reflect = () => {
     opener.setAttribute("aria-expanded", cb.checked ? "true" : "false");
-    panel.hidden = false; // keep node in DOM; visibility handled by CSS via :checked
+    panel.hidden = false; // node stays; CSS handles visibility via :checked
   };
   cb.addEventListener("change", reflect);
   reflect();
@@ -369,8 +375,7 @@ function wireSupportPanel() {
   });
 }
 
-/* 4) Company search (filters small list and mirrors into results UL) */
-/* 4) Company search (filters small list and mirrors into results UL) */
+/* ---------- 4) Company search (filters + opens/closes) ---------- */
 function wireCompanySearch() {
   const wrap = document.getElementById(
     "accountSearchWrapper"
@@ -385,25 +390,56 @@ function wireCompanySearch() {
   ) as HTMLElement | null;
   const submenu = document.getElementById(
     "accountSearchWrapperContainer"
-  ) as HTMLElement | null; // the panel
-  const trigger = wrap
-    .closest(".company-sidebar__item--has-submenu")
-    ?.querySelector(".company-sidebar__trigger") as HTMLElement | null;
+  ) as HTMLElement | null; // panel
+  const item = wrap.closest(
+    ".company-sidebar__item--has-submenu"
+  ) as HTMLElement | null;
+  const trigger = item?.querySelector(
+    ".company-sidebar__trigger"
+  ) as HTMLElement | null;
+  const root = item?.closest(".company-sidebar") as HTMLElement | null;
 
   // pool of accounts to search from the left sidebar
   const pool = Array.from(
-    (document.querySelector(".company-sidebar") || document) // scope if present
-      .querySelectorAll<HTMLElement>(".searchable-account, .location-item")
+    (root || document).querySelectorAll<HTMLElement>(
+      ".searchable-account, .location-item"
+    )
   );
 
-  if (!input || !results) return;
+  if (!input || !results || !submenu || !item || !trigger) return;
 
-  // helper: open-state to tint the icon (no classes; aria-expanded only)
+  const closeOthers = () => {
+    if (!root) return;
+    $$(
+      ".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open",
+      root
+    ).forEach((el) => {
+      if (el === submenu) return;
+      el.classList.remove("submenu--open", "submenu--locked");
+      (el as HTMLElement).style.display = "none";
+      const owner = el.closest(
+        ".company-sidebar__item--has-submenu"
+      ) as HTMLElement | null;
+      owner?.classList.remove("item--hovered");
+      const trig = owner?.querySelector(
+        ".company-sidebar__trigger"
+      ) as HTMLElement | null;
+      trig?.setAttribute("aria-expanded", "false");
+    });
+  };
+
   const setOpenState = (open: boolean) => {
-    if (trigger) trigger.setAttribute("aria-expanded", String(open));
-    if (submenu) {
-      if (open) submenu.removeAttribute("hidden");
-      else submenu.setAttribute("hidden", "");
+    if (open) {
+      closeOthers();
+      submenu.classList.add("submenu--open", "submenu--locked");
+      submenu.style.display = "block";
+      item.classList.add("item--hovered");
+      trigger.setAttribute("aria-expanded", "true");
+    } else {
+      submenu.classList.remove("submenu--open", "submenu--locked");
+      submenu.style.display = "none";
+      item.classList.remove("item--hovered");
+      trigger.setAttribute("aria-expanded", "false");
     }
   };
 
@@ -425,7 +461,6 @@ function wireCompanySearch() {
     }
 
     let matches = 0;
-
     pool.forEach((el) => {
       const name = (el.dataset.name || "").toLowerCase();
       const num = (el.dataset.number || "").toLowerCase();
@@ -443,9 +478,7 @@ function wireCompanySearch() {
     });
 
     if (matches === 0) renderNoResults(q);
-
-    // keep the icon blue while user is searching / panel visible
-    setOpenState(true);
+    setOpenState(true); // keep panel visible + icon blue while searching
   };
 
   input.addEventListener("input", () => renderMatches(input.value));
@@ -456,11 +489,9 @@ function wireCompanySearch() {
     ) as HTMLElement | null;
     if (!li) return;
     input.value = li.dataset.number || "";
-    // You can close the panel here if you want:
-    // setOpenState(false);
+    // setOpenState(false); // uncomment if you want to close after selection
   });
 
-  // optional: keep icon blue while input focused, clear when blurred with empty value
   input.addEventListener("focus", () => setOpenState(true));
   input.addEventListener("blur", () => {
     if (!input.value.trim()) setOpenState(false);

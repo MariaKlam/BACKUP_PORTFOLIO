@@ -392,10 +392,6 @@ iframe {
   background: var(--table-head-bg);
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #64676a;
-}
-
 /* Webkit */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -9336,276 +9332,11 @@ body:has(.menu__case) .container-flex {
   }
 }
 
-@media (max-width: 1024px) {
-  .menu--topnav .menu__footer-wrapper {
-    box-shadow: none;
-  }
-
-  .menu.menu--sidebar,
-  .menu.menu--topnav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: calc(100vh - 60px);
-    width: 100vw;
-    background: var(--system-clr-bg-default);
-    transform: translateX(-100%);
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-  }
-
-  #menuToggle:checked ~ nav.menu--sidebar,
-  #menuToggle:checked ~ nav.menu--topnav,
-  #menuToggle:checked ~ .menu--sidebar,
-  #menuToggle:checked ~ .menu--topnav {
-    transform: translateX(0);
-    margin-top: 60px;
-    background-color: var(--system-clr-bg-default);
-  }
-
-  .menu-toggle-button.only-mobile {
-    display: block;
-    position: absolute;
-    z-index: 900;
-  }
-
-  .menu__group {
-    overflow-y: auto;
-  }
-
-  .menu__submenu,
-  .menu.menu--topnav .menu__submenu {
-    position: fixed;
-    top: 0;
-    left: 100%;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--system-clr-bg-default);
-    display: none;
-    flex-direction: column !important;
-    padding: 1rem;
-    overflow-y: auto;
-    z-index: 1001;
-  }
-
-  .menu__group input[type="radio"]:checked + label + .menu__submenu {
-    display: flex;
-    left: 0;
-    background-color: var(--system-clr-bg-default);
-    width: 100vw;
-  }
-
-  .menu__submenu.submenu--full {
-    width: 100vw;
-    height: 100vh;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 100%;
-  }
-
-  .submenu-section {
-    width: 100%;
-  }
-
-  .menu__submenu .back {
-    display: block;
-    font-weight: bold;
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .submenu--full {
-    display: none;
-  }
-
-  .menu__item {
-    position: relative;
-  }
-
-  .menu__footer-wrapper,
-  .menu--topnav .menu__footer-wrapper {
-    display: block !important;
-    margin-top: auto;
-    padding: 1rem;
-    background-color: var(--system-clr-bg-default);
-    position: unset;
-    width: 100%;
-  }
-
-  .only-sidebar,
-  .only-topnav,
-  .menu--topnav .only-topnav {
-    display: none !important;
-  }
-
-  .menu__item-label {
-    width: 90vw;
-  }
-  .menu__header {
-    flex-direction: row;
-  }
-
-  .menu__title-group {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .menu__item.name-initial.only-topnav {
-    order: 2;
-    margin-left: auto;
-  }
-
-  .menu-toggle-button.only-mobile {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: bold;
-    font-size: 1rem;
-    color: var(--main-txt-clr);
-  }
-
-  .mobile-heading {
-    text-decoration: none;
-    display: block;
-    align-items: center;
-    background-color: var(--system-clr-bg-default);
-    padding: 0rem 0.2rem;
-    font-weight: 700;
-    line-height: 1;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    font-size: 1rem;
-  }
-
-  .mobile-info-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-    padding: 0 1rem;
-    margin-top: 0.25rem;
-  }
-
-  .mobile-info-line .badge__update {
-    margin-left: auto;
-  }
-
-  .version-label {
-    opacity: 0.8;
-  }
-
-  .mobile-header-row {
-    border-bottom: 1px solid var(--border-main-clr);
-    width: 100vw;
-    height: 60px;
-    align-items: center;
-    background-color: var(--system-clr-bg-default);
-  }
-
-  .mobile-header-row .mobile-header-elements {
-    margin-right: 0.5rem;
-  }
-
-  .mobile-header-row i {
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    margin-left: 0.5rem;
-  }
-
-  .menu--topnav {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 1000;
-    background-color: var(--system-clr-bg-default);
-  }
-
-  .menu__center,
-  .menu--topnav .menu__center {
-    flex: 1 1 0;
-    min-height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: block;
-  }
-
-  .menu--sidebar .sidebar__close-btn {
-    margin-right: 1rem;
-  }
-
-  .menu__footer-wrapper {
-    flex-shrink: 0;
-    padding: 1rem;
-    background-color: var(--system-clr-bg-default);
-  }
-
-  .menu--topnav .submenu-section {
-    border-right: none;
-  }
-
-  .menu--sidebar.menu__submenu .back,
-  .menu--topnav .menu__submenu .back {
-    display: block !important;
-    font-weight: bold;
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .container__main-content {
-    padding-top: 50px;
-  }
-}
-
 /* Menu postion toggle */
 @media (max-width: 1200px) {
   #menuPositionForm > .btn.hide-on-mobile {
     display: none !important;
   }
-}
-
-/*Menu v3 turn hamburger into close button*/
-.master-hamburger-button i {
-  position: absolute;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-/* show hamburger by default */
-.master-hamburger-button .icon-Menu-Hamburger {
-  opacity: 1;
-}
-.master-hamburger-button .icon-Close {
-  opacity: 0;
-  transform: rotate(-90deg);
-}
-
-/* when checked */
-#menuMasterToggle:checked
-  + .master-menu_mobile-header
-  .master-hamburger-button
-  .icon-Menu-Hamburger {
-  opacity: 0;
-  transform: rotate(90deg);
-}
-#menuMasterToggle:checked
-  + .master-menu_mobile-header
-  .master-hamburger-button
-  .icon-Close {
-  opacity: 1;
-  transform: rotate(0);
 }
 
 /*?hidemenu=1 on url*/
@@ -10802,7 +10533,7 @@ input.submenu-toggle:checked + label + .company-sidebar__submenu {
   transform: translateY(-50%);
   color: #aaa;
   pointer-events: none;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .company-sidebar__submenu {
@@ -11130,258 +10861,6 @@ ul:not(.thin-sidebar--settings-container)
 .extra-thin-sidebar--second .thin-sidebar-item,
 .extra-thin-sidebar--second .thin-sidebar-icons li {
   background: transparent;
-}
-
-/* SIDEBAR V3 - BOTH MENU VERSIONS**/
-@media (max-width: 1024px) {
-  .menu__header {
-    margin-right: auto;
-  }
-
-  /* page + fixed mobile header */
-  .has-thin-sidebar main {
-    margin-top: 40px;
-  }
-  .master-menu_mobile-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 40px;
-    border-bottom: 1px solid var(--border-main-clr);
-    align-items: center;
-    background-color: var(--body);
-    z-index: 40;
-  }
-  .master-hamburger-button {
-    margin-left: 8px;
-    height: 40px;
-    align-items: center;
-    display: flex;
-  }
-
-  .master-hamburger-button .only-mobile {
-    margin-left: 8px;
-    height: 40px;
-    align-items: center;
-    display: flex;
-  }
-
-  .master-hamburger-button.only-mobile i,
-  .master-hamburger-button i {
-    font-size: 22px;
-    margin-top: auto;
-  }
-
-  /* Lock page behind overlay */
-  #menuMasterToggle:checked ~ main {
-    overflow: hidden;
-    height: 100vh;
-    position: fixed;
-    width: 100%;
-  }
-
-  /* full width on mobile */
-  body.layout--column.has-thin-sidebar main {
-    width: 100vw !important;
-    margin-left: 0;
-  }
-
-  /* thin sidebars */
-  .mobile-menu-overlay .extra-thin-sidebar {
-    left: 0;
-    width: 70px;
-    z-index: 3;
-  }
-
-  .mobile-menu-overlay .extra-thin-sidebar--second {
-    left: 70px;
-    width: 70px;
-    z-index: 2;
-  }
-
-  /* company submenu */
-  .company-sidebar__submenu {
-    position: fixed;
-    top: 40px;
-    left: 0;
-    width: calc(100vw - 70px);
-    height: calc(100vh - 40px);
-    z-index: 10000;
-    overflow-y: auto;
-    padding: 1rem;
-    border-radius: 0;
-    margin-left: 70px;
-    max-height: none;
-    display: none;
-    transition: none;
-    border-top: none;
-  }
-  .company-sidebar__submenu--active {
-    display: block;
-  }
-
-  .thin-sidebar--settings-container .company-sidebar__submenu {
-    left: 0;
-  }
-
-  .company-sidebar__submenu.submenu--locked {
-    position: fixed;
-    top: 40px;
-    left: 0;
-    width: calc(100vw - 70px);
-    height: calc(100vh - 40px);
-    z-index: 10001;
-    padding: 1rem;
-    overflow-y: auto;
-  }
-  .company-sidebar__submenu-option {
-    margin-top: 0.5rem;
-  }
-
-  /* Remove shadow when topnav submenu is open */
-  #menuMasterToggle:checked ~ .menu--topnav .sub-menu_down {
-    box-shadow: none;
-  }
-
-  /* overlay layer  */
-  /* Hide layers both menu variants */
-  .mobile-menu-overlay .extra-thin-sidebar,
-  .mobile-menu-overlay .extra-thin-sidebar--second,
-  .mobile-menu-overlay .menu {
-    display: none;
-  }
-
-  /* Show layers when hamburger checked */
-  #menuMasterToggle:checked ~ .mobile-menu-overlay .extra-thin-sidebar,
-  #menuMasterToggle:checked ~ .mobile-menu-overlay .extra-thin-sidebar--second,
-  #menuMasterToggle:checked ~ .mobile-menu-overlay .menu {
-    display: flex;
-    position: fixed;
-    top: 40px;
-    height: calc(100vh - 40px);
-    transition: left 0.3s ease;
-  }
-
-  /* Base for menu panel inside overlay */
-  .mobile-menu-overlay .menu {
-    z-index: 11;
-    transform: unset;
-    height: calc(100vh - 40px);
-  }
-
-  /* BOTH .menu--sidebar and .menu--topnav) */
-  #menuMasterToggle:checked ~ .mobile-menu-overlay .menu.menu--sidebar,
-  #menuMasterToggle:checked ~ .mobile-menu-overlay .menu.menu--topnav {
-    left: 0;
-    margin-left: 140px;
-    width: calc(100vw - 140px);
-    height: calc(100vh - 40px);
-    transform: none;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    overflow-x: hidden;
-  }
-
-  /* Keep original sidebar-specific sizing (noop with rules above, but preserved) */
-  .mobile-menu-overlay .menu.menu--sidebar {
-    margin-left: 140px;
-    width: calc(100vw - 140px);
-    transform: unset;
-    height: calc(100vh - 40px);
-  }
-
-  /* TOPNAV  */
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .menu__header {
-    position: sticky;
-    top: 0;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    inset-inline: 0;
-    box-sizing: border-box;
-  }
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .menu__header
-    > * {
-    min-width: 0;
-  }
-
-  /* Center area fills panel, stacks, and scrolls */
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .menu__center {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin-left: 0 !important;
-    overflow: auto !important;
-  }
-
-  /* Groups and submenus full width, open below */
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .sidebar-group {
-    display: block !important;
-    width: 100% !important;
-  }
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .sub-menu_down,
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .company-sidebar__submenu,
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .sidebar__third-level-menu {
-    position: static !important;
-    left: auto !important;
-    right: auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    transform: none !important;
-    margin: 0 !important;
-  }
-
-  /* Items shouldn’t force extra columns */
-  .menu.menu--topnav .sidebar__item {
-    width: auto;
-    max-width: 100%;
-    display: flex;
-    box-sizing: border-box;
-  }
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .menu__center
-    > *,
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .sidebar__third-level-menu
-    > * {
-    min-width: 0 !important;
-  }
-
-  /* Hide topnav-only bits inside the overlay */
-  #menuMasterToggle:checked
-    ~ .mobile-menu-overlay
-    .menu.menu--topnav
-    .only-topnav {
-    display: none !important;
-  }
 }
 
 .company-sidebar__trigger,
@@ -15701,11 +15180,20 @@ body.menu__container.menu--topnav {
   display: block; /* or: display:flex; flex-direction: column; */
 }
 
-/* Make the topnav span the full width and sit above content */
-body.menu--topnav nav.menu.menu--topnav {
-  position: sticky; /* or fixed, if you prefer */
-  top: 0;
-  z-index: 50;
+.menu--topnav {
+  padding: 0;
+}
+
+.menu--topnav .menu__header {
+  padding: 0.3rem;
+  padding-left: 0.3rem;
+  padding-left: 0;
+  margin-left: 14px;
+}
+
+.menu--topnav.menu__center {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Let the case-study/article center under the topnav */
@@ -15726,20 +15214,58 @@ body.menu--topnav article.container-narrow {
   margin-right: auto !important;
 }
 
-/* (Optional) enforce vertical stack on small screens, just in case */
-@media (max-width: 1024px) {
-  body.menu__container.menu--topnav {
-    display: flex;
-    flex-direction: column;
-  }
+body.menu--topnav nav.menu.menu--topnav {
+  position: sticky; /* or fixed, if you prefer */
+  margin-top: 0;
+  z-index: 50;
 }
+
 /* Mobile-only behaviour */
 @media (max-width: 1024px) {
+  /* Make the topnav span the full width and sit above content */
+  body.menu--topnav nav.menu.menu--topnav {
+    position: sticky; /* or fixed, if you prefer */
+    margin-top: 90px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  /*Menu v3 turn hamburger into close button*/
+  .master-hamburger-button i {
+    position: absolute;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* show hamburger by default */
+  .master-hamburger-button .icon-Menu-Hamburger {
+    opacity: 1;
+  }
+  .master-hamburger-button .icon-Close {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  /* when checked */
+  #menuMasterToggle:checked
+    + .master-menu_mobile-header
+    .master-hamburger-button
+    .icon-Menu-Hamburger {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  #menuMasterToggle:checked
+    + .master-menu_mobile-header
+    .master-hamburger-button
+    .icon-Close {
+    opacity: 1;
+    transform: rotate(0);
+  }
   /* Slide-in overlay container */
   .mobile-menu-overlay {
     position: fixed;
     inset: 0;
-    background: color-mix(in oklab, var(--fg) 55%, transparent);
     display: grid;
     grid-auto-flow: column;
     gap: 0;
@@ -15755,15 +15281,6 @@ body.menu--topnav article.container-narrow {
     pointer-events: auto;
   }
 
-  /* Panels inside overlay */
-  .mobile-menu-overlay .extra-thin-sidebar,
-  .mobile-menu-overlay .company-sidebar {
-    width: min(86vw, 360px);
-    height: 100%;
-    overflow: auto;
-    background: var(--card, var(--bg));
-  }
-
   /* Hamburger -> X swap only in mobile-open */
   .master-hamburger-button .icon-Close {
     display: none;
@@ -15775,6 +15292,7 @@ body.menu--topnav article.container-narrow {
     display: inline-block;
   }
 }
+
 /* hamburger icon swap (you already added these) */
 .master-hamburger-button .icon-Close {
   display: none;
@@ -15825,6 +15343,7 @@ body.mobile-open .mobile-menu-overlay {
   background: var(--thin-bg);
   outline: none;
   border-radius: 8px 8px 0 0;
+  padding-top: 0.5rem;
 }
 
 .company-sidebar__item.item--hovered .sidebar-icon,
@@ -15953,13 +15472,6 @@ article.container-narrow .feature-card h2 {
   margin: 0 0 6px;
 }
 
-/* Demo note */
-.demo-note {
-  margin-top: 16px;
-  font-size: 0.925rem;
-  color: var(--text-light);
-}
-
 /* Make sure the page can scroll if content is taller */
 body .doc-grid {
   overflow: visible;
@@ -16027,7 +15539,7 @@ article.container-narrow.doc-grid .feature-card {
   /* subtle left accent for scannability */
   position: sticky;
   isolation: isolate; /* ensure ::before sits under content */
-  max-height: 85vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -16060,19 +15572,54 @@ article.container-narrow.doc-grid .feature-card kbd {
 }
 
 /* Demo note – separated and easier to scan */
+/* Demo note – unified + minimal */
 article.container-narrow.doc-grid .feature-card .demo-note {
   grid-column: 1 / -1;
   margin-top: auto;
-  padding: 10px 12px;
-  font-size: 0.92rem;
-  color: var(--text-light);
-  border: 1px dashed var(--border-main-clr);
-  border-radius: 10px;
+}
+
+/* row layout, even vertical padding, icon centered to text block */
+.demo-note {
+  display: flex;
+  align-items: center; /* centers icon vs the text block */
+  gap: 0.75rem;
+  padding: 0.9rem 1rem; /* equal top/bottom padding */
+  border-radius: 0.75rem;
   background: color-mix(
     in oklab,
     var(--system-clr-bg-default) 96%,
     transparent
   );
+
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  border: none;
+  background: color-mix(in oklab, var(--blue-clr) 8%, transparent);
+}
+.demo-note > p {
+  margin: 0 !important;
+  line-height: 1.45;
+}
+
+.demo-note > i {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 1.25rem; /* slightly larger than text */
+  line-height: 1;
+  color: var(--blue-clr);
+  opacity: 0.95;
+}
+
+/* icon: small, slightly raised, accent-colored */
+.demo-note > i {
+  flex-shrink: 0;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--blue-clr);
+  opacity: 0.9; /* keeps it subtle */
 }
 
 /* Hover/focus affordances (subtle, industrial) */
@@ -16105,13 +15652,6 @@ article.container-narrow.doc-grid .feature-card:focus-within {
   }
 }
 /* --- Case-study doc layout fixes --- */
-
-/* Never clip the main doc area */
-article.container-narrow,
-article.container-narrow .doc-grid,
-.doc-main {
-  overflow: visible !important;
-}
 
 /* Make the doc layout own its height so row growth doesn't collapse */
 article.container-narrow .doc-grid {
@@ -16303,8 +15843,265 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
   font-size: 0.875rem;
   opacity: 0.8;
 }
+
+.master-menu_mobile-header {
+  display: none;
+}
 /* --- MOBILE MENU SYSTEM ---------------------------------------------- */
 @media (max-width: 1024px) {
+  .menu--topnav .doc-main {
+    margin-left: 0px;
+  }
+
+  .menu--topnav .menu__center {
+    flex-direction: column;
+  }
+
+  .menu--topnav .sub-menu_down {
+    background-color: transparent !important;
+  }
+
+  .menu__header {
+    margin-right: auto;
+  }
+
+  /* page + fixed mobile header */
+  .has-thin-sidebar main {
+    margin-top: 40px;
+  }
+  .master-menu_mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 40px;
+    border-bottom: 1px solid var(--border-main-clr);
+    align-items: center;
+    background-color: var(--bg);
+    z-index: 40;
+  }
+  .master-hamburger-button {
+    margin-left: 8px;
+    height: 40px;
+    align-items: center;
+    display: flex;
+  }
+
+  .master-hamburger-button .only-mobile {
+    margin-left: 8px;
+    height: 40px;
+    align-items: center;
+    display: flex;
+  }
+
+  .master-hamburger-button.only-mobile i,
+  .master-hamburger-button i {
+    font-size: 22px;
+    margin-top: auto;
+  }
+
+  /* Lock page behind overlay */
+  #menuMasterToggle:checked ~ main {
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* full width on mobile */
+  body.layout--column.has-thin-sidebar main {
+    width: 100vw !important;
+    margin-left: 0;
+  }
+
+  /* thin sidebars */
+  .mobile-menu-overlay .extra-thin-sidebar {
+    left: 0;
+    width: 70px;
+    z-index: 3;
+    height: calc(100dvh - 80px);
+  }
+
+  .mobile-menu-overlay .extra-thin-sidebar--second {
+    width: 70px;
+    z-index: 2;
+    height: calc(100dvh - 80px);
+  }
+
+  /* company submenu */
+  .company-sidebar__submenu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: calc(100vw - 70px);
+    height: calc(100vh - 40px);
+    z-index: 10000;
+    overflow-y: auto;
+    padding: 1rem;
+    border-radius: 0;
+    margin-left: 70px;
+    max-height: none;
+    display: none;
+    transition: none;
+    border-top: none;
+  }
+  .company-sidebar__submenu--active {
+    display: block;
+  }
+
+  .thin-sidebar--settings-container .company-sidebar__submenu {
+    left: 0;
+  }
+
+  .company-sidebar__submenu.submenu--locked {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: calc(100vw - 70px);
+    height: calc(100vh - 80px);
+    z-index: 10001;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .company-sidebar__submenu-option {
+    margin-top: 0.5rem;
+  }
+
+  /* Remove shadow when topnav submenu is open */
+  #menuMasterToggle:checked ~ .menu--topnav .sub-menu_down {
+    box-shadow: none;
+  }
+
+  /* Show layers when hamburger checked */
+  #menuMasterToggle:checked ~ .mobile-menu-overlay .extra-thin-sidebar,
+  #menuMasterToggle:checked ~ .mobile-menu-overlay .extra-thin-sidebar--second,
+  #menuMasterToggle:checked ~ .mobile-menu-overlay .menu {
+    display: flex;
+    position: fixed;
+    top: 40px;
+    height: calc(100vh - 40px);
+    transition: left 0.3s ease;
+  }
+
+  /* Base for menu panel inside overlay */
+  .mobile-menu-overlay .menu {
+    z-index: 11;
+    transform: unset;
+    height: calc(100vh - 40px);
+  }
+
+  /* BOTH .menu--sidebar and .menu--topnav) */
+  #menuMasterToggle:checked ~ .mobile-menu-overlay .menu.menu--sidebar,
+  #menuMasterToggle:checked ~ .mobile-menu-overlay .menu.menu--topnav {
+    left: 0;
+    margin-left: 140px;
+    width: calc(100vw - 140px);
+    height: calc(100vh - 40px);
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-x: hidden;
+  }
+
+  /* Keep original sidebar-specific sizing (noop with rules above, but preserved) */
+  .mobile-menu-overlay .menu.menu--sidebar {
+    width: calc(100vw - 140px);
+    transform: unset;
+    height: calc(100vh - 40px);
+  }
+
+  /* TOPNAV  */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .menu__header {
+    position: sticky;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    inset-inline: 0;
+    box-sizing: border-box;
+  }
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .menu__header
+    > * {
+    min-width: 0;
+  }
+
+  /* Center area fills panel, stacks, and scrolls */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .menu__center {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    overflow: auto !important;
+  }
+
+  /* Groups and submenus full width, open below */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sidebar-group {
+    display: block !important;
+    width: 100% !important;
+  }
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sub-menu_down,
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .company-sidebar__submenu,
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sidebar__third-level-menu {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  /* Items shouldn’t force extra columns */
+  .menu.menu--topnav .sidebar__item {
+    width: auto;
+    max-width: 100%;
+    display: flex;
+    box-sizing: border-box;
+  }
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .menu__center
+    > *,
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sidebar__third-level-menu
+    > * {
+    min-width: 0 !important;
+  }
+
+  /* Hide topnav-only bits inside the overlay */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .only-topnav {
+    display: none !important;
+  }
+
   /* 0) header button visible on mobile */
   .master-menu_mobile-header {
     display: block;
@@ -16338,6 +16135,7 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
     display: flex;
     transform: translateX(-110%);
     transition: transform 0.28s ease;
+    margin-top: 86px;
   }
   #menuMasterToggle:checked ~ .mobile-menu-overlay .thin-sidebar-group {
     transform: translateX(0);
@@ -16358,10 +16156,8 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
   /* 3) main nav panel (third level) — slide next to the thin sidebars */
   nav.menu.menu--sidebar {
     position: fixed;
-    top: 0;
+    margin-top: 86px;
     bottom: 0;
-    /* sits immediately to the right of the two thin sidebars */
-    left: calc(64px + 64px);
     width: min(86vw, 420px);
     transform: translateX(-110%);
     transition: transform 0.28s ease;
@@ -16399,26 +16195,151 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
   .menu.menu--sidebar .menu__center {
     overflow: auto;
   }
+
+  body.menu--sidebar.has-double-thin-sidebar .site-header {
+    margin-left: 0;
+  }
+
+  body.menu--sidebar .container-narrow {
+    margin-left: 20px;
+  }
+
+  .master-menu_mobile-header {
+    display: block;
+  }
+}
+
+/* ===== Mobile only: make TOPNAV behave like SIDEBAR ===== */
+@media (max-width: 1024px) {
+  /* Center column becomes the same vertical stack/full width */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .menu__center {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    overflow: auto !important;
+    padding: var(--menu-pad, 8px 12px) !important;
+  }
+
+  /* Groups/items fill the width like sidebar */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sidebar-group {
+    display: block !important;
+    width: 100% !important;
+  }
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sidebar__item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Submenus open BELOW (not to the side) on mobile */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sub-menu_down,
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .sidebar__third-level-menu {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide topnav-only header bits inside the mobile panel */
+  #menuMasterToggle:checked
+    ~ .mobile-menu-overlay
+    .menu.menu--topnav
+    .only-topnav {
+    display: none !important;
+  }
+}
+@media (max-width: 1024px) {
+  /* 1) Make the label a 40×40 hit area and stack both icons */
+  .master-hamburger-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+  }
+
+  .master-hamburger-button .ri-close-line {
+    display: none;
+  }
+  .master-hamburger-button .ri-menu-line,
+  .master-hamburger-button .ri-close-line {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* 2) Default = closed (hamburger visible) */
+  .master-hamburger-button[aria-expanded="false"] .ri-menu-line {
+    opacity: 1;
+    transform: none;
+  }
+  .master-hamburger-button[aria-expanded="false"] .ri-close-line {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.9);
+  }
+
+  /* 3) Open state (X visible) — supports either aria or .is-open or body.mobile-open */
+  .master-hamburger-button[aria-expanded="true"] .ri-menu-line,
+  .master-hamburger-button.is-open .ri-menu-line,
+  body.mobile-open .master-hamburger-button .ri-menu-line {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.9);
+  }
+  .master-hamburger-button[aria-expanded="true"] .ri-close-line,
+  .master-hamburger-button.is-open .ri-close-line,
+  body.mobile-open .master-hamburger-button .ri-close-line {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* --- keep the company-search icon blue while its panel is open -------- */
-.company-sidebar__item--has-submenu[aria-expanded="true"]
-  .company-search-svg
-  svg,
-.company-sidebar__item--has-submenu.item--hovered .company-search-svg svg,
-.company-sidebar__item--has-submenu.open .company-search-svg svg {
-  color: var(--blue-500) !important;
-  fill: var(--blue-500) !important;
+/* turn icon/label blue when the entire section is hovered OR when it's open */
+.company-sidebar__item--has-submenu:hover .company-sidebar__trigger .btn i,
+.company-sidebar__item--has-submenu.item--hovered
+  .company-sidebar__trigger
+  .btn
+  i,
+.company-sidebar__item--has-submenu:hover .company-sidebar__trigger .label,
+.company-sidebar__item--has-submenu.item--hovered
+  .company-sidebar__trigger
+  .label {
+  color: var(--blue-clr);
 }
-/* also turn it blue when the search container is visible via inline style */
-.company-sidebar__item--has-submenu:has(
-    #accountSearchWrapperContainer[style*="display:block"]
-  )
-  .company-search-svg
-  svg {
-  color: var(--blue-500) !important;
-  fill: var(--blue-500) !important;
+
+/* focus ring for keyboard */
+.company-sidebar__trigger:focus-visible .btn {
+  outline: 2px solid var(--blue-clr);
+  outline-offset: 2px;
 }
+
 i[data-lucide="star"] svg {
   fill: currentColor;
 }
@@ -16475,4 +16396,68 @@ body {
 /* if some earlier rule still wins, add !important once */
 .company-sidebar .account-switch-btn.item--active .label {
   line-height: 1 !important;
+}
+/* the intro paragraph right after the page title */
+article.container-narrow .doc-main > h1 + p {
+  font-size: clamp(0.85rem, 0.78rem + 0.35vw, 1rem); /* ~13.6px → 16px */
+  line-height: 1.5;
+  color: var(--text-dimmed, var(--text-muted));
+  max-width: 70ch; /* keeps it readable */
+}
+
+/* if you also have a small meta line ABOVE the H1 */
+article.container-narrow .doc-main > p.meta {
+  font-size: clamp(0.78rem, 0.7rem + 0.3vw, 0.95rem);
+  line-height: 1.45;
+}
+
+/* optional hard breakpoints if you want stricter control */
+@media (max-width: 1200px) {
+  article.container-narrow .doc-main > h1 + p {
+    font-size: 0.93rem;
+  }
+}
+@media (max-width: 992px) {
+  article.container-narrow .doc-main > h1 + p {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 768px) {
+  article.container-narrow .doc-main > h1 + p {
+    font-size: 0.88rem;
+  }
+}
+/* Base: three columns = brand | nav | theme */
+.site-header .header-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 12px;
+}
+
+/* Keep the brand from wrapping weirdly */
+.site-header .brand-name {
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Nav in the middle: shrinkable + scrollable on overflow */
+.site-header .nav {
+  display: flex;
+  min-width: 0; /* allows the middle column to shrink */
+  overflow-x: auto; /* don’t wrap; scroll horizontally if needed */
+  scrollbar-width: none; /* Firefox: hide scrollbar track */
+}
+
+.site-header .nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Theme toggle stays small and never wraps */
+.site-header .theme-toggle {
+  display: inline-flex;
+  gap: 6px;
+  flex-shrink: 0;
 }

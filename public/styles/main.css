@@ -105,7 +105,7 @@ a {
 
 /* Brand + nav */
 .brand-name {
-  font: 800 14px/1 "Inter Tight", system-ui;
+  font: 800 18px/1 "Inter Tight", system-ui;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--fg);
@@ -187,7 +187,7 @@ a {
 .lede {
   max-width: 62ch;
   color: var(--muted);
-  font-size: 1.55rem;
+  font-size: 1.2rem;
   line-height: 1.55;
   margin: 0;
 }
@@ -237,7 +237,7 @@ a {
   align-self: start;
 }
 .intro-block {
-  margin: 0 0 38px;
+  margin: 0 0 32px;
 }
 
 .feature-card {
@@ -582,4 +582,54 @@ a {
   .about-avatar {
     display: none;
   }
+}
+
+/* Mobile header: keep only the middle nav */
+@media (max-width: 768px) {
+  .site-header .brand-name,
+  .site-header .theme-toggle {
+    display: none !important; /* remove name + theme */
+  }
+
+  .site-header .header-inner {
+    display: grid;
+    grid-template-columns: 1fr; /* single column */
+    justify-items: center; /* center contents */
+    align-items: center;
+    gap: 0;
+    height: 40px; /* compact bar */
+    padding: 0 10px;
+  }
+
+  .site-header .nav {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* no h-scroll needed now */
+  }
+
+  .site-header .nav a {
+    white-space: nowrap;
+    font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1rem);
+    padding: 4px 2px;
+  }
+}
+
+body.dark-mode,
+html[data-theme="dark"] {
+  --blue-clr: #7ad0ff;
+}
+
+:root {
+  --blue-clr: rgba(22, 110, 232, 1);
+}
+
+.link-btn {
+  color: var(--blue-clr);
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }

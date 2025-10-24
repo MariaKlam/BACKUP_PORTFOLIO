@@ -1,4 +1,4 @@
----
+i---
 import Base from "../../layouts/Base.astro";
 import "../../styles/nav.css";
 
@@ -96,79 +96,39 @@ import "../../styles/nav.css";
   })();
 </script>
 
- <!-- Overlay + support panel (static) -->
-<input hidden type="checkbox" id="toggleSidebarOptions" />
-<label for="toggleSidebarOptions" class="support-overlay" id="supportOverlayLeft" aria-hidden="true"></label>
+<script type="module" is:inline>
+  function handleBack(e) {
+    const btn = e.target.closest('.action-button--back');
+    if (!btn) return;
 
-<section class="sidebar-extra-wrapper" id="supportPanel" hidden>
-  <div class="container__support" id="supportFormContent">
-    <form class="sendEmailForm" id="sendForm">
-      <div class="container__heading">
-        <div>
-          <h3 class="mb-2 text-always-light">Contact support</h3>
-          <span class="text-always-light">Tell us what you need help with.</span>
-        </div>
-      </div>
+    e.preventDefault();
 
-      <div class="gap-4 w-full form form__label-above">
-        <div class="form__item text-always-light">
-          <label for="email">Email<span class="required-asterisk">*</span></label>
-          <input id="email" required type="email" class="field field__input" placeholder="you@company.com" />
-        </div>
+    // behave like the browser Back button when possible
+    if (window.history.length > 1) {
+      window.history.back();
+      return;
+    }
 
-        <div class="form__item text-always-light">
-          <label for="phone">Phone <span class="optional">(optional)</span></label>
-          <input id="phone" type="tel" class="field field__input" placeholder="+372 5555 5555" />
-        </div>
-      </div>
+    // fallback if no history entry exists
+    const fallback = btn.getAttribute('data-fallback') || '/';
+    window.location.assign(fallback);
+  }
 
-      <div class="form__label-above text-always-light">
-        <div class="form__item text-always-light">
-          <label for="topic">Topic<span class="required-asterisk">*</span></label>
-          <div class="select-wrapper">
-            <select id="topic" class="select__field">
-              <option value="POS">POS</option>
-              <option value="Backoffice">Backoffice</option>
-              <option value="GOERP">GOERP</option>
-              <option value="Other">Other</option>
-            </select>
-            <span class="select-icon"><i class="ri-arrow-down-s-line"></i></span>
-          </div>
-        </div>
-      </div>
+  // delegate clicks (works across Astro client-side navigations)
+  document.addEventListener('click', handleBack);
 
-      <div class="form__label-above text-always-light">
-        <div class="form__item text-always-light">
-          <label for="description">Description<span class="required-asterisk">*</span> <span class="optional">(min 10 chars)</span></label>
-          <textarea id="description" required class="textarea" rows="5" placeholder="Describe the issue…"></textarea>
-        </div>
-      </div>
-
-      <div id="attachment-files-list" class="attachment-files-list"></div>
-
-      <div class="mt-4 flex items-center justify-between">
-        <div class="flex gap-2">
-          <button type="submit" class="btn btn__primary">Submit</button>
-          <button type="reset" class="btn btn__neutral">Reset</button>
-        </div>
-
-        <label class="btn btn__neutral ml-auto">
-          <i class="ri-attachment-2 font-sm"></i>
-          <input hidden type="file" multiple accept="image/*,.pdf,.doc,.docx,.xlsx,.xls,.csv,.zip,.rar,.7zip,.asice" class="fileInput" />
-        </label>
-      </div>
-    </form>
-  </div>
-
-  <label for="toggleSidebarOptions" class="support-panel__close text-always-light">
-    <i class="ri-close-line"></i>
-  </label>
-</section>
+  // also reattach after Astro swaps pages (safe even if already attached)
+  addEventListener('astro:page-load', () => {
+    // nothing else needed because we're delegating from document
+  });
+</script>
 
 <!-- MASTER TOGGLE (mobile) -->
 <input type="checkbox" id="menuMasterToggle" hidden />
 <div class="master-menu_mobile-header">
-  <label for="menuMasterToggle" class="master-hamburger-button">
+  <label for="menuMasterToggle"
+       class="master-hamburger-button"
+       aria-expanded="false">
     <i class="ri-menu-line"></i>
     <i class="ri-close-line"></i>
   </label>
@@ -282,7 +242,7 @@ import "../../styles/nav.css";
               <i class="ri-book-open-line"></i><span>Wiki</span>
             </a>
             <label for="toggleSidebarOptions" class="company-sidebar__link flex align-center" aria-controls="supportPanel" aria-expanded="false">
-              <i class="ri-ticket-line"></i><span>Create ticket</span>
+              <i class="ri-ticket-line"></i><span>Create<br>ticket</span>
             </label>
             <a href="#" class="company-sidebar__link flex align-center"><i class="ri-headphone-line"></i><span>Support agent</span></a>
           </div>
@@ -332,7 +292,9 @@ import "../../styles/nav.css";
           <i class="ri-star-line"></i>
         </button>
       </form>
-        <button class="btn btn__secondary action-button--back"><i class="ri-arrow-left-line"></i></button>
+        <button class="btn btn__secondary action-button--back" data-fallback="/work">
+          <i class="ri-arrow-left-line"></i>
+        </button>
         <ul class="thin-sidebar-icons">
           <li class="thin-sidebar-item">
             <a href="#"><span class="sidebar-icon"><i class="ri-archive-2-line"></i></span><span class="label">Inventory</span></a>
@@ -545,10 +507,10 @@ import "../../styles/nav.css";
     </ol>
 
     <!-- Optional note about demo limitations -->
-    <p class="demo-note">
-      This is a minimal interactive demo: focus trapping, roving tabindex,
-      full screen reader labelling, and persisted favorites are omitted for brevity. Lot of functionality not implemented here as this was tied with client interface.
-    </p>
+    <div class="demo-note" role="note" aria-label="Demo limitations">
+      <i class="ri-information-line" aria-hidden="true"></i>
+      <p>This is a minimal interactive demo: focus trapping, routing tabindex, full screen reader labelling, and persisted favorites are omitted for brevity. A lot of functionality isn’t implemented here because it was tied to the client interface.</p>
+    </div>
   </aside>
 </article>
 

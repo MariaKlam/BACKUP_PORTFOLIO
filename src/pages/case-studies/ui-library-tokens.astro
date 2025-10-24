@@ -1,0 +1,490 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const title = "Case Study: UI Library & Token System";
+---
+<Base title={title} noWrap={false} hideFooter={false}>
+  <header class="case-hero">
+        <h1>UI Library & Token System</h1>
+        <p class="meta">Design System • Frontend • 2023–2025</p>
+        <p class="lede">
+          Composable tokens, themed components, and a docs site that keeps design and code in lockstep.
+        </p>
+      </header>
+  <article class="container-narrow doc-grid tokens-case">
+    <!-- LEFT: Narrative --------------------------------------------------->
+    <div class="doc-main">
+      
+
+      <!-- Vertical hero gallery (under title, before text) -->
+<section class="hero-vertical" aria-label="Featured previews">
+  <button class="shot-tile ar-21x9"
+          data-full="/images/tokens/hero.jpg"
+          data-title="Token Architecture"
+          data-cap="<p>Core → Semantic → Component.</p>">
+    <img loading="lazy" src="/images/tokens/hero.jpg" alt="">
+
+  </button>
+</section>
+      
+<section id="s-architecture">
+  <h2>Context & Problem</h2>
+  <p>
+    Multiple teams shipped UI in parallel, causing visual drift, duplicated CSS, and uneven accessibility.
+    We needed one shared design language and a component system to align styles, behavior, and theming.
+  </p>
+</section>
+
+<section id="s-approach">
+  <h2>Approach</h2>
+  <ul>
+    <li>Defined a token hierarchy — <em>core → semantic → component</em> — to drive consistency.</li>
+    <li>Centralized tokens and component styles in the platform for team-wide reuse.</li>
+    <li>Light/Dark via <strong>semantic tokens only</strong> (no per-component overrides).</li>
+    <li>Accessible primitives: contrast, focus, and states handled by default.</li>
+  </ul>
+</section>
+
+<section id="s-outcomes">
+  <h2>Outcomes</h2>
+  <ul>
+    <li>Unified visual language and interaction patterns across products.</li>
+    <li>Simpler theming and maintenance through shared tokens and components.</li>
+    <li>Clearer a11y defaults (focus/contrast/states) across the system.</li>
+  </ul>
+</section>
+
+<section id="s-role">
+  <h2>My Role</h2>
+  <ul>
+    <li>End-to-end: design <em>and</em> development.</li>
+    <li>Token structure and dark-mode strategy.</li>
+    <li>Component APIs & states (buttons, inputs, modals, alerts).</li>
+    <li>Developer guidelines and implementation docs.</li>
+  </ul>
+</section>
+
+<p>
+  <a class=" btn link-btn" href="/case-studies/nav-system" aria-label="Open demo of unified navigation">
+    Check a demo of unified navigation menu
+  </a>
+</p>
+    </div>
+
+    <!-- RIGHT: Visual panels / screenshots ------------------------------->
+    <aside class="doc-aside feature-card">
+      <!-- Just images (2 columns) -->
+      <nav class="shots-grid" aria-label="Visual gallery">
+        <button class="shot-tile"
+                data-full="/images/tokens/architecture.png"
+                data-title="Token Architecture"
+                data-cap="<p><strong>Core → Semantic → Component.</strong> Core tokens define raw values; semantic map intent (surface, text, accent); components consume semantics.</p>
+<ul>
+  <li>Single JSON source emits <code>CSS vars</code> at runtime + <code>TypeScript</code> at build.</li>
+  <li>Design & code stay in lockstep (Figma ↔ tokens ↔ components).</li>
+  <li>Names reflect <em>purpose</em>, not color numbers.</li>
+</ul>">
+          <img src="/images/tokens/architecture.png" alt="">
+        </button>
+
+        <button class="shot-tile shot-tile--split"
+        data-full="/images/tokens/dark-theme.png"
+        data-title="Theming — Light & Dark"
+        data-cap="<p>One component set, two semantic maps.</p><ul><li>Swap <strong>semantic tokens only</strong> (no component overrides).</li><li>Contrast-checked roles (AA/AAA) baked into tokens.</li><li>Focus/state tokens stay consistent across themes.</li></ul>">
+          <img src="/images/tokens/light-theme.png" alt="Light theme preview">
+          <img src="/images/tokens/dark-theme.png"  alt="Dark theme preview">
+        </button>
+
+        <button class="shot-tile"
+                data-full="/images/tokens/datepicker.png"
+                data-title="Datepicker"
+                data-cap="<p>Custom datepicker</p>">
+          <img src="/images/tokens/datepicker.png" alt="">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/tokens/login.png"
+          data-title="Component Preview — Login"
+          data-cap="<p>Primitives consume semantic tokens.</p><ul><li>Hover/active/disabled/focus via tokenized states.</li><li>ARIA & keyboard flows documented.</li><li>No theme forks—same API in light/dark.</li></ul>">
+          <img src="/images/tokens/login.png" alt="Tokenized buttons">
+        </button>
+
+        <button class="shot-tile"
+                data-full="/images/tokens/alert.png"
+                   data-title="States & A11y"
+        data-cap="<p>A11y-first defaults, driven by tokens.</p><ul><li>Focus rings via <code>--focus-ring</code> tokens; respects prefers-reduced-motion.</li><li>Alert roles map to tokens: info/success/warn/danger.</li><li>Disabled/readonly/invalid states centralized, not per-component overrides.</li></ul>">
+          <img src="/images/tokens/alert.png" alt="">
+        </button>
+
+        <button class="shot-tile"
+  data-full="/images/tokens/thanks.png"
+  data-title="Custom SVGs & Final Notes"
+  data-cap="<p>Beyond the basics: <strong>focus rings, error/info states, and bespoke SVG iconography</strong>.</p>
+<ul>
+  <li><em>currentColor</em> strokes/fills for automatic light/dark.</li>
+  <li>Pixel-grid aligned, SVGO-optimized, reduced path count.</li>
+  <li>Size tokens (16/20/24) with consistent stroke widths.</li>
+</ul>">
+  <img src="/images/tokens/thanks.png" alt="Custom SVGs and final notes">
+</button>
+      </nav>
+
+      <p class="aside-note">Screens are sanitized recreations to respect client IP.</p>
+    </aside>
+
+    <!-- Lightweight lightbox (scoped to .tokens-case) -->
+    <!-- Lightweight lightbox (scoped to .tokens-case) -->
+<div class="tokens-lightbox" aria-hidden="true">
+  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+
+    <div class="tokens-lightbox__media">
+      <img class="tokens-lightbox__img" alt="" />
+    </div>
+    <aside class="tokens-lightbox__meta">
+      <h4 class="tokens-lightbox__title"></h4>
+      <div class="tokens-lightbox__cap"></div>
+    </aside>
+  </div>
+</div>
+  </article>
+
+  <style>
+    .feature-card { box-shadow: none;
+    padding: 20px 10px 20px;
+  }
+
+    /* ===== Layout ===== */
+    .doc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 660px;
+      gap: clamp(24px, 4vw, 0);
+      align-items: start;
+      padding-bottom: 40px;
+    }
+    .case-hero .meta { opacity: .8; }
+    .case-hero .lede { margin-top: .5rem; opacity: .85; }
+
+    /* Sticky right column */
+    .feature-card {
+      position: sticky;
+      top: clamp(56px, 8vh, 96px);
+      height: fit-content;
+    }
+
+    /* =============================
+       UI Library / Tokens (scoped)
+       ============================= */
+
+    .tokens-case .doc-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 620px;
+      gap: clamp(24px,4vw,40px);
+      align-items: start;
+    }
+    .tokens-case .feature-card {
+      position: sticky;
+      top: clamp(56px, 8vh, 96px);
+      height: fit-content;
+      box-shadow: none;
+    }
+    .tokens-case .case-hero .meta { opacity: .8; }
+    .tokens-case .case-hero .lede { margin-top: .5rem; opacity: .85; }
+
+    @media (min-width: 1200px) { .tokens-case .doc-grid { grid-template-columns: 1fr 440px; } }
+    @media (min-width: 1440px) { .tokens-case .doc-grid { grid-template-columns: 1fr 520px; } }
+    @media (max-width: 960px)  {
+      .tokens-case .doc-grid { grid-template-columns: 1fr; }
+      .tokens-case .feature-card { position: static; order: 1; }
+      .tokens-case .doc-main { order: 0; padding-bottom: 40px !important;}
+    }
+
+    .tokens-case :target { scroll-margin-top: 96px; }
+
+    /* --- Simple 2-column image grid (no borders) --- */
+    .tokens-case .shots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* always 2 columns */
+      gap: 10px;
+    }
+
+    .tokens-case .shot-tile {
+      display: block;
+      padding: 0;
+      margin: 0;
+      background: none;
+      border: none;            /* no borders */
+      border-radius: 0;        /* no card rounding around the tile */
+      cursor: pointer;
+      overflow: hidden;        /* keeps image edges clean on hover scale if added later */
+    }
+
+    .tokens-case .shot-tile img {
+      display: block;
+      width: 100%;
+      height: auto;            /* keep natural image height */
+      border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+      border-radius: 8px;        /* no rounded corners unless you want them */
+      object-fit: cover;
+    }
+
+    /* --- Lightbox (unchanged) --- */
+    .tokens-case .tokens-lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      display: none; place-items: center;
+      background: color-mix(in oklab, var(--fg) 70%, transparent);
+      padding: clamp(12px, 4vw, 28px);
+    }
+    .tokens-case .tokens-lightbox.is-open { display: grid; }
+    html.tokens-lightbox-open { overflow: hidden; }
+
+    .tokens-case .tokens-lightbox__dialog {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 62%) minmax(280px, 38%);
+      gap: clamp(16px, 3vw, 24px);
+      width: 100%;
+      max-width: 1100px;
+      max-height: 92vh;
+
+      padding: clamp(12px, 2vw, 16px);
+      border-radius: 14px;
+      background: var(--card, var(--bg));
+      border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+      box-shadow: 0 24px 80px color-mix(in oklab, #000 70%, transparent);
+
+      animation: tokens-zoom-in .14s ease;
+    }
+
+    .tokens-case .tokens-lightbox__media {
+      overflow: hidden; border-radius: 10px;
+      background: color-mix(in oklab, var(--fg) 6%, transparent);
+      display: grid; place-items: center;
+    }
+    .tokens-case .tokens-lightbox__img {
+      max-width: 100%; max-height: 82vh; object-fit: contain; display: block;
+    }
+
+    .tokens-case .tokens-lightbox__meta {
+      min-height: 200px;
+      display: grid; grid-template-rows: auto 1fr;
+      gap: 10px; overflow: hidden;
+    }
+    .tokens-case .tokens-lightbox__title {
+      margin: 2px 0 0; font-weight: 700;
+      font-size: clamp(1rem, 1.15rem, 1.25rem);
+    }
+    .tokens-case .tokens-lightbox__cap {
+      overflow: auto; padding-right: 6px;
+      font-size: .95rem; line-height: 1.55; opacity: .95;
+    }
+    .tokens-case .tokens-lightbox__cap p { margin: 0 0 .75em; }
+    .tokens-case .tokens-lightbox__cap ul { margin: .5em 0 .75em 1.2em; }
+
+    .tokens-case .tokens-lightbox__close {
+      position: absolute; top: 8px; right: 8px;
+      width: 36px; height: 36px; border-radius: 999px;
+      border: 1px solid color-mix(in oklab, var(--fg) 15%, transparent);
+      background: var(--card, var(--bg));
+      font-size: 20px; line-height: 1; cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .tokens-case .tokens-lightbox__dialog { grid-template-columns: 1fr; max-height: 94vh; }
+      .tokens-case .tokens-lightbox__img    { max-height: 56vh; }
+    }
+
+    @keyframes tokens-zoom-in { from { transform: scale(.98); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+
+    .hero-vertical {
+      margin-top: 20px;
+    }
+
+    /* Uniform tiles for the vertical hero (left column) */
+.tokens-case .hero-vertical .shot-tile {
+  display: block;           /* already a button; display block is fine */
+  aspect-ratio: 21 / 9;     /* matches your ar-21x9 intent */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Make images fill the box uniformly */
+.tokens-case .hero-vertical .shot-tile img {
+  width: 100%;
+  height: 100% !important;  /* overrides earlier height:auto */
+  object-fit: cover;        /* crop to keep the ratio consistent */
+  display: block;
+}
+
+/* split thumbnail (two images side-by-side) */
+.tokens-case .shot-tile--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  aspect-ratio: 4 / 3;          /* keeps it uniform with other tiles */
+}
+.tokens-case .shot-tile--split img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+}
+
+/* If you ever want the right-side grid uniform too, reuse this: */
+.tokens-case .shots-grid .shot-tile { aspect-ratio: 4 / 3; }
+.tokens-case .shots-grid .shot-tile img { height: 100% !important; object-fit: cover; }
+
+/* Bigger dialog + give more width to the image column */
+.tokens-case .tokens-lightbox__dialog {
+  /* was max-width: 1100px; */
+  max-width: min(1400px, 96vw);
+  grid-template-columns: minmax(0, 68%) minmax(260px, 32%); /* was ~62/38 */
+  padding: clamp(10px, 1.6vw, 16px);   /* free a bit of space */
+  gap: clamp(12px, 2vw, 20px);
+}
+
+/* Let the image grow taller on desktop */
+.tokens-case .tokens-lightbox__img {
+  max-height: 90vh; /* was 82vh */
+}
+
+/* On small screens, give the image more height too */
+@media (max-width: 900px) {
+  .tokens-case .tokens-lightbox__dialog { grid-template-columns: 1fr; max-height: 96vh; }
+  .tokens-case .tokens-lightbox__img    { max-height: 66vh; } /* was 56vh */
+}
+
+/* Optional: when there’s no title/caption, use the full width for the image */
+.tokens-case .tokens-lightbox__dialog.no-meta {
+  max-width: min(1600px, 98vw);
+  grid-template-columns: 1fr;
+}
+
+.btn {
+  margin: 20px;
+  margin-bottom: 40px;
+}
+
+.tokens-case .tokens-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card, var(--bg));
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  opacity: 0.8;
+  transition: opacity 0.2s, background 0.2s;
+  z-index: 10;
+  border: none;
+}
+.tokens-case .tokens-lightbox__nav:hover {
+  opacity: 1;
+  background: color-mix(in oklab, var(--fg) 8%, var(--card));
+  color: var(--blue-clr);
+}
+.tokens-case .tokens-lightbox__prev { left: 12px; }
+.tokens-case .tokens-lightbox__next { right: 12px; }
+
+@media (max-width: 900px) {
+  .tokens-case .tokens-lightbox__nav { width: 38px; height: 38px; font-size: 22px; }
+}
+
+.tokens-case .tokens-lightbox__dialog {
+  padding-left: 52px;   /* space for prev arrow */
+  padding-right: 52px;  /* space for next arrow */
+  box-sizing: border-box;
+}
+
+
+
+  </style>
+
+<script type="module">
+(() => {
+  const scope = document.querySelector('.tokens-case');
+  if (!scope) return;
+
+  const lb       = scope.querySelector('.tokens-lightbox');
+  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
+  const imgEl    = lb.querySelector('.tokens-lightbox__img');
+  const titleEl  = lb.querySelector('.tokens-lightbox__title');
+  const capEl    = lb.querySelector('.tokens-lightbox__cap');
+  const closeBtn = lb.querySelector('.tokens-lightbox__close');
+  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
+
+  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
+  let currentIndex = -1;
+  let lastFocus = null;
+
+  function extractDataFrom(el) {
+    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
+    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
+    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
+    const title = carrier.getAttribute('data-title') || img?.alt || '';
+    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
+    return { src, title, cap };
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const { src, title, cap } = extractDataFrom(tiles[index]);
+    lastFocus = document.activeElement;
+    imgEl.src = src;
+    titleEl.textContent = title;
+    capEl.innerHTML = cap;
+    lb.classList.add('is-open');
+    document.documentElement.classList.add('tokens-lightbox-open');
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.documentElement.classList.remove('tokens-lightbox-open');
+    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function showNext() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex + 1) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  function showPrev() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  scope.addEventListener('click', e => {
+    const tile = e.target.closest('.shot-tile');
+    if (tile) {
+      e.preventDefault();
+      openLightbox(tiles.indexOf(tile));
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+})();
+</script>
+</Base>

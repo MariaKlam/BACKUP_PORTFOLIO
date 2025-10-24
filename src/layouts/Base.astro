@@ -9,7 +9,16 @@ const {
 } = Astro.props;
 
 const here = Astro.url.pathname;
-const isActive = (href: string) => (href === "/" ? here === "/" : here === href || here.startsWith(href + "/"));
+
+// accepts a string or an array of prefixes
+const isActive = (hrefs: string | string[]) => {
+  const list = Array.isArray(hrefs) ? hrefs : [hrefs];
+  return list.some((href) =>
+    href === "/"
+      ? here === "/"
+      : here === href || here.startsWith(href + "/")
+  );
+};
 ---
 
 <html lang="en">
@@ -48,10 +57,10 @@ const isActive = (href: string) => (href === "/" ? here === "/" : here === href 
       style="--card: var(--bg)">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand-name" href="/">Maria Klammer</a>
+        <a class="brand-name" href="/about">Maria Klammer</a>
         <nav class="nav">
-          <a href="/work"    aria-current={isActive("/work")    ? "page" : undefined}>Work</a>
-          <a href="/about"   aria-current={isActive("/about")   ? "page" : undefined}>About</a>
+          <a href="/work"    aria-current={isActive(["/work","/case-studies","/projects"]) ? "page" : undefined}>Work</a>
+          <a href="/about"   aria-current={isActive("/about") ? "page" : undefined}>About</a>
           <a href="/contact" aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
         </nav>
         <div class="theme-toggle" role="group" aria-label="Theme">
