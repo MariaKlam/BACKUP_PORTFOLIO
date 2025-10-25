@@ -1,0 +1,309 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/case-base.css";   
+
+const title = "Case Study: Dashboard & Application Patterns";
+---
+
+<Base title={title} noWrap={false} hideFooter={false}>
+  <header class="case-hero">
+    <h1>Dashboard & Application Patterns</h1>
+    <p class="meta">UX/UI • Frontend • 2023–2025</p>
+    <p class="lede">
+      Over 200 apps using the same UI Library and layout. Patterns used in back-office and operational apps. Independent functional Charts Library.
+    </p>
+  </header>
+
+  <article class="container-narrow doc-grid tokens-case">
+    <!-- LEFT: Narrative -->
+    <div class="doc-main">
+      <!-- Hero preview -->
+      <section class="hero-vertical" aria-label="Featured preview">
+        <button class="shot-tile ar-21x9"
+          data-full="/images/tokens/bo-dashboard.png"
+          data-title="Operational Dashboard"
+          data-cap="<p>Independent starting points for every client</p>
+          <ul>
+            <li>Customized layout options depending on clients needs.</li>
+            <li>App selection based on client preferences.</li>
+            <li>New vs existing clients separation for clearest starting point.</li>
+            <li>Theme options.</li>
+          </ul>">
+          <img src="/images/tokens/bo-dashboard.png" alt="Operational dashboard overview">
+        </button>
+      </section>
+
+      <section id="s-architecture">
+  <h2>Context & Problem</h2>
+  <p>
+    Multiple internal product teams needed consistent dashboards for daily operations.
+    Existing screens were built independently, leading to visual drift, inconsistent
+    interactions, and duplicated components. This caused slower workflows, higher
+    maintenance costs, and user confusion.
+  </p>
+</section>
+
+<section id="s-approach">
+  <h2>Approach</h2>
+  <ul>
+    <li>Defined standard page primitives — header, context bar, filters, content area, and actions.</li>
+    <li>Created reusable patterns for tables, forms, empty and error states.</li>
+    <li>Implemented keyboard-friendly navigation and predictable selection/submit behavior.</li>
+    <li>Developed responsive table systems (HTML/Flex) with sorting, bulk actions, and adaptive layouts.</li>
+    <li>Applied consistent spacing, contrast, and hierarchy through design tokens.</li>
+  </ul>
+</section>
+
+<section id="s-outcomes">
+  <h2>Outcomes</h2>
+  <ul>
+    <li>Unified visual language across 200+ internal applications.</li>
+    <li>Reduced development time and support overhead through shared components.</li>
+    <li>Improved accessibility — focus management, ARIA coverage, and contrast compliance.</li>
+    <li>Established scalable design standards for future app development.</li>
+  </ul>
+</section>
+
+<section id="s-role">
+  <h2>My Role</h2>
+  <ul>
+    <li>Led end-to-end design and front-end implementation of the dashboard system.</li>
+    <li>Defined and documented layout primitives and data-heavy table patterns.</li>
+    <li>Built coded examples and developer guidance for cross-team adoption.</li>
+    <li>Collaborated with engineers to refine accessibility and responsive behaviors.</li>
+  </ul>
+</section>
+
+<section id="s-charts">
+  <h2>Charts Library</h2>
+  <p>
+    Built on top of <strong>Charts.css</strong>, extended with custom tokens, responsive layout options,
+    and light/dark theming. Unified color scales and typographic hierarchy ensure consistent visuals
+    across all dashboards. New chart types include <strong>radar, funnel, and calendar</strong> charts,
+    alongside core <strong>bar, line, pie, and donut</strong> types.
+  </p>
+
+  <section class="hero-vertical" aria-label="Charts Library Preview">
+    <button class="shot-tile ar-21x9"
+      data-full="/images/tokens/charts-library.png"
+      data-title="Charts Library"
+      data-cap="<p>Over 20 chart foundations built for maintainable, accessible data visualization.</p>
+      <ul>
+        <li>Pure HTML/CSS base — no dependencies</li>
+        <li>Token-driven theming and typography</li>
+        <li>Animated transitions and responsive sizing</li>
+      </ul>">
+      <img src="/images/tokens/charts-library.png" alt="Charts library overview">
+    </button>
+  </section>
+
+  <p class="aside-note">
+    Semantic, themeable, and maintainable chart components — extended for responsive layouts,
+    tooltips, and animation utilities.
+  </p>
+</section>
+<p class="flex-col">
+  <a class="btn link-btn" href="/case-studies/ui-library-tokens">
+    <span class="btn-label">Check a demo of unified navigation menu</span>
+    <i class="ri-arrow-right-line"></i>
+  </a>
+</p>
+    </div>
+
+    <!-- RIGHT: Visual gallery -->
+    <!-- RIGHT: Visual gallery -->
+<aside class="doc-aside feature-card">
+  <nav class="shots-grid" aria-label="Visual gallery">
+
+    <button class="shot-tile"
+      data-full="/images/tokens/bo-main.png"
+      data-title="Main Dashboards"
+      data-cap="<p>Adaptive dashboards for different client contexts.</p>
+      <ul>
+        <li>Post-login home and operational overviews</li>
+        <li>Configurable layout zones and theme variants</li>
+      </ul>">
+      <img src="/images/tokens/bo-main.png" alt="Main dashboard variations">
+    </button>
+
+    <button class="shot-tile"
+      data-full="/images/tokens/post-login-d.png"
+      data-title="Post-login View"
+      data-cap="<p>Compact dashboard layout for frequent actions.</p>
+      <ul>
+        <li>Quick access to key workflows</li>
+        <li>Designed for daily operational use</li>
+      </ul>">
+      <img src="/images/tokens/post-login-d.png" alt="Post-login dashboard view">
+    </button>
+
+    <button class="shot-tile"
+      data-full="/images/tokens/crmapp.png"
+      data-title="CRM App"
+      data-cap="<p>Example of an app built on the shared UI Library.</p>
+      <ul>
+        <li>Consistent layout and navigation</li>
+        <li>Reusable table, form, and modal patterns</li>
+      </ul>">
+      <img src="/images/tokens/crmapp.png" alt="CRM app interface example">
+    </button>
+
+    <button class="shot-tile"
+      data-full="/images/tokens/sales.png"
+      data-title="Sales Applications"
+      data-cap="<p>Operational apps using unified dashboard components.</p>
+      <ul>
+        <li>Responsive navigation and filtering</li>
+        <li>Consistent tables and bulk actions</li>
+      </ul>">
+      <img src="/images/tokens/sales.png" alt="Sales application interface">
+    </button>
+
+    <button class="shot-tile"
+      data-full="/images/tokens/wizard-dashboard.png"
+      data-title="Wizard Dashboards"
+      data-cap="<p>Action-oriented dashboards guiding users through setup and workflows.</p>
+      <ul>
+        <li>Progressive disclosure for complex actions</li>
+        <li>Modular, themeable layouts</li>
+      </ul>">
+      <img src="/images/tokens/wizard-dashboard.png" alt="Wizard-style dashboard layouts">
+    </button>
+
+    <button class="shot-tile"
+      data-full="/images/tokens/pieline.png"
+      data-title="Charts Library – Line & Pie"
+      data-cap="<p>Token-based chart system built on Charts.css.</p>
+      <ul>
+        <li>Light/dark themes and unified color scales</li>
+        <li>Pure CSS line and pie chart components</li>
+      </ul>">
+      <img src="/images/tokens/pieline.png" alt="Line and pie chart examples">
+    </button>
+
+    <button class="shot-tile"
+      data-full="/images/tokens/round.png"
+      data-title="Charts Library – Donut"
+      data-cap="<p>Reusable donut chart component with tokenized color system.</p>
+      <ul>
+        <li>Theme-aware data visualization</li>
+        <li>Accessible and responsive CSS structure</li>
+      </ul>">
+      <img src="/images/tokens/round.png" alt="Donut chart component example">
+    </button>
+
+    <button class="shot-tile"
+      data-full="/images/tokens/radar-chart.png"
+      data-title="Charts Library – Radar & Funnel"
+      data-cap="<p>Extended chart types for analytical dashboards.</p>
+      <ul>
+        <li>Radar, funnel, and calendar charts</li>
+        <li>Consistent typography and scale systems</li>
+      </ul>">
+      <img src="/images/tokens/radar-chart.png" alt="Radar and funnel chart examples">
+    </button>
+
+
+  </nav>
+
+</aside>
+
+    <!-- Lightbox -->
+    <div class="tokens-lightbox" aria-hidden="true">
+  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+
+    <div class="tokens-lightbox__media">
+      <img class="tokens-lightbox__img" alt="" />
+    </div>
+    <aside class="tokens-lightbox__meta">
+      <h4 class="tokens-lightbox__title"></h4>
+      <div class="tokens-lightbox__cap"></div>
+    </aside>
+  </div>
+</div>
+  </article>
+  
+<script type="module">
+(() => {
+  const scope = document.querySelector('.tokens-case');
+  if (!scope) return;
+
+  const lb       = scope.querySelector('.tokens-lightbox');
+  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
+  const imgEl    = lb.querySelector('.tokens-lightbox__img');
+  const titleEl  = lb.querySelector('.tokens-lightbox__title');
+  const capEl    = lb.querySelector('.tokens-lightbox__cap');
+  const closeBtn = lb.querySelector('.tokens-lightbox__close');
+  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
+
+  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
+  let currentIndex = -1;
+  let lastFocus = null;
+
+  function extractDataFrom(el) {
+    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
+    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
+    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
+    const title = carrier.getAttribute('data-title') || img?.alt || '';
+    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
+    return { src, title, cap };
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const { src, title, cap } = extractDataFrom(tiles[index]);
+    lastFocus = document.activeElement;
+    imgEl.src = src;
+    titleEl.textContent = title;
+    capEl.innerHTML = cap;
+    lb.classList.add('is-open');
+    document.documentElement.classList.add('tokens-lightbox-open');
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.documentElement.classList.remove('tokens-lightbox-open');
+    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function showNext() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex + 1) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  function showPrev() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  scope.addEventListener('click', e => {
+    const tile = e.target.closest('.shot-tile');
+    if (tile) {
+      e.preventDefault();
+      openLightbox(tiles.indexOf(tile));
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+})();
+</script>
+
+</Base>

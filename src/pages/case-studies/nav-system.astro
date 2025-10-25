@@ -17,6 +17,7 @@ import "../../styles/nav.css";
   addEventListener('astro:page-load', initNavLite);
 </script>
 
+
 <script type="module">
 (() => {
   const KEY = 'demo:favorites';
@@ -94,33 +95,6 @@ import "../../styles/nav.css";
       try{ localStorage.setItem('theme', next); }catch{}
     });
   })();
-</script>
-
-<script type="module" is:inline>
-  function handleBack(e) {
-    const btn = e.target.closest('.action-button--back');
-    if (!btn) return;
-
-    e.preventDefault();
-
-    // behave like the browser Back button when possible
-    if (window.history.length > 1) {
-      window.history.back();
-      return;
-    }
-
-    // fallback if no history entry exists
-    const fallback = btn.getAttribute('data-fallback') || '/';
-    window.location.assign(fallback);
-  }
-
-  // delegate clicks (works across Astro client-side navigations)
-  document.addEventListener('click', handleBack);
-
-  // also reattach after Astro swaps pages (safe even if already attached)
-  addEventListener('astro:page-load', () => {
-    // nothing else needed because we're delegating from document
-  });
 </script>
 
 <!-- MASTER TOGGLE (mobile) -->

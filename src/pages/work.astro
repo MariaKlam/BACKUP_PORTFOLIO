@@ -24,56 +24,48 @@ const projects = [
       "Composable tokens + components, docs, and roll-out strategy for scalable product UI."
   },
 
-  // 03 — Accessible Date Range Picker
-  {
-    title: "Accessible Date Range Picker",
-    role: "Frontend · Accessibility",
-    tech: ["HTML", "CSS", "JS"],
-    design: ["UX/UI", "A11y"],
-    link: "/case-studies/date-range",
-    summary:
-      "Keyboard-first, screen-reader friendly date range with zero-framework JS."
-  },
-
-  // 04 — Dashboard & Application Patterns
+  // 03 — Dashboard & Application Patterns
   {
     title: "Dashboard & Application Patterns",
     role: "UX/UI · FE",
     tech: ["HTML", "CSS", "JS"],
     design: ["Dashboards", "Patterns"],
-    link: "/case-studies/app-patterns",
+    link: "/case-studies/dash-case",
     summary:
       "Layout, forms, modals, and table patterns used in backoffice and operational apps."
   },
 
-  // 05 — Visual Explorations
+  // 04 — Graphic Design
+  {
+    title: "Graphic Design",
+    role: "Personal",
+    tech: ["Adobe Creative Suite", "Adobe Dimension"],
+    design: ["Illustration", "Visual Design"],
+    link: "/case-studies/visual-explorations",
+    summary:
+      "Graphic Design collaboratins - art directing, package & logo design, moodshots."
+  },
+
+    // 05 — Illustration
   {
     title: "Visual Explorations",
     role: "Personal",
     tech: ["Procreate", "Figma", "SVG"],
     design: ["Illustration", "Visual Design"],
-    link: "/personal/visual-explorations",
+    link: "/case-studies/illustrations",
     summary:
       "Sketches, drawings, and small visual experiments that inform my product taste."
   },
+    // 05 — Accessible Date Range Picker
   {
-  title: "Creative Javascript",
-  role: "UX/UI · FE",
-  tech: ["HTML", "CSS", "JS"],
-  design: ["Auth", "Forms"],
-  link: "/case-studies/login-experience",
-  summary:
-    "Accessible, brand-consistent sign-in and recovery flows with form guidelines."
-},
-{
-  title: "Webpages",
-  role: "Frontend · Patterns",
-  tech: ["HTML", "CSS", "JS"],
-  design: ["Forms", "Interactions"],
-  link: "/case-studies/forms-modals",
-  summary:
-    "Reusable inputs, validation states, and modal patterns to keep interactions consistent."
-}
+    title: "Accessible Date Range Picker",
+    role: "Frontend · Accessibility",
+    tech: ["HTML", "CSS", "JS"],
+    design: ["UX/UI", "A11y"],
+    link: "/case-studies/datepicker",
+    summary:
+      "Keyboard-first, screen-reader friendly date range with zero-framework JS."
+  },
 ];
 
 const rightProjects = projects.slice(1); // start the right list at 02
@@ -89,7 +81,7 @@ const rightProjects = projects.slice(1); // start the right list at 02
         patterns, and lean design tokens. Pragmatic, standards-first.</p>
     </section>
 
-    <a href={projects[0].link} class="feature-card">
+    <a href={projects[0].link} class="feature-card card-bg">
       <div class="num">01.</div>
       <h3>{projects[0].title}</h3>
       <p class="meta">{projects[0].role}</p>

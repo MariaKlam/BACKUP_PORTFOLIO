@@ -23,6 +23,8 @@
   /* Theme pill active fill (light) */
   --toggle-on: color-mix(in oklab, var(--bg) 90%, var(--fg));
 
+  --card-bg: #f9f9fa;
+
   color-scheme: light;
 }
 :root[data-theme="dark"] {
@@ -37,6 +39,8 @@
   /* Theme pill active fill (dark) */
   --toggle-on: color-mix(in oklab, var(--bg) 78%, var(--fg));
   color-scheme: dark;
+
+  --card-bg: #16191c;
 }
 
 /* ======================================
@@ -326,7 +330,7 @@ a {
 /* Match the left card surface when a row is hovered/open */
 .project-row:hover,
 .project-row.is-open {
-  background: var(--card);
+  background: var(--card-bg);
 }
 
 /* If you still want a faint hover hint in light mode, do it on the outline */
@@ -337,7 +341,7 @@ a {
 /* Remove the old darker hover backgrounds */
 .project-row:hover,
 :root[data-theme="dark"] .project-row:hover {
-  background: var(--card);
+  background: var(--card-bg);
 }
 
 .row-link {
@@ -614,4 +618,12 @@ a {
     font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1rem);
     padding: 4px 2px;
   }
+}
+.about-note {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.card-bg {
+  background-color: var(--card-bg);
 }

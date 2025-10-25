@@ -1,0 +1,451 @@
+.feature-card {
+  box-shadow: none;
+  padding: 20px 10px 20px;
+}
+
+/* ===== Layout ===== */
+.doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 660px;
+  gap: clamp(24px, 4vw, 0);
+  align-items: start;
+}
+.case-hero .meta {
+  opacity: 0.8;
+}
+.case-hero .lede {
+  margin-top: 0.5rem;
+  opacity: 0.85;
+}
+
+/* Sticky right column */
+.feature-card {
+  position: sticky;
+  top: clamp(56px, 8vh, 96px);
+  height: fit-content;
+}
+
+.doc-main {
+  padding-bottom: 40px;
+}
+
+/* =============================
+       UI Library / Tokens (scoped)
+       ============================= */
+
+.tokens-case .doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 620px;
+  gap: clamp(24px, 4vw, 40px);
+  align-items: start;
+}
+.tokens-case .feature-card {
+  position: sticky;
+  top: clamp(56px, 8vh, 96px);
+  height: fit-content;
+  box-shadow: none;
+}
+.tokens-case .case-hero .meta {
+  opacity: 0.8;
+}
+.tokens-case .case-hero .lede {
+  margin-top: 0.5rem;
+  opacity: 0.85;
+}
+
+@media (min-width: 1200px) {
+  .tokens-case .doc-grid {
+    grid-template-columns: 1fr 440px;
+  }
+}
+@media (min-width: 1440px) {
+  .tokens-case .doc-grid {
+    grid-template-columns: 1fr 520px;
+  }
+}
+@media (max-width: 960px) {
+  .tokens-case .doc-grid {
+    grid-template-columns: 1fr;
+  }
+  .tokens-case .feature-card {
+    position: static;
+    order: 1;
+  }
+  .tokens-case .doc-main {
+    order: 0;
+    padding-bottom: 40px !important;
+  }
+}
+
+.tokens-case :target {
+  scroll-margin-top: 96px;
+}
+
+/* --- Simple 2-column image grid (no borders) --- */
+.tokens-case .shots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* always 2 columns */
+  gap: 10px;
+}
+
+.tokens-case .shot-tile {
+  display: block;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none; /* no borders */
+  border-radius: 0; /* no card rounding around the tile */
+  cursor: pointer;
+  overflow: hidden; /* keeps image edges clean on hover scale if added later */
+}
+
+.tokens-case .shot-tile img {
+  display: block;
+  width: 100%;
+  height: auto; /* keep natural image height */
+  border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  border-radius: 8px; /* no rounded corners unless you want them */
+  object-fit: cover;
+}
+
+/* --- Lightbox (unchanged) --- */
+.tokens-case .tokens-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  place-items: center;
+  background: color-mix(in oklab, var(--fg) 70%, transparent);
+  padding: clamp(12px, 4vw, 28px);
+}
+.tokens-case .tokens-lightbox.is-open {
+  display: grid;
+}
+html.tokens-lightbox-open {
+  overflow: hidden;
+}
+
+.tokens-case .tokens-lightbox__dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 62%) minmax(280px, 38%);
+  gap: clamp(16px, 3vw, 24px);
+  width: 100%;
+  max-width: 1100px;
+  max-height: 92vh;
+
+  padding: clamp(12px, 2vw, 16px);
+  border-radius: 14px;
+  background: var(--card, var(--bg));
+  border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  box-shadow: 0 24px 80px color-mix(in oklab, #000 70%, transparent);
+
+  animation: tokens-zoom-in 0.14s ease;
+}
+
+.tokens-case .tokens-lightbox__media {
+  overflow: hidden;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--fg) 6%, transparent);
+  display: grid;
+  place-items: center;
+}
+.tokens-case .tokens-lightbox__img {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  display: block;
+}
+
+.tokens-case .tokens-lightbox__meta {
+  min-height: 200px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  overflow: hidden;
+}
+.tokens-case .tokens-lightbox__title {
+  margin: 2px 0 0;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.15rem, 1.25rem);
+}
+.tokens-case .tokens-lightbox__cap {
+  overflow: auto;
+  padding-right: 6px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  opacity: 0.95;
+}
+.tokens-case .tokens-lightbox__cap p {
+  margin: 0 0 0.75em;
+}
+.tokens-case .tokens-lightbox__cap ul {
+  margin: 0.5em 0 0.75em 1.2em;
+}
+
+.tokens-case .tokens-lightbox__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--fg) 15%, transparent);
+  background: #000;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .tokens-case .tokens-lightbox__dialog {
+    grid-template-columns: 1fr;
+    max-height: 94vh;
+  }
+  .tokens-case .tokens-lightbox__img {
+    max-height: 56vh;
+  }
+}
+
+@keyframes tokens-zoom-in {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hero-vertical {
+  margin-top: 20px;
+}
+
+/* Uniform tiles for the vertical hero (left column) */
+.tokens-case .hero-vertical .shot-tile {
+  display: block; /* already a button; display block is fine */
+  aspect-ratio: 21 / 9; /* matches your ar-21x9 intent */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Make images fill the box uniformly */
+.tokens-case .hero-vertical .shot-tile img {
+  width: 100%;
+  height: 100% !important; /* overrides earlier height:auto */
+  object-fit: cover; /* crop to keep the ratio consistent */
+  display: block;
+}
+
+/* split thumbnail (two images side-by-side) */
+.tokens-case .shot-tile--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  aspect-ratio: 4 / 3; /* keeps it uniform with other tiles */
+}
+.tokens-case .shot-tile--split img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+}
+
+/* If you ever want the right-side grid uniform too, reuse this: */
+.tokens-case .shots-grid .shot-tile {
+  aspect-ratio: 4 / 3;
+}
+.tokens-case .shots-grid .shot-tile img {
+  height: 100% !important;
+  object-fit: cover;
+}
+
+/* Bigger dialog + give more width to the image column */
+.tokens-case .tokens-lightbox__dialog {
+  /* was max-width: 1100px; */
+  max-width: min(1400px, 96vw);
+  grid-template-columns: minmax(0, 68%) minmax(260px, 32%); /* was ~62/38 */
+  padding: clamp(10px, 1.6vw, 16px); /* free a bit of space */
+  gap: clamp(12px, 2vw, 20px);
+}
+
+/* Let the image grow taller on desktop */
+.tokens-case .tokens-lightbox__img {
+  max-height: 90vh; /* was 82vh */
+}
+
+/* On small screens, give the image more height too */
+@media (max-width: 900px) {
+  .tokens-case .tokens-lightbox__dialog {
+    grid-template-columns: 1fr;
+    max-height: 96vh;
+  }
+  .tokens-case .tokens-lightbox__img {
+    max-height: 66vh;
+  } /* was 56vh */
+}
+
+/* Optional: when there’s no title/caption, use the full width for the image */
+.tokens-case .tokens-lightbox__dialog.no-meta {
+  max-width: min(1600px, 98vw);
+  grid-template-columns: 1fr;
+}
+
+.btn {
+  margin: 20px;
+}
+
+.tokens-case .tokens-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card, var(--bg));
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  opacity: 0.8;
+  transition: opacity 0.2s, background 0.2s;
+  z-index: 10;
+  border: none;
+}
+.tokens-case .tokens-lightbox__nav:hover {
+  opacity: 1;
+  background: color-mix(in oklab, var(--fg) 8%, var(--card));
+  color: var(--blue-clr);
+}
+.tokens-case .tokens-lightbox__prev {
+  left: 12px;
+}
+.tokens-case .tokens-lightbox__next {
+  right: 12px;
+}
+
+@media (max-width: 900px) {
+  .tokens-case .tokens-lightbox__nav {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
+}
+
+.tokens-case .tokens-lightbox__dialog {
+  padding-left: 52px; /* space for prev arrow */
+  padding-right: 52px; /* space for next arrow */
+  box-sizing: border-box;
+}
+
+body.dark-mode,
+html[data-theme="dark"] {
+  --blue-clr: #7ad0ff;
+}
+
+:root {
+  --blue-clr: rgba(22, 110, 232, 1);
+}
+
+.link-btn {
+  color: var(--blue-clr);
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.tokens-case .doc-main h2 {
+  margin-bottom: 0.4rem; /* closer to paragraph */
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.tokens-case .doc-main p,
+.tokens-case .doc-main ul {
+  margin-top: 0.3rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.55;
+}
+
+/* --- Keep link-style buttons clean, blue, and typographic --- */
+.tokens-case .doc-main .flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 1.4rem;
+}
+
+.tokens-case .doc-main .link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue-clr);
+  font-weight: 600;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  text-decoration: none;
+
+  --icon-space: 1.4em; /* ≈ icon width + gap */
+}
+
+/* keep your icon motion */
+.tokens-case .doc-main .link-btn:hover span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.tokens-case .doc-main .link-btn:hover i {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* Optional: accessibility focus style */
+.tokens-case .doc-main .link-btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--blue-clr) 60%, transparent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.btn {
+  margin: 0;
+}
+/* Bullets align with the same left edge as H2s */
+.tokens-case .doc-main ul {
+  list-style: none; /* remove default bullets/indent */
+  margin: 0.3rem 0 0.6rem; /* keep your spacing */
+  padding-left: 0; /* no extra indent */
+}
+
+.tokens-case .doc-main li {
+  position: relative;
+  padding-left: 1.1rem; /* space for our custom bullet */
+  line-height: 1.55;
+}
+
+/* custom bullet (keeps color in light/dark via currentColor) */
+.tokens-case .doc-main li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em; /* centers dot on the text line */
+  width: 0.34em;
+  height: 0.34em;
+  border-radius: 50%;
+  background: currentColor; /* matches text color */
+  opacity: 0.9;
+}
+
+.tokens-case section p,
+.tokens-case section ul {
+  max-width: 600px;
+}

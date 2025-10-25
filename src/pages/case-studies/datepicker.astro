@@ -1,0 +1,590 @@
+---
+// src/pages/case-studies/datepicker.astro
+import Base from "../../layouts/Base.astro";
+import "../../styles/case-base.css";
+
+const title = "Datepicker — Demo";
+---
+<Base title={title} noWrap={false} hideFooter={false}>
+  <header class="case-hero">
+    <h1>Custom Datepicker</h1>
+    <p class="meta">Component design • Frontend • 2023–2025</p>
+    <p class="lede">
+      Single, theme-aware component that covers both single-date and
+    range selection with consistent UX and keyboard support.
+    </p>
+  </header>
+
+  <article class="container-narrow doc-grid tokens-case">
+    <!-- LEFT: Narrative --------------------------------------------------->
+    <div class="doc-main">
+      <section class="hero-vertical" aria-label="Featured previews">
+        <button class="shot-tile ar-21x9"
+          data-full="/images/visual/calendar.jpg"
+          data-title="Token Architecture"
+          data-cap="<p><strong>Core → Semantic → Component.</strong></p>
+          <ul>
+            <li>CSS variables as the source of truth.</li>
+            <li>Scalable folder structure to support the library.</li>
+            <li>Built-in utility classes for common patterns and states.</li>
+          </ul>">
+          <img loading="lazy" src="/images/visual/calendar.jpg" alt="Token architecture overview">
+        </button>
+      </section>
+
+ 
+
+<section id="s-approach">
+  <h2>Approach</h2>
+  <ul>
+    <li><strong>Token-first:</strong> light/dark colors and spacing come from semantic CSS variables—no hard-coded values.</li>
+    <li><strong>State clarity:</strong> selected, in-range, start/end caps, and “today” are visually distinct and screen-reader friendly.</li>
+    <li><strong>Interaction model:</strong> mouse + keyboard + quick ranges (Today, This week, etc.), with proper focus management and ESC to close.</li>
+    <li><strong>Resilience:</strong> the modal auto-positions to stay on-screen (flip + clamp) and works without icon fonts (fallback glyphs).</li>
+  </ul>
+</section>
+
+<section id="s-role">
+  <h2>My Role</h2>
+  <ul>
+    <li>End-to-end owner: UX, UI, and front-end implementation.</li>
+    <li>Defined the token map and dark-mode strategy.</li>
+    <li>Built the calendar grid logic, range selection states, and modal positioning.</li>
+    <li>Wrote usage docs and migration notes for app teams.</li>
+  </ul>
+</section>
+
+      <p class="flex-col">
+        <a class="btn link-btn" href="/case-studies/nav-system">
+          <span class="btn-label">Check a demo of unified navigation menu</span>
+          <i class="ri-arrow-right-line"></i>
+        </a>
+        <a class="btn link-btn" href="/case-studies/dash-case">
+          <span class="btn-label">Dashboards and app interfaces</span>
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </p>
+    </div>
+
+    <!-- RIGHT: Visual panels / screenshots ------------------------------->
+    <aside class="doc-aside flex gap-2">
+      <!-- Datepicker instance: RANGE -->
+      <div class="filter__item" data-datepicker data-mode="range">
+        <label>Daterange or one date</label>
+        <div class="calendar-container">
+          <button type="button" class="field field__input open-customTimeframe-modal" data-dp="open"></button>
+
+          <div class="customTimeframe-modal hidden" data-dp="modal" role="dialog" aria-modal="true" aria-labelledby="dp-title-range">
+            <div class="customTimeframe-modal-header">
+              <div class="flex-col">
+                <h3 id="dp-title-range" class="customTimeframe-modal-header-text" data-dp="title">Date</h3>
+                <span class="customSelected-range-display" data-dp="display">—</span>
+              </div>
+              <button type="button" class="customTimeframe-modal-header-close customTimeframe-close" aria-label="Close modal" data-dp="close">
+                <i class="ri-close-line" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="customTimeframe-modal-content">
+              <div class="customTimeframe-modal-datepicker-container">
+                <div class="customTimeframe-modal-list">
+                  <ul class="customTimeframe-daterange-list" role="listbox" aria-labelledby="timeframe-header">
+                    <li class="customDatepick-today" role="option"><div class="badge badge--complete">Today</div></li>
+                    <li class="customDatepick-yesterday" role="option"><div class="badge badge--complete">Yesterday</div></li>
+                    <li class="customDatepick-week" role="option"><div class="badge badge--complete">This week</div></li>
+                    <li class="customDatepick-month" role="option"><div class="badge badge--complete">This month</div></li>
+                    <li class="customDatepick-prevweek" role="option"><div class="badge badge--complete">Previous week</div></li>
+                    <li class="customDatepick-prevmonth" role="option"><div class="badge badge--complete">Previous month</div></li>
+                  </ul>
+                </div>
+
+                <div class="customTimeframe-modal-datepicker">
+                  <button type="button" class="customDatepicker-range-button customDatepicker-previous" aria-label="Previous date range" data-dp="prev">
+                    <i class="icon-Chevron-Left" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="customDatepicker-range-button customDatepicker-next" aria-label="Next date range" data-dp="next">
+                    <i class="icon-Chevron-Right" aria-hidden="true"></i>
+                  </button>
+
+                  <div class="datepicker-month">
+                    <div class="datepicker-month-header">
+                      <select class="customMonth-selector datepicker" aria-label="Select month" data-dp="month"></select>
+                      <select class="customYear-selector datepicker" aria-label="Select year" data-dp="year"></select>
+                    </div>
+
+                    <table class="customDatepicker-month-table">
+                      <thead>
+                        <tr class="customDatepicker-table-weekdays" data-dp="weekdays"></tr>
+                      </thead>
+                      <tbody class="customCalendar" data-dp="calendar"></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="customTimeframe-modal-buttons">
+                  <div class="customTimeframe-modal-main-buttons">
+                    <input type="hidden" class="customStart-input" name="startDate" data-dp="start" value="">
+                    <input type="hidden" class="customEnd-input" name="endDate" data-dp="end" value="">
+                    <div class="customTimeframe-modal-reset">
+                      <button type="button" class="btn btn__neutral btn--medium customTimeframe-reset-date customDatepicker-reset" data-dp="reset">Clear</button>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- /container -->
+            </div>   <!-- /content -->
+          </div>     <!-- /modal -->
+        </div>       <!-- /calendar-container -->
+      </div>
+
+      <!-- Datepicker instance: SINGLE -->
+      <div class="filter__item" data-datepicker data-mode="single">
+        <label>One date allowed</label>
+        <div class="calendar-container">
+          <button type="button" class="field field__input open-customTimeframe-modal" data-dp="open"></button>
+
+          <div class="customTimeframe-modal hidden datepicker--single" data-dp="modal" role="dialog" aria-modal="true" aria-labelledby="dp-title-single">
+            <div class="customTimeframe-modal-header">
+              <div class="flex-col">
+                <h3 id="dp-title-single" class="customTimeframe-modal-header-text" data-dp="title">Date</h3>
+                <span class="customSelected-range-display" data-dp="display">—</span>
+              </div>
+              <button type="button" class="customTimeframe-modal-header-close customTimeframe-close" aria-label="Close modal" data-dp="close">
+                <i class="ri-close-line" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="customTimeframe-modal-content">
+              <div class="customTimeframe-modal-datepicker-container">
+                <div class="customTimeframe-modal-list">
+                  <ul class="customTimeframe-daterange-list" role="listbox" aria-labelledby="timeframe-header">
+                    <li class="customDatepick-today" role="option"><div class="badge badge--complete">Today</div></li>
+                    <li class="customDatepick-yesterday" role="option"><div class="badge badge--complete">Yesterday</div></li>
+                  </ul>
+                </div>
+
+                <div class="customTimeframe-modal-datepicker">
+                  <button type="button" class="customDatepicker-range-button customDatepicker-previous" aria-label="Previous date" data-dp="prev">
+                    <i class="icon-Chevron-Left" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="customDatepicker-range-button customDatepicker-next" aria-label="Next date" data-dp="next">
+                    <i class="icon-Chevron-Right" aria-hidden="true"></i>
+                  </button>
+
+                  <div class="datepicker-month">
+                    <div class="datepicker-month-header">
+                      <select class="customMonth-selector datepicker" aria-label="Select month" data-dp="month"></select>
+                      <select class="customYear-selector datepicker" aria-label="Select year" data-dp="year"></select>
+                    </div>
+
+                    <table class="customDatepicker-month-table">
+                      <thead>
+                        <tr class="customDatepicker-table-weekdays" data-dp="weekdays"></tr>
+                      </thead>
+                      <tbody class="customCalendar" data-dp="calendar"></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="customTimeframe-modal-buttons">
+                  <div class="customTimeframe-modal-main-buttons">
+                    <input type="hidden" class="customStart-input" name="startDate" data-dp="start" value="">
+                    <input type="hidden" class="customEnd-input" name="endDate" data-dp="end" value="">
+                    <div class="customTimeframe-modal-reset">
+                      <button type="button" class="btn btn__neutral btn--medium customTimeframe-reset-date customDatepicker-reset" data-dp="reset">Clear</button>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- /container -->
+            </div>   <!-- /content -->
+          </div>     <!-- /modal -->
+        </div>       <!-- /calendar-container -->
+      </div>
+    </aside>
+  </article>
+
+  <style is:global>
+/* ================== DATEPICKER — minimal tokens ================== */
+:root{
+  --body:#fff; --main-txt-clr:#0f1720; --border-main-clr:#e5e7eb;
+  --blue-active:#166ee8; --badge-purple:rgba(98,78,255,.08);
+  --selected-dates:rgba(22,110,232,.18); --date-hover:#166ee8;
+  --disabled:#eef2f7; --btn-purple:#7c5cff;
+}
+body.dark-mode,html[data-theme="dark"]{
+  --body:#161a1d; --main-txt-clr:rgba(222,228,234,1); --border-main-clr:rgba(225,230,239,.2);
+  --blue-active:#7ad0ff; --badge-purple:rgba(225,230,239,.12);
+  --selected-dates:rgba(225,230,239,.2); --date-hover:#fff;
+  --disabled:#38393b; --btn-purple:#36a9e1;
+}
+
+/* Trigger field */
+.field.field__input{
+  min-width:220px; min-height:32px; padding:6px 10px; border:1px solid var(--border-main-clr);
+  border-radius:6px; background:var(--body); color:var(--main-txt-clr); text-align:left;
+}
+
+/* Positioning context for desktop */
+@media (min-width:769px){ .calendar-container{ position:relative; } }
+
+/* Modal container */
+.customTimeframe-modal{
+  display:block; position:absolute; top:2.5rem; left:0; width:auto; background:var(--body);
+  border:1px solid var(--border-main-clr); box-shadow:rgba(23,34,113,.07) 0 1px 3px, rgba(23,34,113,.07) 0 4px 12px;
+  border-radius:6px; z-index:9999;
+   overflow:auto; /* keep on-screen */
+}
+/* Sticky header so actions remain visible while content scrolls */
+.customTimeframe-modal-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.8rem; min-height:4rem; border-bottom:1px solid var(--border-main-clr);
+  position:sticky; top:0; background:var(--body); z-index:3;
+}
+
+/* Close button + fallback glyph */
+.customTimeframe-modal-header-close{
+  background:none; border:none; border-radius:50%; width:2.5rem; aspect-ratio:1;
+  display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .2s;
+  color:var(--main-txt-clr);
+}
+.customTimeframe-modal-header-close i{ font-size:32px; line-height:1; }
+.customTimeframe-modal-header-close i::before{
+  content:"×"; font-size:28px; font-weight:700; display:inline-block; transform:translateY(-1px);
+}
+.customTimeframe-modal-header-close:hover{ background:var(--badge-purple); }
+.customTimeframe-modal-header-close:hover i{ color:var(--blue-active); }
+.customTimeframe-modal-header-close:focus{
+  outline:none; box-shadow:inset 0 0 0 2px var(--blue-active), 0 0 0 4px rgba(22,110,232,.18);
+  border-radius:50%;
+}
+
+/* Quick range list */
+.customTimeframe-daterange-list{
+  list-style:none; margin:0; display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
+  padding:8px; width:400px; gap:5px;
+}
+.customTimeframe-daterange-list>li{ cursor:pointer; }
+.customTimeframe-daterange-list li .badge{
+  border:2px solid transparent; box-shadow:0 0 0 2px transparent, 0 2px 2px 0 transparent;
+  transition:background-color .3s, color .3s, box-shadow .3s, border-color .3s;
+  border-radius:99px;
+}
+.customTimeframe-daterange-list li .badge:hover{ background-color:var(--badge-purple); }
+.customTimeframe-daterange-list li:focus .badge{
+  color:var(--blue-active); background-color:var(--body); outline:none; border-color:var(--blue-active);
+  box-shadow:0 0 0 4px rgba(222,202,255,.24),0 2px 2px 0 rgba(0,0,0,.16);
+}
+
+/* Month header + nav buttons */
+.customTimeframe-modal-datepicker{ display:flex; justify-content:center; position:relative; }
+.customDatepicker-range-button{
+  position:absolute; top:0; background:none; border:none; width:2rem; height:2rem; z-index:10000;
+  cursor:pointer; justify-content:center; align-items:center; display:flex;
+}
+.customDatepicker-previous{ left:15px; } .customDatepicker-next{ right:15px; }
+.customTimeframe-modal-datepicker button:hover{
+  outline:none; color:var(--blue-active); background:var(--badge-purple); border-radius:100%;
+}
+.customTimeframe-modal-datepicker button:focus{
+  outline:none; color:var(--blue-active);
+  box-shadow:0 0 0 4px rgba(222,202,255,.24), 0 2px 2px 0 rgba(0,0,0,.16);
+  border-radius:100%;
+}
+.customMonth-selector,.customYear-selector{
+  border:none; background:var(--body); color:var(--main-txt-clr); box-shadow:none; border-radius:4px;
+  padding:4px; width:90px; text-align:center; font-weight:500; font-size:15px;
+}
+.customMonth-selector:focus,.customYear-selector:focus{
+  color:var(--blue-active); border:2px solid var(--blue-active); border-radius:99px; outline:none;
+}
+
+/* Calendar table */
+.customDatepicker-month-table{ width:100%; border-collapse:collapse; }
+.customDatepicker-month-table>tbody>tr>td{ position:relative; }
+.customDatepicker-table-weekday-heading{
+  font-size:15px; line-height:1; padding:10px 0; text-align:center; cursor:pointer; font-weight:600;
+}
+
+/* The date cell — keep the number visible and centered */
+.customDatepicker-table-date{
+  position:relative; z-index:2; display:flex; align-items:center; justify-content:center;
+  height:3rem; width:3rem; border-radius:50%; line-height:1; cursor:pointer; color:var(--main-txt-clr);
+}
+/* “Today” emphasis */
+.customDatepicker-table-date.today{ font-weight:700; }
+/* Other month */
+.customDatepicker-table-date.customOther-month{ opacity:.35; }
+
+/* Hover/focus of a calendar day */
+.customDatepicker-table-date:hover{
+  color:var(--date-hover)!important; font-weight:600;
+  box-shadow:inset 0 0 0 2px var(--blue-active), 0 0 0 4px rgba(222,202,255,.24), 0 2px 2px 0 rgba(0,0,0,.16);
+}
+.datepicker-table-date:focus{
+  color:var(--blue-active); font-weight:600;
+  box-shadow:inset 0 0 0 2px var(--blue-active), 0 0 0 4px rgba(222,202,255,.24), 0 2px 2px 0 rgba(0,0,0,.16);
+}
+
+/* Range visuals: between strip sits lowest, pills above, text on top */
+.customDate-selected-between::before{
+  content:""; position:absolute; top:0; left:0; width:3rem; height:3rem; background:var(--selected-dates);
+  border-radius:0; z-index:0;
+}
+.customDate-selected::after,
+.customDate-selected-start::after,
+.customDate-selected-end::after{
+  content:""; position:absolute; top:0; left:0; width:3rem; height:3rem; background:var(--blue-active); z-index:1;
+}
+.customDate-selected::after{ border-radius:50%; }
+.customDate-selected-start::after{ border-radius:50% 0 0 50% !important; }
+.customDate-selected-end::after{ border-radius:0 50% 50% 0 !important; }
+
+/* Keep text readable on pills */
+.customDate-selected,
+.customDate-selected-start,
+.customDate-selected-end{ color:#fff; font-weight:600; }
+
+/* Buttons row */
+.customTimeframe-modal-buttons{ display:flex; align-items:center; justify-content:space-between; padding:0 3rem; margin:10px 0 24px; }
+.customTimeframe-modal-main-buttons{ display:flex; align-items:center; width:100%; justify-content:space-between; gap:8px; }
+.customTimeframe-modal-main-buttons button{ width:100%; border-radius:99px; }
+.customTimeframe-modal-reset{ width:50%; }
+.customTimeframe-modal-reset button:focus{
+  color:var(--blue-active)!important; outline:none; background:var(--body);
+  box-shadow:inset 0 0 0 2px var(--btn-purple), 0 0 0 4px rgba(222,202,255,.24), 0 2px 2px 0 rgba(0,0,0,.16);
+}
+
+/* Disabled */
+button:disabled i{ color:#888; }
+button:disabled{
+  cursor:not-allowed; background:var(--disabled); color:#888; border:1px solid var(--disabled);
+}
+.customTimeframe-modal-datepicker button:disabled{ border-radius:100%; }
+
+/* tiny helpers */
+.gap-2{ gap:1rem; } .doc-aside{ margin-left:30px; }
+.hidden{ display:none; } .badge{ border-radius:99px; }
+.dark-mode input[type="date"]::-webkit-calendar-picker-indicator,
+.dark-mode input[type="time"]::-webkit-calendar-picker-indicator{ filter:invert(50%); cursor:pointer; }
+
+h3 {
+  padding: 0;
+  margin: 0;
+}
+  </style>
+
+  <script client:load>
+    const DAYS  = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const pad = (n)=> String(n).padStart(2,"0");
+    const iso  = (d)=> `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+    const parse = (s)=> s ? new Date(s) : null;
+
+    document.querySelectorAll('[data-datepicker]').forEach(root => {
+      const mode = root.dataset.mode || "range";
+      const isSingle = mode === "single";
+
+      const ui = {
+        openBtn:  root.querySelector('[data-dp="open"]'),
+        modal:    root.querySelector('[data-dp="modal"]'),
+        closeBtn: root.querySelector('[data-dp="close"]'),
+        display:  root.querySelector('[data-dp="display"]'),
+        monthSel: root.querySelector('[data-dp="month"]'),
+        yearSel:  root.querySelector('[data-dp="year"]'),
+        weekdays: root.querySelector('[data-dp="weekdays"]'),
+        calBody:  root.querySelector('[data-dp="calendar"]'),
+        prev:     root.querySelector('[data-dp="prev"]'),
+        next:     root.querySelector('[data-dp="next"]'),
+        startInp: root.querySelector('[data-dp="start"]'),
+        endInp:   root.querySelector('[data-dp="end"]'),
+        resetBtn: root.querySelector('[data-dp="reset"]'),
+      };
+
+      // static bits
+      ui.weekdays.innerHTML = DAYS.map(d=>`<th class="customDatepicker-table-weekday-heading">${d}</th>`).join("");
+      ui.monthSel.innerHTML = MONTHS.map((m,i)=>`<option value="${i}">${m}</option>`).join("");
+      const thisYear = new Date().getFullYear();
+      const years = Array.from({length: thisYear - 1989}, (_,k)=> 1990 + k);
+      ui.yearSel.innerHTML = years.map(y=>`<option value="${y}">${y}</option>`).join("");
+
+      let view = new Date();
+      let start = null;
+      let end   = null;
+
+      // keep modal on-screen (flip + clamp)
+      function positionModal() {
+        const btn = ui.openBtn, modal = ui.modal;
+        if (!btn || !modal) return;
+        modal.style.position = 'fixed';
+
+        const rect = btn.getBoundingClientRect();
+        const M = 8;
+        const modalW = modal.offsetWidth || 380;
+        const modalH = modal.offsetHeight || 420;
+
+        let top  = rect.bottom + 8;
+        let left = rect.left;
+
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        if (spaceBelow < modalH && spaceAbove > spaceBelow) {
+          top = Math.max(M, rect.top - modalH - 8);
+        }
+
+        if (left + modalW > window.innerWidth - M) left = window.innerWidth - M - modalW;
+        if (left < M) left = M;
+
+        modal.style.top  = `${Math.max(M, top)}px`;
+        modal.style.left = `${left}px`;
+        modal.style.right = 'auto';
+        modal.style.bottom = 'auto';
+      }
+
+      function openModal() {
+        ui.modal.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          positionModal();
+          const sel = ui.calBody.querySelector('.customDate-selected, .customDate-selected-start, .customDate-selected-end');
+          (sel || ui.calBody.querySelector('.customDatepicker-table-date'))?.focus();
+        });
+      }
+
+      ui.openBtn?.addEventListener('click', openModal);
+      ui.openBtn?.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); }
+      });
+
+      ui.closeBtn?.addEventListener('click', ()=> ui.modal.classList.add('hidden'));
+      document.addEventListener('keydown', (e)=> { if (e.key === 'Escape') ui.modal.classList.add('hidden'); });
+      ['resize','scroll'].forEach(ev => window.addEventListener(ev, positionModal, { passive: true }));
+
+      ui.prev?.addEventListener('click', ()=> { view.setMonth(view.getMonth()-1); render(); syncNav(); });
+      ui.next?.addEventListener('click', ()=> { view.setMonth(view.getMonth()+1); render(); syncNav(); });
+      ui.monthSel?.addEventListener('change', ()=> { view.setMonth(parseInt(ui.monthSel.value,10)); render(); });
+      ui.yearSel?.addEventListener('change',  ()=> { view.setFullYear(parseInt(ui.yearSel.value,10)); render(); });
+
+      // Quick ranges
+      root.querySelectorAll('.customDatepick-today')?.forEach(el=> el.addEventListener('click', ()=>{
+        const t = new Date(); start = new Date(t.getFullYear(), t.getMonth(), t.getDate()); end = isSingle ? null : start; update();
+      }));
+      root.querySelectorAll('.customDatepick-yesterday')?.forEach(el=> el.addEventListener('click', ()=>{
+        const t = new Date(); t.setDate(t.getDate()-1);
+        start = new Date(t.getFullYear(), t.getMonth(), t.getDate()); end = isSingle ? null : start; update();
+      }));
+      if (!isSingle) {
+        root.querySelector('.customDatepick-week')?.addEventListener('click', ()=>{
+          const t = new Date(); const day = (t.getDay()||7)-1; const s = new Date(t); s.setDate(t.getDate()-day);
+          const e = new Date(s); e.setDate(s.getDate()+6); start = s; end = e; update();
+        });
+        root.querySelector('.customDatepick-month')?.addEventListener('click', ()=>{
+          const t = new Date(); start = new Date(t.getFullYear(), t.getMonth(), 1); end = new Date(t.getFullYear(), t.getMonth()+1, 0); update();
+        });
+        root.querySelector('.customDatepick-prevweek')?.addEventListener('click', ()=>{
+          const t = new Date(); const day = (t.getDay()||7)-1; const e = new Date(t); e.setDate(t.getDate()-day-1);
+          const s = new Date(e); s.setDate(e.getDate()-6); start = s; end = e; update();
+        });
+        root.querySelector('.customDatepick-prevmonth')?.addEventListener('click', ()=>{
+          const t = new Date(); start = new Date(t.getFullYear(), t.getMonth()-1, 1); end = new Date(t.getFullYear(), t.getMonth(), 0); update();
+        });
+      }
+
+      ui.resetBtn?.addEventListener('click', ()=> { start = end = null; update(); });
+
+      function render() {
+        ui.monthSel.value = String(view.getMonth());
+        ui.yearSel.value  = String(view.getFullYear());
+
+        const year = view.getFullYear(), month = view.getMonth();
+        const first = new Date(year, month, 1);
+        let startOffset = first.getDay(); startOffset = startOffset === 0 ? 6 : startOffset - 1;
+
+        const daysInMonth = new Date(year, month+1, 0).getDate();
+        const prevDays    = new Date(year, month, 0).getDate();
+
+        const cells = [];
+        for (let i=startOffset; i>0; i--) cells.push({y:month?year:year-1, m:(month+11)%12, d:prevDays-i+1, other:true});
+        for (let d=1; d<=daysInMonth; d++) cells.push({y:year, m:month, d});
+        while (cells.length % 7) { const n = cells.length - (startOffset + daysInMonth) + 1; cells.push({y:month===11?year+1:year, m:(month+1)%12, d:n, other:true}); }
+
+        const todayIso = iso(new Date());
+        const rows = [];
+        for (let r=0; r<cells.length; r+=7) {
+          const tds = cells.slice(r, r+7).map(cell=>{
+            const date = new Date(cell.y, cell.m, cell.d);
+            const dateIso = iso(date);
+            const isToday = dateIso === todayIso;
+            const inRange = start && end && date > start && date < end;
+            const isStart = start && date.toDateString() === start.toDateString();
+            const isEnd   = end   && date.toDateString() === end.toDateString();
+            const classes = [
+              "customDatepicker-table-date",
+              cell.other ? "customOther-month" : "",
+              isToday ? "today" : "",
+              inRange ? "customDate-selected-between" : "",
+              !end && isStart ? "customDate-selected" : "",
+              isStart && end ? "customDate-selected-start" : "",
+              isEnd ? "customDate-selected-end" : ""
+            ].join(" ").trim();
+
+            return `<td><div class="${classes}" data-date="${dateIso}" tabindex="0">${isToday ? "Today" : cell.d}</div></td>`;
+          }).join("");
+          rows.push(`<tr>${tds}</tr>`);
+        }
+        ui.calBody.innerHTML = rows.join("");
+
+        ui.calBody.querySelectorAll('.customDatepicker-table-date').forEach(cell=>{
+          cell.addEventListener('click', ()=>{
+            const d = parse(cell.dataset.date);
+            if (isSingle) {
+              start = new Date(d.getFullYear(), d.getMonth(), d.getDate()); end = null;
+            } else {
+              if (!start || (start && end)) { start = d; end = null; }
+              else if (d < start) { start = d; end = null; }
+              else { end = d; }
+            }
+            update(true);
+          });
+        });
+
+        // Keyboard grid nav
+        ui.calBody.addEventListener('keydown', (e)=>{
+          const cells = Array.from(ui.calBody.querySelectorAll('.customDatepicker-table-date'));
+          const idx = cells.indexOf(document.activeElement);
+          if (idx < 0) return;
+          let next = null;
+          if (e.key === "ArrowRight") next = idx+1;
+          else if (e.key === "ArrowLeft") next = idx-1;
+          else if (e.key === "ArrowDown") next = idx+7;
+          else if (e.key === "ArrowUp") next = idx-7;
+          else if (e.key === " " || e.key === "Enter") { document.activeElement.click(); e.preventDefault(); }
+          if (next != null && next >= 0 && next < cells.length) { cells[next].focus(); e.preventDefault(); }
+        });
+      }
+
+      function update(justRendered=false) {
+        ui.startInp.value = start ? iso(start) : "";
+        ui.endInp.value   = end   ? iso(end)   : "";
+        let display = "";
+        if (start && !end) display = iso(start).split("-").reverse().join(".");
+        if (start && end)  display = `${iso(start).split("-").reverse().join(".")} - ${iso(end).split("-").reverse().join(".")}`;
+        ui.display.textContent = display || "—";
+        ui.openBtn.textContent = display || "";
+        if (start && !justRendered) { view = new Date(start); }
+        render(); syncNav();
+      }
+
+      function syncNav(){
+        const y = parseInt(ui.yearSel.value,10);
+        const m = parseInt(ui.monthSel.value,10);
+        const prevY = m===0? y-1 : y, prevM = m===0? 11 : m-1;
+        const nextY = m===11? y+1 : y, nextM = m===11? 0  : m+1;
+        const years = Array.from(ui.yearSel.options).map(o=>+o.value);
+        const months= Array.from(ui.monthSel.options).map(o=>+o.value);
+        ui.prev.disabled = !(years.includes(prevY) && months.includes(prevM));
+        ui.next.disabled = !(years.includes(nextY) && months.includes(nextM));
+      }
+
+      // init
+      update();
+    });
+  </script>
+</Base>

@@ -1,0 +1,271 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/case-base.css";   
+
+const title = "Case Study: Visual explorations";
+---
+<Base title={title} noWrap={false} hideFooter={false}>
+  <header class="case-hero">
+    <h1>Graphic Design</h1>
+    <p class="meta">Visual Communication • Illustration • Art Direction • 2013–2025</p>
+    <p class="lede">
+      My background in fine arts (BA, Estonian Academy of Arts) has deeply shaped how I approach design — 
+      composition, rhythm, and emotion are as important to me as structure, usability, and clarity. 
+      My graphic design work moves across mediums: from posters and campaigns to brand identity and editorial layouts. 
+      I combine visual storytelling and typographic precision to create memorable, functional, and human-centered design.
+    </p>
+  </header>
+
+  <article class="container-narrow doc-grid tokens-case">
+    <div class="doc-main">
+      
+      <!-- Featured visual -->
+      <section class="hero-vertical" aria-label="Featured previews">
+        <button class="shot-tile ar-21x9"
+          data-full="/images/visual/purgid-up.png"
+          data-title="Poster Design"
+          data-cap="<p><strong>Exploring contrast and composition.</strong></p>
+          <ul>
+            <li>Balancing type and illustration to communicate emotion.</li>
+            <li>Experimentation with hierarchy and asymmetry.</li>
+            <li>Combining analog texture with digital precision.</li>
+          </ul>">
+          <img loading="lazy" src="/images/visual/purgid-up.png" alt="Poster design composition study">
+        </button>
+      </section>
+      
+      <section id="s-context">
+        <h2>Context & Purpose</h2>
+        <p>
+          Graphic design has been at the intersection of my artistic and analytical interests. 
+          My education in fine arts gave me a foundation in form, color, and composition, 
+          while my work in UX/UI taught me to balance expression with structure. 
+          These projects explore how emotion and function can coexist in design — 
+          whether through campaigns, posters, or digital materials.
+        </p>
+      </section>
+
+      <section id="s-approach">
+        <h2>Approach</h2>
+        <ul>
+          <li>Research-driven visual storytelling — understanding the subject before defining the aesthetic.</li>
+          <li>Using typography, color, and imagery to convey rhythm and meaning.</li>
+          <li>Combining traditional illustration methods with vector graphics and digital layout tools.</li>
+          <li>Designing compositions that guide attention and evoke mood, while maintaining functional clarity.</li>
+        </ul>
+      </section>
+
+      <section id="s-outcomes">
+        <h2>Outcomes</h2>
+        <ul>
+          <li>Developed a cohesive visual voice across multiple projects and media.</li>
+          <li>Created visual systems that balance artistic expression with communication goals.</li>
+          <li>Refined understanding of how emotional tone supports brand and interface experiences.</li>
+        </ul>
+      </section>
+
+      <section id="s-role">
+        <h2>My Role</h2>
+        <ul>
+          <li>Concept creation and art direction from sketch to final layout.</li>
+          <li>Illustration, typography, and composition for campaign and identity projects.</li>
+          <li>Experimentation with analog and digital workflows for unique textures and depth.</li>
+          <li>Bridging traditional visual design with UX principles and system thinking.</li>
+        </ul>
+      </section>
+
+      <p class="flex-col">
+        <a class="btn link-btn" href="/case-studies/nav-system">
+          <span class="btn-label">Check a demo of unified navigation menu</span>
+          <i class="ri-arrow-right-line"></i>
+        </a>
+        <a class="btn link-btn" href="/case-studies/dash-case">
+            <span class="btn-label">Dashboards and app interfaces</span>
+          <i class="ri-arrow-right-line"></i>
+        </a>
+      </p>
+    </div>
+
+    <!-- RIGHT: Visual panels / works ------------------------------->
+    <aside class="doc-aside feature-card">
+      <nav class="shots-grid" aria-label="Visual gallery">
+        <button class="shot-tile"
+          data-full="/images/visual/typesetter2.png"
+          data-title="Typography Study"
+          data-cap="<p>Balancing hierarchy and visual rhythm.</p>
+          <ul>
+            <li>Exploring typographic relationships through composition.</li>
+            <li>Using grid and space to emphasize message and tone.</li>
+          </ul>">
+          <img src="/images/visual/typesetter2.png" alt="Typography composition study">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/beauty.png"
+          data-title="Campaign Visual"
+          data-cap="<p>Illustration and typography merged for editorial communication.</p>">
+          <img src="/images/visual/beauty.png" alt="Campaign visual design">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/kell.png"
+          data-title="Poster Series"
+          data-cap="<p>Exploring time and repetition through minimalist design.</p>">
+          <img src="/images/visual/kell.png" alt="Poster series — minimalist approach">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/typesetter1.png"
+          data-title="Editorial Design"
+          data-cap="<p>Layout experiment combining text and illustration.</p>">
+          <img src="/images/visual/typesetter1.png" alt="Editorial design layout">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/king-toss.png"
+          data-title="Concept Poster"
+          data-cap="<p>Balancing surreal imagery with bold typography.</p>">
+          <img src="/images/visual/king-toss.png" alt="Concept poster artwork">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/torn.png"
+          data-title="Print Composition"
+          data-cap="<p>Collage-based narrative composition.</p>">
+          <img src="/images/visual/torn.png" alt="Print composition experiment">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/purgid.png"
+          data-title="Packaging Concept"
+          data-cap="<p>Exploring 3D form and material through digital mockups.</p>">
+          <img src="/images/visual/purgid.png" alt="Packaging concept">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/viru-hotell.jpg"
+          data-title="Brand Poster"
+          data-cap="<p>Homage to modernist graphic design and architectural heritage.</p>">
+          <img src="/images/visual/viru-hotell.jpg" alt="Viru Hotel poster design">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/imepuu.png"
+          data-title="Illustrated Poster"
+          data-cap="<p>Symbolic narrative expressed through stylized forms.</p>">
+          <img src="/images/visual/imepuu.png" alt="Illustrated symbolic poster">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/Lagom2.png"
+          data-title="Minimal Composition"
+          data-cap="<p>Study of Scandinavian simplicity and visual calm.</p>">
+          <img src="/images/visual/Lagom2.png" alt="Minimal graphic composition">
+        </button>
+      </nav>
+    </aside>
+
+        
+
+        
+
+    <!-- Lightweight lightbox (scoped to .tokens-case) -->
+    <!-- Lightweight lightbox (scoped to .tokens-case) -->
+<div class="tokens-lightbox" aria-hidden="true">
+  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+
+    <div class="tokens-lightbox__media">
+      <img class="tokens-lightbox__img" alt="" />
+    </div>
+    <aside class="tokens-lightbox__meta">
+      <h4 class="tokens-lightbox__title"></h4>
+      <div class="tokens-lightbox__cap"></div>
+    </aside>
+  </div>
+</div>
+  </article>
+
+
+<script type="module">
+(() => {
+  const scope = document.querySelector('.tokens-case');
+  if (!scope) return;
+
+  const lb       = scope.querySelector('.tokens-lightbox');
+  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
+  const imgEl    = lb.querySelector('.tokens-lightbox__img');
+  const titleEl  = lb.querySelector('.tokens-lightbox__title');
+  const capEl    = lb.querySelector('.tokens-lightbox__cap');
+  const closeBtn = lb.querySelector('.tokens-lightbox__close');
+  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
+
+  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
+  let currentIndex = -1;
+  let lastFocus = null;
+
+  function extractDataFrom(el) {
+    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
+    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
+    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
+    const title = carrier.getAttribute('data-title') || img?.alt || '';
+    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
+    return { src, title, cap };
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const { src, title, cap } = extractDataFrom(tiles[index]);
+    lastFocus = document.activeElement;
+    imgEl.src = src;
+    titleEl.textContent = title;
+    capEl.innerHTML = cap;
+    lb.classList.add('is-open');
+    document.documentElement.classList.add('tokens-lightbox-open');
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.documentElement.classList.remove('tokens-lightbox-open');
+    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function showNext() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex + 1) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  function showPrev() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  scope.addEventListener('click', e => {
+    const tile = e.target.closest('.shot-tile');
+    if (tile) {
+      e.preventDefault();
+      openLightbox(tiles.indexOf(tile));
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+})();
+</script>
+</Base>

@@ -50,9 +50,13 @@ import Base from "../layouts/Base.astro";
     <li>Figma, Adobe XD, Adobe Creative Suite</li>
   </ul>
   <p>
-  <a class="link-btn" href="/work" aria-label="Open demo of unified navigation">
-    Check out some of my projects
+  <a class="btn link-btn" href="/work">
+    <span class="btn-label"> Check out some of my projects</span>
+    <i class="ri-arrow-right-line"></i>
   </a>
+</p>
+
+  <p class="about-note">This modular UI portfolio is built in Astro, using component-based architecture and scoped CSS, optimizing for accessibility, build performance, and maintainability. Astro allowed me to integrate plain JS and web standards without heavy client-side overhead.</p>
 </p>
 </div>
 </div>
@@ -92,10 +96,22 @@ html[data-theme="dark"] {
 
 .link-btn {
   color: var(--blue-clr);
+  background: var
 }
 
-.link-btn:hover {
+.link-btn:hover span{
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+.btn {
+  margin: 0;
+  font-weight: 600;
+}
+
+.btn:hover i {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
 </style>
