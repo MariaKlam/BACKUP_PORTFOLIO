@@ -6,7 +6,12 @@ import "../../styles/case-base.css";
 const title = "Datepicker — Demo";
 ---
 <Base title={title} noWrap={false} hideFooter={false}>
-  <header class="case-hero">
+  
+
+  <article class="container-narrow doc-grid tokens-case">
+    <!-- LEFT: Narrative --------------------------------------------------->
+    <div class="doc-main">
+    <header class="case-hero">
     <h1>Custom Datepicker</h1>
     <p class="meta">Component design • Frontend • 2023–2025</p>
     <p class="lede">
@@ -14,10 +19,6 @@ const title = "Datepicker — Demo";
     range selection with consistent UX and keyboard support.
     </p>
   </header>
-
-  <article class="container-narrow doc-grid tokens-case">
-    <!-- LEFT: Narrative --------------------------------------------------->
-    <div class="doc-main">
       <section class="hero-vertical" aria-label="Featured previews">
         <button class="shot-tile ar-21x9"
           data-full="/images/visual/calendar.jpg"
@@ -67,8 +68,10 @@ const title = "Datepicker — Demo";
     </div>
 
     <!-- RIGHT: Visual panels / screenshots ------------------------------->
-    <aside class="doc-aside flex gap-2">
+    <aside class="doc-aside">
+    <p><strong class="text-blue">Click on the fields to test out the datepicker.</strong></p>
       <!-- Datepicker instance: RANGE -->
+      <div class="flex gap-2">
       <div class="filter__item" data-datepicker data-mode="range">
         <label>Daterange or one date</label>
         <div class="calendar-container">
@@ -134,6 +137,7 @@ const title = "Datepicker — Demo";
             </div>   <!-- /content -->
           </div>     <!-- /modal -->
         </div>       <!-- /calendar-container -->
+     
       </div>
 
       <!-- Datepicker instance: SINGLE -->
@@ -199,6 +203,7 @@ const title = "Datepicker — Demo";
           </div>     <!-- /modal -->
         </div>       <!-- /calendar-container -->
       </div>
+         </div>  
     </aside>
   </article>
 
@@ -369,6 +374,9 @@ button:disabled{
 h3 {
   padding: 0;
   margin: 0;
+}
+.text-blue {
+  color: var(--blue-clr);
 }
   </style>
 

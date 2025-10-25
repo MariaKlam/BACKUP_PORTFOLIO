@@ -627,3 +627,7 @@ a {
 .card-bg {
   background-color: var(--card-bg);
 }
+
+a .row-summary {
+  color: var(--fg);
+}

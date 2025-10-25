@@ -111,7 +111,7 @@ const rightProjects = projects.slice(1); // start the right list at 02
             
             </span>
           </a>
-          <div class="row-details">
+          <a href={p.link}><div class="row-details">
             <p class="row-meta">{p.role}</p>
             {p.summary && <p class="row-summary">{p.summary}</p>}
             <div class="chips">{p.tech.map(t => <span class="chip">{t}</span>)}</div>
@@ -119,7 +119,7 @@ const rightProjects = projects.slice(1); // start the right list at 02
               <div class="chips">{p.design.map(d => <span class="chip">{d}</span>)}</div>
             )}
          
-          </div>
+          </div></a>
         </li>
       ))}
     </ol>
