@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 <Base title="About — Maria Klammer">
 <div class="flex about-section">
 
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="120" height="110" viewBox="0 0 30 30" version="1.1" id="svg822" inkscape:version="0.92.4 (f8dce91, 2019-08-02)" sodipodi:docname="design.svg">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100" height="100" viewBox="0 0 30 30" version="1.1" id="svg822" inkscape:version="0.92.4 (f8dce91, 2019-08-02)" sodipodi:docname="design.svg">
   <defs id="defs816">
     <inkscape:path-effect only_selected="false" apply_with_weight="true" apply_no_weight="true" helper_size="0" steps="2" weight="33.333333" is_visible="true" id="path-effect1025" effect="bspline"/>
     <inkscape:path-effect only_selected="false" apply_with_weight="true" apply_no_weight="true" helper_size="0" steps="2" weight="33.333333" is_visible="true" id="path-effect1021" effect="bspline"/>
@@ -31,9 +31,9 @@ import Base from "../layouts/Base.astro";
 </svg>
 
 
-</figure>
+
 <div class="flex-col">
-  <h1 class="heading-main">About .</h1>
+  <h1 class="page-title">About .</h1>
   <p>
     Frontend & UX/UI designer-developer crafting accessible, framework-light interfaces and design systems.
     I created our company’s entire UI Library myself - from visual design to code -
@@ -53,10 +53,28 @@ import Base from "../layouts/Base.astro";
     <span class="btn-label"> Check out some of my projects</span>
     <i class="ri-arrow-right-line"></i>
   </a>
+
+<!-- Actions -->
+<div class="actions">
+  <a class="btn-cv" href="/cv/Maria_Klammer_cv25.ENG.pdf" target="_blank" rel="noopener">
+    <i class="ri-external-link-line" aria-hidden="true"></i> View CV
+  </a>
+
+   <a class="btn-cv" href="https://www.linkedin.com/in/maria-klammer/" target="_blank" rel="noopener">
+    <i class="ri-linkedin-fill" aria-hidden="true"></i> LinkedIn
+  </a>
+
+  <a class="btn-cv btn--secondary" href="/cv/Maria_Klammer_cv25.ENG.pdf" download>
+    <i class="ri-download-2-line" aria-hidden="true"></i> Download CV
+  </a>
+
+
+</div>
 </p>
 
   <p class="about-note">This modular UI portfolio is built in Astro, using component-based architecture and scoped CSS, optimizing for accessibility, build performance, and maintainability. Astro allowed me to integrate plain JS and web standards without heavy client-side overhead.</p>
 </p>
+
 </div>
 </div>
 
@@ -106,11 +124,6 @@ html[data-theme="dark"] {
 .btn {
   margin: 0;
   font-weight: 600;
-}
-
-.btn:hover i {
-  transform: translateX(3px);
-  opacity: 1;
 }
 
 </style>

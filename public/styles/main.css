@@ -219,14 +219,11 @@ a {
 :root[data-theme="dark"] .site-footer {
   background: color-mix(in oklab, var(--bg) 97%, transparent);
 }
-
 /* wrap matches header width; no extra side padding here */
 .wrap {
   padding-top: 0;
   padding-bottom: 0;
-}
-
-/* Section grid sits inside .wrap (no extra max-width) */
+} /* Section grid sits inside .wrap (no extra max-width) */
 .work-split {
   display: grid;
   grid-template-columns: 5.25fr 6.75fr;
@@ -234,16 +231,13 @@ a {
   margin: 0;
   padding: calc(var(--pad) * 2) 0; /* vertical only */
   align-items: stretch;
-}
-
-/* LEFT sticky hero */
+} /* LEFT sticky hero */
 .left {
   align-self: start;
 }
 .intro-block {
   margin: 0 0 32px;
 }
-
 .feature-card {
   position: sticky;
   top: calc(72px + 12px);
@@ -293,7 +287,6 @@ a {
 .feature-card .summary {
   margin: 8px 0 6px;
 }
-
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -307,9 +300,7 @@ a {
   font-size: 0.78rem;
   color: var(--muted);
   background: color-mix(in oklab, var(--card) 80%, transparent);
-}
-
-/* RIGHT list */
+} /* RIGHT list */
 .right {
   display: flex;
 }
@@ -325,25 +316,18 @@ a {
 }
 .project-row:first-child {
   border-top: 0;
-}
-
-/* Match the left card surface when a row is hovered/open */
+} /* Match the left card surface when a row is hovered/open */
 .project-row:hover,
 .project-row.is-open {
   background: var(--card-bg);
-}
-
-/* If you still want a faint hover hint in light mode, do it on the outline */
+} /* If you still want a faint hover hint in light mode, do it on the outline */
 :root:not([data-theme="dark"]) .project-row:hover {
   background-color: #f9f9fa;
-}
-
-/* Remove the old darker hover backgrounds */
+} /* Remove the old darker hover backgrounds */
 .project-row:hover,
 :root[data-theme="dark"] .project-row:hover {
   background: var(--card-bg);
 }
-
 .row-link {
   display: grid;
   grid-template-columns: 100px 1fr auto;
@@ -357,7 +341,6 @@ a {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-
 .row-num {
   font-weight: 900;
   font-size: clamp(1.8rem, 2vw + 1rem, 2.4rem);
@@ -370,15 +353,10 @@ a {
 .row-title {
   font-weight: 800;
   font-size: clamp(1.05rem, 0.7vw + 1rem, 1.35rem);
-}
-
-/* Arrow: shaft touching filled triangle */
-/* arrow column still `auto` in your grid */
+} /* Arrow: shaft touching filled triangle */ /* arrow column still auto in your grid */
 .row-link {
   grid-template-columns: 100px 1fr auto;
-}
-
-/* Collapsible details */
+} /* Collapsible details */
 .row-details {
   max-height: 0;
   opacity: 0;
@@ -395,17 +373,12 @@ a {
   color: var(--muted);
   margin: 2px 0 6px;
 }
-
 .meta-list {
   padding-left: 12px;
 }
 .row-summary {
   margin: 0 0 6px;
-}
-
-/* ======================================
-   RESPONSIVE
-====================================== */
+} /* ====================================== RESPONSIVE ====================================== */
 @media (max-width: 1099px) {
   .work-split {
     grid-template-columns: 1fr;
@@ -417,30 +390,20 @@ a {
   .row-link {
     grid-template-columns: 80px 1fr auto;
   }
-}
-
-/* ======================================
-   Optional page fade (only when .theme-fade is on <html>)
-====================================== */
+} /* ====================================== Optional page fade (only when .theme-fade is on <html>) ====================================== */
 @media (prefers-reduced-motion: no-preference) {
   html.theme-fade body {
     transition: background-color 0.18s linear, color 0.18s linear !important;
   }
-}
-/*Eye icon*/
-/* make the details panel the positioning context */
-/* make sure the details panel is the positioning context */
+} /*Eye icon*/ /* make the details panel the positioning context */ /* make sure the details panel is the positioning context */
 .project-row .row-details {
   position: relative;
   overflow: hidden; /* already true in your CSS, but keep it here */
-}
-
-/* Eye: tucked into the bottom-right so it gets clipped ~halfway */
+} /* Eye: tucked into the bottom-right so it gets clipped ~halfway */
 .row-eye {
   position: absolute;
   right: 62px;
   top: -24px; /* override previous top */
-
   transform: rotate(22deg) skewX(-6deg) scale(0.85);
   transform-origin: 50% 50%;
   opacity: 0;
@@ -448,31 +411,22 @@ a {
   transition: opacity 0.22s ease, transform 0.22s ease, bottom 0.22s ease;
   color: currentColor;
   z-index: 1;
-}
-
-/* show when open (slightly more tilt and size) */
+} /* show when open (slightly more tilt and size) */
 .project-row.is-open .row-eye {
   opacity: 1;
   transform: rotate(0deg) skewX(0deg) scale(0.9);
-}
-
-/* only on the 3rd right-column row (02, 03, **04**) */
+} /* only on the 3rd right-column row (02, 03, **04**) */
 .project-list > li:not(:nth-child(3)) .row-eye {
   display: none;
-}
-
-/* size the SVG a bit smaller overall */
+} /* size the SVG a bit smaller overall */
 .row-eye svg {
   width: clamp(96px, 14vw, 160px);
   height: auto;
-}
-/* Make the details panel the positioning context + clip the icon */
+} /* Make the details panel the positioning context + clip the icon */
 .project-row .row-details {
   position: relative;
   overflow: hidden;
-}
-
-/* Icon: sit in the bottom-right and be clipped about half-way */
+} /* Icon: sit in the bottom-right and be clipped about half-way */
 .row-eye {
   position: absolute;
   right: 40px; /* a touch closer to the arrow */
@@ -482,78 +436,57 @@ a {
   transition: opacity 0.22s ease, transform 0.22s ease, bottom 0.22s ease;
   color: currentColor; /* SVG should use fill="currentColor" */
   z-index: 1;
-}
-
-/* On expand: nudge up a bit, reduce tilt, grow slightly */
+} /* On expand: nudge up a bit, reduce tilt, grow slightly */
 .project-row.is-open .row-eye {
   opacity: 1;
   bottom: -18px;
-}
-
-/* Only show on the 3rd right-column row (the tokens row) */
+} /* Only show on the 3rd right-column row (the tokens row) */
 .project-list > li:not(:nth-child(3)) .row-eye {
   display: none;
-}
-
-/* Size (illustration-ish, but responsive) */
+} /* Size (illustration-ish, but responsive) */
 .row-eye svg {
   width: clamp(88px, 15vw, 160px);
   height: auto;
-}
-
-/* --- Contrast softening --- */
-/* Light theme: a tiny soften so it doesn't scream */
+} /* --- Contrast softening --- */ /* Light theme: a tiny soften so it doesn't scream */
 :root:not([data-theme="dark"]) .row-eye {
   color: color-mix(in oklab, var(--fg) 90%, var(--bg));
-}
-
-/* Dark theme: soften white to ~85% so it blends */
+} /* Dark theme: soften white to ~85% so it blends */
 :root[data-theme="dark"] .row-eye {
   color: color-mix(
     in oklab,
     var(--fg) 85%,
     var(--bg)
   ); /* ≈ rgba(255,255,255,.85) */
-}
-/* If your browser lacks color-mix, add a safe fallback: */
+} /* If your browser lacks color-mix, add a safe fallback: */
 :root[data-theme="dark"] .row-eye {
   color: rgba(255, 255, 255, 0.85);
-}
-
-/* If you prefer CSS only, you can set it roughly to the left card height */
+} /* If you prefer CSS only, you can set it roughly to the left card height */
 @media (min-width: 1000px) {
   .right {
     max-height: 680px;
   } /* tweak to your left feature-card height */
 }
-
 .flex {
   display: flex;
 }
-
 .flex-col {
   display: flex;
   flex-direction: column;
 }
-
 .about-section {
   align-items: flex-end;
-  justify-content: center;
   gap: 40px;
+  margin-top: 40px;
 }
 .about-section .flex-col {
   display: flex;
   flex-direction: column;
-
   font-size: 16px;
   line-height: 1.6;
 }
-
 .flex-col p {
   max-width: 700px;
-}
-
-/* Make the heading explicitly inherit the same family (and style it) */
+} /* Make the heading explicitly inherit the same family (and style it) */
 .heading-main {
   font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto;
@@ -565,8 +498,7 @@ a {
 }
 .about-avatar {
   margin-left: auto;
-}
-/* only on About if you want — e.g. body.about */
+} /* only on About if you want — e.g. body.about */
 .about-avatar {
   position: fixed;
   right: 0;
@@ -575,26 +507,20 @@ a {
   pointer-events: none; /* never intercept clicks */
   z-index: 0; /* behind footer/content */
 }
-
 .site-footer {
   position: relative;
   z-index: 1; /* ensure it sits above the avatar */
-}
-
-/* Optional: hide in print or on very small screens */
+} /* Optional: hide in print or on very small screens */
 @media (max-width: 480px), print {
   .about-avatar {
     display: none;
   }
-}
-
-/* Mobile header: keep only the middle nav */
+} /* Mobile header: keep only the middle nav */
 @media (max-width: 768px) {
   .site-header .brand-name,
   .site-header .theme-toggle {
     display: none !important; /* remove name + theme */
   }
-
   .site-header .header-inner {
     display: grid;
     grid-template-columns: 1fr; /* single column */
@@ -604,7 +530,6 @@ a {
     height: 40px; /* compact bar */
     padding: 0 10px;
   }
-
   .site-header .nav {
     display: flex;
     gap: 24px;
@@ -612,7 +537,6 @@ a {
     align-items: center;
     overflow: hidden; /* no h-scroll needed now */
   }
-
   .site-header .nav a {
     white-space: nowrap;
     font-size: clamp(0.9rem, 0.85rem + 0.3vw, 1rem);
@@ -623,11 +547,177 @@ a {
   font-size: 14px;
   color: var(--muted);
 }
-
 .card-bg {
   background-color: var(--card-bg);
 }
-
 a .row-summary {
   color: var(--fg);
+} /* wrapper that centers everything and puts LinkedIn below */ /* theme tokens you already use */
+:root {
+  --bg: #fff;
+  --fg: #0e0e0e;
+  --accent: #166ee8;
+}
+html[data-theme="dark"] {
+  --bg: #0e0e0e;
+  --fg: #f5f7fa;
+  --accent: #7ad0ff;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 1rem;
+} /* base */
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font: 600 0.9rem/1 system-ui, -apple-system, "Inter", "Montserrat", sans-serif;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: filter 0.18s ease, background-color 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease;
+  color: var(--bg);
+  background: var(--fg);
+}
+.btn i,
+.btn svg {
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.btn:hover {
+  filter: brightness(0.95);
+} /* variants */
+.btn-cv {
+  background: var(--fg);
+  color: var(--bg);
+}
+.btn--secondary {
+  background: transparent;
+  color: var(--fg);
+  border-color: color-mix(in srgb, var(--fg) 28%, transparent);
+}
+.btn--secondary:hover {
+  border-color: var(--fg);
+} /* focus for a11y */
+.btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--fg) 60%, transparent);
+  outline-offset: 2px;
+} /* small screens */
+@media (max-width: 520px) {
+  .actions {
+    justify-content: center;
+  }
+  .actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+} /* theme tokens you already use */
+:root {
+  --bg: #fff;
+  --fg: #0e0e0e;
+  --accent: #166ee8;
+}
+html[data-theme="dark"] {
+  --bg: #0e0e0e;
+  --fg: #f5f7fa;
+  --accent: #7ad0ff;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.75rem;
+} /* base */
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font: 600 0.9rem/1 system-ui, -apple-system, "Inter", "Montserrat", sans-serif;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: filter 0.18s ease, background-color 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease;
+  color: var(--bg);
+  background: var(--fg);
+}
+.btn-cv i,
+.btn-cv svg {
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.btn-cv:hover {
+  filter: brightness(0.95);
+} /* variants */
+.btn-cv {
+  background: var(--fg);
+  color: var(--bg);
+}
+.btn--secondary {
+  background: transparent;
+  color: var(--fg);
+  border-color: color-mix(in srgb, var(--fg) 28%, transparent);
+}
+.btn--secondary:hover {
+  border-color: var(--fg);
+} /* focus for a11y */
+.btn-cv:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--fg) 60%, transparent);
+  outline-offset: 2px;
+} /* small screens */
+@media (max-width: 520px) {
+  .actions {
+    justify-content: center;
+  }
+  .actions .btn-cv {
+    width: 100%;
+    justify-content: center;
+  }
+} /* place this at the very end of your button CSS */
+.actions .btn-cv:hover:not(.btn--secondary) {
+  /* avoid filter so text/icons don't dim */
+  background: color-mix(in oklab, var(--fg), black 7%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+}
+.actions .btn-cv.btn--secondary:hover {
+  border-color: var(--fg);
+  transform: translateY(-1px);
+} /* Center label + arrow */
+.btn.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  line-height: 1; /* keeps the row tight */
+} /* Fix icon baseline dip */
+.btn.link-btn i,
+.btn.link-btn svg {
+  display: block; /* remove inline baseline quirks */
+  line-height: 1;
+  height: 1em;
+  width: 1em;
+} /* micro-nudge if your font still looks low (optional) */
+.btn.link-btn i {
+  transform: translateY(-1px);
+}
+
+/* Lightbox should never be clipped by layout wrappers */
+.tokens-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647; /* max on purpose */
+}
+
+.tokens-lightbox-open body {
+  overflow: hidden; /* lock scroll when open */
 }

@@ -266,7 +266,7 @@ import "../../styles/nav.css";
           <i class="ri-star-line"></i>
         </button>
       </form>
-        <button class="btn btn__secondary action-button--back" data-fallback="/work">
+        <button type="button" class="btn btn__secondary action-button--back" data-fallback="/work">
           <i class="ri-arrow-left-line"></i>
         </button>
         <ul class="thin-sidebar-icons">
@@ -320,7 +320,6 @@ import "../../styles/nav.css";
          
          
             </button>
-          </form>
         </div>
     </aside>
   </div>
@@ -487,6 +486,16 @@ import "../../styles/nav.css";
     </div>
   </aside>
 </article>
+<script type="module">
+  // Back button: history.back() with fallback
+  document.addEventListener('click', (e) => {
+    const backBtn = e.target.closest('.action-button--back');
+    if (!backBtn) return;
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.assign(backBtn.dataset.fallback || '/');
+  });
+</script>
 
 </Base>
 

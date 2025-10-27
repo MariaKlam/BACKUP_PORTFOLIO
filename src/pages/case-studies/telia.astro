@@ -1,0 +1,322 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/case-base.css";   
+
+const title = "Case Study: Dashboard & Application Patterns";
+---
+
+<Base title={title} noWrap={false} hideFooter={false}>
+  
+
+  <article class="container-narrow doc-grid tokens-case">
+    <!-- LEFT: Narrative -->
+     <div class="doc-main">
+    <header class="case-hero">
+  <h1>Telia’s Help & Guides — UX Analysis & Prototypes</h1>
+  <p class="meta">UX Research • UX/UI • 2024 · Women in Tech program</p>
+  <p class="lede">
+    Evaluated the Help & Guides section of Telia’s mobile app, identified two core
+    usability problems, and presented research-backed solutions and prototypes to the
+    Telia team. One recommended pattern later appeared in production.
+  </p>
+</header>
+
+<!-- Hero preview -->
+<section class="hero-vertical" aria-label="Featured preview">
+  <button class="shot-tile ar-21x9"
+    data-full="/images/telia/telia-hero.png"
+    data-title="Help & Guides - prototype overview"
+    data-cap="<p>Prioritized two key problems and delivered targeted solutions.</p>
+    <ul>
+      <li>Simplified information architecture and entry points.</li>
+      <li>Guided, step-by-step flow for common help tasks.</li>
+      <li>Clearer copy and visual hierarchy for faster scanning.</li>
+      <li>Usability-tested interactive prototypes in Figma.</li>
+    </ul>">
+    <img src="/images/telia/telia-hero.png" alt="Proposed Help & Guides flow for Telia’s mobile app">
+  </button>
+</section>
+
+<section id="s-architecture">
+  <h2>Context & Problem</h2>
+  <p>
+    As part of the <em>Women in Tech</em> learning program, our team partnered with Telia to review the
+    Help & Guides section of their mobile app. Customer support tasks (e.g., troubleshooting, plan details,
+    SIM & device topics) were spread across multiple entry points with inconsistent wording and
+    hierarchy. Users struggled to decide where to start and how to complete common tasks without
+    bouncing between screens.
+  </p>
+  <p>We framed two primary problems to solve:</p>
+  <ul>
+    <li><strong>Fragmented navigation & IA:</strong> parallel paths and duplicate entry points created decision friction.</li>
+    <li><strong>Factory-reset instructions:</strong> the section was nearly unusable on mobile due to weak hierarchy and unclear steps.</li>
+  </ul>
+</section>
+
+<section id="s-personas">
+  <h2>Personas & Testing Insights</h2>
+  <p>
+    We based our testing scenarios on two primary personas representing Telia’s customer base:
+    <strong>Kersti</strong> — a self-reliant rural user who values simplicity and quick mobile solutions —
+    and <strong>Andrus</strong> — an experienced urban professional who expects reliable, clear guidance when resolving issues.
+  </p>
+  <p>
+    Guided by their needs, we designed realistic tasks such as locating troubleshooting steps and performing
+    a factory reset. Sessions were kept neutral to avoid leading participants and to preserve natural discovery.
+    This revealed friction in labeling and navigation and confirmed that
+    <strong>a simple step-by-step flow</strong> provided the highest success and confidence across both personas.
+  </p>
+</section>
+
+<section id="s-approach">
+  <h2>Approach</h2>
+  <ul>
+    <li>Ran <strong>user interviews</strong> and <strong>scenario-based usability tests</strong> on common help tasks, avoiding leading questions or over-guidance.</li>
+    <li>Performed a <strong>heuristic evaluation</strong> and content audit to surface usability and accessibility gaps.</li>
+    <li>Mapped a simplified <strong>information architecture</strong> with a clear single entry point for Help & Guides.</li>
+    <li>Designed a <strong>guided, step-by-step mobile flow</strong> for troubleshooting and factory reset using progressive disclosure.</li>
+    <li>Rewrote microcopy for <strong>clarity and recovery</strong>, making each step actionable.</li>
+    <li>Built and tested interactive <strong>Figma prototypes</strong>, iterating on participant feedback.</li>
+  </ul>
+  <p>
+    The <strong>simplest solution — a clearly structured step-by-step help flow</strong> aligned with users’ mental models.
+    I designed this approach, and a version of it was ultimately <strong>chosen and implemented by Telia</strong> after our presentation.
+  </p>
+</section>
+
+<section id="s-outcomes">
+  <h2>Outcomes</h2>
+  <ul>
+    <li>Reduced choice overload with a consolidated entry and clearer IA.</li>
+    <li>Introduced a guided flow that <strong>shortened common tasks</strong> and reduced back-and-forth navigation.</li>
+    <li>Improved learnability with consistent labels, headings, and empty/error states.</li>
+    <li>The step-by-step mobile pattern was <strong>later implemented in the live app</strong>, validating the research insights.</li>
+  </ul>
+</section>
+
+<section id="s-role">
+  <h2>My Role</h2>
+  <ul>
+    <li>Led the <strong>heuristic review</strong> and co-led <strong>user research</strong> and synthesis.</li>
+    <li>Produced <strong>wireflows and interactive prototypes</strong> for the two priority problems.</li>
+    <li>Prepared and delivered the <strong>stakeholder presentation</strong> to Telia’s design team.</li>
+    <li>Documented IA changes, copy recommendations, and next steps for validation.</li>
+  </ul>
+</section>
+
+<p class="flex-col">
+  <a class="btn link-btn" href="/work">
+    <span class="btn-label">See all projects</span>
+    <i class="ri-arrow-right-line"></i>
+  </a>
+</p>
+
+<p class="flex-col">
+  <a class="btn link-btn" href="/case-studies/ui-library-tokens">
+    <span class="btn-label">See the unified navigation demo</span>
+    <i class="ri-arrow-right-line"></i>
+  </a>
+</p>
+    </div>
+
+    <!-- RIGHT: Visual gallery -->
+<aside class="doc-aside feature-card">
+<nav class="shots-grid" aria-label="Visual gallery">
+
+  <button class="shot-tile"
+    data-full="/images/telia/telia1.png"
+    data-title="Navigation block"
+    data-cap="<p>Navigation problem</p>
+    <ul>
+      <li>Hard to know where to go — only Bills and Mobile are visible.</li>
+      <li>The dots menu does not clearly communicate navigation.</li>
+    </ul>">
+    <img src="/images/telia/telia1.png" alt="Navigation problem">
+  </button>
+
+  <button class="shot-tile"
+    data-full="/images/telia/before_gif.gif"
+    data-title="Post-login view"
+    data-cap="<p>Factory reset section is nearly unusable on mobile</p>
+    <ul>
+      <li>Image is cropped on smaller screens.</li>
+      <li>Instructions are unclear; users do not know what to do next.</li>
+      <li>Section is effectively unusable.</li>
+    </ul>">
+    <img src="/images/telia/before_gif.gif" alt="Restore factory settings">
+  </button>
+
+  <button class="shot-tile"
+    data-full="/images/telia/personad.jpg"
+    data-title="Personas"
+    data-cap="<p>Personas</p>
+    <ul>
+      <li>Kersti lives in a small town, prefers to solve issues independently, and values clear, simple steps on mobile.</li>
+      <li>Andrus lives in Tallinn, expects reliable service, and wants concise, trustworthy instructions that work.</li>
+    </ul>">
+    <img src="/images/telia/personad.jpg" alt="Personas">
+  </button>
+
+  <button class="shot-tile"
+    data-full="/images/telia/kasutajauuring.png"
+    data-title="User tests"
+    data-cap="
+    <ul>
+      <li>Made participants comfortable and reminded them we test the design, not them.</li>
+      <li>Encouraged think-aloud to surface expectations and pain points.</li>
+      <li>Gave one task at a time with printed cards to keep focus.</li>
+      <li>Observed natural behaviour without interrupting or guiding.</li>
+      <li>Took detailed notes on hesitation, navigation errors, and reactions.</li>
+      <li>Debriefed after each session to understand the why behind issues.</li>
+      <li>Recorded screens for later review and pattern analysis.</li>
+    </ul>">
+    <img src="/images/telia/kasutajauuring.png" alt="User tests">
+  </button>
+
+  <button class="shot-tile"
+    data-full="/images/telia/slider.gif"
+    data-title="Solution options"
+    data-cap="<p>Solution options</p>
+    <ul>
+      <li>Created initial sketches.</li>
+      <li>Built low-fidelity prototypes.</li>
+      <li>Ran user tests.</li>
+      <li>Iterated to high-fidelity prototypes.</li>
+      <li>Re-tested refined versions.</li>
+    </ul>
+    <p>Navigation options explored</p>
+    <ul>
+      <li>All items visible on one screen in two columns.</li>
+      <li>Scrollable bar.</li>
+      <li>Arrow-based navigation.</li>
+    </ul>">
+    <img src="/images/telia/slider.gif" alt="Solutions">
+  </button>
+
+  <button class="shot-tile"
+    data-full="/images/telia/after_gif.gif"
+    data-title="Solution for factory reset section"
+    data-cap="<p>Cleaner interface for mobile</p>
+    <ul>
+      <li>Image fits the screen fully.</li>
+      <li>Steps are easy to follow with clear hierarchy.</li>
+    </ul>">
+    <img src="/images/telia/after_gif.gif" alt="Solution for restoring factory settings">
+  </button>
+
+  <button class="shot-tile"
+    data-full="/images/telia/vordlus.png"
+    data-title="Navigation outcome"
+    data-cap="<p>Telia adopted a version of this solution</p>
+    <ul>
+      <li>All options are visible at a glance.</li>
+      <li>No extra taps or hidden menus.</li>
+      <li>Simple and easy to understand; avoids hidden scrolls.</li>
+      <li>Left image shows the current Telia app, closely matching my prototype.</li>
+    </ul>">
+    <img src="/images/telia/vordlus.png" alt="Navigation solutions">
+  </button>
+
+</nav>
+
+</aside>
+
+    <!-- Lightbox -->
+    <div class="tokens-lightbox" aria-hidden="true">
+  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+
+    <div class="tokens-lightbox__media">
+      <img class="tokens-lightbox__img" alt="" />
+    </div>
+    <aside class="tokens-lightbox__meta">
+      <h4 class="tokens-lightbox__title"></h4>
+      <div class="tokens-lightbox__cap"></div>
+    </aside>
+  </div>
+</div>
+  </article>
+  
+<script type="module">
+(() => {
+  const scope = document.querySelector('.tokens-case');
+  if (!scope) return;
+
+  const lb       = scope.querySelector('.tokens-lightbox');
+  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
+  const imgEl    = lb.querySelector('.tokens-lightbox__img');
+  const titleEl  = lb.querySelector('.tokens-lightbox__title');
+  const capEl    = lb.querySelector('.tokens-lightbox__cap');
+  const closeBtn = lb.querySelector('.tokens-lightbox__close');
+  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
+
+  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
+  let currentIndex = -1;
+  let lastFocus = null;
+
+  function extractDataFrom(el) {
+    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
+    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
+    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
+    const title = carrier.getAttribute('data-title') || img?.alt || '';
+    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
+    return { src, title, cap };
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const { src, title, cap } = extractDataFrom(tiles[index]);
+    lastFocus = document.activeElement;
+    imgEl.src = src;
+    titleEl.textContent = title;
+    capEl.innerHTML = cap;
+    lb.classList.add('is-open');
+    document.documentElement.classList.add('tokens-lightbox-open');
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.documentElement.classList.remove('tokens-lightbox-open');
+    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function showNext() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex + 1) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  function showPrev() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  scope.addEventListener('click', e => {
+    const tile = e.target.closest('.shot-tile');
+    if (tile) {
+      e.preventDefault();
+      openLightbox(tiles.indexOf(tile));
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+})();
+</script>
+
+</Base>

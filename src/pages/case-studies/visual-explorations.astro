@@ -185,81 +185,120 @@ const title = "Case Study: Visual explorations";
 
 <script type="module">
 (() => {
-  const scope = document.querySelector('.tokens-case');
-  if (!scope) return;
+  function initLightbox() {
+    const scope = document.querySelector('.tokens-case');
+    if (!scope) return;
 
-  const lb       = scope.querySelector('.tokens-lightbox');
-  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
-  const imgEl    = lb.querySelector('.tokens-lightbox__img');
-  const titleEl  = lb.querySelector('.tokens-lightbox__title');
-  const capEl    = lb.querySelector('.tokens-lightbox__cap');
-  const closeBtn = lb.querySelector('.tokens-lightbox__close');
-  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
-  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
+    // Use a single global lightbox; move it to <body> to avoid clipping by Base wrappers
+    let lb = document.querySelector('.tokens-lightbox');
+    if (!lb) return;
 
-  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
-  let currentIndex = -1;
-  let lastFocus = null;
+    if (lb.parentElement !== document.body) {
+      document.body.appendChild(lb); // detach from any clipped container
+    }
 
-  function extractDataFrom(el) {
-    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
-    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
-    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
-    const title = carrier.getAttribute('data-title') || img?.alt || '';
-    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
-    return { src, title, cap };
-  }
+    const dlg      = lb.querySelector('.tokens-lightbox__dialog');
+    const imgEl    = lb.querySelector('.tokens-lightbox__img');
+    const titleEl  = lb.querySelector('.tokens-lightbox__title');
+    const capEl    = lb.querySelector('.tokens-lightbox__cap');
+    const closeBtn = lb.querySelector('.tokens-lightbox__close');
+    const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+    const nextBtn  = lb.querySelector('.tokens-lightbox__next');
 
-  function openLightbox(index) {
-    currentIndex = index;
-    const { src, title, cap } = extractDataFrom(tiles[index]);
-    lastFocus = document.activeElement;
-    imgEl.src = src;
-    titleEl.textContent = title;
-    capEl.innerHTML = cap;
-    lb.classList.add('is-open');
-    document.documentElement.classList.add('tokens-lightbox-open');
-    closeBtn.focus();
-  }
+    const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
+    if (!tiles.length) return;
 
-  function closeLightbox() {
-    lb.classList.remove('is-open');
-    document.documentElement.classList.remove('tokens-lightbox-open');
-    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
+    let currentIndex = -1;
+    let lastFocus = null;
 
-  function showNext() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex + 1) % tiles.length;
-    openLightbox(currentIndex);
-  }
+    const extractDataFrom = (el) => {
+      const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
+      const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
+      const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
+      const title = carrier.getAttribute('data-title') || img?.alt || '';
+      const cap   = carrier.getAttribute('data-cap') || img?.title || '';
+      return { src, title, cap };
+    };
 
-  function showPrev() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-    openLightbox(currentIndex);
-  }
+    const openLightbox = (index) => {
+      currentIndex = index;
+      const { src, title, cap } = extractDataFrom(tiles[index]);
+      lastFocus = document.activeElement;
+      imgEl.src = src;
+      titleEl.textContent = title;
+      capEl.innerHTML = cap;
+      lb.classList.add('is-open');
+      document.documentElement.classList.add('tokens-lightbox-open');
+      closeBtn.focus();
+    };
 
-  scope.addEventListener('click', e => {
-    const tile = e.target.closest('.shot-tile');
-    if (tile) {
+    const closeLightbox = () => {
+      lb.classList.remove('is-open');
+      document.documentElement.classList.remove('tokens-lightbox-open');
+      imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    const showNext = () => {
+      if (currentIndex === -1) return;
+      currentIndex = (currentIndex + 1) % tiles.length;
+      openLightbox(currentIndex);
+    };
+    const showPrev = () => {
+      if (currentIndex === -1) return;
+      currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
+      openLightbox(currentIndex);
+    };
+
+    // Clean previous handlers (in case of hot re-init on astro:page-load)
+    lb.replaceWith(lb.cloneNode(true));
+    lb = document.querySelector('.tokens-lightbox'); // reselect after clone
+    // regrab inner refs
+    const _dlg = lb.querySelector('.tokens-lightbox__dialog');
+    const _closeBtn = lb.querySelector('.tokens-lightbox__close');
+    const _prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+    const _nextBtn  = lb.querySelector('.tokens-lightbox__next');
+
+    // Delegated open on tiles
+    scope.addEventListener('click', (e) => {
+      const tile = e.target.closest('.shot-tile');
+      if (!tile || !scope.contains(tile)) return;
       e.preventDefault();
       openLightbox(tiles.indexOf(tile));
-    }
-  });
+    });
 
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', showPrev);
-  nextBtn.addEventListener('click', showNext);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    _closeBtn.addEventListener('click', closeLightbox);
+    _prevBtn.addEventListener('click', showPrev);
+    _nextBtn.addEventListener('click', showNext);
 
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-  });
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+
+    // Optional: basic swipe
+    let sx = null, sy = null;
+    _dlg.addEventListener('touchstart', (e) => {
+      const t = e.changedTouches[0]; sx = t.clientX; sy = t.clientY;
+    }, { passive: true });
+    _dlg.addEventListener('touchend', (e) => {
+      if (sx == null) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - sx, dy = t.clientY - sy;
+      sx = sy = null;
+      if (Math.abs(dx) > 40 && Math.abs(dy) < 30) (dx < 0 ? showNext : showPrev)();
+    }, { passive: true });
+  }
+
+  // run now and on Astro client-side navigations
+  initLightbox();
+  addEventListener?.('astro:page-load', initLightbox);
 })();
 </script>
 </Base>

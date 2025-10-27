@@ -16135,7 +16135,7 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
     display: flex;
     transform: translateX(-110%);
     transition: transform 0.28s ease;
-    margin-top: 86px;
+    margin-top: 80px;
   }
   #menuMasterToggle:checked ~ .mobile-menu-overlay .thin-sidebar-group {
     transform: translateX(0);
@@ -16422,11 +16422,7 @@ article.container-narrow .doc-main > p.meta {
     font-size: 0.9rem;
   }
 }
-@media (max-width: 768px) {
-  article.container-narrow .doc-main > h1 + p {
-    font-size: 0.88rem;
-  }
-}
+
 /* Base: three columns = brand | nav | theme */
 .site-header .header-inner {
   display: grid;
@@ -16460,4 +16456,13 @@ article.container-narrow .doc-main > p.meta {
   display: inline-flex;
   gap: 6px;
   flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  article.container-narrow .doc-main > h1 + p {
+    font-size: 0.88rem;
+  }
+
+  .site-header .header-inner {
+    grid-template-columns: 1fr;
+  }
 }

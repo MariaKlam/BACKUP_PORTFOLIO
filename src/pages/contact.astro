@@ -2,7 +2,31 @@
 import Base from "../layouts/Base.astro";
 ---
 <Base title="Contact — Maria Klammer">
-  <h1>Contact</h1>
-  <p>Email: <a href="mailto:hello@mariaklammer.com">hello@mariaklammer.com</a></p>
+<div class="about-section">
+  <h1 class="page-title">Contact .</h1>
+  <p>Email: <a href="mailto:mariaklammer.est@gmail.com">mariaklammer.est@gmail.com</a></p>
   <p class="meta">I’m open to Frontend & UX/UI roles.</p>
+
+<!-- Actions -->
+<div class="actions">
+   <a class="btn-cv" href="/cv/Maria_Klammer_cv25.ENG.pdf" target="_blank" rel="noopener">
+    <i class="ri-external-link-line" aria-hidden="true"></i> View CV
+  </a>
+
+   <a class="btn-cv" href="https://www.linkedin.com/in/maria-klammer/" target="_blank" rel="noopener">
+    <i class="ri-linkedin-fill" aria-hidden="true"></i> LinkedIn
+  </a>
+
+  <a class="btn-cv btn--secondary" href="/cv/Maria_Klammer_cv25.ENG.pdf" download>
+    <i class="ri-download-2-line" aria-hidden="true"></i> Download CV
+  </a>
+</div>
+
+
+  </div>
 </Base>
+<style>
+.actions { 
+  margin-top: 40px;
+}
+</style>
