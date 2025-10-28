@@ -16130,7 +16130,7 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
     display: flex;
     transform: translateX(-110%);
     transition: transform 0.28s ease;
-    margin-top: 81px;
+    margin-top: 1px;
   }
   #menuMasterToggle:checked ~ .mobile-menu-overlay .thin-sidebar-group {
     transform: translateX(0);
@@ -16637,6 +16637,8 @@ body.mobile-open {
   transform: translateX(8px);
   transition: opacity 0.18s ease, transform 0.22s ease,
     visibility 0s linear 0.18s, z-index 0s linear 0.18s;
+
+  margin-top: 80px;
 }
 
 /* Normal open (phones) — you probably already have this under a media query */
