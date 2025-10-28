@@ -9,6 +9,50 @@ import "../../styles/nav.css";
       bodyClass="menu--sidebar"                 /* or menu--topnav */
       noWrap={true}                             /* we’ll place things ourselves */
       hideFooter={true}>
+
+<script type="module">
+function wireHamburger() {
+  // prevent duplicate wiring when Astro re-renders
+  if (document.body.dataset.hamburgerWired === "1") return;
+  document.body.dataset.hamburgerWired = "1";
+
+  const overlay = document.querySelector(".mobile-menu-overlay");
+  const trigger = document.querySelector(".master-hamburger-button");
+  if (!overlay || !trigger) return;
+
+  const open = () => {
+    document.body.classList.add("mobile-open");
+    overlay.setAttribute("aria-hidden", "false");
+    trigger.setAttribute("aria-expanded", "true");
+  };
+  const close = () => {
+    document.body.classList.remove("mobile-open");
+    overlay.setAttribute("aria-hidden", "true");
+    trigger.setAttribute("aria-expanded", "false");
+  };
+  const toggle = () =>
+    document.body.classList.contains("mobile-open") ? close() : open();
+
+  // Click + touch (iOS)
+  trigger.addEventListener("click", toggle, { passive: true });
+  trigger.addEventListener("touchend", (e) => { e.preventDefault(); toggle(); }, { passive: false });
+
+  // Tap the dim area to close
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); }, { passive: true });
+
+  // ESC
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+}
+
+// boot on first load
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", wireHamburger);
+} else {
+  wireHamburger();
+}
+// boot again after Astro swaps the page
+addEventListener("astro:page-load", wireHamburger);
+</script>
 <script type="module">
   import { initNavLite } from '/src/scripts/nav-page.ts';   // ← absolute path
   // run on first load

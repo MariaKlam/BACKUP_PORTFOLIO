@@ -16666,3 +16666,46 @@ body.mobile-open {
     background: none !important;
   }
 }
+/* Desktop: keep menu visible (overlay acts as a normal wrapper) */
+.mobile-menu-overlay {
+  display: contents;
+}
+
+/* Mobile turns it into a real sheet */
+@media (max-width: 768px) {
+  .master-menu_mobile-header {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 10002;
+  }
+
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    display: none; /* closed */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.5); /* your backdrop */
+  }
+
+  body.mobile-open .mobile-menu-overlay {
+    display: grid; /* open */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  body.mobile-open {
+    overflow: hidden;
+  } /* lock scroll */
+}
+
+/* Make sure the button is clickable above everything */
+.master-hamburger-button {
+  position: relative;
+  z-index: 10003;
+  touch-action: manipulation;
+}
