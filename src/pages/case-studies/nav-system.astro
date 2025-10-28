@@ -93,15 +93,15 @@ import "../../styles/nav.css";
 <!-- MASTER TOGGLE (mobile) -->
 <input type="checkbox" id="menuMasterToggle" hidden />
 <div class="master-menu_mobile-header">
-  <label for="menuMasterToggle"
-       class="master-hamburger-button"
-       aria-expanded="false">
+  <button type="button"
+          class="master-hamburger-button"
+          aria-expanded="false"
+          aria-controls="mobileMenuSheet">
     <i class="ri-menu-line"></i>
     <i class="ri-close-line"></i>
-  </label>
+  </button>
 </div>
-
-<div class="mobile-menu-overlay">
+<div class="mobile-menu-overlay" id="mobileMenuSheet" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="thin-sidebar-group">
     <!-- Left: Company mini sidebar -->
     <aside class="extra-thin-sidebar company-sidebar">
@@ -315,7 +315,7 @@ import "../../styles/nav.css";
             </button>
         </div>
     </aside>
-  </div>
+
 
   <!-- Main nav (sidebar/topnav switches via body class) -->
   <nav class="menu menu--sidebar" aria-label="Main Navigation">
@@ -409,8 +409,8 @@ import "../../styles/nav.css";
     </div>
   </nav>
 </div>
+  </div>
 
-  <!-- your case study content -->
 <!-- your case study content -->
 <article class="container-narrow doc-grid">
 

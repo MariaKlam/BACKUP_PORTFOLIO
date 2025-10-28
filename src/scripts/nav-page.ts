@@ -180,73 +180,74 @@ function wireCaretOpeners() {
 
 /* ---------- 1) Mobile hamburger → overlay ---------- */
 function wireHamburger() {
-  if ((document.body as any)._navLiteHamburger) return;
-  (document.body as any)._navLiteHamburger = true;
+  if (document.body._navLiteHamburger) return;
+  document.body._navLiteHamburger = true;
 
-  const btn = document.querySelector<HTMLLabelElement>(
-    ".master-menu_mobile-header .master-hamburger-button"
-  );
-  const overlay = document.querySelector<HTMLElement>(".mobile-menu-overlay");
-  if (!btn || !overlay) return;
+  const overlay = document.querySelector(".mobile-menu-overlay");
+  const trigger = document.querySelector(".master-hamburger-button");
+  if (!overlay || !trigger) return;
 
-  let isOpen = () => document.body.classList.contains("mobile-open");
-  const setState = (open: boolean) => {
+  const mq = window.matchMedia("(max-width: 768px)");
+
+  const setState = (open) => {
+    if (!mq.matches) return; // do nothing on desktop
     document.body.classList.toggle("mobile-open", open);
-    btn?.classList.toggle("is-open", open);
-    btn?.setAttribute("aria-expanded", String(open));
+    trigger.classList.toggle("is-open", open);
+    trigger.setAttribute("aria-expanded", String(open));
+    overlay.setAttribute("aria-hidden", String(!open));
+    const cb = document.getElementById("menuMasterToggle");
+    if (cb && cb.checked !== open) cb.checked = open;
   };
 
-  // DEV HELPERS (desktop testing)
-  Object.assign(window as any, {
-    NAV: {
-      open: () => setState(true),
-      close: () => setState(false),
-      toggle: () => setState(!isOpen()),
-      debugOn: () => document.body.classList.add("debug-overlay"),
-      debugOff: () => document.body.classList.remove("debug-overlay"),
-      debugToggle: () => document.body.classList.toggle("debug-overlay"),
-    },
-  }) as any;
+  const close = () => setState(false);
 
-  // Alt+O toggles overlay; Alt+D toggles debug overlay mode (ignores breakpoints)
-  document.addEventListener("keydown", (e) => {
-    if (e.altKey && (e.key === "o" || e.key === "O")) {
-      e.preventDefault();
-      (window as any).NAV.toggle();
-    }
-    if (e.altKey && (e.key === "d" || e.key === "D")) {
-      e.preventDefault();
-      (window as any).NAV.debugToggle();
-    }
-  });
-
-  btn.addEventListener("click", (e) => {
+  const onTrigger = (e) => {
+    const t = e.target.closest(".master-hamburger-button");
+    if (!t || !mq.matches) return;
     e.preventDefault();
     setState(!document.body.classList.contains("mobile-open"));
-  });
+  };
+
+  document.addEventListener("pointerup", onTrigger, { passive: false });
+  document.addEventListener("click", onTrigger, true);
 
   document.addEventListener("keydown", (e) => {
-    if ((e as KeyboardEvent).key === "Escape") setState(false);
+    if (mq.matches && e.key === "Escape") close();
   });
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) setState(false);
-  });
+  overlay.addEventListener(
+    "pointerup",
+    (e) => {
+      if (mq.matches && e.target === overlay) close();
+    },
+    { passive: true }
+  );
 
   document.addEventListener(
-    "click",
+    "pointerup",
     (e) => {
-      if (!document.body.classList.contains("mobile-open")) return;
-      const t = e.target as Element;
+      if (!mq.matches || !document.body.classList.contains("mobile-open"))
+        return;
+      const t = e.target;
       if (
         t.closest(".mobile-menu-overlay") ||
         t.closest(".master-hamburger-button")
       )
         return;
-      setState(false);
+      close();
     },
-    true
+    { capture: true, passive: true }
   );
+
+  // If viewport changes to desktop, force-close sheet and restore scroll
+  mq.addEventListener?.("change", () => {
+    if (!mq.matches) {
+      document.body.classList.remove("mobile-open");
+      trigger.classList.remove("is-open");
+      trigger.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "false");
+    }
+  });
 }
 
 /* ---------- 2) Company submenus (toggle, outside, ESC) ---------- */

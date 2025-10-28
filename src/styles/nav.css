@@ -16130,7 +16130,7 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
     display: flex;
     transform: translateX(-110%);
     transition: transform 0.28s ease;
-    margin-top: 1px;
+    margin-top: 81px;
   }
   #menuMasterToggle:checked ~ .mobile-menu-overlay .thin-sidebar-group {
     transform: translateX(0);
@@ -16591,30 +16591,8 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
   }
 }
 /* CLOSED STATE — overlay must be inert and invisible */
-.mobile-menu-overlay {
-  position: fixed; /* it lives at the top of the stack, so make it inert by default */
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none; /* ← this is the key so it can't eat taps/scroll */
-  z-index: -1; /* out of the way when closed */
-  transform: translateX(8px);
-  transition: opacity 180ms ease, transform 220ms ease,
-    visibility 0s linear 180ms, z-index 0s linear 180ms;
-  /* If you previously had `display: grid` here, REMOVE it (see open state below). */
-}
 
 /* OPEN STATE — only then make it clickable and on top */
-body.mobile-open .mobile-menu-overlay {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  z-index: 10000; /* above header */
-  transform: none;
-  /* put your layout only in the open state */
-  display: grid;
-  grid-template-columns: 56px 56px minmax(0, 1fr); /* L1 | L2 | main sheet */
-}
 
 /* lock page scroll only when open */
 body.mobile-open {
@@ -16626,52 +16604,65 @@ body.mobile-open {
 .site-header {
   z-index: 50;
 }
-/* Closed state stays inert (as you have) */
+/* --- default: nothing special --- */
+.master-menu_mobile-header {
+  display: none;
+} /* hamburger hidden by default */
 .mobile-menu-overlay {
-  position: fixed;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  z-index: -1;
-  transform: translateX(8px);
-  transition: opacity 0.18s ease, transform 0.22s ease,
-    visibility 0s linear 0.18s, z-index 0s linear 0.18s;
+  display: contents;
+} /* render children normally */
 
-  margin-top: 80px;
+/* --- MOBILE ≤ 768px: overlay becomes a sheet --- */
+@media (max-width: 768px) {
+  .master-menu_mobile-header {
+    display: block;
+  }
+
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    display: none; /* closed by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1;
+    background: color-mix(in srgb, var(--bg) 70%, transparent); /* dim */
+    /* 3 columns: company / favorites / main sheet */
+    grid-template-columns: 56px 56px minmax(0, 1fr);
+    gap: 0;
+  }
+
+  body.mobile-open .mobile-menu-overlay {
+    display: grid;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 10000;
+  }
+
+  /* scrolling lock only on mobile */
+  body.mobile-open {
+    overflow: hidden;
+  }
+
+  /* third column scrolls */
+  .mobile-menu-overlay .menu {
+    grid-column: 3;
+    height: 100dvh;
+    overflow: auto;
+  }
 }
 
-/* Normal open (phones) — you probably already have this under a media query */
-body.mobile-open .mobile-menu-overlay {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  z-index: 10000;
-  transform: none;
-  display: grid;
-  grid-template-columns: 56px 56px minmax(0, 1fr);
-}
-
-/* DEV: force overlay layout at ANY width (Alt+D / NAV.debugOn()) */
-body.debug-overlay .mobile-menu-overlay {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  z-index: 10000 !important;
-  transform: none !important;
-  display: grid !important;
-  grid-template-columns: 56px 56px minmax(0, 1fr) !important;
-}
-
-/* Optional: when overlay is open/forced, keep header from intercepting clicks */
-body.mobile-open .site-header,
-body.debug-overlay .site-header {
-  pointer-events: none;
-}
-
-/* Lock page scroll only when actually open (not when closed) */
-body.mobile-open,
-body.debug-overlay {
-  overflow: hidden;
-  touch-action: none;
+/* --- DESKTOP ≥ 769px: overlay is transparent wrapper --- */
+@media (min-width: 769px) {
+  .mobile-menu-overlay {
+    position: static !important;
+    inset: auto !important;
+    display: contents !important; /* children flow as if no wrapper */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: auto !important;
+    background: none !important;
+  }
 }
