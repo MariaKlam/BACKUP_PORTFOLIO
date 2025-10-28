@@ -89,18 +89,6 @@ import "../../styles/nav.css";
   addEventListener?.('astro:page-load', render);
 })();
 </script>
-<script is:inline>
-  (function(){
-    const btn = document.querySelector('.mini-theme-toggle');
-    if(!btn) return;
-    btn.addEventListener('click', () => {
-      const html = document.documentElement;
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      try{ localStorage.setItem('theme', next); }catch{}
-    });
-  })();
-</script>
 
 <!-- MASTER TOGGLE (mobile) -->
 <input type="checkbox" id="menuMasterToggle" hidden />

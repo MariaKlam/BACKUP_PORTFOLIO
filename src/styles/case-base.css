@@ -71,10 +71,6 @@
     position: static;
     order: 1;
   }
-  .tokens-case .doc-main {
-    order: 0;
-    padding-bottom: 40px !important;
-  }
 }
 
 .tokens-case :target {

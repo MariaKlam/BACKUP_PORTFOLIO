@@ -58,19 +58,35 @@ const isActive = (hrefs: string | string[]) => {
   <body class="menu__container has-thin-sidebar has-double-thin-sidebar menu--sidebar"
       style="--card: var(--bg)">
     <header class="site-header">
-      <div class="header-inner">
-        <a class="brand-name" href="/">Maria Klammer</a>
-        <nav class="nav">
-          <a href="/work"    aria-current={isActive(["/work","/case-studies","/projects"]) ? "page" : undefined}>Work</a>
-          <a href="/about"   aria-current={isActive("/about") ? "page" : undefined}>About</a>
-          <a href="/contact" aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
-        </nav>
-        <div class="theme-toggle" role="group" aria-label="Theme">
-          <button type="button" data-theme-btn="light" aria-pressed="true">Light</button>
-          <button type="button" data-theme-btn="dark"  aria-pressed="false">Dark</button>
-        </div>
-      </div>
-    </header>
+  <div class="header-inner">
+    <!-- Brand: icon + text (text visually hidden on mobile) -->
+    <a class="brand" href="/" aria-label="Maria Klammer — Home">
+      <!-- compact, cleaned version of your SVG, uses currentColor -->
+      <svg class="brand-mark" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M8.283 5.453 5.453 8.283l1.063 1.061 1.414-1.414.707.707-1.414 1.414 1.414 1.414 1.414-1.414.707.707-1.414 1.414 1.414 1.414 2.828-2.828zm13 .436-2.666 2.666 2.828 2.828 2.666-2.666a9.64 9.64 0 0 0-1.287-1.541 9.63 9.63 0 0 0-1.541-1.287zM17.203 9.969 6.596 20.576l-.707 3.535 3.535-.707L20.031 12.797zm2.039 6.445-2.828 2.828 1.414 1.414 1.414-1.414.707.707-1.414 1.414 1.414 1.414 1.414-1.414.707.707-1.414 1.414 1.061 1.062 2.83-2.83z"/>
+      </svg>
+      <span class="brand-text">MARIA KLAMMER</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/work"    aria-current={isActive(["/work","/case-studies","/projects"]) ? "page" : undefined}>Work</a>
+      <a href="/about"   aria-current={isActive("/about") ? "page" : undefined}>About</a>
+      <a href="/contact" aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
+    </nav>
+
+    <!-- Desktop: large toggle -->
+    <div class="theme-toggle" role="group" aria-label="Theme">
+      <button type="button" data-theme-btn="light" aria-pressed="true">Light</button>
+      <button type="button" data-theme-btn="dark"  aria-pressed="false">Dark</button>
+    </div>
+
+    <!-- Mobile: mini icon toggle -->
+    <button type="button" class="mini-theme-toggle" data-theme-toggle aria-label="Switch theme">
+      <svg class="icon-sun"  viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.25"/><path d="M12 2.5v2.5M12 19v2.5M4.22 4.22l1.77 1.77M17.99 18l1.78 1.78M2.5 12H5M19 12h2.5M4.22 19.78L6 18M18 6l1.78-1.78"/></g></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 13.25A8.75 8.75 0 0 1 10.75 3 9.75 9.75 0 1 0 21 13.25z" fill="currentColor" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</header>
 
     <!-- main content slot -->
     { noWrap ? <slot /> : <main class="content"><div class="wrap"><slot /></div></main> }

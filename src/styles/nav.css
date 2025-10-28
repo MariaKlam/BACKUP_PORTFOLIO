@@ -4247,7 +4247,6 @@ img {
   }
 
   .theme-toggle {
-    display: none;
     top: 4px;
     right: 10px;
   }
@@ -4286,10 +4285,6 @@ img {
     width: auto;
     display: flex;
     position: static;
-  }
-
-  #toggleSearchMobile:checked ~ .theme-toggle {
-    display: none !important;
   }
 
   #logoHomeDesktop {
@@ -15540,7 +15535,6 @@ article.container-narrow.doc-grid .feature-card {
   /* subtle left accent for scannability */
   position: sticky;
   isolation: isolate; /* ensure ::before sits under content */
-  max-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -16417,6 +16411,11 @@ article.container-narrow .doc-main > p.meta {
   article.container-narrow .doc-main > h1 + p {
     font-size: 0.93rem;
   }
+
+  /* Base header layout */
+  .site-header .header-inner {
+    display: flex;
+  }
 }
 @media (max-width: 992px) {
   article.container-narrow .doc-main > h1 + p {
@@ -16424,40 +16423,6 @@ article.container-narrow .doc-main > p.meta {
   }
 }
 
-/* Base: three columns = brand | nav | theme */
-.site-header .header-inner {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 16px;
-  padding: 8px 12px;
-}
-
-/* Keep the brand from wrapping weirdly */
-.site-header .brand-name {
-  white-space: nowrap;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-/* Nav in the middle: shrinkable + scrollable on overflow */
-.site-header .nav {
-  display: flex;
-  min-width: 0; /* allows the middle column to shrink */
-  overflow-x: auto; /* don’t wrap; scroll horizontally if needed */
-  scrollbar-width: none; /* Firefox: hide scrollbar track */
-}
-
-.site-header .nav::-webkit-scrollbar {
-  display: none;
-}
-
-/* Theme toggle stays small and never wraps */
-.site-header .theme-toggle {
-  display: inline-flex;
-  gap: 6px;
-  flex-shrink: 0;
-}
 @media (max-width: 768px) {
   article.container-narrow .doc-main > h1 + p {
     font-size: 0.88rem;
@@ -16465,5 +16430,163 @@ article.container-narrow .doc-main > p.meta {
 
   .site-header .header-inner {
     grid-template-columns: 1fr;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header .mini-theme-toggle {
+    margin-bottom: 0;
+  }
+}
+
+/*HEADER FIX*/
+
+/* Toggles: desktop large by default */
+header .theme-toggle {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+header .mini-theme-toggle {
+  display: none;
+}
+
+/* ---- Mobile ≤ 640px ---- */
+@media (max-width: 640px) {
+  .site-header .header-inner {
+    column-gap: 8px;
+  }
+
+  .site-header .nav a {
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  /* Icon-only brand on mobile, keep name accessible */
+  .brand-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Tighter center links */
+  .nav {
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  /* Show mini toggle, hide large group */
+  .theme-toggle {
+    display: none !important;
+  }
+
+  header .mini-theme-toggle {
+    display: inline-grid !important;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+  }
+  .mini-theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin-right: 0.8rem;
+  }
+}
+
+/* default: show sun, hide moon */
+header .mini-theme-toggle .icon-sun {
+  display: none;
+}
+header .mini-theme-toggle .icon-moon {
+  display: block;
+}
+
+/* if html has explicit dark theme, swap */
+html[data-theme="dark"] header .mini-theme-toggle .icon-sun {
+  display: block;
+}
+html[data-theme="dark"] header .mini-theme-toggle .icon-moon {
+  display: none;
+}
+
+/* if html has explicit light theme (optional, but keeps intent clear) */
+html[data-theme="light"] header .mini-theme-toggle .icon-sun {
+  display: none;
+}
+html[data-theme="light"] header .mini-theme-toggle .icon-moon {
+  display: block;
+}
+
+html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
+  display: block;
+  color: var(--fg);
+}
+/* Mobile first */
+.site-header .header-inner {
+  display: flex !important; /* override any grid */
+  align-items: center;
+  justify-content: space-between !important; /* ← fixes it */
+  width: 100%;
+  gap: 8px;
+}
+
+/* Middle section stays centered while occupying the middle space */
+.site-header .nav {
+  flex: 1 1 auto; /* takes the middle width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+/* Brand/toggle don’t grow */
+.site-header .brand {
+  flex: 0 0 auto;
+}
+.site-header .mini-theme-toggle,
+.site-header .theme-toggle {
+  flex: 0 0 auto;
+}
+
+.brand {
+  margin-left: 0.8rem;
+}
+
+.header .mini-theme-toggle {
+  margin-right: 0.8rem;
+}
+
+/* Desktop can keep your large toggle */
+@media (min-width: 768px) {
+  .theme-toggle {
+    display: inline-flex;
+  }
+  .mini-theme-toggle {
+    display: none;
+  }
+}
+@media (max-width: 767.98px) {
+  .theme-toggle {
+    display: none !important;
+  }
+  .mini-theme-toggle {
+    display: inline-grid !important;
+    place-items: center;
+    width: 28px;
+    height: 28px;
   }
 }
