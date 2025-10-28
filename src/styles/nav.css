@@ -9984,7 +9984,7 @@ body.layout--column.has-thin-sidebar main {
 }
 
 .has-double-thin-sidebar .menu--topnav {
-  margin-left: 140px !important;
+  margin-left: 144px !important;
 }
 
 body.has-double-thin-sidebar .menu--topnav ~ .extra-thin-sidebar--second {
@@ -15211,7 +15211,7 @@ body.menu--topnav article.container-narrow {
 
 body.menu--topnav nav.menu.menu--topnav {
   position: fixed;
-  margin-top: 48px;
+  margin-top: 54px;
   z-index: 50;
   border-bottom: 1px solid color-mix(in oklab, var(--fg) 8%, transparent);
 }
@@ -15221,12 +15221,17 @@ body.menu--topnav nav.menu.menu--topnav {
   /* Make the topnav span the full width and sit above content */
   body.menu--topnav nav.menu.menu--topnav {
     position: sticky; /* or fixed, if you prefer */
-    margin-top: 90px;
+    margin-top: 0;
     z-index: 50;
     display: flex;
     flex-direction: column;
     padding: 0;
   }
+
+  .has-thin-sidebar .menu--topnav {
+    margin-left: 0 !important;
+  }
+
   /*Menu v3 turn hamburger into close button*/
   .master-hamburger-button i {
     position: absolute;
@@ -16151,12 +16156,12 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
   /* 3) main nav panel (third level) — slide next to the thin sidebars */
   nav.menu.menu--sidebar {
     position: fixed;
-    margin-top: 86px;
+    margin-top: 81px;
     bottom: 0;
     width: min(86vw, 420px);
     transform: translateX(-110%);
     transition: transform 0.28s ease;
-    z-index: 1091; /* above the overlay backdrop */
+    z-index: 1; /* above the overlay backdrop */
     /* make the whole column scroll independently */
     overflow: auto;
   }
@@ -16498,7 +16503,7 @@ header .mini-theme-toggle {
     border: none;
     background-color: transparent;
   }
-  .mini-theme-toggle svg {
+  header .mini-theme-toggle svg {
     width: 18px;
     height: 18px;
     display: block;
@@ -16560,6 +16565,7 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
 .site-header .mini-theme-toggle,
 .site-header .theme-toggle {
   flex: 0 0 auto;
+  margin-right: 0.8rem;
 }
 
 .brand {
@@ -16571,11 +16577,11 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
 }
 
 /* Desktop can keep your large toggle */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .theme-toggle {
     display: inline-flex;
   }
-  .mini-theme-toggle {
+  header .mini-theme-toggle {
     display: none;
   }
 }
@@ -16583,96 +16589,21 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
   .theme-toggle {
     display: none !important;
   }
-  .mini-theme-toggle {
+  header .mini-theme-toggle {
     display: inline-grid !important;
     place-items: center;
     width: 28px;
     height: 28px;
   }
 }
-/* CLOSED STATE — overlay must be inert and invisible */
 
-/* OPEN STATE — only then make it clickable and on top */
-
-/* lock page scroll only when open */
-body.mobile-open {
-  overflow: hidden;
-  touch-action: none; /* iOS rubber-band guard */
-}
-
-/* make sure the site header is below the open overlay */
-.site-header {
-  z-index: 50;
-}
-/* --- default: nothing special --- */
-.master-menu_mobile-header {
-  display: none;
-} /* hamburger hidden by default */
-.mobile-menu-overlay {
-  display: contents;
-} /* render children normally */
-
-/* --- MOBILE ≤ 768px: overlay becomes a sheet --- */
-@media (max-width: 768px) {
-  .master-menu_mobile-header {
-    display: block;
-  }
-
-  .mobile-menu-overlay {
-    position: fixed;
-    inset: 0;
-    display: none; /* closed by default */
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: -1;
-    background: color-mix(in srgb, var(--bg) 70%, transparent); /* dim */
-    /* 3 columns: company / favorites / main sheet */
-    grid-template-columns: 56px 56px minmax(0, 1fr);
-    gap: 0;
-  }
-
-  body.mobile-open .mobile-menu-overlay {
-    display: grid;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    z-index: 10000;
-  }
-
-  /* scrolling lock only on mobile */
-  body.mobile-open {
-    overflow: hidden;
-  }
-
-  /* third column scrolls */
-  .mobile-menu-overlay .menu {
-    grid-column: 3;
-    height: 100dvh;
-    overflow: auto;
-  }
-}
-
-/* --- DESKTOP ≥ 769px: overlay is transparent wrapper --- */
-@media (min-width: 769px) {
-  .mobile-menu-overlay {
-    position: static !important;
-    inset: auto !important;
-    display: contents !important; /* children flow as if no wrapper */
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    z-index: auto !important;
-    background: none !important;
-  }
-}
 /* Desktop: keep menu visible (overlay acts as a normal wrapper) */
 .mobile-menu-overlay {
   display: contents;
 }
 
 /* Mobile turns it into a real sheet */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .master-menu_mobile-header {
     display: block;
     position: sticky;
@@ -16688,7 +16619,7 @@ body.mobile-open {
     visibility: hidden;
     pointer-events: none;
     z-index: 10001;
-    background: rgba(0, 0, 0, 0.5); /* your backdrop */
+    background: transparent;
   }
 
   body.mobile-open .mobile-menu-overlay {
@@ -16701,6 +16632,10 @@ body.mobile-open {
   body.mobile-open {
     overflow: hidden;
   } /* lock scroll */
+
+  body.menu--topnav article.container-narrow {
+    padding-top: 0px;
+  }
 }
 
 /* Make sure the button is clickable above everything */
@@ -16708,4 +16643,73 @@ body.mobile-open {
   position: relative;
   z-index: 10003;
   touch-action: manipulation;
+}
+
+.mr-0_8 {
+  margin-right: 0.8rem;
+}
+
+/* ---------- TABLET (769–1138px) ---------- */
+@media (min-width: 769px) and (max-width: 1138px) {
+  /* make sidebars and center scale nicely together */
+  .thin-sidebar-group {
+    display: flex;
+    width: 100%;
+  }
+  .extra-thin-sidebar {
+    width: 56px;
+  }
+  .extra-thin-sidebar--second {
+    width: 56px;
+  }
+  .menu.menu--sidebar {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .menu--topnav .doc-main {
+    margin-left: 190px;
+    margin-top: 40px;
+  }
+
+  /* adjust heading size / spacing */
+  .menu__title {
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .has-thin-sidebar .menu--topnav .menu__title {
+    text-wrap: wrap;
+  }
+
+  body.menu--topnav article.container-narrow {
+    padding-top: 0px;
+  }
+
+  /* hide mobile hamburger but keep large toggle */
+  .master-menu_mobile-header {
+    display: none;
+  }
+
+  /* if your topnav view activates around here */
+  body.menu--topnav .menu__center {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0rem;
+  }
+
+  .menu__title {
+    white-space: wrap;
+  }
+
+  body.has-thin-sidebar .site-header {
+    margin-left: 144px;
+  }
+}
+@media (max-width: 785px) {
+  body.has-thin-sidebar .site-header {
+    margin-left: 0;
+  }
 }

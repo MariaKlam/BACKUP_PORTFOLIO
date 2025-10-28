@@ -52,7 +52,6 @@ export function initNavLite() {
   ready(() => {
     wireLayoutToggle();
     wireCaretOpeners();
-    wireHamburger();
     wireCompanySubmenus();
     wireSupportPanel();
     wireCompanySearch();

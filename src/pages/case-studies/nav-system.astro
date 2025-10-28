@@ -11,6 +11,14 @@ import "../../styles/nav.css";
       hideFooter={true}>
 
 <script type="module">
+  import { initNavLite } from '/src/scripts/nav-page.ts';   // ← absolute path
+  // run on first load
+  initNavLite();
+  // also run when Astro swaps pages client-side
+  addEventListener('astro:page-load', initNavLite);
+</script>
+
+<script type="module">
 function wireHamburger() {
   // prevent duplicate wiring when Astro re-renders
   if (document.body.dataset.hamburgerWired === "1") return;
@@ -437,7 +445,7 @@ addEventListener("astro:page-load", wireHamburger);
         <span class="text-green">v.</span><span class="text-green">1.0.0</span>
       </label>
       <label class="menu__item name-initial"><span id="userInitials">MK</span></label>
-      <div class="flex-col">
+      <div class="flex-col mr-0_8">
         <span class="company-name" title="Demo Company">Demo Company</span>
         <span class="sidebar-label" id="selectedLocation">142242425</span>
       </div>
