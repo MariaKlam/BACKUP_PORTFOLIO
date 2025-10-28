@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import "../../styles/nav.css";
 
 
+
 ---
 
 <Base title="Case Study: Unified Navigation (Private)"
@@ -10,11 +11,9 @@ import "../../styles/nav.css";
       noWrap={true}                             /* we’ll place things ourselves */
       hideFooter={true}>
 
-<script type="module">
-  import { initNavLite } from '/src/scripts/nav-page.ts';   // ← absolute path
-  // run on first load
+<script>
+  import { initNavLite } from '../../scripts/nav-page.ts'; // ← relative
   initNavLite();
-  // also run when Astro swaps pages client-side
   addEventListener('astro:page-load', initNavLite);
 </script>
 
@@ -61,14 +60,6 @@ if (document.readyState === "loading") {
 // boot again after Astro swaps the page
 addEventListener("astro:page-load", wireHamburger);
 </script>
-<script type="module">
-  import { initNavLite } from '/src/scripts/nav-page.ts';   // ← absolute path
-  // run on first load
-  initNavLite();
-  // also run when Astro swaps pages client-side
-  addEventListener('astro:page-load', initNavLite);
-</script>
-
 
 <script type="module">
 (() => {
