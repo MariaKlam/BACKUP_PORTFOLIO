@@ -11,7 +11,7 @@ import "../../styles/nav.css";
       noWrap={true}                             /* we’ll place things ourselves */
       hideFooter={true}>
 
-<script>
+<script type="module">
   import { initNavLite } from '../../scripts/nav-page.ts'; // ← relative
   initNavLite();
   addEventListener('astro:page-load', initNavLite);
