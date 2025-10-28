@@ -16130,7 +16130,7 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
     display: flex;
     transform: translateX(-110%);
     transition: transform 0.28s ease;
-    margin-top: 80px;
+    margin-top: 81px;
   }
   #menuMasterToggle:checked ~ .mobile-menu-overlay .thin-sidebar-group {
     transform: translateX(0);
@@ -16589,4 +16589,40 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
     width: 28px;
     height: 28px;
   }
+}
+/* CLOSED STATE — overlay must be inert and invisible */
+.mobile-menu-overlay {
+  position: fixed; /* it lives at the top of the stack, so make it inert by default */
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* ← this is the key so it can't eat taps/scroll */
+  z-index: -1; /* out of the way when closed */
+  transform: translateX(8px);
+  transition: opacity 180ms ease, transform 220ms ease,
+    visibility 0s linear 180ms, z-index 0s linear 180ms;
+  /* If you previously had `display: grid` here, REMOVE it (see open state below). */
+}
+
+/* OPEN STATE — only then make it clickable and on top */
+body.mobile-open .mobile-menu-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 10000; /* above header */
+  transform: none;
+  /* put your layout only in the open state */
+  display: grid;
+  grid-template-columns: 56px 56px minmax(0, 1fr); /* L1 | L2 | main sheet */
+}
+
+/* lock page scroll only when open */
+body.mobile-open {
+  overflow: hidden;
+  touch-action: none; /* iOS rubber-band guard */
+}
+
+/* make sure the site header is below the open overlay */
+.site-header {
+  z-index: 50;
 }
