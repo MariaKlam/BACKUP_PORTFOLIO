@@ -16626,3 +16626,50 @@ body.mobile-open {
 .site-header {
   z-index: 50;
 }
+/* Closed state stays inert (as you have) */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+  transform: translateX(8px);
+  transition: opacity 0.18s ease, transform 0.22s ease,
+    visibility 0s linear 0.18s, z-index 0s linear 0.18s;
+}
+
+/* Normal open (phones) — you probably already have this under a media query */
+body.mobile-open .mobile-menu-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 10000;
+  transform: none;
+  display: grid;
+  grid-template-columns: 56px 56px minmax(0, 1fr);
+}
+
+/* DEV: force overlay layout at ANY width (Alt+D / NAV.debugOn()) */
+body.debug-overlay .mobile-menu-overlay {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+  transform: none !important;
+  display: grid !important;
+  grid-template-columns: 56px 56px minmax(0, 1fr) !important;
+}
+
+/* Optional: when overlay is open/forced, keep header from intercepting clicks */
+body.mobile-open .site-header,
+body.debug-overlay .site-header {
+  pointer-events: none;
+}
+
+/* Lock page scroll only when actually open (not when closed) */
+body.mobile-open,
+body.debug-overlay {
+  overflow: hidden;
+  touch-action: none;
+}

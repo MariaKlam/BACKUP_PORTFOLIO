@@ -189,11 +189,36 @@ function wireHamburger() {
   const overlay = document.querySelector<HTMLElement>(".mobile-menu-overlay");
   if (!btn || !overlay) return;
 
+  let isOpen = () => document.body.classList.contains("mobile-open");
   const setState = (open: boolean) => {
     document.body.classList.toggle("mobile-open", open);
-    btn.classList.toggle("is-open", open);
-    btn.setAttribute("aria-expanded", String(open));
+    btn?.classList.toggle("is-open", open);
+    btn?.setAttribute("aria-expanded", String(open));
   };
+
+  // DEV HELPERS (desktop testing)
+  Object.assign(window as any, {
+    NAV: {
+      open: () => setState(true),
+      close: () => setState(false),
+      toggle: () => setState(!isOpen()),
+      debugOn: () => document.body.classList.add("debug-overlay"),
+      debugOff: () => document.body.classList.remove("debug-overlay"),
+      debugToggle: () => document.body.classList.toggle("debug-overlay"),
+    },
+  }) as any;
+
+  // Alt+O toggles overlay; Alt+D toggles debug overlay mode (ignores breakpoints)
+  document.addEventListener("keydown", (e) => {
+    if (e.altKey && (e.key === "o" || e.key === "O")) {
+      e.preventDefault();
+      (window as any).NAV.toggle();
+    }
+    if (e.altKey && (e.key === "d" || e.key === "D")) {
+      e.preventDefault();
+      (window as any).NAV.debugToggle();
+    }
+  });
 
   btn.addEventListener("click", (e) => {
     e.preventDefault();
