@@ -8817,7 +8817,6 @@ body:has(.menu__case) .container-flex {
   flex-wrap: wrap;
   padding: 0.2rem 0.8rem;
   width: 100%;
-  border-bottom: 1px solid color-mix(in oklab, var(--fg) 8%, transparent);
 }
 
 .menu--topnav .menu__group {
@@ -15004,8 +15003,8 @@ body.menu--sidebar article.container-narrow {
 /* Topnav mode: center the article like a normal page */
 body.menu--topnav article.container-narrow {
   margin: 24px auto 96px;
-  padding-top: 8px;
-  padding-bottom: 64px;
+  padding-top: 48px;
+  padding-bottom: 24px;
 }
 
 /* =========================
@@ -15047,8 +15046,9 @@ article.container-narrow li {
 /* Make the demo controls breathe a bit and stick to the column rhythm */
 article.container-narrow .demo-controls {
   display: flex;
-  gap: 10px;
   margin: 24px 0 8px;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* =========================
@@ -15215,9 +15215,10 @@ body.menu--topnav article.container-narrow {
 }
 
 body.menu--topnav nav.menu.menu--topnav {
-  position: sticky; /* or fixed, if you prefer */
-  margin-top: 0;
+  position: fixed;
+  margin-top: 48px;
   z-index: 50;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 8%, transparent);
 }
 
 /* Mobile-only behaviour */

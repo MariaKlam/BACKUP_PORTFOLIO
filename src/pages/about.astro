@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 <Base title="About — Maria Klammer">
 <div class="flex about-section">
 
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100" height="100" viewBox="0 0 30 30" version="1.1" id="svg822" inkscape:version="0.92.4 (f8dce91, 2019-08-02)" sodipodi:docname="design.svg">
+<svg class="ruler-logo" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100" height="100" viewBox="0 0 30 30" version="1.1" id="svg822" inkscape:version="0.92.4 (f8dce91, 2019-08-02)" sodipodi:docname="design.svg">
   <defs id="defs816">
     <inkscape:path-effect only_selected="false" apply_with_weight="true" apply_no_weight="true" helper_size="0" steps="2" weight="33.333333" is_visible="true" id="path-effect1025" effect="bspline"/>
     <inkscape:path-effect only_selected="false" apply_with_weight="true" apply_no_weight="true" helper_size="0" steps="2" weight="33.333333" is_visible="true" id="path-effect1021" effect="bspline"/>
@@ -101,7 +101,7 @@ import Base from "../layouts/Base.astro";
 
 </svg>
 
-<style>
+<style is:global>
 body.dark-mode,
 html[data-theme="dark"] {
   --blue-clr: #7ad0ff;
@@ -125,5 +125,14 @@ html[data-theme="dark"] {
   margin: 0;
   font-weight: 600;
 }
+
+@media (max-width: 1100px) {
+  .about-avatar,
+  .ruler-logo {
+    display: none;
+  }
+}
+
+
 
 </style>

@@ -1,74 +1,77 @@
 ---
 import Base from "../../layouts/Base.astro";
-import "../../styles/case-base.css";   
+import "../../styles/case-base.css";
 
 const title = "Case Study: Visual explorations";
 ---
 <Base title={title} noWrap={false} hideFooter={false}>
+  
 
   <article class="container-narrow doc-grid tokens-case">
     <div class="doc-main">
-    <header class="case-hero">
-    <h1>Graphic Design</h1>
-    <p class="meta">Visual Communication • Illustration • Art Direction • 2013–2025</p>
-    <p class="lede">
-      My background in fine arts (BA, Estonian Academy of Arts) has deeply shaped how I approach design - 
-      composition, rhythm, and emotion are as important to me as structure, usability, and clarity. 
-    </p>
-  </header>
-      
-      <!-- Featured visual -->
+
       <section class="hero-vertical" aria-label="Featured previews">
         <button class="shot-tile ar-21x9"
-          data-full="/images/visual/purgid-up.png"
-          data-title="Poster Design"
-          data-cap="<p><strong>Exploring contrast and composition.</strong></p>
+          data-full="/images/visual/kompa.jpg"
+          data-title="Visual Composition"
+          data-cap="
           <ul>
-            <li>Balancing type and illustration to communicate emotion.</li>
-            <li>Experimentation with hierarchy and asymmetry.</li>
-            <li>Combining analog texture with digital precision.</li>
+            <li>Abstract form and rhythm to create visual flow.</li>
+            <li>Study of repetition and focal hierarchy.</li>
+            <li>Merging design system logic with artistic texture.</li>
           </ul>">
-          <img loading="lazy" src="/images/visual/purgid-up.png" alt="Poster design composition study">
+          <img loading="lazy" src="/images/visual/kompa.jpg" alt="Visual composition exploration">
         </button>
       </section>
-      
+
+      <header class="case-hero mt-header">
+    <h1>Visual explorations</h1>
+    <p class="meta">Graphic Design • Illustration • Art Direction • 2013–2025</p>
+    <p class="lede">
+      These illustrations are part of an ongoing exploration of composition, rhythm, and atmosphere - principles that also guide my work in UX and UI. I combine traditional techniques with digital tools to create expressive, balanced visuals that merge artistic intuition with design structure.
+    </p>
+  </header>
+
       <section id="s-context">
         <h2>Context & Purpose</h2>
         <p>
-          My graphic design work moves across mediums: from posters and campaigns to brand identity and editorial layouts. I combine visual storytelling and typographic precision to create memorable, functional, and human-centered design.
+          Illustration has always been part of how I think and design. My education in fine arts gave me a foundation in composition, light, and storytelling - 
+          skills that translate directly into product design and interface clarity. These explorations help me maintain an emotional and narrative sensibility 
+          within structured, system-driven work.
         </p>
       </section>
 
       <section id="s-approach">
         <h2>Approach</h2>
         <ul>
-          <li>Research-driven visual storytelling — understanding the subject before defining the aesthetic.</li>
-          <li>Using typography, color, and imagery to convey rhythm and meaning.</li>
-          <li>Combining traditional illustration methods with vector graphics and digital layout tools.</li>
-          <li>Designing compositions that guide attention and evoke mood, while maintaining functional clarity.</li>
+          <li>Composition - if I do illustration for a project I think where to put text right away.</li>
+          <li>Experimenting with mixed media - from ink and graphite to 3D renders and vector layers.</li>
+          <li>Focusing on composition, movement, and focal points to communicate emotion.</li>
+          <li>Adapting illustration methods to digital product contexts: icons, hero imagery, and editorial visuals.</li>
+          <li>Integrating storytelling and atmosphere into structured layouts and UI patterns.</li>
         </ul>
       </section>
 
       <section id="s-outcomes">
         <h2>Outcomes</h2>
         <ul>
-          <li>Developed a cohesive visual voice across multiple projects and media.</li>
-          <li>Created visual systems that balance artistic expression with communication goals.</li>
-          <li>Refined understanding of how emotional tone supports brand and interface experiences.</li>
+          <li>Developed a personal visual language that connects artistic intuition with interface design principles.</li>
+          <li>Improved understanding of rhythm, spacing, and balance — directly influencing my UI layout work.</li>
+          <li>Created cohesive visual systems for campaigns and digital experiences through illustration.</li>
         </ul>
       </section>
 
       <section id="s-role">
-        <h2>My Role</h2>
+        <h2>My Background</h2>
         <ul>
-          <li>Concept creation and art direction from sketch to final layout.</li>
-          <li>Illustration, typography, and composition for campaign and identity projects.</li>
-          <li>Experimentation with analog and digital workflows for unique textures and depth.</li>
-          <li>Bridging traditional visual design with UX principles and system thinking.</li>
+          <li>Bachelor of Arts in Fine Arts — Estonian Academy of Arts.</li>
+          <li>Professional experience across art direction, illustration, and interface design.</li>
+          <li>Bridging artistic craft with structured design systems in UX/UI environments.</li>
+          <li>Continuous exploration of how emotional tone and aesthetics can support usability and clarity.</li>
         </ul>
       </section>
 
-      <p class="flex-col">
+       <p class="flex-col">
         <a class="btn link-btn" href="/case-studies/nav-system">
           <span class="btn-label">Check a demo of unified navigation menu</span>
           <i class="ri-arrow-right-line"></i>
@@ -80,91 +83,123 @@ const title = "Case Study: Visual explorations";
       </p>
     </div>
 
-    <!-- RIGHT: Visual panels / works ------------------------------->
     <aside class="doc-aside feature-card">
       <nav class="shots-grid" aria-label="Visual gallery">
         <button class="shot-tile"
-          data-full="/images/visual/typesetter2.png"
-          data-title="Typography Study"
-          data-cap="<p>Balancing hierarchy and visual rhythm.</p>
-          <ul>
-            <li>Exploring typographic relationships through composition.</li>
-            <li>Using grid and space to emphasize message and tone.</li>
-          </ul>">
-          <img src="/images/visual/typesetter2.png" alt="Typography composition study">
+          data-full="/images/visual/supernoova.png"
+          data-title="Poster for Supernoova Fashion Show"
+          data-cap="<p>Digital illustration. Supernoova as an outer-space goddess representing the show’s galactic theme.</p>">
+          <img src="/images/visual/supernoova.png" alt="Poster: Supernoova fashion show — outer-space goddess illustration">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/beauty.png"
-          data-title="Campaign Visual"
-          data-cap="<p>Illustration and typography merged for editorial communication.</p>">
-          <img src="/images/visual/beauty.png" alt="Campaign visual design">
+          data-full="/images/visual/gif1.gif"
+          data-title="Creative JavaScript Composition"
+          data-cap="<p>Creative coding experiment in pure JavaScript — exploring composition, rhythm, and minimal, expressive motion.</p>">
+          <img src="/images/visual/gif1.gif" alt="Abstract grid animation created with JavaScript">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/kell.png"
-          data-title="Poster Series"
-          data-cap="<p>Exploring time and repetition through minimalist design.</p>">
-          <img src="/images/visual/kell.png" alt="Poster series — minimalist approach">
+          data-full="/images/visual/divein.jpg"
+          data-title="Dive In"
+          data-cap="<p>Digitized traditional ink illustration.</p>">
+          <img src="/images/visual/divein.jpg" alt="Ink illustration titled ‘Dive In’">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/typesetter1.png"
-          data-title="Editorial Design"
-          data-cap="<p>Layout experiment combining text and illustration.</p>">
-          <img src="/images/visual/typesetter1.png" alt="Editorial design layout">
+          data-full="/images/visual/metskits.jpg"
+          data-title="Autumn Is Coming"
+          data-cap="<p>Digitized traditional ink illustration, composed to work with a text block on the left.</p>">
+          <img src="/images/visual/metskits.jpg" alt="Autumn is coming — ink illustration">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/king-toss.png"
-          data-title="Concept Poster"
-          data-cap="<p>Balancing surreal imagery with bold typography.</p>">
-          <img src="/images/visual/king-toss.png" alt="Concept poster artwork">
+          data-full="/images/visual/trapped.jpg"
+          data-title="Trapped"
+          data-cap="<p>Digitized traditional ink illustration. A composition study exploring confinement and perspective.</p>">
+          <img src="/images/visual/trapped.jpg" alt="Trapped — composition study in ink">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/torn.png"
-          data-title="Print Composition"
-          data-cap="<p>Collage-based narrative composition.</p>">
-          <img src="/images/visual/torn.png" alt="Print composition experiment">
+          data-full="/images/visual/trapped_pattern.jpg"
+          data-title="Pattern Composition"
+          data-cap="<p>Repetition study based on <em>Trapped</em> — exploring rhythm, balance, and structure at scale.</p>">
+          <img src="/images/visual/trapped_pattern.jpg" alt="Pattern derived from Trapped illustration">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/purgid.png"
-          data-title="Packaging Concept"
-          data-cap="<p>Exploring 3D form and material through digital mockups.</p>">
-          <img src="/images/visual/purgid.png" alt="Packaging concept">
+          data-full="/images/visual/tartu.jpg"
+          data-title="Poster Composition"
+          data-cap="<p>Event poster illustration. Composition and visual hierarchy designed with text placement from the start.</p>">
+          <img src="/images/visual/tartu.jpg" alt="Event poster — composition with integrated typography">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/viru-hotell.jpg"
-          data-title="Brand Poster"
-          data-cap="<p>Homage to modernist graphic design and architectural heritage.</p>">
-          <img src="/images/visual/viru-hotell.jpg" alt="Viru Hotel poster design">
+          data-full="/images/visual/unblock.jpg"
+          data-title="Poster Composition"
+          data-cap="<p>Poster illustration. Balancing hand-drawn forms with typographic structure to create rhythm and hierarchy.</p>">
+          <img src="/images/visual/unblock.jpg" alt="Poster illustration — image and type hierarchy">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/imepuu.png"
-          data-title="Illustrated Poster"
-          data-cap="<p>Symbolic narrative expressed through stylized forms.</p>">
-          <img src="/images/visual/imepuu.png" alt="Illustrated symbolic poster">
+          data-full="/images/visual/tekhnasia.jpg"
+          data-title="Poster Composition"
+          data-cap="<p>Poster illustration. Composition and type integration studied together for balanced storytelling.</p>">
+          <img src="/images/visual/tekhnasia.jpg" alt="Event poster — composition and typography integration">
         </button>
 
         <button class="shot-tile"
-          data-full="/images/visual/Lagom2.png"
-          data-title="Minimal Composition"
-          data-cap="<p>Study of Scandinavian simplicity and visual calm.</p>">
-          <img src="/images/visual/Lagom2.png" alt="Minimal graphic composition">
+          data-full="/images/visual/dnbb.jpg"
+          data-title="Music & Form"
+          data-cap="<p>Poster illustration exploring movement, rhythm, and composition with integrated typography.</p>">
+          <img src="/images/visual/dnbb.jpg" alt="Music-inspired poster — dynamic composition with type">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/TTT1.jpg"
+          data-title="Music & Form"
+          data-cap="<p>Event poster illustration. Dynamic composition and how illustrated forms interact with type layout.</p>">
+          <img src="/images/visual/TTT1.jpg" alt="Event poster — dynamic composition interacting with typography">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/spring.jpg"
+          data-title="Spring"
+          data-cap="<p>Digitized ink illustration.</p>">
+          <img src="/images/visual/spring.jpg" alt="Spring — ink illustration">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/armada.jpg"
+          data-title="CD Cover (2012)"
+          data-cap="<p>Dynamic composition inspired by movement and sound. CD cover for Armada (Raun Juurikas, Peedu Kass, Andre Maaker).</p>">
+          <img src="/images/visual/armada.jpg" alt="CD cover — dynamic composition">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/hoone.jpg"
+          data-title="Ministry of Defence"
+          data-cap="<p>Illustration of the Ministry of Defence building at Sakala 1/3, Tallinn.</p>">
+          <img src="/images/visual/hoone.jpg" alt="Ministry of Defence building — illustration">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/vinni.png"
+          data-title="Vinni Municipality"
+          data-cap="<p>Illustrated sightseeing map for Vinni municipality.</p>">
+          <img src="/images/visual/vinni.png" alt="Illustrated sightseeing map — Vinni municipality">
+        </button>
+
+        <button class="shot-tile"
+          data-full="/images/visual/koos.jpg"
+          data-title="Koos.io"
+          data-cap="<p>Traditional watercolor illustration created as a corporate gift.</p>">
+          <img src="/images/visual/koos.jpg" alt="Watercolor illustration titled ‘Koos’">
         </button>
       </nav>
     </aside>
 
-        
-
-        
-
-    <!-- Lightweight lightbox (scoped to .tokens-case) -->
-    <!-- Lightweight lightbox (scoped to .tokens-case) -->
+<!-- Lightweight lightbox (scoped to .tokens-case) -->
 <div class="tokens-lightbox" aria-hidden="true">
   <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
     <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
@@ -181,124 +216,109 @@ const title = "Case Study: Visual explorations";
   </div>
 </div>
   </article>
-
-
+  
 <script type="module">
 (() => {
-  function initLightbox() {
-    const scope = document.querySelector('.tokens-case');
-    if (!scope) return;
+  const scope = document.querySelector('.tokens-case');
+  if (!scope) return;
 
-    // Use a single global lightbox; move it to <body> to avoid clipping by Base wrappers
-    let lb = document.querySelector('.tokens-lightbox');
-    if (!lb) return;
+  const lb       = scope.querySelector('.tokens-lightbox');
+  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
+  const imgEl    = lb.querySelector('.tokens-lightbox__img');
+  const titleEl  = lb.querySelector('.tokens-lightbox__title');
+  const capEl    = lb.querySelector('.tokens-lightbox__cap');
+  const closeBtn = lb.querySelector('.tokens-lightbox__close');
+  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
 
-    if (lb.parentElement !== document.body) {
-      document.body.appendChild(lb); // detach from any clipped container
-    }
+  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
+  let currentIndex = -1;
+  let lastFocus = null;
 
-    const dlg      = lb.querySelector('.tokens-lightbox__dialog');
-    const imgEl    = lb.querySelector('.tokens-lightbox__img');
-    const titleEl  = lb.querySelector('.tokens-lightbox__title');
-    const capEl    = lb.querySelector('.tokens-lightbox__cap');
-    const closeBtn = lb.querySelector('.tokens-lightbox__close');
-    const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
-    const nextBtn  = lb.querySelector('.tokens-lightbox__next');
-
-    const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
-    if (!tiles.length) return;
-
-    let currentIndex = -1;
-    let lastFocus = null;
-
-    const extractDataFrom = (el) => {
-      const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
-      const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
-      const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
-      const title = carrier.getAttribute('data-title') || img?.alt || '';
-      const cap   = carrier.getAttribute('data-cap') || img?.title || '';
-      return { src, title, cap };
-    };
-
-    const openLightbox = (index) => {
-      currentIndex = index;
-      const { src, title, cap } = extractDataFrom(tiles[index]);
-      lastFocus = document.activeElement;
-      imgEl.src = src;
-      titleEl.textContent = title;
-      capEl.innerHTML = cap;
-      lb.classList.add('is-open');
-      document.documentElement.classList.add('tokens-lightbox-open');
-      closeBtn.focus();
-    };
-
-    const closeLightbox = () => {
-      lb.classList.remove('is-open');
-      document.documentElement.classList.remove('tokens-lightbox-open');
-      imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    };
-
-    const showNext = () => {
-      if (currentIndex === -1) return;
-      currentIndex = (currentIndex + 1) % tiles.length;
-      openLightbox(currentIndex);
-    };
-    const showPrev = () => {
-      if (currentIndex === -1) return;
-      currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-      openLightbox(currentIndex);
-    };
-
-    // Clean previous handlers (in case of hot re-init on astro:page-load)
-    lb.replaceWith(lb.cloneNode(true));
-    lb = document.querySelector('.tokens-lightbox'); // reselect after clone
-    // regrab inner refs
-    const _dlg = lb.querySelector('.tokens-lightbox__dialog');
-    const _closeBtn = lb.querySelector('.tokens-lightbox__close');
-    const _prevBtn  = lb.querySelector('.tokens-lightbox__prev');
-    const _nextBtn  = lb.querySelector('.tokens-lightbox__next');
-
-    // Delegated open on tiles
-    scope.addEventListener('click', (e) => {
-      const tile = e.target.closest('.shot-tile');
-      if (!tile || !scope.contains(tile)) return;
-      e.preventDefault();
-      openLightbox(tiles.indexOf(tile));
-    });
-
-    _closeBtn.addEventListener('click', closeLightbox);
-    _prevBtn.addEventListener('click', showPrev);
-    _nextBtn.addEventListener('click', showNext);
-
-    lb.addEventListener('click', (e) => {
-      if (e.target === lb) closeLightbox();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (!lb.classList.contains('is-open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
-    });
-
-    // Optional: basic swipe
-    let sx = null, sy = null;
-    _dlg.addEventListener('touchstart', (e) => {
-      const t = e.changedTouches[0]; sx = t.clientX; sy = t.clientY;
-    }, { passive: true });
-    _dlg.addEventListener('touchend', (e) => {
-      if (sx == null) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - sx, dy = t.clientY - sy;
-      sx = sy = null;
-      if (Math.abs(dx) > 40 && Math.abs(dy) < 30) (dx < 0 ? showNext : showPrev)();
-    }, { passive: true });
+  function extractDataFrom(el) {
+    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
+    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
+    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
+    const title = carrier.getAttribute('data-title') || img?.alt || '';
+    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
+    return { src, title, cap };
   }
 
-  // run now and on Astro client-side navigations
-  initLightbox();
-  addEventListener?.('astro:page-load', initLightbox);
+  function openLightbox(index) {
+    currentIndex = index;
+    const { src, title, cap } = extractDataFrom(tiles[index]);
+    lastFocus = document.activeElement;
+    imgEl.src = src;
+    titleEl.textContent = title;
+    capEl.innerHTML = cap;
+    lb.classList.add('is-open');
+    document.documentElement.classList.add('tokens-lightbox-open');
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.documentElement.classList.remove('tokens-lightbox-open');
+    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function showNext() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex + 1) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  function showPrev() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  scope.addEventListener('click', e => {
+    const tile = e.target.closest('.shot-tile');
+    if (tile) {
+      e.preventDefault();
+      openLightbox(tiles.indexOf(tile));
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
 })();
 </script>
+
 </Base>
+<style is:global>
+  .hero-vertical {
+    margin-top: 40px;
+  }
+
+  .feature-card {
+  position: sticky;
+  top: clamp(50px, 8vh, 90px) !important;
+  height: fit-content;
+  box-shadow: none;
+  padding: 40px 10px;
+}
+
+.ar-21x9 {
+  aspect-ratio: 21 / 9; /* consistent height across all hero images */
+  display: block;
+}
+
+.ar-21x9 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

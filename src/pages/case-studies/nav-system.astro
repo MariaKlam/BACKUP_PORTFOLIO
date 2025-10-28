@@ -40,8 +40,13 @@ import "../../styles/nav.css";
       btn.classList.toggle('is-favorite', isFav);
       btn.setAttribute('aria-pressed', String(isFav));
       btn.title = isFav ? 'Remove from favorites' : 'Add to favorites';
-      // swap icons (use whatever your filled name is)
-      btn.innerHTML = isFav ? '<i class="ri-star-fill"></i>' : '<i class="ri-star-line"></i>';
+
+      // Only swap icon HTML for the icon variant.
+      // If the button has data-keep-label, leave its label as-is.
+      const keepLabel = btn.hasAttribute('data-keep-label');
+      if (!keepLabel) {
+        btn.innerHTML = isFav ? '<i class="ri-star-fill"></i>' : '<i class="ri-star-line"></i>';
+      }
     });
 
     // Rebuild favorites list
@@ -450,10 +455,18 @@ import "../../styles/nav.css";
     </ul>
 
     <div class="demo-controls">
-  <button class="btn" data-toggle-menu>Toggle: Sidebar / Topnav</button>
-</div>
-
-   
+      <button class="btn" data-toggle-menu>Toggle: Sidebar / Topnav</button>
+      <form method="post" class="toggleFavoriteForm">
+        <button
+          type="submit"
+          aria-label="Toggle favorite"
+          class="btn favorite-toggle-button"
+          data-keep-label
+        >
+          Toggle favorite apps
+        </button>
+      </form>
+    </div>
   </div>
 
   <aside class="doc-aside feature-card">
@@ -499,4 +512,11 @@ import "../../styles/nav.css";
 
 </Base>
 
+<style is:global>
+  body[data-page="nav-system"] .site-footer { display: none !important; }
 
+  /* Prevent double top border when menu is directly under the header */
+.site-header + .menu--topnav {
+  border-top: none !important;
+}
+</style>

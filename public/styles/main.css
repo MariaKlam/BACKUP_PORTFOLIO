@@ -721,3 +721,55 @@ html[data-theme="dark"] {
 .tokens-lightbox-open body {
   overflow: hidden; /* lock scroll when open */
 }
+/* Make the page a column flex layout */
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Let main content fill the available height */
+main,
+.content {
+  flex: 1 0 auto;
+}
+
+/* Keep footer above any sticky/overlay layers */
+.site-footer {
+  margin-top: auto; /* now works because body is flex */
+  position: relative;
+  z-index: 1;
+}
+
+/*PROJECT PAGES MOBILE*/
+
+/* Desktop: left | right */
+@media (max-width: 1100px) {
+  .doc-grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Lightbox: pull bullets closer to the left edge */
+.tokens-lightbox__cap ul {
+  /* kill random margins from earlier rules */
+  margin-left: 0; /* was ~0.75em in your screenshot */
+  margin-right: 0;
+  /* set a deliberate indent (default browser is ~40px = too big) */
+  padding-left: 1rem; /* tweak between .9rem–1.2rem to taste */
+  list-style: disc outside; /* keep hanging indent clean */
+}
+
+.tokens-lightbox__cap li {
+  text-indent: 0; /* ensure no extra indent from resets */
+}
+
+/* Optional: slightly smaller bullet marker */
+.tokens-lightbox__cap li::marker {
+  font-size: 0.85em;
+}
+
+.links-container {
+  gap: 1rem !important;
+}

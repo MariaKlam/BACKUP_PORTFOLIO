@@ -6,18 +6,18 @@ const projects = [
   {
     title: "Unified Navigation System",
     role: "Architecture · UX",
-    tech: ["HTML", "CSS", "JS"],
+    tech: ["HTML", "CSS", "JS", "Go"],
     design: ["UX/UI", "Navigation"],
     link: "/case-studies/nav-system",
     summary:
-      "Single markup powering topnav/sidebar, mobile overlay, and a11y-first behavior across apps."
+      "Single markup powering topnav/sidebar, mobile overlay, and a11y-first behavior across apps. Minimal working demo included"
   },
 
   // 02 — UI Library & Token System
   {
     title: "UI Library & Token System",
     role: "Design System · Frontend",
-    tech: ["HTML", "CSS", "JS"],
+    tech: ["HTML", "CSS", "JS", "Go"],
     design: ["Design Tokens", "Component Library"],
     link: "/case-studies/ui-library-tokens",
     summary:
@@ -28,7 +28,7 @@ const projects = [
   {
     title: "Dashboard & Application Patterns",
     role: "UX/UI · FE",
-    tech: ["HTML", "CSS", "JS"],
+    tech: ["HTML", "CSS", "JS", "Go"],
     design: ["Dashboards", "Patterns"],
     link: "/case-studies/dash-case",
     summary:
@@ -51,7 +51,7 @@ const projects = [
     role: "Personal",
     tech: ["Adobe Creative Suite", "Adobe Dimension"],
     design: ["Illustration", "Visual Design"],
-    link: "/case-studies/visual-explorations",
+    link: "/case-studies/graphic-design",
     summary:
       "Graphic Design collaboratins - art directing, package & logo design, moodshots."
   },
@@ -62,7 +62,7 @@ const projects = [
     role: "Personal",
     tech: ["Procreate", "Figma", "SVG"],
     design: ["Illustration", "Visual Design"],
-    link: "/case-studies/illustrations",
+    link: "/case-studies/visual-explorations",
     summary:
       "Sketches, drawings, and small visual experiments that inform my product taste."
   },
@@ -102,6 +102,7 @@ const rightProjects = projects.slice(1); // start the right list at 02
         <div class="chips">{projects[0].design.map(d => <span class="chip">{d}</span>)}</div>
       )}
     </a>
+    
   </aside>
 
   <!-- RIGHT: index starts at 02, closed by default -->
@@ -131,9 +132,14 @@ const rightProjects = projects.slice(1); // start the right list at 02
             )}
          
           </div></a>
+          
         </li>
       ))}
+      <p class="about-note">
+  More case studies are in progress - launching soon.
+</p>
     </ol>
+    
   </aside>
 </div>
 
