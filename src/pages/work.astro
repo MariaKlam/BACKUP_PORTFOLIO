@@ -88,7 +88,7 @@ const rightProjects = projects.slice(1); // start the right list at 02
   <aside class="left">
     <section class="intro-block">
       <h1 class="page-title">Selected Work .</h1>
-      <p class="lede">Front-end & UX/UI developer crafting navigation systems, accessible UI
+      <p class="lede"><strong>Maria Klammer</strong> - Front-end & UX/UI developer crafting navigation systems, accessible UI
         patterns, and lean design tokens. Pragmatic, standards-first.</p>
     </section>
 
@@ -134,6 +134,7 @@ const rightProjects = projects.slice(1); // start the right list at 02
           </div></a>
           
         </li>
+        
       ))}
       <p class="about-note">
   More case studies are in progress - launching soon.
@@ -142,6 +143,45 @@ const rightProjects = projects.slice(1); // start the right list at 02
     
   </aside>
 </div>
+
+<script is:inline>
+(() => {
+  const list = document.getElementById('projList');
+  if (!list) return;
+
+  const rows = [...list.querySelectorAll('.project-row')];
+
+  // Desktop hover focus-open
+  const openOnly = (row) => rows.forEach(r => r.classList.toggle('is-open', r === row));
+  rows.forEach(r => r.addEventListener('pointerenter', () => openOnly(r)));
+  list.addEventListener('focusin', e => { const r = e.target.closest('.project-row'); if (r) openOnly(r); });
+  list.addEventListener('pointerleave', () => rows.forEach(r => r.classList.remove('is-open')));
+
+  // Mobile/keyboard disclosure
+  rows.forEach(row => {
+    const btn = row.querySelector('.row-toggle');
+    const panel = row.querySelector('.row-details');
+    if (!btn || !panel) return;
+
+    btn.addEventListener('click', (e) => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      // close others for tidy UI
+      rows.forEach(r => {
+        const b = r.querySelector('.row-toggle');
+        const p = r.querySelector('.row-details');
+        if (!b || !p) return;
+        b.setAttribute('aria-expanded', 'false');
+        p.hidden = true;
+        r.classList.remove('is-open');
+      });
+      // open this one
+      btn.setAttribute('aria-expanded', String(!expanded));
+      panel.hidden = expanded;
+      row.classList.toggle('is-open', !expanded);
+    });
+  });
+})();
+</script>
 
 <script is:inline>
 (() => {
