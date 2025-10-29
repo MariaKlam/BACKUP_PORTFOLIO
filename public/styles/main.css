@@ -13,7 +13,7 @@
   --main-max: 1400px;
   --gutter: clamp(16px, 4vw, 40px);
   --pad: 1rem;
-  --r: 16px;
+  --r: 8px;
 
   /* Arrow */
   --arrow-thick: 2px;
