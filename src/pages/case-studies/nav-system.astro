@@ -1,9 +1,6 @@
 i---
 import Base from "../../layouts/Base.astro";
 import "../../styles/nav.css";
-
-
-
 ---
 
 <Base title="Case Study: Unified Navigation (Private)"
@@ -12,9 +9,27 @@ import "../../styles/nav.css";
       hideFooter={true}>
 
 <script type="module">
-  import { initNavLite } from '../../scripts/nav-page.ts'; // ← relative
-  initNavLite();
-  addEventListener('astro:page-load', initNavLite);
+  // pick ONE of these:
+
+  import { initNavLite } from '/src/scripts/nav-page.ts';
+
+  const boot = () => {
+    try {
+      if (typeof initNavLite === 'function') initNavLite();
+      else console.error('[nav] initNavLite is not a function (export mismatch).');
+    } catch (err) {
+      console.error('[nav] init failed:', err);
+    }
+  };
+
+  boot();
+  addEventListener('astro:before-swap', () => {
+    const b = document.body;
+    delete b._navLiteLayout;
+    delete b._navLiteCarets;
+    delete b._navLiteCompany;
+  });
+  addEventListener('astro:page-load', boot);
 </script>
 
 <script type="module">

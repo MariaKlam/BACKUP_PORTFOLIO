@@ -9967,6 +9967,7 @@ body.layout--column.has-thin-sidebar main {
 .has-double-thin-sidebar .menu--sidebar {
   margin-left: 144px;
   width: 220px;
+  z-index: 11;
 }
 
 .has-double-thin-sidebar .menu__header .app__badge {
@@ -11005,7 +11006,7 @@ ul:not(.thin-sidebar--settings-container)
 }
 
 .company-sidebar__submenu--below .company-sidebar__link i {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .company-sidebar__link i {

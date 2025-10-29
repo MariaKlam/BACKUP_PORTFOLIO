@@ -46,9 +46,7 @@ function getFocusable(el: HTMLElement | null): HTMLElement | null {
 
 /* ---------- public init ---------- */
 export function initNavLite() {
-  if ((document.body as any)._navLiteInit) return; // avoid rebinding in SPA swaps
-  (document.body as any)._navLiteInit = true;
-
+  console.debug("[nav] initNavLite() called");
   ready(() => {
     wireLayoutToggle();
     wireCaretOpeners();
