@@ -1042,6 +1042,9 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 
 .skills-container .ruler-logo {
   opacity: 0.75;
+  flex: 0 0 auto; /* <-- critical: don't shrink */
+  width: 70px;
+  height: 70px;
 }
 
 /* Optional: subtle hover pulse on desktop */
@@ -1054,7 +1057,7 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 /* Desktop/tablet (make it a bit smaller) */
 @media (max-width: 768px) {
   .skills-container .ruler-logo {
-    width: 300px;
+    width: 70px;
     opacity: 0.75;
   }
   .skills-container {

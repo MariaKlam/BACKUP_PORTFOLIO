@@ -137,4 +137,28 @@ html[data-theme="dark"] {
   text-decoration: underline;
 }
 
+/* Layout for the icon + ticker row */
+.skills-container{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* keep this row aligned to your text column, not 50% */
+  margin-inline: 0;      /* or auto if you center the column */
+  margin-top: 20px;
+  max-width: 50%;
+}
+
+/* Ticker area fills the rest, can shrink */
+.skill-ticker{
+  flex: 1 1 auto;
+  min-width: 0;          /* allows proper overflow without pushing the svg */
+}
+
+/* Mobile: let the row be full width if you want */
+@media (max-width: 768px){
+  .skills-container{
+    max-width: 100%;
+  }
+}
+
 </style>
