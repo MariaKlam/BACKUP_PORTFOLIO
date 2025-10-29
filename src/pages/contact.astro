@@ -3,9 +3,12 @@ import Base from "../layouts/Base.astro";
 ---
 <Base title="Contact — Maria Klammer">
 <div class="about-section">
-  <h1 class="page-title">Contact .</h1>
+   <h1 class="page-title">
+        Contact .
+      </h1>
+  <p>
 
-<p class="meta"><strong>Maria Klammer</strong> - I’m open to Frontend & UX/UI roles.</p>
+<p class="meta">Currently open to UX/UI and Frontend roles.</p>
 
 <p class="meta icon-text">
   <i class="ri-mail-line" aria-hidden="true"></i>
@@ -16,6 +19,7 @@ import Base from "../layouts/Base.astro";
   <i class="ri-home-5-line" aria-hidden="true"></i>
   Tallinn, Estonia
 </p>
+<div class="handwritten signature"> Maria Klammer</div>
 
 <!-- Actions -->
 <div class="actions">
@@ -159,6 +163,21 @@ html[data-theme="dark"] {
   .skills-container{
     max-width: 100%;
   }
+}
+
+.signature {
+  font-family: var(--font-handwritten, 'Caveat', cursive);
+  font-size: 2rem;
+  color: var(--blue-clr);
+  margin-top: 60px;
+  margin-left: 120px;
+  opacity: 0;
+  animation: fadeInSignature 1.2s ease-out 0.6s forwards;
+}
+
+@keyframes fadeInSignature {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 </style>
