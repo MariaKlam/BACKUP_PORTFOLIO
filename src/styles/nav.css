@@ -15695,6 +15695,10 @@ html[data-theme="dark"] {
   color: var(--fav-on) !important;
 }
 
+.favorite-toggle-button[aria-pressed="true"] .btn-cv,
+.favorite-toggle-button.is-favorite .btn-cv {
+  background: transparent;
+}
 /* ensure header doesn’t override */
 .extra-thin-sidebar_header .favorite-toggle-button {
   color: inherit;
@@ -16735,6 +16739,26 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
 .handwritten-note-container {
   margin-top: 40px;
 }
+
+.pager-btn {
+  --btn-size: 52px;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: var(--fg);
+  text-decoration: none;
+  transition: transform 0.18s ease, background-color 0.18s ease,
+    color 0.18s ease;
+  pointer-events: auto;
+  outline: none;
+}
+.pager-btn:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
 /* Make the demo controls breathe a bit and stick to the column rhythm */
 article.container-narrow .demo-controls {
   display: flex;
@@ -16748,4 +16772,9 @@ article.container-narrow .demo-controls {
     flex-direction: column;
     align-items: center;
   }
+}
+.favorite-toggle-button[aria-pressed="true"].btn-cv,
+.favorite-toggle-button.is-favorite.btn-cv {
+  background: transparent;
+  border: 1px solid var(--fg);
 }

@@ -490,7 +490,6 @@ html[data-theme="dark"] {
   display: grid;
   place-items: center;
   color: var(--fg);
-  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
   text-decoration: none;
   transition: transform 0.18s ease, background-color 0.18s ease,
     color 0.18s ease;
