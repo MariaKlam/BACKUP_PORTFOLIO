@@ -1067,7 +1067,7 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 .handwritten {
   font-family: "Caveat", cursive;
   font-weight: 700; /* or 700 if you want the bolder style */
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   position: relative;
   top: -0.9rem;
   margin-left: 0.5rem;
@@ -1079,5 +1079,6 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 @media (max-width: 768px) {
   .handwritten {
     top: -0.2rem;
+    font-size: 1.5rem;
   }
 }
