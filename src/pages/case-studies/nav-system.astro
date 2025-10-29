@@ -9,27 +9,413 @@ import "../../styles/nav.css";
       hideFooter={true}>
 
 <script type="module">
-  // pick ONE of these:
+/* ---------- tiny utils ---------- */
+const ready = (fn) =>
+  document.readyState === "loading"
+    ? document.addEventListener("DOMContentLoaded", fn, { once: true })
+    : fn();
 
-  import { initNavLite } from '/src/scripts/nav-page.ts';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  const boot = () => {
-    try {
-      if (typeof initNavLite === 'function') initNavLite();
-      else console.error('[nav] initNavLite is not a function (export mismatch).');
-    } catch (err) {
-      console.error('[nav] init failed:', err);
+/* Focus the trigger after ESC without showing a ring */
+function quietProgrammaticFocus(el) {
+  if (!el) return;
+  document.documentElement.classList.add("suppress-focus-ring");
+  el.focus({ preventScroll: true });
+  requestAnimationFrame(() => {
+    document.documentElement.classList.remove("suppress-focus-ring");
+  });
+}
+
+/* find a truly focusable child inside a trigger (optional) */
+function getFocusable(el) {
+  if (!el) return null;
+  const selector = [
+    "button",
+    "a[href]",
+    'input:not([type="hidden"])',
+    "select",
+    "textarea",
+    "[tabindex]:not([tabindex='-1'])",
+    "label[for]",
+  ].join(",");
+  return el.matches(selector) ? el : el.querySelector(selector);
+}
+
+/* ---------- public init ---------- */
+function initNavLite() {
+  // console.debug("[nav] initNavLite() called");
+  ready(() => {
+    wireLayoutToggle();
+    wireCaretOpeners();
+    wireCompanySubmenus();
+    wireSupportPanel();
+    wireCompanySearch();
+  });
+}
+
+/* ---------- 0) Sidebar <-> Topnav toggle ---------- */
+function wireLayoutToggle() {
+  const root = document.querySelector(".menu") || document.body;
+  if (root.dataset.navLiteLayout === "1") return;
+  root.dataset.navLiteLayout = "1";
+
+  // flip body + .menu
+  document.addEventListener("click", (e) => {
+    const btn = e.target && e.target.closest("[data-toggle-menu]");
+    if (!btn) return;
+
+    document.body.classList.toggle("menu--sidebar");
+    document.body.classList.toggle("menu--topnav");
+
+    const nav = document.querySelector(".menu");
+    if (nav) {
+      nav.classList.toggle("menu--sidebar");
+      nav.classList.toggle("menu--topnav");
+    }
+
+    btn.classList.toggle("is-open");
+  });
+
+  // keyboard support
+  document.addEventListener("keydown", (e) => {
+    const targetEl = e.target;
+    if (!targetEl || !targetEl.closest("[data-toggle-menu]")) return;
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    targetEl.click();
+  });
+}
+
+/* ---------- 0.5) Main nav groups (third-level) ---------- */
+function wireCaretOpeners() {
+  const root = document.querySelector(".menu") || document.body;
+  if (root.dataset.navLiteCarets === "1") return;
+  root.dataset.navLiteCarets = "1";
+
+  const groups = $(".menu") ? $$(".menu .sidebar-group[data-caret]") : [];
+  const headers = groups
+    .map((g) => g.querySelector(".sidebar__item"))
+    .filter(Boolean);
+
+  groups.forEach((group, idx) => {
+    const label = group.querySelector(".sidebar__item");
+    const panel = group.querySelector(".sub-menu_down");
+    if (!label || !panel) return;
+
+    if (!panel.id) panel.id = `menu-sub-${idx}`;
+    label.setAttribute("role", "button");
+    label.setAttribute("tabindex", "0");
+    label.setAttribute("aria-controls", panel.id);
+    label.setAttribute("aria-expanded", "false");
+
+    const open = () => {
+      groups.forEach((g) => {
+        if (g !== group) {
+          g.classList.remove("is-open");
+          const hdr = g.querySelector(".sidebar__item");
+          if (hdr) hdr.setAttribute("aria-expanded", "false");
+        }
+      });
+      group.classList.add("is-open");
+      label.setAttribute("aria-expanded", "true");
+    };
+    const close = () => {
+      group.classList.remove("is-open");
+      label.setAttribute("aria-expanded", "false");
+    };
+    const toggle = () => (group.classList.contains("is-open") ? close() : open());
+
+    label.addEventListener("click", toggle);
+    label.addEventListener("keydown", (e) => {
+      const k = e.key;
+      if (k === "Enter" || k === " ") {
+        e.preventDefault();
+        toggle();
+      }
+      if (k === "Escape") {
+        e.preventDefault();
+        close();
+      }
+      if (k === "ArrowDown" || k === "ArrowUp" || k === "Home" || k === "End") {
+        e.preventDefault();
+        let i = headers.indexOf(label);
+        if (k === "ArrowDown") i = (i + 1) % headers.length;
+        if (k === "ArrowUp") i = (i - 1 + headers.length) % headers.length;
+        if (k === "Home") i = 0;
+        if (k === "End") i = headers.length - 1;
+        headers[i] && headers[i].focus();
+      }
+    });
+  });
+
+  // Click outside closes any open group (capture to run early)
+  document.addEventListener(
+    "click",
+    (e) => {
+      const t = e.target;
+      if (t.closest(".menu .sidebar-group") || t.closest(".menu .sub-menu_down")) return;
+      groups.forEach((g) => {
+        g.classList.remove("is-open");
+        const hdr = g.querySelector(".sidebar__item");
+        if (hdr) hdr.setAttribute("aria-expanded", "false");
+      });
+    },
+    true
+  );
+}
+
+/* ---------- 2) Company submenus (toggle, outside, ESC) ---------- */
+function wireCompanySubmenus() {
+  const roots = $$(".company-sidebar");
+  if (!roots.length) return;
+
+  // per-root guard
+  roots.forEach((root) => {
+    if (root.dataset.navLiteCompany === "1") return;
+    root.dataset.navLiteCompany = "1";
+
+    if (root.dataset.subInit === "1") return;
+    root.dataset.subInit = "1";
+
+    let lastOpener = null;
+
+    const closeAll = (exceptSubmenu = null) => {
+      $$(".company-sidebar__submenu, .company-sidebar__submenu--below", root).forEach(
+        (el) => {
+          if (exceptSubmenu && el === exceptSubmenu) return;
+          el.classList.remove("submenu--open", "submenu--locked");
+          el.style.display = "none";
+          const owner = el.closest(".company-sidebar__item--has-submenu");
+          if (owner) owner.classList.remove("item--hovered");
+          const trig = owner && owner.querySelector(".company-sidebar__trigger");
+          if (trig) trig.setAttribute("aria-expanded", "false");
+        }
+      );
+    };
+
+    // reset start state
+    closeAll(null);
+
+    // wire each item
+    $$(".company-sidebar__item--has-submenu", root).forEach((item) => {
+      const trigger =
+        $(".company-sidebar__trigger, .thin-sidebar-item", item) || null;
+      const submenu =
+        $(".company-sidebar__submenu, .company-sidebar__submenu--below", item) ||
+        null;
+      if (!trigger || !submenu) return;
+
+      const open = () => {
+        if (!item.closest(".company-sidebar__submenu--below")) closeAll(submenu);
+        submenu.classList.add("submenu--open", "submenu--locked");
+        submenu.style.display = "block";
+        item.classList.add("item--hovered");
+        trigger.setAttribute("aria-expanded", "true");
+        lastOpener = trigger;
+      };
+
+      const close = () => {
+        submenu.classList.remove("submenu--open", "submenu--locked");
+        submenu.style.display = "none";
+        item.classList.remove("item--hovered");
+        trigger.setAttribute("aria-expanded", "false");
+      };
+
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        (submenu.classList.contains("submenu--open") ? close : open)();
+      });
+
+      trigger.addEventListener("keydown", (e) => {
+        const k = e.key;
+        if (k === "Enter" || k === " ") {
+          e.preventDefault();
+          trigger.click();
+        }
+      });
+    });
+
+    // outside click: close everything
+    document.addEventListener("click", (e) => {
+      if (!root.contains(e.target)) closeAll(null);
+    });
+
+    // ESC: close everything and return focus silently to the last opener
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const hadOpen =
+        $$(".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open", root)
+          .length > 0;
+      closeAll(null);
+      if (hadOpen) quietProgrammaticFocus(getFocusable(lastOpener) || lastOpener);
+    });
+  });
+}
+
+/* ---------- 3) Support panel (left overlay with form) ---------- */
+function wireSupportPanel() {
+  const cb = $("#toggleSidebarOptions");
+  const panel = $("#supportPanel");
+  const opener = $('label[for="toggleSidebarOptions"]');
+  if (!cb || !panel || !opener) return;
+
+  const reflect = () => {
+    opener.setAttribute("aria-expanded", cb.checked ? "true" : "false");
+    panel.hidden = false; // node stays; CSS handles visibility via :checked
+  };
+  cb.addEventListener("change", reflect);
+  reflect();
+
+  // Close on outside click
+  document.addEventListener(
+    "click",
+    (e) => {
+      if (!cb.checked) return;
+      const t = e.target;
+      if (t.closest("#supportPanel") || t.closest('label[for="toggleSidebarOptions"]')) return;
+      cb.checked = false;
+      cb.dispatchEvent(new Event("change", { bubbles: true }));
+    },
+    true
+  );
+
+  // ESC closes
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && cb.checked) {
+      cb.checked = false;
+      cb.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  });
+
+  // Don’t let file input labels close the overlay
+  $$(".fileInput", panel).forEach((inp) => {
+    const lbl = inp.closest("label");
+    if (!lbl) return;
+    ["mousedown", "click"].forEach((evt) =>
+      lbl.addEventListener(evt, (ev) => ev.stopPropagation(), true)
+    );
+  });
+}
+
+/* ---------- 4) Company search (filters + opens/closes) ---------- */
+function wireCompanySearch() {
+  const wrap = document.getElementById("accountSearchWrapper");
+  if (!wrap) return;
+
+  const input = document.getElementById("accountSearchInput");
+  const results = document.getElementById("accountSearchResults");
+  const submenu = document.getElementById("accountSearchWrapperContainer"); // panel
+  const item = wrap.closest(".company-sidebar__item--has-submenu");
+  const trigger = item && item.querySelector(".company-sidebar__trigger");
+  const root = item && item.closest(".company-sidebar");
+
+  // pool of accounts to search from the left sidebar
+  const pool = Array.from((root || document).querySelectorAll(".searchable-account, .location-item"));
+
+  if (!input || !results || !submenu || !item || !trigger) return;
+
+  const closeOthers = () => {
+    if (!root) return;
+    $$(".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open", root)
+      .forEach((el) => {
+        if (el === submenu) return;
+        el.classList.remove("submenu--open", "submenu--locked");
+        el.style.display = "none";
+        const owner = el.closest(".company-sidebar__item--has-submenu");
+        if (owner) owner.classList.remove("item--hovered");
+        const trig = owner && owner.querySelector(".company-sidebar__trigger");
+        if (trig) trig.setAttribute("aria-expanded", "false");
+      });
+  };
+
+  const setOpenState = (open) => {
+    if (open) {
+      closeOthers();
+      submenu.classList.add("submenu--open", "submenu--locked");
+      submenu.style.display = "block";
+      item.classList.add("item--hovered");
+      trigger.setAttribute("aria-expanded", "true");
+    } else {
+      submenu.classList.remove("submenu--open", "submenu--locked");
+      submenu.style.display = "none";
+      item.classList.remove("item--hovered");
+      trigger.setAttribute("aria-expanded", "false");
     }
   };
 
-  boot();
-  addEventListener('astro:before-swap', () => {
-    const b = document.body;
-    delete b._navLiteLayout;
-    delete b._navLiteCarets;
-    delete b._navLiteCompany;
+  const renderNoResults = (query) => {
+    const li = document.createElement("li");
+    li.className = "no-results";
+    li.setAttribute("aria-live", "polite");
+    li.textContent = `No results for “${query}”.`;
+    results.appendChild(li);
+  };
+
+  const renderMatches = (q) => {
+    const query = q.trim().toLowerCase();
+    results.innerHTML = "";
+
+    if (!query) {
+      setOpenState(false);
+      return;
+    }
+
+    let matches = 0;
+    pool.forEach((el) => {
+      const name = (el.dataset.name || "").toLowerCase();
+      const num = (el.dataset.number || "").toLowerCase();
+      if (name.includes(query) || num.includes(query)) {
+        const li = document.createElement("li");
+        li.className = "location-item";
+        li.dataset.number = el.dataset.number || "";
+        li.innerHTML = `
+          <span class="account-name">${el.dataset.name || ""}</span>
+          <span class="account-number">#${el.dataset.number || ""}</span>
+        `;
+        results.appendChild(li);
+        matches++;
+      }
+    });
+
+    if (matches === 0) renderNoResults(q);
+    setOpenState(true); // keep panel visible + icon blue while searching
+  };
+
+  input.addEventListener("input", () => renderMatches(input.value));
+
+  results.addEventListener("click", (e) => {
+    const li = e.target && e.target.closest(".location-item");
+    if (!li) return;
+    input.value = li.dataset.number || "";
+    // setOpenState(false); // uncomment if you want to close after selection
   });
-  addEventListener('astro:page-load', boot);
+
+  input.addEventListener("focus", () => setOpenState(true));
+  input.addEventListener("blur", () => {
+    if (!input.value.trim()) setOpenState(false);
+  });
+}
+
+/* ---------- boot & SPA wiring ---------- */
+const boot = () => {
+  try { initNavLite(); } catch (err) { console.error("[nav] init failed:", err); }
+};
+
+boot();
+addEventListener("astro:page-load", boot);
+addEventListener("astro:before-swap", () => {
+  // clear per-root guards so rewiring works after swap
+  document.querySelectorAll(".menu, .company-sidebar").forEach((el) => {
+    if (el.dataset) {
+      delete el.dataset.navLiteLayout;
+      delete el.dataset.navLiteCarets;
+      delete el.dataset.navLiteCompany;
+      delete el.dataset.subInit;
+    }
+  });
+});
 </script>
 
 <script type="module">
