@@ -1,6 +1,7 @@
 .feature-card {
   box-shadow: none;
   padding: 20px 10px 20px;
+  padding-right: 0;
 }
 
 /* ===== Layout ===== */
@@ -444,4 +445,148 @@ html[data-theme="dark"] {
 .tokens-case section p,
 .tokens-case section ul {
   max-width: 600px;
+}
+
+.tokens-case .doc-aside,
+.tokens-case .feature-card {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* Place your existing columns explicitly (optional if already done) */
+.tokens-case .doc-main {
+  grid-column: 2;
+}
+.tokens-case .doc-aside {
+  grid-column: 3;
+}
+
+/* Rails live in column 1 (prev) and 4 (next) */
+.case-rail {
+  position: sticky;
+  top: 50vh; /* vertical resting point while scrolling */
+  height: 0; /* so it doesn't affect layout height */
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  pointer-events: none; /* only the button is interactive */
+}
+.case-rail--left {
+  grid-column: 1;
+  margin-left: -80px;
+}
+
+.case-rail--right {
+  grid-column: 4;
+  margin-right: -80px;
+}
+
+/* The actual buttons */
+.pager-btn {
+  --btn-size: 52px;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: var(--fg);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
+  text-decoration: none;
+  transition: transform 0.18s ease, background-color 0.18s ease,
+    color 0.18s ease;
+  pointer-events: auto;
+  outline: none;
+}
+
+/* Flip the same SVG for the prev arrow */
+.pager-btn--prev .pager-icon {
+  transform: scaleX(-1);
+}
+
+/* Hover/focus */
+.pager-btn:hover {
+  transform: translateY(-2px);
+}
+.pager-btn:focus-visible {
+  outline: 3px solid color-mix(in oklab, currentColor 60%, white 40%);
+  outline-offset: 2px;
+}
+
+/* Mobile: hide the side rails to avoid crowding */
+@media (max-width: 1024px) {
+  .tokens-case.doc-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* tight space between hero + right grid */
+.tokens-case.doc-grid {
+  column-gap: 10px; /* or: gap: var(--row-gap,20px) 10px; */
+}
+
+/* keep your button hover only on Y so transforms don’t clash */
+.pager-btn:hover {
+  transform: translateY(-2px);
+}
+/* tune this once */
+.tokens-case {
+  --rail-overhang: 20px;
+} /* try 80–120, or clamp(48px,5vw,128px) */
+
+/* rails stay aligned to grid edges, then slide outward */
+.case-rail--left {
+  transform: translateX(calc(-1 * var(--rail-overhang)));
+}
+.case-rail--right {
+  transform: translateX(var(--rail-overhang));
+}
+
+/* keep your column gap tight */
+.tokens-case.doc-grid {
+  column-gap: 10px;
+}
+
+/* --- Mobile: dock arrows bottom-center --- */
+@media (max-width: 1024px) {
+  /* Tune mobile spacing/size here */
+  .tokens-case {
+    --mobile-gap: 72px; /* half the distance between buttons */
+    --btn-size: 46px; /* slightly smaller on mobile */
+  }
+
+  /* Each rail becomes a fixed button at the bottom */
+  .case-rail {
+    position: fixed;
+    top: auto;
+    bottom: calc(env(safe-area-inset-bottom, 0) + 12px);
+    z-index: 20;
+    pointer-events: none; /* only the button is clickable */
+    height: auto;
+    transform: none;
+  }
+
+  /* Left button sits left of center */
+  .case-rail--left {
+    left: calc(50% - var(--mobile-gap));
+    right: auto;
+    margin: 0; /* cancel the desktop negative margins if any */
+  }
+
+  /* Right button sits right of center */
+  .case-rail--right {
+    left: calc(50% + var(--mobile-gap));
+    right: auto;
+    margin: 0;
+  }
+
+  /* Ensure buttons are tappable */
+  .case-rail .pager-btn {
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+
+  .case-rail .pager-btn {
+    backdrop-filter: blur(6px);
+    background: color-mix(in oklab, var(--bg, #0b0d10) 70%, white 12%);
+  }
 }

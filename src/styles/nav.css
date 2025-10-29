@@ -15038,14 +15038,6 @@ article.container-narrow li {
   margin: 4px 0;
 }
 
-/* Make the demo controls breathe a bit and stick to the column rhythm */
-article.container-narrow .demo-controls {
-  display: flex;
-  margin: 24px 0 8px;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 /* =========================
    Dark theme contrast safety
 ========================= */
@@ -16726,5 +16718,34 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
 @media (max-width: 768px) {
   .handwritten {
     top: -0.2rem; /* adjust for perfect balance */
+  }
+}
+
+/* Flip the same SVG for the prev arrow */
+.pager-btn--prev .pager-icon {
+  transform: scaleX(-1);
+}
+
+.arrows-container {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.handwritten-note-container {
+  margin-top: 40px;
+}
+/* Make the demo controls breathe a bit and stick to the column rhythm */
+article.container-narrow .demo-controls {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* --- Mobile: dock arrows bottom-center --- */
+@media (max-width: 1024px) {
+  article.container-narrow .demo-controls {
+    flex-direction: column;
+    align-items: center;
   }
 }
