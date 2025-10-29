@@ -5,24 +5,29 @@ import Base from "../layouts/Base.astro";
 <div class="flex about-section">
 
 <div class="flex-col">
-
   <h1 class="page-title">
-        About<span class="handwritten">→ why I build the way I do!</span>
-      </h1>
-  <p>
-    <strong>Maria Klammer</strong> - frontend & UX/UI designer-developer crafting accessible, framework-light interfaces and design systems.
-    I created our company’s entire UI Library myself - from visual design to code -
-    including dashboards, navigation systems, and reusable components used across all applications.
-  </p>
-  <p>
-  Combining a strong artistic background with technical precision, I design and build clean, fast, and maintainable interfaces using HTML, CSS, JavaScript, and Go templates for an ERP platform powered by Go and JSON configuration, seamlessly connected to back-office APIs. Equally comfortable working with modern toolchains and frameworks when needed.
-</p>
-  <ul class="meta-list">
-    <li>Frontend: HTML, CSS (custom properties), Vanilla JS, Go templates</li>
-    <li>UX/UI: design systems, layout architecture, accessibility</li>
-    <li>Tooling: Git, Astro, Vite, React</li>
-    <li>Figma, Adobe XD, Adobe Creative Suite</li>
-  </ul>
+    About <span class="handwritten">→ why I build the way I do!</span>
+  </h1>
+
+  <section class="about__lead">
+    <p><strong>Maria Klammer</strong> - front-end & UX/UI designer-developer focused on accessible, framework-light interfaces and scalable design systems. I built our company’s entire UI Library from visual design to production code -powering dashboards, navigation, and reusable components across all internal tools.</p>
+  </section>
+
+  <section class="about__split">
+    <div class="about__intro">
+      <p>With a blend of artistic intuition and technical precision, I design and develop clean, fast, and maintainable interfaces using HTML, CSS, JavaScript, and Go templates. My work connects directly to back-office APIs through JSON configuration, ensuring flexibility and performance. I’m equally at home working with modern toolchains and frameworks when the project calls for it.</p>
+    </div>
+
+    <div class="about__details">
+      <ul class="meta-list">
+        <li><strong>Frontend:</strong> HTML, CSS (custom properties), Vanilla JS, Go templates</li>
+        <li><strong>UX/UI:</strong> Design systems, layout architecture, accessibility</li>
+        <li><strong>Tooling:</strong> Git, Astro, Vite, React</li>
+        <li><strong>Design:</strong> Figma, Adobe XD, Adobe Creative Suite</li>
+      </ul>
+    </div>
+  </section>
+
   <p>
   <a class="btn link-btn" href="/work">
     <span class="btn-label"> Check out some of my projects</span>
@@ -240,6 +245,46 @@ html[data-theme="dark"] {
   stroke: none !important;         /* ignore strokes if present */
   opacity: 1 !important;           /* defeat inherited/inline opacity */
 }
+
+@media (min-width: 960px){
+  .about__split{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+/* lead paragraph sits under the H1, narrower for comfort */
+.about__lead {
+  max-width: 65ch;
+  margin-block: 0.5rem 1.25rem;
+}
+
+/* two-column split, stacks on mobile */
+.about__split{
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: start;
+  margin-block: 0.5rem 2rem;
+}
+
+@media (max-width: 900px){
+  .about__split{ grid-template-columns: 1fr; }
+}
+
+/* tidy text rhythm */
+.about__intro p { margin: 0; }
+
+/* list styling */
+.meta-list{
+  margin: 0;
+  padding-left: 1.1rem;       /* keep bullets aligned */
+  display: grid;
+  gap: 0.4rem;
+  list-style: disc;
+}
+
 
 
 </style>
