@@ -912,3 +912,152 @@ html[data-theme="light"] .mini-theme-toggle .icon-sun {
 html[data-theme="light"] .mini-theme-toggle .icon-moon {
   display: block;
 }
+
+/* Skills tracker*/
+
+/* smaller chip variant (reuses your .chip) */
+.chip--mini {
+  font-size: 12px;
+  line-height: 1;
+  padding: 6px 10px;
+}
+/* container: one-line viewport for the ticker */
+/* Label spacing under your buttons */
+.contact-subtle-label {
+  margin: 24px 2px 8px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* Chip look */
+.chip {
+  font-size: 0.78rem;
+  line-height: 1;
+  padding: 0.45rem 0.6rem;
+  border-radius: 999px;
+  background: var(--chip-bg, rgba(0, 0, 0, 0.06));
+  color: inherit;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+.chip--mini {
+  font-size: 12px;
+  line-height: 1;
+  padding: 6px 10px;
+}
+
+/* Dark theme tweak */
+:root.theme-dark .chip {
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0.9;
+}
+
+/* === Marquee / ticker === */
+.skill-ticker {
+  --speed: 28s;
+  position: relative;
+  overflow: hidden;
+  height: 34px; /* ≈ one chip row */
+  /* nice edge fade */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+/* The rail contains two identical tracks side-by-side */
+.skill-rail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* keeps spacing when tracks touch */
+  width: max-content; /* shrink-wrap to content */
+  animation: skill-loop var(--speed) linear infinite;
+  will-change: transform;
+}
+
+/* Each track is a normal horizontal list */
+.skill-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+}
+
+/* Animate the whole rail, not each UL */
+@keyframes skill-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  } /* exactly one track width */
+}
+
+/* Pause on hover/focus for readability */
+.skill-ticker:hover .skill-rail,
+.skill-ticker:focus-within .skill-rail {
+  animation-play-state: paused;
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .skill-rail {
+    animation: none;
+  }
+  .skill-ticker {
+    -webkit-mask-image: none;
+    mask-image: none;
+    height: auto;
+  }
+}
+.skills-container {
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+/* Shared base styles */
+.skills-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 2rem;
+}
+
+.skills-container .ruler-logo {
+  opacity: 0.75;
+}
+
+/* Optional: subtle hover pulse on desktop */
+@media (hover: hover) {
+  .skills-container .ruler-logo:hover {
+    transform: scale(1.08);
+  }
+}
+
+/* Desktop/tablet (make it a bit smaller) */
+@media (max-width: 768px) {
+  .skills-container .ruler-logo {
+    width: 300px;
+    opacity: 0.75;
+  }
+  .skills-container {
+    gap: 12px;
+  }
+}
