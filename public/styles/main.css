@@ -1066,16 +1066,18 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 }
 .handwritten {
   font-family: "Caveat", cursive;
+  font-weight: 700; /* or 700 if you want the bolder style */
   font-size: 1.5rem;
   position: relative;
-  top: -0.9rem; /* adjust for perfect balance */
+  top: -0.9rem;
   margin-left: 0.5rem;
   color: var(--accent);
   opacity: 0.85;
+  /* optional: avoid synthesized bold if you only loaded one weight */
+  font-synthesis-weight: none;
 }
-/* Desktop/tablet (make it a bit smaller) */
 @media (max-width: 768px) {
   .handwritten {
-    top: -0.2rem; /* adjust for perfect balance */
+    top: -0.2rem;
   }
 }

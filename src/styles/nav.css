@@ -15022,7 +15022,6 @@ article.container-narrow .meta {
 article.container-narrow h2 {
   font-weight: 800;
   font-size: clamp(18px, 2vw, 22px);
-  margin: 28px 0 8px;
 }
 
 article.container-narrow p {
@@ -16712,5 +16711,20 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
 @media (max-width: 785px) {
   body.has-thin-sidebar .site-header {
     margin-left: 0;
+  }
+}
+.handwritten {
+  font-family: "Caveat", cursive;
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.9rem; /* adjust for perfect balance */
+  margin-left: 0.5rem;
+  color: var(--blue-clr);
+  opacity: 0.85;
+}
+/* Desktop/tablet (make it a bit smaller) */
+@media (max-width: 768px) {
+  .handwritten {
+    top: -0.2rem; /* adjust for perfect balance */
   }
 }
