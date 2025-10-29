@@ -901,7 +901,7 @@ addEventListener("astro:page-load", wireHamburger);
   </a>
 </nav>
 <div class="demo-controls">
-      <button class="btn-cv" data-toggle-menu>Toggle: Sidebar / Topnav</button>
+      <button class="btn-cv" data-toggle-menu>Toggle position</button>
       <form method="post" class="toggleFavoriteForm">
         <button
           type="submit"
@@ -909,7 +909,7 @@ addEventListener("astro:page-load", wireHamburger);
           class="btn-cv favorite-toggle-button"
           data-keep-label
         >
-          Toggle favorite apps
+          Toggle favorites
         </button>
       </form>
     </div>
@@ -973,5 +973,9 @@ addEventListener("astro:page-load", wireHamburger);
   /* Prevent double top border when menu is directly under the header */
 .site-header + .menu--topnav {
   border-top: none !important;
+}
+
+.feature-card, .arrows-container{
+  margin-bottom: 60px;
 }
 </style>
