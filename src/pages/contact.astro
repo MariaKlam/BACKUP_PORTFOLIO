@@ -4,13 +4,22 @@ import Base from "../layouts/Base.astro";
 <Base title="Contact — Maria Klammer">
 <div class="about-section">
   <h1 class="page-title">Contact .</h1>
-  <p class="meta"><strong>Maria Klammer</strong></p>
-  <p class="meta">I’m open to Frontend & UX/UI roles.</p>
-  <p>Email: <a href="mailto:mariaklammer.est@gmail.com">mariaklammer.est@gmail.com</a></p>
+
+<p class="meta"><strong>Maria Klammer</strong> - I’m open to Frontend & UX/UI roles.</p>
+
+<p class="meta icon-text">
+  <i class="ri-mail-line" aria-hidden="true"></i>
+  <a href="mailto:mariaklammer.est@gmail.com">mariaklammer.est@gmail.com</a>
+</p>
+
+<p class="meta icon-text">
+  <i class="ri-home-5-line" aria-hidden="true"></i>
+  Tallinn, Estonia
+</p>
 
 <!-- Actions -->
 <div class="actions">
-   <a class="btn-cv" href="/cv/Maria_Klammer_cv25.ENG.pdf" target="_blank" rel="noopener">
+   <a class="btn-cv" href="/cv/Maria_Klammer_CV25.ENG.pdf" target="_blank" rel="noopener">
     <i class="ri-external-link-line" aria-hidden="true"></i> View CV
   </a>
 
@@ -18,7 +27,7 @@ import Base from "../layouts/Base.astro";
     <i class="ri-linkedin-fill" aria-hidden="true"></i> LinkedIn
   </a>
 
-  <a class="btn-cv btn--secondary" href="/cv/Maria_Klammer_cv25.ENG.pdf" download>
+  <a class="btn-cv btn--secondary" href="/cv/Maria_Klammer_CV25.ENG.pdf" download>
     <i class="ri-download-2-line" aria-hidden="true"></i> Download CV
   </a>
 </div>
@@ -51,12 +60,44 @@ import Base from "../layouts/Base.astro";
 </figure>
 
 <style>
+
+body.dark-mode,
+html[data-theme="dark"] {
+  --blue-clr: #7ad0ff;
+}
+
+:root {
+  --blue-clr: rgba(22, 110, 232, 1);
+}
+
 .actions { 
   margin-top: 40px;
 }
 
 .about-avatar {
   display: none
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0; /* tighter vertical rhythm */
+}
+
+.icon-text i {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.icon-text a {
+  text-decoration: none;
+  color: var(--blue-clr);
+}
+
+.icon-text a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 785px) {
