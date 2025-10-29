@@ -15674,27 +15674,6 @@ article.container-narrow .doc-grid {
   margin-left: 90px;
 }
 
-:root {
-  --fav-on: var(--blue-clr);
-}
-
-/* same color in dark mode */
-html[data-theme="dark"] {
-  --fav-on: var(--blue-clr);
-}
-
-/* make icons follow element color */
-.favorite-toggle-button i[class^="icon-"],
-.favorite-toggle-button i[class*=" icon-"] {
-  color: currentColor;
-}
-
-/* active (pressed / favorited) */
-.favorite-toggle-button[aria-pressed="true"],
-.favorite-toggle-button.is-favorite {
-  color: var(--fav-on) !important;
-}
-
 .favorite-toggle-button[aria-pressed="true"] .btn-cv,
 .favorite-toggle-button.is-favorite .btn-cv {
   background: transparent;
@@ -16777,4 +16756,28 @@ article.container-narrow .demo-controls {
 .favorite-toggle-button.is-favorite.btn-cv {
   background: transparent;
   border: 1px solid var(--fg);
+}
+:root {
+  --fav-on: var(--blue-clr);
+}
+
+/* same color in dark mode */
+html[data-theme="dark"] {
+  --fav-on: var(--blue-clr);
+}
+
+/* make icons follow element color */
+.favorite-toggle-button i[class^="icon-"],
+.favorite-toggle-button i[class*=" icon-"] {
+  color: currentColor;
+}
+
+/* active (pressed / favorited) */
+.favorite-toggle-button[aria-pressed="true"],
+.favorite-toggle-button.is-favorite {
+  color: var(--fav-on) !important;
+}
+
+.ri-star-fill {
+  color: var(--fav-on);
 }
