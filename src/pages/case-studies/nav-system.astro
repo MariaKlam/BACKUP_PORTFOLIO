@@ -978,4 +978,34 @@ addEventListener("astro:page-load", wireHamburger);
 .feature-card, .arrows-container{
   margin-bottom: 60px;
 }
+
+
+/* Re-enable Chrome scrollbar visuals just in this area */
+::-webkit-scrollbar {
+  width: 8px !important;                     
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,.35) !important;  
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,.08) !important;  
+}
+
+body.dark-mode,
+html[data-theme="dark"] { ::-webkit-scrollbar {
+  width: 8px !important;                     
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(247, 246, 246, 0.35) !important;  
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(226, 218, 218, 0.08) !important;  
+}
+}
 </style>
