@@ -57,8 +57,13 @@ body {
 body {
   background: var(--bg);
   color: var(--fg);
-  font: 16px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto;
+  font:
+    16px/1.6 "Inter Tight",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scrollbar-gutter: stable both-edges;
@@ -109,7 +114,9 @@ a {
 
 /* Brand + nav */
 .brand-name {
-  font: 800 18px/1 "Inter Tight", system-ui;
+  font:
+    800 18px/1 "Inter Tight",
+    system-ui;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--fg);
@@ -155,11 +162,15 @@ a {
   cursor: pointer;
   border-radius: 9999px;
   padding: 0.42rem 0.8rem;
-  font: 600 11px/1 "Inter Tight", system-ui;
+  font:
+    600 11px/1 "Inter Tight",
+    system-ui;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  transition: color 0.15s, background-color 0.15s;
+  transition:
+    color 0.15s,
+    background-color 0.15s;
 }
 .theme-toggle button:hover {
   color: var(--fg);
@@ -213,11 +224,46 @@ a {
   text-align: center;
   padding: 24px var(--pad);
   color: var(--muted);
-  border-top: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
   background: color-mix(in oklab, var(--bg) 98%, transparent);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.footer-copy {
+  border-top: 1px solid var(--border, #e5e5e5);
+  margin-top: 12px;
+  padding-top: 12px;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.footer-inner {
+  max-width: var(--content-max, 1400px); /* match your site container */
+  margin-inline: auto;
+}
+
+.skills-container {
+  width: 100%;
+  justify-content: flex-start;
 }
 :root[data-theme="dark"] .site-footer {
   background: color-mix(in oklab, var(--bg) 97%, transparent);
+}
+
+.site-footer {
+  margin-top: 96px;
+}
+
+.footer-ticker {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.footer-inner {
+  max-width: var(--content-width); /* same as main */
+  margin: 0 auto;
 }
 /* wrap matches header width; no extra side padding here */
 .wrap {
@@ -362,7 +408,10 @@ a {
   opacity: 0;
   overflow: hidden;
   padding: 0 8px;
-  transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.25s ease;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease,
+    padding 0.25s ease;
 }
 .project-row.is-open .row-details {
   max-height: 260px;
@@ -394,7 +443,9 @@ a {
 } /* ====================================== Optional page fade (only when .theme-fade is on <html>) ====================================== */
 @media (prefers-reduced-motion: no-preference) {
   html.theme-fade body {
-    transition: background-color 0.18s linear, color 0.18s linear !important;
+    transition:
+      background-color 0.18s linear,
+      color 0.18s linear !important;
   }
 } /*Eye icon*/ /* make the details panel the positioning context */ /* make sure the details panel is the positioning context */
 .project-row .row-details {
@@ -409,7 +460,10 @@ a {
   transform-origin: 50% 50%;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.22s ease, transform 0.22s ease, bottom 0.22s ease;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    bottom 0.22s ease;
   color: currentColor;
   z-index: 1;
 } /* show when open (slightly more tilt and size) */
@@ -434,7 +488,10 @@ a {
   bottom: -36px; /* push it down so it's half hidden */
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.22s ease, transform 0.22s ease, bottom 0.22s ease;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    bottom 0.22s ease;
   color: currentColor; /* SVG should use fill="currentColor" */
   z-index: 1;
 } /* On expand: nudge up a bit, reduce tilt, grow slightly */
@@ -489,8 +546,13 @@ a {
   max-width: 700px;
 } /* Make the heading explicitly inherit the same family (and style it) */
 .heading-main {
-  font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto;
+  font-family:
+    "Inter Tight",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto;
   font-weight: 800;
   font-size: clamp(2.2rem, 4.2vw + 1rem, 4.5rem);
   line-height: 1.1;
@@ -503,7 +565,7 @@ a {
 .about-avatar {
   position: fixed;
   right: 0;
-  bottom: 40px;
+  bottom: 160px;
   aspect-ratio: 1 / 1;
   pointer-events: none; /* never intercept clicks */
   z-index: 0; /* behind footer/content */
@@ -574,10 +636,18 @@ html[data-theme="dark"] {
   gap: 0.5rem;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  font: 600 0.9rem/1 system-ui, -apple-system, "Inter", "Montserrat", sans-serif;
+  font:
+    600 0.9rem/1 system-ui,
+    -apple-system,
+    "Inter",
+    "Montserrat",
+    sans-serif;
   text-decoration: none;
   border: 1px solid transparent;
-  transition: filter 0.18s ease, background-color 0.18s ease, color 0.18s ease,
+  transition:
+    filter 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
     border-color 0.18s ease;
   color: var(--bg);
   background: var(--fg);
@@ -639,10 +709,18 @@ html[data-theme="dark"] {
   gap: 0.5rem;
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  font: 600 0.9rem/1 system-ui, -apple-system, "Inter", "Montserrat", sans-serif;
+  font:
+    600 0.9rem/1 system-ui,
+    -apple-system,
+    "Inter",
+    "Montserrat",
+    sans-serif;
   text-decoration: none;
   border: 1px solid transparent;
-  transition: filter 0.18s ease, background-color 0.18s ease, color 0.18s ease,
+  transition:
+    filter 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
     border-color 0.18s ease;
   color: var(--bg);
   background: var(--fg);
@@ -684,7 +762,9 @@ html[data-theme="dark"] {
 .actions .btn-cv:hover:not(.btn--secondary) {
   /* avoid filter so text/icons don't dim */
   background: color-mix(in oklab, var(--fg), black 7%);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.18);
   transform: translateY(-1px);
 }
 .actions .btn-cv.btn--secondary:hover {
@@ -954,7 +1034,7 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 
 /* === Marquee / ticker === */
 .skill-ticker {
-  --speed: 28s;
+  --speed: 45s;
   position: relative;
   overflow: hidden;
   height: 34px; /* ≈ one chip row */

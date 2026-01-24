@@ -309,7 +309,9 @@ html.tokens-lightbox-open {
   display: grid;
   place-items: center;
   opacity: 0.8;
-  transition: opacity 0.2s, background 0.2s;
+  transition:
+    opacity 0.2s,
+    background 0.2s;
   z-index: 10;
   border: none;
 }
@@ -389,7 +391,9 @@ html[data-theme="dark"] {
   border: none;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
   position: relative;
   text-decoration: none;
 
@@ -491,7 +495,9 @@ html[data-theme="dark"] {
   place-items: center;
   color: var(--fg);
   text-decoration: none;
-  transition: transform 0.18s ease, background-color 0.18s ease,
+  transition:
+    transform 0.18s ease,
+    background-color 0.18s ease,
     color 0.18s ease;
   pointer-events: auto;
   outline: none;
