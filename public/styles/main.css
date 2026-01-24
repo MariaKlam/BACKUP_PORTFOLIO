@@ -1162,3 +1162,39 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
     font-size: 1.5rem;
   }
 }
+.project-row {
+  position: relative;
+}
+
+/* keep the row height stable */
+.project-row .row-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+/* details overlay (hidden by default) */
+.project-row .row-details {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 5;
+  margin-top: 10px;
+  padding: 14px 16px;
+  background: var(--bg);
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+/* show */
+.project-row.is-open .row-details {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
