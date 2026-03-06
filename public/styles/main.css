@@ -239,7 +239,6 @@ a {
 }
 
 .footer-inner {
-  max-width: var(--content-max, 1400px); /* match your site container */
   margin-inline: auto;
 }
 
@@ -261,10 +260,6 @@ a {
   background: var(--bg);
 }
 
-.footer-inner {
-  max-width: var(--content-width); /* same as main */
-  margin: 0 auto;
-}
 /* wrap matches header width; no extra side padding here */
 .wrap {
   padding-top: 0;
@@ -1061,8 +1056,6 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
   align-items: center;
   gap: 8px; /* keeps spacing when tracks touch */
   width: max-content; /* shrink-wrap to content */
-  animation: skill-loop var(--speed) linear infinite;
-  will-change: transform;
 }
 
 /* Each track is a normal horizontal list */
@@ -1197,4 +1190,20 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+.site-footer {
+  overflow-x: clip;
+}
+.skills {
+  width: 100%;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
