@@ -1,0 +1,103 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/case-base.css";
+
+const title = "AI Social Media Generator | Maria Klammer";
+---
+
+<Base title={title} noWrap={false} hideFooter={false}>
+  <article class="container-narrow doc-grid tokens-case">
+    <nav class="case-rail case-rail--left" aria-label="Previous project">
+      <a class="pager-btn pager-btn--prev" href="/case-studies/nav-system" aria-label="Previous: Unified Navigation System">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </a>
+    </nav>
+
+    <div class="doc-main">
+      <header class="case-hero">
+        <h1>AI Social Media Generator — from brand setup to published Instagram post</h1>
+        <p class="meta">Product design • UX/UI • Frontend • AI workflows • API integrations • 2026</p>
+        <p class="lede">
+          Designed and developed an Instagram content workflow that helps a business move from onboarding to a ready-to-publish content plan. The application combines brand setup, AI-assisted copy and image generation, Unsplash imagery, editable publishing times and direct Instagram publishing in one guided flow.
+        </p>
+      </header>
+
+      <section class="hero-vertical" aria-label="Social Media Generator start page">
+        <button class="shot-tile ar-21x9" data-full="/images/social-media-generator/start.webp" data-title="Start & Instagram connection" data-cap="<p>The product starts with a focused value proposition and connects the user's professional Instagram account before publishing features are unlocked.</p>">
+          <img src="/images/social-media-generator/start.webp" alt="Social Media Generator start page" />
+        </button>
+      </section>
+
+      <section>
+        <h2>Product goal</h2>
+        <p>
+          Social content is often fragmented across idea generation, image search, copywriting, planning and publishing. I designed the flow so those steps happen inside one product: connect Instagram, define the brand, choose a publishing cadence, generate content, edit it and publish.
+        </p>
+      </section>
+
+      <section>
+        <h2>What I designed & built</h2>
+        <ul>
+          <li><strong>Instagram onboarding:</strong> account connection and publishing access through the Instagram Graph API.</li>
+          <li><strong>Brand setup:</strong> content language, brand font, weight, text case and visual preview before generation.</li>
+          <li><strong>AI content workflow:</strong> generates post concepts, headings, body copy and hashtags based on the business profile and content brief.</li>
+          <li><strong>Image workflow:</strong> supports AI-generated visuals and selecting relevant imagery from Unsplash.</li>
+          <li><strong>Planner:</strong> suggests publishing dates and times, while keeping the schedule editable by the user.</li>
+          <li><strong>Publishing:</strong> prepares the final content and publishes posts directly to the connected Instagram account.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Guided onboarding without a long setup form</h2>
+        <p>
+          Instead of asking for every preference at once, setup is broken into small decisions. The user chooses language, brand typography and content volume, then gives the generator a short description of the current brand vibe and topics. Each step previews the effect of the choice before moving forward.
+        </p>
+      </section>
+
+      <section>
+        <h2>From generated content to a real channel</h2>
+        <p>
+          The important part was not only generating content, but closing the loop. Generated posts are designed to become an editable calendar rather than disposable AI output. The user can adjust copy, visuals, hashtags and suggested publishing times before sending the final post to Instagram.
+        </p>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>
+          The result is a compact end-to-end product that turns AI generation into a practical publishing workflow. It reduces the number of separate tools needed for routine social content while keeping brand choices and final publishing decisions under the user's control.
+        </p>
+      </section>
+    </div>
+
+    <aside class="doc-aside feature-card">
+      <nav class="shots-grid" aria-label="Social Media Generator project gallery">
+        <button class="shot-tile" data-full="/images/social-media-generator/connected.webp" data-title="Instagram connected" data-cap="<p>After OAuth connection, the application confirms the account and moves into brand and content setup.</p>"><img src="/images/social-media-generator/connected.webp" alt="Connected Instagram account in Social Media Generator" /></button>
+        <button class="shot-tile" data-full="/images/social-media-generator/brand-font.webp" data-title="Brand typography setup" data-cap="<p>Font, weight and text case are chosen with a live brand preview instead of abstract settings alone.</p>"><img src="/images/social-media-generator/brand-font.webp" alt="Brand font setup" /></button>
+        <button class="shot-tile" data-full="/images/social-media-generator/planner-size.webp" data-title="Content cadence" data-cap="<p>The user chooses a manageable publishing cadence before the planner is generated.</p>"><img src="/images/social-media-generator/planner-size.webp" alt="Planner size selection" /></button>
+        <button class="shot-tile" data-full="/images/social-media-generator/brand-brief.webp" data-title="Brand brief" data-cap="<p>A lightweight conversational brief captures the business and topic direction used for AI-assisted content generation.</p>"><img src="/images/social-media-generator/brand-brief.webp" alt="Brand content brief" /></button>
+        <button class="shot-tile" data-full="/images/social-media-generator/instagram-grid.webp" data-title="Published content" data-cap="<p>The workflow is connected to a real Instagram account, turning generated ideas into a coherent published feed.</p>"><img src="/images/social-media-generator/instagram-grid.webp" alt="Instagram grid generated with the application" /></button>
+        <button class="shot-tile" data-full="/images/social-media-generator/instagram-post.webp" data-title="Instagram post" data-cap="<p>Example of the final published output combining selected imagery, generated copy and hashtags.</p>"><img src="/images/social-media-generator/instagram-post.webp" alt="Published Instagram post" /></button>
+      </nav>
+    </aside>
+
+    <div class="tokens-lightbox" aria-hidden="true">
+      <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button class="tokens-lightbox__close" type="button" aria-label="Close">×</button>
+        <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
+        <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+        <div class="tokens-lightbox__media"><img class="tokens-lightbox__img" alt="" /></div>
+        <aside class="tokens-lightbox__meta"><h4 class="tokens-lightbox__title"></h4><div class="tokens-lightbox__cap"></div></aside>
+      </div>
+    </div>
+    <nav class="case-rail case-rail--right" aria-label="Next project">
+      <a class="pager-btn pager-btn--next" href="/case-studies/email-marketing" aria-label="Next: Email Marketing Platform">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+  </article>
+
+  <script>
+    import initLightbox from "../../scripts/case-lightbox";
+    initLightbox();
+  </script>
+</Base>

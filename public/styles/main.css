@@ -1207,3 +1207,1628 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
   margin: 0;
   list-style: none;
 }
+
+/* ===== Portfolio 2026 polish ===== */
+.row-link {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 18px;
+  padding: 18px 6px !important;
+}
+.row-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+}
+.row-title {
+  font-weight: 800;
+  line-height: 1.12;
+}
+.row-role {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+.row-summary {
+  display: block;
+  max-width: 660px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+.row-arrow {
+  display: grid;
+  place-items: center;
+}
+.row-arrow-svg {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.18s ease;
+}
+.row-link:hover .row-arrow-svg {
+  transform: translateX(5px);
+}
+
+/* Replace the old icon + technology-pill footer with a FLAX-like bold marquee. */
+.site-footer {
+  margin-top: 76px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+}
+.bold-ticker {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg) 94%, var(--fg) 6%);
+  padding: clamp(1.2rem, 2.8vw, 2.4rem) 0;
+}
+.bold-ticker__rail {
+  display: flex;
+  width: max-content;
+  animation: boldTickerLoop 28s linear infinite;
+  will-change: transform;
+}
+.bold-ticker__track {
+  display: flex;
+  align-items: center;
+  flex: none;
+  white-space: nowrap;
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-size: clamp(2.15rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+.bold-ticker__track span {
+  padding-inline: clamp(1.25rem, 3vw, 3.5rem);
+}
+.bold-ticker__track i {
+  font-family: var(--ui-font);
+  font-style: normal;
+  font-size: 0.55em;
+  opacity: 0.25;
+}
+@keyframes boldTickerLoop {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.bold-ticker:hover .bold-ticker__rail {
+  animation-play-state: paused;
+}
+.footer-copy {
+  margin: 0;
+  border: 0;
+  padding: 18px var(--pad) 24px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bold-ticker__rail {
+    animation: none;
+  }
+}
+@media (max-width: 700px) {
+  .row-link {
+    gap: 10px;
+    padding: 15px 2px !important;
+  }
+  .row-arrow-svg {
+    width: 40px;
+    height: 40px;
+  }
+  .row-summary {
+    display: none;
+  }
+}
+/* No script/handwritten display type: use the same bold condensed language as the product work. */
+.handwritten,
+.signature {
+  font-family: "Oswald", "Arial Narrow", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase;
+}
+
+/* ===== Work list interaction restore ===== */
+.project-row {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 0.22s ease,
+    transform 0.22s ease;
+}
+.project-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: currentColor;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+  opacity: 0.9;
+}
+.project-row:hover,
+.project-row:focus-within {
+  background: color-mix(in oklab, var(--card) 88%, var(--fg) 5%);
+}
+.project-row:hover::before,
+.project-row:focus-within::before {
+  transform: scaleY(1);
+}
+.project-row .row-link {
+  transition:
+    transform 0.22s ease,
+    padding 0.22s ease;
+}
+.project-row:hover .row-link,
+.project-row:focus-within .row-link {
+  transform: translateX(8px);
+}
+.project-row .row-summary {
+  max-height: 1.45em;
+  overflow: hidden;
+  opacity: 0.72;
+  transition:
+    max-height 0.28s ease,
+    opacity 0.22s ease;
+}
+.project-row:hover .row-summary,
+.project-row:focus-within .row-summary {
+  max-height: 4.5em;
+  opacity: 1;
+}
+.project-row:hover .row-title,
+.project-row:focus-within .row-title {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.project-row:hover .row-arrow-svg,
+.project-row:focus-within .row-arrow-svg {
+  transform: translateX(9px) scale(1.06);
+}
+@media (max-width: 700px) {
+  .project-row .row-summary {
+    display: block;
+    max-height: 2.8em;
+  }
+  .project-row:hover .row-link,
+  .project-row:focus-within .row-link {
+    transform: none;
+  }
+}
+
+/* ==========================================================
+   FINAL 2026 WORK/HOME INTERACTION + FOOTER TICKER
+   Authoritative overrides: keep summaries closed until hover.
+========================================================== */
+.selected-work-shell .content {
+  overflow: visible;
+}
+.selected-work-shell .work-split {
+  align-items: start;
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+  padding-bottom: 1.25rem;
+}
+.selected-work-shell .right {
+  max-height: none !important;
+  overflow: visible;
+}
+.selected-work-shell .project-row {
+  position: relative;
+  overflow: visible;
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+.selected-work-shell .project-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--fg);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  z-index: 1;
+}
+.selected-work-shell .row-link {
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) 54px !important;
+  gap: 12px !important;
+  align-items: center !important;
+  min-height: 70px;
+  padding: 12px 8px !important;
+  transition:
+    transform 0.2s ease,
+    padding 0.2s ease;
+}
+.selected-work-shell .row-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 3px;
+}
+.selected-work-shell .row-num {
+  font-size: clamp(1.75rem, 2.1vw, 2.5rem);
+}
+.selected-work-shell .row-title {
+  display: block;
+  font-weight: 800;
+  line-height: 1.12;
+  text-decoration: none !important;
+}
+.selected-work-shell .row-role {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 650;
+  line-height: 1.25;
+}
+/* Hidden by default. This is the original interaction the Work list needs. */
+.selected-work-shell .row-summary {
+  display: block !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  color: var(--muted);
+  font-size: 0.81rem;
+  line-height: 1.4;
+  transform: translateY(-4px);
+  transition:
+    max-height 0.28s ease,
+    opacity 0.2s ease,
+    transform 0.25s ease,
+    margin-top 0.25s ease !important;
+}
+.selected-work-shell .project-row:hover,
+.selected-work-shell .row-link:focus-visible {
+  background: var(--card-bg);
+}
+.selected-work-shell .project-row:hover::before,
+.selected-work-shell .project-row:has(.row-link:focus-visible)::before {
+  transform: scaleY(1);
+}
+.selected-work-shell .project-row:hover .row-link,
+.selected-work-shell .row-link:focus-visible {
+  transform: translateX(7px);
+}
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  max-height: 6em !important;
+  margin-top: 5px !important;
+  opacity: 1 !important;
+  transform: translateY(0);
+}
+.selected-work-shell .project-row:hover .row-title,
+.selected-work-shell .row-link:focus-visible .row-title {
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.selected-work-shell .row-arrow {
+  display: grid;
+  place-items: center;
+}
+.selected-work-shell .row-arrow-svg {
+  width: 46px;
+  height: 46px;
+  transition: transform 0.2s ease;
+}
+.selected-work-shell .project-row:hover .row-arrow-svg,
+.selected-work-shell .row-link:focus-visible .row-arrow-svg {
+  transform: translateX(7px);
+}
+/* Bring the FLAX-like moving type directly after the list instead of far below it. */
+.selected-work-shell .site-footer {
+  margin-top: 24px !important;
+}
+.selected-work-shell .bold-ticker {
+  display: block !important;
+  visibility: visible !important;
+}
+@media (max-width: 700px) {
+  .selected-work-shell .row-link {
+    grid-template-columns: 50px minmax(0, 1fr) 42px !important;
+    min-height: 66px;
+  }
+  .selected-work-shell .row-arrow-svg {
+    width: 38px;
+    height: 38px;
+  }
+  .selected-work-shell .row-summary {
+    max-height: 0 !important;
+    opacity: 0 !important;
+  }
+  .selected-work-shell .project-row:hover .row-summary,
+  .selected-work-shell .row-link:focus-visible .row-summary {
+    max-height: 7em !important;
+    opacity: 1 !important;
+  }
+}
+
+/* More breathing room on personal pages. */
+.about-shell .content,
+.contact-shell .content {
+  overflow: visible;
+}
+.about-shell .site-footer,
+.contact-shell .site-footer {
+  margin-top: 26px !important;
+}
+
+/* ==========================================================
+   WORK/HOME LIST — fixed-height rows + overlay hover details
+   Keeps the page stable: hover details cover the next row
+   instead of expanding/reflowing the list.
+========================================================== */
+.selected-work-shell .right {
+  display: block !important;
+  max-height: calc(100vh - 255px) !important;
+  min-height: 420px;
+  overflow-y: auto !important;
+  overflow-x: visible !important;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--fg) 28%, transparent) transparent;
+  padding-right: 4px;
+}
+.selected-work-shell .right::-webkit-scrollbar {
+  width: 7px;
+}
+.selected-work-shell .right::-webkit-scrollbar-track {
+  background: transparent;
+}
+.selected-work-shell .right::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--fg) 24%, transparent);
+  border-radius: 999px;
+}
+
+.selected-work-shell .project-list {
+  overflow: visible;
+}
+
+.selected-work-shell .project-row {
+  position: relative;
+  z-index: 0;
+  height: 62px;
+  overflow: visible !important;
+  background: transparent;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  transition: background-color 0.16s ease;
+}
+.selected-work-shell .project-row::before {
+  content: none !important;
+  display: none !important;
+}
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 20;
+  background: var(--card-bg);
+}
+
+.selected-work-shell .row-link {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) 52px !important;
+  gap: 12px !important;
+  align-items: center !important;
+  height: 62px;
+  min-height: 62px !important;
+  padding: 8px 6px !important;
+  transform: none !important;
+  transition: background-color 0.16s ease !important;
+}
+
+.selected-work-shell .row-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  gap: 2px;
+  height: 100%;
+}
+.selected-work-shell .row-title {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 800;
+  line-height: 1.08;
+  text-decoration: none !important;
+}
+.selected-work-shell .row-role {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.73rem;
+  font-weight: 650;
+  line-height: 1.15;
+}
+
+/* Details are a floating panel. They do not affect row/list height. */
+.selected-work-shell .row-summary {
+  position: absolute !important;
+  left: -8px;
+  right: -8px;
+  top: calc(100% - 2px);
+  z-index: 30;
+  display: block !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 9px 10px 11px;
+  overflow: visible !important;
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+  color: var(--muted);
+  background: var(--card-bg);
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  box-shadow: 0 10px 18px color-mix(in oklab, #000 12%, transparent);
+  font-size: 0.79rem;
+  line-height: 1.35;
+  transform: translateY(-3px);
+  transition:
+    opacity 0.14s ease,
+    transform 0.14s ease,
+    visibility 0s linear 0.14s !important;
+}
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  opacity: 1 !important;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s !important;
+}
+.selected-work-shell .project-row:hover .row-title,
+.selected-work-shell .row-link:focus-visible .row-title {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+.selected-work-shell .row-arrow-svg {
+  width: 42px;
+  height: 42px;
+  transition: transform 0.16s ease;
+}
+.selected-work-shell .project-row:hover .row-arrow-svg,
+.selected-work-shell .row-link:focus-visible .row-arrow-svg {
+  transform: translateX(5px);
+}
+
+/* Keep the ticker close to the work grid and fully visible. */
+.selected-work-shell .work-split {
+  padding-bottom: 18px !important;
+}
+.selected-work-shell .site-footer {
+  margin-top: 18px !important;
+}
+.selected-work-shell .bold-ticker {
+  display: block !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 1099px) {
+  .selected-work-shell .right {
+    max-height: none !important;
+    min-height: 0;
+    overflow: visible !important;
+    padding-right: 0;
+  }
+  .selected-work-shell .project-row {
+    height: auto;
+    min-height: 62px;
+  }
+  .selected-work-shell .row-link {
+    height: auto;
+    min-height: 62px !important;
+  }
+  .selected-work-shell .row-summary {
+    position: static !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    border: 0;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 0 !important;
+    overflow: hidden !important;
+  }
+  .selected-work-shell .project-row:hover .row-summary,
+  .selected-work-shell .row-link:focus-visible .row-summary {
+    max-height: 8em !important;
+    padding-top: 6px !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ==========================================================
+   FINAL POLISH — stable full-row hover + clean personal pages
+   2026-09-13
+========================================================== */
+
+/* Work/Home: hover details cover exactly the row below, full width.
+   No reflow, no accent bar, no wobble. */
+.selected-work-shell .project-list {
+  position: relative;
+}
+.selected-work-shell .project-row {
+  position: relative;
+  height: 62px !important;
+  min-height: 62px !important;
+  overflow: visible !important;
+  z-index: 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  background: transparent !important;
+}
+.selected-work-shell .project-row::before,
+.selected-work-shell .project-row::after {
+  content: none !important;
+  display: none !important;
+}
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 50;
+  background: var(--card-bg) !important;
+}
+.selected-work-shell .row-link {
+  position: relative;
+  z-index: 1;
+  height: 62px !important;
+  min-height: 62px !important;
+  padding: 8px 6px !important;
+  transform: none !important;
+}
+/* Important: summary must position against the whole LI, not only the copy column. */
+.selected-work-shell .row-copy {
+  position: static !important;
+}
+.selected-work-shell .row-summary {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 61px !important;
+  width: 100% !important;
+  height: 63px !important;
+  min-height: 63px !important;
+  box-sizing: border-box;
+  z-index: 60;
+  display: flex !important;
+  align-items: center;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 8px 64px 8px 70px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+  color: var(--muted) !important;
+  background: var(--card-bg) !important;
+  border-top: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  box-shadow: none !important;
+  font-size: 0.79rem;
+  line-height: 1.35;
+  transform: none !important;
+  transition:
+    opacity 0.12s ease,
+    visibility 0s linear 0.12s !important;
+}
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition-delay: 0s !important;
+}
+.selected-work-shell .project-row:hover .row-title,
+.selected-work-shell .row-link:focus-visible .row-title {
+  text-decoration: none !important;
+}
+.selected-work-shell .project-row:hover .row-arrow-svg,
+.selected-work-shell .row-link:focus-visible .row-arrow-svg {
+  transform: translateX(5px) !important;
+}
+
+/* About should align with the same left edge as Work — no second centered container. */
+.about-shell .page-spaced {
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
+.about-shell .about-intro {
+  max-width: 820px;
+}
+
+/* Let the condensed ticker glyphs breathe vertically instead of being clipped. */
+.site-footer {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+.bold-ticker {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  padding-top: clamp(1.45rem, 2.8vw, 2.6rem) !important;
+  padding-bottom: clamp(1.65rem, 3vw, 2.8rem) !important;
+}
+.bold-ticker__track {
+  line-height: 1.02 !important;
+}
+.contact-shell .site-footer {
+  margin-top: 0 !important;
+}
+.contact-shell .footer-copy {
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+}
+
+@media (max-width: 1099px) {
+  /* Touch/smaller layouts can expand normally; desktop keeps the overlay interaction. */
+  .selected-work-shell .project-row {
+    height: auto !important;
+    min-height: 62px !important;
+  }
+  .selected-work-shell .row-link {
+    height: auto !important;
+    min-height: 62px !important;
+  }
+  .selected-work-shell .row-copy {
+    position: relative !important;
+  }
+  .selected-work-shell .row-summary {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: block !important;
+    padding: 0 !important;
+    border: 0 !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: visible !important;
+  }
+  .selected-work-shell .project-row:hover .row-summary,
+  .selected-work-shell .row-link:focus-visible .row-summary {
+    max-height: 8em !important;
+    padding-top: 6px !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ==========================================================
+   VERIFIED FINAL OVERRIDES — 2026-09-13 16:12
+   This block is intentionally last and wins over older rules.
+========================================================== */
+
+/* WORK + HOME: stable rows, summary overlays the ENTIRE next row. */
+.selected-work-shell .right {
+  display: block !important;
+  max-height: 476px !important;
+  overflow-y: auto !important;
+  overflow-x: visible !important;
+  scrollbar-gutter: stable;
+  padding-right: 8px;
+}
+.selected-work-shell .project-list {
+  position: relative !important;
+  overflow: visible !important;
+}
+.selected-work-shell .project-row {
+  position: relative !important;
+  height: 53px !important;
+  min-height: 53px !important;
+  overflow: visible !important;
+  z-index: 1;
+  background: var(--bg) !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+}
+.selected-work-shell .project-row::before,
+.selected-work-shell .project-row::after {
+  content: none !important;
+  display: none !important;
+}
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 100 !important;
+  background: var(--card-bg) !important;
+}
+.selected-work-shell .row-link {
+  position: static !important;
+  display: grid !important;
+  grid-template-columns: 56px minmax(0, 1fr) 46px !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  height: 53px !important;
+  min-height: 53px !important;
+  box-sizing: border-box !important;
+  padding: 6px 6px !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+.selected-work-shell .row-copy {
+  position: static !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  gap: 2px !important;
+}
+.selected-work-shell .row-num {
+  font-size: clamp(1.55rem, 2vw, 2.2rem) !important;
+  line-height: 1 !important;
+}
+.selected-work-shell .row-title {
+  font-weight: 800 !important;
+  line-height: 1.08 !important;
+  text-decoration: none !important;
+}
+.selected-work-shell .row-role {
+  display: block !important;
+  font-size: 0.72rem !important;
+  line-height: 1.1 !important;
+}
+.selected-work-shell .row-summary {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 53px !important;
+  width: 100% !important;
+  height: 53px !important;
+  min-height: 53px !important;
+  max-height: 53px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 7px 54px 7px 66px !important;
+  background: var(--card-bg) !important;
+  color: var(--muted) !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  box-shadow: none !important;
+  font-size: 0.76rem !important;
+  line-height: 1.28 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  transform: none !important;
+  transition: opacity 0.12s ease !important;
+  z-index: 200 !important;
+}
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.selected-work-shell .project-row:hover .row-title,
+.selected-work-shell .row-link:focus-visible .row-title {
+  text-decoration: none !important;
+}
+.selected-work-shell .row-arrow-svg {
+  width: 38px !important;
+  height: 38px !important;
+}
+.selected-work-shell .project-row:hover .row-arrow-svg,
+.selected-work-shell .row-link:focus-visible .row-arrow-svg {
+  transform: translateX(4px) !important;
+}
+
+/* ABOUT: no portrait, same page-grid left edge as Work. */
+.about-shell .page-spaced {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-top: clamp(3.25rem, 5vw, 4.5rem) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.about-shell .about-intro {
+  max-width: 820px !important;
+}
+.about-shell .about-photo,
+.about-shell .about-photo-wrap,
+.about-shell img[alt="Maria Klammer"] {
+  display: none !important;
+}
+
+/* FOOTER TICKER: enough height for full Oswald capitals; never cropped by copyright row. */
+.site-footer {
+  overflow: visible !important;
+  padding: 0 !important;
+}
+.bold-ticker {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 142px !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  box-sizing: border-box !important;
+  padding: 26px 0 28px !important;
+}
+.bold-ticker__rail {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 86px !important;
+  overflow: visible !important;
+}
+.bold-ticker__track {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 86px !important;
+  line-height: 1 !important;
+  overflow: visible !important;
+}
+.bold-ticker__track span {
+  display: inline-block !important;
+  line-height: 1 !important;
+  padding-top: 0.06em !important;
+  padding-bottom: 0.1em !important;
+}
+.footer-copy {
+  position: static !important;
+  margin: 0 !important;
+  padding: 14px var(--pad) 18px !important;
+  border-top: 1px solid var(--border) !important;
+  background: var(--bg) !important;
+}
+.contact-shell .site-footer,
+.about-shell .site-footer,
+.selected-work-shell .site-footer {
+  margin-top: 20px !important;
+}
+
+@media (max-width: 1099px) {
+  .selected-work-shell .right {
+    max-height: none !important;
+    overflow: visible !important;
+    padding-right: 0 !important;
+  }
+  .selected-work-shell .project-row,
+  .selected-work-shell .row-link {
+    height: auto !important;
+    min-height: 58px !important;
+  }
+  .selected-work-shell .row-link {
+    position: relative !important;
+  }
+  .selected-work-shell .row-summary {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    visibility: visible !important;
+  }
+  .selected-work-shell .project-row:hover .row-summary,
+  .selected-work-shell .row-link:focus-visible .row-summary {
+    max-height: 8em !important;
+    padding-top: 6px !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ==========================================================
+   FINAL PATCH — 2026-09-13 16:25
+   Fixes:
+   - work rows taller again
+   - hover overlay covers the full next row including arrow
+   - no left hover bar / no internal wobble
+   - right list ends on a cleaner line and scrolls
+   - about stays left-aligned with no portrait
+   - footer ticker keeps full height
+========================================================== */
+
+.selected-work-shell {
+  --work-row-h: 68px;
+}
+
+/* Keep the work layout stable and let the list scroll inside its own column. */
+.selected-work-shell .work-split {
+  align-items: start !important;
+}
+.selected-work-shell .right {
+  display: block !important;
+  align-self: start !important;
+  max-height: calc(var(--work-row-h) * 7 + 2px) !important;
+  overflow-y: auto !important;
+  overflow-x: visible !important;
+  padding-right: 8px !important;
+  scrollbar-gutter: stable both-edges !important;
+}
+.selected-work-shell .project-list {
+  position: relative !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.selected-work-shell .project-row {
+  position: relative !important;
+  height: var(--work-row-h) !important;
+  min-height: var(--work-row-h) !important;
+  overflow: visible !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  background: transparent !important;
+  isolation: isolate !important;
+  z-index: 1 !important;
+}
+.selected-work-shell .project-row::before,
+.selected-work-shell .project-row::after {
+  content: none !important;
+  display: none !important;
+}
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 30 !important;
+  background: transparent !important;
+}
+
+/* IMPORTANT: the overlay must be positioned from the full row width, not from the text column. */
+.selected-work-shell .row-link {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) 52px !important;
+  gap: 0 !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: var(--work-row-h) !important;
+  min-height: var(--work-row-h) !important;
+  padding: 10px 0 !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+.selected-work-shell .row-num {
+  display: block !important;
+  padding-right: 10px !important;
+  font-size: clamp(1.95rem, 2.2vw, 2.55rem) !important;
+  line-height: 1 !important;
+}
+.selected-work-shell .row-copy {
+  position: static !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-width: 0 !important;
+  padding-right: 14px !important;
+  gap: 3px !important;
+}
+.selected-work-shell .row-title {
+  display: block !important;
+  font-size: clamp(1.08rem, 1.22vw, 1.28rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.08 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.selected-work-shell .row-role {
+  display: block !important;
+  font-size: 0.76rem !important;
+  line-height: 1.15 !important;
+  color: var(--muted) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.selected-work-shell .row-arrow {
+  display: grid !important;
+  place-items: center !important;
+  align-self: stretch !important;
+}
+.selected-work-shell .row-arrow-svg {
+  width: 40px !important;
+  height: 40px !important;
+  transition: transform 0.16s ease !important;
+}
+
+/* Full-width hover layer that visually replaces the NEXT row, including the arrow area. */
+.selected-work-shell .row-summary {
+  position: absolute !important;
+  left: -1px !important;
+  right: -1px !important;
+  top: calc(var(--work-row-h) - 1px) !important;
+  width: calc(100% + 2px) !important;
+  height: var(--work-row-h) !important;
+  min-height: var(--work-row-h) !important;
+  max-height: var(--work-row-h) !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 9px 58px 9px 58px !important;
+  background: var(--card-bg) !important;
+  color: var(--muted) !important;
+  border-top: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--fg) 4%, transparent) inset !important;
+  font-size: 0.79rem !important;
+  line-height: 1.28 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  z-index: 40 !important;
+}
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .project-row:focus-within .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.selected-work-shell .project-row:hover .row-arrow-svg,
+.selected-work-shell .project-row:focus-within .row-arrow-svg,
+.selected-work-shell .row-link:focus-visible .row-arrow-svg {
+  transform: translateX(4px) !important;
+}
+
+/* About/contact: keep left edge clean and no portrait. */
+.about-shell .page-spaced {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.about-shell .about-page img,
+.about-shell .about-page picture,
+.about-shell .about-page .about-photo,
+.about-shell .about-page .about-photo-wrap,
+.about-shell .about-page figure {
+  display: none !important;
+}
+.contact-shell .page-spaced-contact {
+  padding-top: clamp(3.6rem, 6vw, 5.6rem) !important;
+}
+
+/* Footer ticker: leave enough height so nothing is cropped on about/contact/work. */
+.site-footer {
+  overflow: visible !important;
+}
+.bold-ticker {
+  min-height: 152px !important;
+  padding: 30px 0 30px !important;
+}
+.bold-ticker__rail,
+.bold-ticker__track {
+  min-height: 92px !important;
+  align-items: center !important;
+}
+.footer-copy {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+@media (max-width: 1099px) {
+  .selected-work-shell .right {
+    max-height: none !important;
+    overflow: visible !important;
+    padding-right: 0 !important;
+  }
+  .selected-work-shell .project-row {
+    height: auto !important;
+    min-height: 72px !important;
+  }
+  .selected-work-shell .row-link {
+    height: auto !important;
+    min-height: 72px !important;
+    grid-template-columns: 58px minmax(0, 1fr) 46px !important;
+    padding: 12px 0 !important;
+  }
+  .selected-work-shell .row-summary {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+    visibility: visible !important;
+  }
+  .selected-work-shell .project-row:hover .row-summary,
+  .selected-work-shell .project-row:focus-within .row-summary,
+  .selected-work-shell .row-link:focus-visible .row-summary {
+    max-height: 8em !important;
+    padding-top: 8px !important;
+    padding-right: 0 !important;
+    padding-bottom: 2px !important;
+    padding-left: 0 !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ==========================================================
+   FINAL SIZE TUNE — 2026-09-13 16:30
+   Smaller footer ticker; code-only fix, no image changes.
+========================================================== */
+.bold-ticker {
+  min-height: 108px !important;
+  padding: 18px 0 20px !important;
+}
+.bold-ticker__rail,
+.bold-ticker__track {
+  min-height: 68px !important;
+}
+.bold-ticker__track {
+  font-size: clamp(1.85rem, 3.7vw, 3.9rem) !important;
+  line-height: 0.94 !important;
+}
+.bold-ticker__track span {
+  padding-inline: clamp(1rem, 2.4vw, 2.7rem) !important;
+}
+.footer-copy {
+  padding-top: 11px !important;
+  padding-bottom: 14px !important;
+}
+
+/* ==========================================================
+   WORK LIST FINAL INTERACTION FIX — 2026-09-13 16:45
+   - restore taller rows
+   - stable scroll area ending with the left feature block
+   - hover completely covers the next row, including its arrow
+   - no shifting / no accordion expansion
+========================================================== */
+
+.selected-work-shell {
+  --work-row-h: 78px !important;
+}
+
+/* Right list should visually finish around the same baseline as the left card. */
+.selected-work-shell .right {
+  height: 490px !important;
+  max-height: 490px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 10px !important;
+  scrollbar-gutter: stable !important;
+}
+
+/* Rows are deliberately generous again, like the earlier version. */
+.selected-work-shell .project-row {
+  position: relative !important;
+  height: var(--work-row-h) !important;
+  min-height: var(--work-row-h) !important;
+  overflow: visible !important;
+  isolation: isolate !important;
+}
+
+.selected-work-shell .row-link {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: 64px minmax(0, 1fr) 56px !important;
+  align-items: center !important;
+  height: 100% !important;
+  min-height: var(--work-row-h) !important;
+  padding: 13px 0 !important;
+  overflow: visible !important;
+}
+
+.selected-work-shell .row-num {
+  font-size: clamp(2.05rem, 2.35vw, 2.7rem) !important;
+  line-height: 0.95 !important;
+  align-self: center !important;
+}
+
+.selected-work-shell .row-copy {
+  position: static !important;
+  min-width: 0 !important;
+  gap: 5px !important;
+  justify-content: center !important;
+}
+
+.selected-work-shell .row-title {
+  font-size: clamp(1.08rem, 1.22vw, 1.3rem) !important;
+  line-height: 1.12 !important;
+}
+
+.selected-work-shell .row-role {
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Full-width physical cover for the next row. This is what hides its arrow too. */
+.selected-work-shell .project-row::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: calc(100% - 1px) !important;
+  height: var(--work-row-h) !important;
+  background: var(--card-bg) !important;
+  border-top: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: 80 !important;
+}
+
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 100 !important;
+}
+
+.selected-work-shell .project-row:hover::after,
+.selected-work-shell .project-row:focus-within::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Summary sits above the full-width cover. */
+.selected-work-shell .row-summary {
+  position: absolute !important;
+  left: 64px !important;
+  right: 56px !important;
+  top: calc(100% - 1px) !important;
+  width: auto !important;
+  height: var(--work-row-h) !important;
+  min-height: var(--work-row-h) !important;
+  max-height: var(--work-row-h) !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 11px 14px 11px 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--muted) !important;
+  font-size: 0.8rem !important;
+  line-height: 1.32 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: 100 !important;
+  overflow: hidden !important;
+}
+
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .project-row:focus-within .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Keep current-row arrow movement subtle; the next-row arrow is fully covered. */
+.selected-work-shell .row-arrow-svg {
+  width: 38px !important;
+  height: 38px !important;
+}
+.selected-work-shell .project-row:hover .row-arrow-svg,
+.selected-work-shell .project-row:focus-within .row-arrow-svg {
+  transform: translateX(3px) !important;
+}
+
+/* Ticker: smaller than the oversized version, but not cropped. */
+.bold-ticker {
+  min-height: 96px !important;
+  padding: 14px 0 16px !important;
+}
+.bold-ticker__rail,
+.bold-ticker__track {
+  min-height: 62px !important;
+}
+.bold-ticker__track {
+  font-size: clamp(1.75rem, 3.2vw, 3.35rem) !important;
+  line-height: 0.98 !important;
+}
+
+@media (max-width: 1099px) {
+  .selected-work-shell .right {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .selected-work-shell .project-row::after {
+    display: none !important;
+  }
+}
+
+/* ==========================================================
+   WORK LIST CLEAN FINAL FIX — 2026-09-13 16:55
+   ========================================================== */
+
+.selected-work-shell {
+  --work-row-h: 82px !important;
+}
+
+/* One more row visible, still a contained scroll area. */
+.selected-work-shell .right {
+  height: 568px !important;
+  max-height: 568px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 10px !important;
+  scrollbar-gutter: stable !important;
+}
+
+.selected-work-shell .project-row {
+  height: var(--work-row-h) !important;
+  min-height: var(--work-row-h) !important;
+  overflow: visible !important;
+  position: relative !important;
+  isolation: isolate !important;
+  z-index: 1 !important;
+}
+
+.selected-work-shell .row-link {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 68px minmax(0, 1fr) 54px !important;
+  column-gap: 12px !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: var(--work-row-h) !important;
+  padding: 13px 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+.selected-work-shell .row-num {
+  font-size: clamp(2rem, 2.35vw, 2.7rem) !important;
+  line-height: 0.95 !important;
+  padding: 0 !important;
+  align-self: center !important;
+}
+
+.selected-work-shell .row-copy {
+  position: static !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+.selected-work-shell .row-title {
+  font-size: clamp(1.08rem, 1.22vw, 1.3rem) !important;
+  line-height: 1.12 !important;
+}
+
+.selected-work-shell .row-role {
+  font-size: 0.76rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Remove the old blank pseudo-layer entirely. */
+.selected-work-shell .project-row::after,
+.selected-work-shell .project-row::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Hover description itself is the full-width cover.
+   It sits over the next row from left edge to right edge, arrow included. */
+.selected-work-shell .row-summary {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: calc(100% - 1px) !important;
+  width: 100% !important;
+  height: var(--work-row-h) !important;
+  min-height: var(--work-row-h) !important;
+  max-height: var(--work-row-h) !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 12px 68px 12px 80px !important;
+  background: var(--card-bg) !important;
+  color: var(--muted) !important;
+  border-top: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  box-shadow: none !important;
+  font-size: 0.82rem !important;
+  line-height: 1.32 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  z-index: 200 !important;
+}
+
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 300 !important;
+}
+
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .project-row:focus-within .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.selected-work-shell .row-arrow {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  place-items: center !important;
+}
+.selected-work-shell .row-arrow-svg {
+  width: 38px !important;
+  height: 38px !important;
+}
+
+/* Slightly smaller ticker than before. */
+.bold-ticker {
+  min-height: 90px !important;
+  padding: 12px 0 14px !important;
+}
+.bold-ticker__rail,
+.bold-ticker__track {
+  min-height: 58px !important;
+}
+.bold-ticker__track {
+  font-size: clamp(1.65rem, 3vw, 3.15rem) !important;
+  line-height: 0.98 !important;
+}
+
+@media (max-width: 1099px) {
+  .selected-work-shell .right {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .selected-work-shell .project-row,
+  .selected-work-shell .row-link {
+    height: auto !important;
+    min-height: 74px !important;
+  }
+
+  .selected-work-shell .row-summary {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    visibility: visible !important;
+    background: transparent !important;
+  }
+
+  .selected-work-shell .project-row:hover .row-summary,
+  .selected-work-shell .project-row:focus-within .row-summary {
+    max-height: 8em !important;
+    padding-top: 8px !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ==========================================================
+   WORK HOVER ALIGNMENT — 2026-09-13 17:00
+   Hover summary is now a direct child of .row-link.
+   This removes the tiny vertical gap and spans the full row,
+   including the right-side arrow column.
+========================================================== */
+
+.selected-work-shell .row-summary {
+  position: absolute !important;
+  inset-inline: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: calc(100% - 3px) !important;
+  width: auto !important;
+  height: calc(var(--work-row-h) + 3px) !important;
+  min-height: calc(var(--work-row-h) + 3px) !important;
+  max-height: calc(var(--work-row-h) + 3px) !important;
+  padding: 13px 58px 12px 80px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  background: var(--card-bg) !important;
+  border-top: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+  z-index: 500 !important;
+}
+
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 600 !important;
+}
+
+.selected-work-shell .project-row:hover .row-summary,
+.selected-work-shell .project-row:focus-within .row-summary,
+.selected-work-shell .row-link:focus-visible .row-summary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* No visual seam between the hovered row and its overlay. */
+.selected-work-shell .project-row:hover .row-link,
+.selected-work-shell .project-row:focus-within .row-link {
+  border-bottom-color: transparent !important;
+}
+
+/* ==========================================================
+   WORK HOVER PIXEL FIX — 2026-09-13 17:10
+   Fixes the remaining 2px seam and forces the hover panel
+   across ALL grid columns, including the arrow column.
+========================================================== */
+
+.selected-work-shell .row-summary {
+  /* Important: this is an absolutely positioned GRID CHILD.
+     Explicitly span every grid column or the browser can size it
+     to the text/grid area instead of the whole row. */
+  grid-column: 1 / -1 !important;
+  grid-row: 1 !important;
+  justify-self: stretch !important;
+
+  left: 0 !important;
+  right: 0 !important;
+  inset-inline: 0 !important;
+
+  /* Overlap the row boundary slightly so there is zero visible seam. */
+  top: calc(100% - 6px) !important;
+  height: calc(var(--work-row-h) + 6px) !important;
+  min-height: calc(var(--work-row-h) + 6px) !important;
+  max-height: calc(var(--work-row-h) + 6px) !important;
+
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 15px 58px 12px 80px !important;
+  box-sizing: border-box !important;
+
+  background: var(--card-bg) !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent) !important;
+
+  z-index: 999 !important;
+}
+
+.selected-work-shell .project-row:hover,
+.selected-work-shell .project-row:focus-within {
+  z-index: 1000 !important;
+}
+
+/* Do not let the following row/arrow paint above the hover cover. */
+.selected-work-shell .project-row:hover + .project-row,
+.selected-work-shell .project-row:focus-within + .project-row {
+  z-index: 0 !important;
+}
+
+/* Keep current-row arrow underneath the summary overlay if their areas overlap. */
+.selected-work-shell .project-row:hover .row-arrow,
+.selected-work-shell .project-row:focus-within .row-arrow {
+  z-index: 1 !important;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  min-height: 100vh;
+}

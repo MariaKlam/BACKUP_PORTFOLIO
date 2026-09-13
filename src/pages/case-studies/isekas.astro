@@ -1,0 +1,107 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/case-base.css";
+
+const title = "Isekas Self-Service Checkout | Maria Klammer";
+---
+
+<Base title={title} noWrap={false} hideFooter={false}>
+  <article class="container-narrow doc-grid tokens-case">
+    <nav class="case-rail case-rail--left" aria-label="Previous project">
+      <a class="pager-btn pager-btn--prev" href="/case-studies/flax" aria-label="Previous: FLAX Hospitality">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </a>
+    </nav>
+    <div class="doc-main">
+      <header class="case-hero">
+        <h1>Isekas self-service checkout<br>product & visual refresh</h1>
+        <p class="meta">Product design • UX/UI • Visual direction • Frontend • 2026</p>
+        <p class="lede">
+          Reworked the Isekas self-service checkout landing experience from a generic product page into a more tangible and credible product story. The refresh introduced real-life environments, clearer use-case positioning, stronger product packaging and a more distinctive visual identity.
+        </p>
+      </header>
+
+      <section class="hero-vertical" aria-label="Isekas landing page preview">
+        <button class="shot-tile ar-21x9"
+          data-full="/images/isekas/hero.webp"
+          data-title="Lifestyle-led hero"
+          data-cap="<p>The updated hero places the product in a real service environment and makes the value proposition, campaign price and primary CTA immediately visible.</p>">
+          <img src="/images/isekas/hero.webp" alt="Isekas self-service checkout landing page hero" />
+        </button>
+      </section>
+
+      <section>
+        <h2>Challenge</h2>
+        <p>
+          The product needed to communicate more than “a checkout terminal”. The page had to explain where the
+          solution fits, what is included, why it reduces service friction, and how a customer can move from interest
+          to a concrete configuration without reading a long technical specification.
+        </p>
+      </section>
+
+      <section>
+        <h2>What I changed</h2>
+        <ul>
+          <li><strong>Visual direction:</strong> shifted the landing page toward real-life usage, warm retail imagery and a clearer Isekas visual identity.</li>
+          <li><strong>Information architecture:</strong> reorganised the page around use cases, included hardware/software, proof and pricing.</li>
+          <li><strong>Product packaging:</strong> clarified the complete solution and tiered configurations instead of presenting isolated features.</li>
+          <li><strong>Conversion UX:</strong> strengthened price hierarchy, offer framing and repeated inquiry/order CTAs.</li>
+          <li><strong>Frontend execution:</strong> implemented the refreshed landing page and responsive content system.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Use cases, not abstract features</h2>
+        <p>
+          The refreshed page shows how the same checkout can work in shops, sports venues, cafés and service
+          locations. This turns a hardware product into a more understandable business scenario: faster service,
+          less queueing and more flexible staffing.
+        </p>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>
+          The result is a more product-led sales page with a stronger visual identity, clearer use-case positioning
+          and a shorter path from “what is this?” to “which setup do I need?”. The page now works as both a product
+          presentation and a campaign landing page.
+        </p>
+        <p>
+          <a class="btn link-btn" href="https://isekas.kassa.net/" target="_blank" rel="noreferrer">
+            <span class="btn-label">View live Isekas site</span>
+          </a>
+        </p>
+      </section>
+    </div>
+
+    <aside class="doc-aside feature-card">
+      <nav class="shots-grid" aria-label="Isekas project gallery">
+        <button class="shot-tile" data-full="/images/isekas/use-cases.webp" data-title="Use-case section" data-cap="<p>Sector-based positioning for sport, office, retail and other service environments.</p>"><img src="/images/isekas/use-cases.webp" alt="Isekas use cases" /></button>
+        <button class="shot-tile" data-full="/images/isekas/kit.webp" data-title="Complete solution" data-cap="<p>A clearer bundled-product story: hardware, payments, software, installation and support.</p>"><img src="/images/isekas/kit.webp" alt="Isekas complete solution section" /></button>
+        <button class="shot-tile" data-full="/images/isekas/lifestyle.webp" data-title="Lifestyle system" data-cap="<p>Real usage imagery helps position Isekas across different physical environments.</p>"><img src="/images/isekas/lifestyle.webp" alt="Isekas lifestyle gallery" /></button>
+        <button class="shot-tile" data-full="/images/isekas/pricing.webp" data-title="Offer architecture" data-cap="<p>Starter, two-checkout and larger configurations make the offer easier to compare.</p>"><img src="/images/isekas/pricing.webp" alt="Isekas pricing section" /></button>
+        <button class="shot-tile" data-full="/images/isekas/concept.webp" data-title="Before the visual refresh" data-cap="<p>The original landing page used a more generic, AI-led visual direction. I reworked it around real usage, clearer product storytelling and a more distinctive Isekas identity.</p>"><img src="/images/isekas/concept.webp" alt="Isekas landing page before the visual refresh" /></button>
+      </nav>
+    </aside>
+
+    <div class="tokens-lightbox" aria-hidden="true">
+      <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button class="tokens-lightbox__close" type="button" aria-label="Close">×</button>
+        <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
+        <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+        <div class="tokens-lightbox__media"><img class="tokens-lightbox__img" alt="" /></div>
+        <aside class="tokens-lightbox__meta"><h4 class="tokens-lightbox__title"></h4><div class="tokens-lightbox__cap"></div></aside>
+      </div>
+    </div>
+      <nav class="case-rail case-rail--right" aria-label="Next project">
+      <a class="pager-btn pager-btn--next" href="/case-studies/ui-library-tokens" aria-label="Next: UI Library & Token System">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+</article>
+
+  <script>
+    import initLightbox from "../../scripts/case-lightbox";
+    initLightbox();
+  </script>
+</Base>

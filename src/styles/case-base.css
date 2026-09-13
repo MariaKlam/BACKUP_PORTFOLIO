@@ -595,3 +595,32 @@ html[data-theme="dark"] {
     background: color-mix(in oklab, var(--bg, #0b0d10) 70%, white 12%);
   }
 }
+
+.case-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 2026 project navigation polish */
+.pager-btn {
+  --btn-size: 70px;
+}
+.pager-icon {
+  width: 54px;
+  height: 54px;
+}
+/* The previous SVG already points left; do not mirror it. */
+.pager-btn--prev .pager-icon {
+  transform: none;
+}
+@media (max-width: 1024px) {
+  .tokens-case { --btn-size: 58px; }
+  .case-rail .pager-icon { width: 44px; height: 44px; }
+}
+
+/* Final project-navigation direction guard. The prev SVG path already points left. */
+.pager-btn--prev .pager-icon { transform: none !important; }
+.pager-btn--next .pager-icon { transform: none !important; }
+.pager-btn { --btn-size: 70px !important; width: var(--btn-size); height: var(--btn-size); }
+.pager-icon { width: 54px !important; height: 54px !important; }

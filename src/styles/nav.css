@@ -16704,10 +16704,7 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
   }
 }
 
-/* Flip the same SVG for the prev arrow */
-.pager-btn--prev .pager-icon {
-  transform: scaleX(-1);
-}
+/* Previous arrow SVG is authored pointing left. */
 
 .arrows-container {
   width: 100%;
@@ -16781,3 +16778,16 @@ html[data-theme="dark"] {
 .ri-star-fill {
   color: var(--fav-on);
 }
+
+/* 2026 navigation fix: SVG path for previous already points left. */
+.pager-btn--prev .pager-icon { transform: none !important; }
+.pager-btn { --btn-size: 68px; width: var(--btn-size); height: var(--btn-size); }
+.pager-icon { width: 54px; height: 54px; }
+@media (max-width: 1024px) {
+  .pager-btn { --btn-size: 58px; }
+  .pager-icon { width: 44px; height: 44px; }
+}
+
+/* Final navigation demo project-arrow direction guard. */
+.pager-btn--prev .pager-icon { transform: none !important; }
+.pager-btn--next .pager-icon { transform: none !important; }
