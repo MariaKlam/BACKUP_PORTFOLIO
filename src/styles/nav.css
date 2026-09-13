@@ -145,15 +145,25 @@ h4,
 h5,
 h6,
 p {
-  font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto;
+  font-family:
+    "Inter Tight",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto;
 }
 
 * {
   box-sizing: border-box;
   color: var(--main-txt-clr);
-  font-family: "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto;
+  font-family:
+    "Inter Tight",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto;
 }
 
 /* ================== COLOR ==========================*/
@@ -721,7 +731,8 @@ select:focus,
 textarea:focus {
   outline: none;
   border: 1px solid var(--blue-clr);
-  box-shadow: 0px 0px 0px 3px rgba(0, 110, 255, 0.24),
+  box-shadow:
+    0px 0px 0px 3px rgba(0, 110, 255, 0.24),
     0px 2px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
@@ -1012,7 +1023,9 @@ input[type="checkbox"]:disabled {
   border: 1px solid var(--border-main-clr);
   padding: 1rem;
   resize: vertical;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
   color: var(--main-txt-clr);
   background-color: var(--textarea-bg);
   min-height: 3.75rem;
@@ -1083,20 +1096,23 @@ input[type="checkbox"]:disabled {
   outline: none;
   border: none;
 
-  box-shadow: 0px 0px 0px 3px rgba(0, 110, 255, 0.24),
+  box-shadow:
+    0px 0px 0px 3px rgba(0, 110, 255, 0.24),
     0px 2px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
 .combined-input-select-textarea:focus-within .combined-textarea {
   border: 1px solid var(--blue-clr);
-  box-shadow: 0px 0px 0px 3px rgba(0, 110, 255, 0.24),
+  box-shadow:
+    0px 0px 0px 3px rgba(0, 110, 255, 0.24),
     0px 2px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
 .combined-textarea:focus {
   outline: none;
   border: 1px solid var(--blue-clr);
-  box-shadow: 0px 0px 0px 3px rgba(0, 110, 255, 0.24),
+  box-shadow:
+    0px 0px 0px 3px rgba(0, 110, 255, 0.24),
     0px 2px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
@@ -1232,7 +1248,8 @@ input[type="checkbox"]:disabled {
 .form__item--error .field__input:focus {
   outline: none;
   border: 1px solid rgb(204, 46, 53);
-  box-shadow: 0px 0px 0px 3px rgba(204, 46, 53, 0.24),
+  box-shadow:
+    0px 0px 0px 3px rgba(204, 46, 53, 0.24),
     0px 2px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
@@ -1492,7 +1509,9 @@ input[type="checkbox"]:disabled {
   border: 1px solid var(--border-main-clr);
   border-radius: 4px;
   outline: none;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
   padding: 30px 20px 14px;
   height: 60px;
   background-color: var(--body);
@@ -1524,7 +1543,9 @@ input[type="checkbox"]:disabled {
   left: 14px;
   top: 16px;
   background: var(--body);
-  transition: transform 0.3s, color 0.3s;
+  transition:
+    transform 0.3s,
+    color 0.3s;
   padding: 0 4px;
   transform-origin: left top;
   pointer-events: none;
@@ -1542,7 +1563,9 @@ input[type="checkbox"]:disabled {
   min-height: 120px;
   padding: 1rem;
   resize: vertical;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
   color: var(--text-light);
   background-color: var(--body);
 }
@@ -3200,7 +3223,9 @@ button:disabled:hover {
   text-decoration: none;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
   font-weight: 600;
   line-height: 20px;
 }
@@ -4504,7 +4529,8 @@ img {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  box-shadow: 0px 1px 2px 0px rgba(25, 12, 79, 0.3),
+  box-shadow:
+    0px 1px 2px 0px rgba(25, 12, 79, 0.3),
     0px 0px 0px 1px rgba(39, 19, 124, 0.1),
     0px 0px 0px 3px rgba(25, 12, 79, 0.1);
   max-width: 160px;
@@ -4542,7 +4568,9 @@ img {
   width: 350px;
   border-radius: 20px;
   background: var(--body);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
 .input-wrapper__input {
@@ -4580,8 +4608,10 @@ img {
 .input-wrapper__button.btn--purple {
   background: #7f63f8;
 
-  box-shadow: 0px 0px 0px 2px rgba(106, 76, 237, 0.1),
-    0px 0px 0px 1px rgba(61, 22, 235, 1), 0px 1px 2px 0px rgba(24, 8, 94, 1),
+  box-shadow:
+    0px 0px 0px 2px rgba(106, 76, 237, 0.1),
+    0px 0px 0px 1px rgba(61, 22, 235, 1),
+    0px 1px 2px 0px rgba(24, 8, 94, 1),
     0px 4px 8px -4px rgba(24, 8, 94, 0.1);
 }
 
@@ -4589,14 +4619,18 @@ img {
   color: #0e0023;
   font-weight: 600;
   background: #f1edf3;
-  box-shadow: 0 1px 2px rgba(25, 12, 79, 0.3), 0 0 0 1px rgba(39, 19, 124, 0.1),
+  box-shadow:
+    0 1px 2px rgba(25, 12, 79, 0.3),
+    0 0 0 1px rgba(39, 19, 124, 0.1),
     0 0 0 3px rgba(25, 12, 79, 0.1);
 }
 
 .input-wrapper__button.btn--blue {
   background: var(--blue-clr);
-  box-shadow: 0 4px 8px -4px rgba(0, 0, 255, 0.1),
-    0 1px 2px rgba(0, 0, 255, 0.06), 0 0 0 1px rgba(0, 0, 255, 0.1);
+  box-shadow:
+    0 4px 8px -4px rgba(0, 0, 255, 0.1),
+    0 1px 2px rgba(0, 0, 255, 0.06),
+    0 0 0 1px rgba(0, 0, 255, 0.1);
 }
 
 .input-wrapper__button > span,
@@ -4834,7 +4868,8 @@ img {
 }
 
 .dashboard__button:hover {
-  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.08),
+  box-shadow:
+    0px 6px 24px 0px rgba(0, 0, 0, 0.08),
     0px 0px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -5257,7 +5292,9 @@ dialog::backdrop,
   border-radius: 4px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
   min-width: 300px;
   max-width: 450px;
   word-wrap: break-word;
@@ -5790,7 +5827,9 @@ menu__app {
 }
 
 .menu__extra-section {
-  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.2s ease-in-out;
   opacity: 0;
   transform: translateY(-10px);
 }
@@ -6794,11 +6833,31 @@ menu__app {
   width: auto;
   height: 6rem;
   background-repeat: no-repeat;
-  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
-    100% 100%, 100% 100%, 100% 100%, 1.625rem 1.625rem, 1.625rem 1.625rem,
-    100% 100%, 100% 100%;
-  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
-    calc(100% - 1.75rem) 2.85rem, calc(100% - 1.75rem) 2.95rem, 0 0, 0 0;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    1.625rem 1.625rem,
+    1.625rem 1.625rem,
+    100% 100%,
+    100% 100%;
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    calc(100% - 1.75rem) 2.85rem,
+    calc(100% - 1.75rem) 2.95rem,
+    0 0,
+    0 0;
   bottom: 0rem;
   left: 0rem;
   z-index: 0;
@@ -7321,7 +7380,8 @@ menu__app {
   width: auto;
   background: var(--body);
   border: 1px solid var(--border-main-clr);
-  box-shadow: rgba(23, 34, 113, 7%) 0px 1px 3px,
+  box-shadow:
+    rgba(23, 34, 113, 7%) 0px 1px 3px,
     rgba(23, 34, 113, 7%) 0px 4px 12px;
   border-radius: 6px;
   z-index: 9999;
@@ -7350,8 +7410,13 @@ menu__app {
 
 .customTimeframe-daterange-list li .badge {
   border: 2px solid transparent;
-  box-shadow: 0px 0px 0px 2px transparent, 0px 2px 2px 0px transparent;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s,
+  box-shadow:
+    0px 0px 0px 2px transparent,
+    0px 2px 2px 0px transparent;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
     border-color 0.3s;
 }
 
@@ -7364,7 +7429,8 @@ menu__app {
   background-color: var(--body);
   outline: none;
   border-color: var(--blue-active);
-  box-shadow: 0px 0px 0px 4px rgba(222, 202, 255, 0.24),
+  box-shadow:
+    0px 0px 0px 4px rgba(222, 202, 255, 0.24),
     0px 2px 2px 0px rgba(0, 0, 0, 0.16);
 }
 
@@ -7410,7 +7476,8 @@ menu__app {
   color: var(--blue-active) !important;
   outline: none;
   background-color: var(--body);
-  box-shadow: inset 0 0 0 2px var(--btn-purple),
+  box-shadow:
+    inset 0 0 0 2px var(--btn-purple),
     0px 0px 0px 4px rgba(222, 202, 255, 0.24),
     0px 2px 2px 0px rgba(0, 0, 0, 0.16);
 }
@@ -7474,7 +7541,8 @@ menu__app {
   outline: none;
   color: var(--blue-active);
   border-color: var(--blue-active);
-  box-shadow: 0px 0px 0px 4px rgba(222, 202, 255, 0.24),
+  box-shadow:
+    0px 0px 0px 4px rgba(222, 202, 255, 0.24),
     0px 2px 2px 0px rgba(0, 0, 0, 0.16);
   border-radius: 100%;
 }
@@ -7572,7 +7640,8 @@ menu__app {
 .datepicker-table-date:focus {
   color: var(--blue-active);
   font-weight: 600;
-  box-shadow: inset 0 0 0 2px var(--blue-active),
+  box-shadow:
+    inset 0 0 0 2px var(--blue-active),
     0px 0px 0px 4px rgba(222, 202, 255, 0.24),
     0px 2px 2px 0px rgba(0, 0, 0, 0.16);
 }
@@ -7627,7 +7696,8 @@ menu__app {
 .customDatepicker-table-date:hover {
   color: var(--date-hover) !important;
   font-weight: 600;
-  box-shadow: inset 0 0 0 2px var(--blue-active),
+  box-shadow:
+    inset 0 0 0 2px var(--blue-active),
     0px 0px 0px 4px rgba(222, 202, 255, 0.24),
     0px 2px 2px 0px rgba(0, 0, 0, 0.16);
 }
@@ -8393,7 +8463,8 @@ button:disabled {
 
 .dropdown--input.is-focused {
   border: 1px solid var(--blue-clr);
-  box-shadow: 0px 0px 0px 3px rgba(0, 110, 255, 0.24),
+  box-shadow:
+    0px 0px 0px 3px rgba(0, 110, 255, 0.24),
     0px 2px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
@@ -9492,7 +9563,7 @@ body.hide-menus .menu--sidebar {
   }
 
   .menu--topnav .menu__center {
-    width: 90vw;
+    width: 81vw;
   }
 
   /* Optional: style scrollbars on mobile */
@@ -9821,7 +9892,9 @@ body.layout--column.has-thin-sidebar main {
   box-sizing: border-box;
   position: relative;
   z-index: 0;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   padding-bottom: 4px;
 }
 
@@ -11027,7 +11100,9 @@ ul:not(.thin-sidebar--settings-container)
 /* Chevron base + rotate when open */
 .menu .sidebar-group label[aria-controls] i {
   display: inline-block;
-  transition: transform 0.25s ease, color 0.15s ease;
+  transition:
+    transform 0.25s ease,
+    color 0.15s ease;
   transform-origin: center;
   cursor: pointer;
   margin-right: 1rem;
@@ -11467,7 +11542,9 @@ label[for="toggleSidebarOptions"][aria-expanded="true"] .label {
 .text-always-light .select__field {
   background-color: var(--thin-sidebar-bg);
   border: 1px solid rgba(225, 230, 239, 0.2);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
   color: #fff;
 }
 
@@ -11663,7 +11740,9 @@ label[for="toggleSidebarOptions"][aria-expanded="true"] .label {
   padding: 0.25rem 0.5rem; /* tiny hit-area so bg is visible */
   border-radius: 0.5rem; /* soft corners for bg hover */
   background: transparent;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 /* Filename looks like plain text, not a link */
@@ -15227,7 +15306,9 @@ body.menu--topnav nav.menu.menu--topnav {
   /*Menu v3 turn hamburger into close button*/
   .master-hamburger-button i {
     position: absolute;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   /* show hamburger by default */
@@ -15265,7 +15346,9 @@ body.menu--topnav nav.menu.menu--topnav {
     transform: translateX(-100%);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.2s ease;
+    transition:
+      transform 0.25s ease,
+      opacity 0.2s ease;
     z-index: 1000;
   }
   body.mobile-open .mobile-menu-overlay {
@@ -15407,17 +15490,32 @@ body.dark-mode .extra-thin-sidebar .thin-sidebar-item:hover i {
   grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   padding: 24px var(--content-gutter) 48px;
-  font: 16px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto;
+  font:
+    16px/1.6 "Inter Tight",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto;
 }
 
 .doc-grid h1 {
-  font: 16px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto;
+  font:
+    16px/1.6 "Inter Tight",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto;
 }
 .doc-grid h2 {
-  font: 12px/1.6 "Inter Tight", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto;
+  font:
+    12px/1.6 "Inter Tight",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto;
 }
 
 article.container-narrow .feature-card h2 {
@@ -15523,7 +15621,9 @@ article.container-narrow.doc-grid .feature-card {
     var(--system-clr-bg-default) 98%,
     transparent
   );
-  box-shadow: 0 1px 0 var(--shadow), 0 12px 24px -18px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 1px 0 var(--shadow),
+    0 12px 24px -18px rgba(0, 0, 0, 0.5);
 
   /* typography rhythm */
   line-height: 1.55;
@@ -15617,7 +15717,9 @@ article.container-narrow.doc-grid .feature-card .demo-note {
 /* Hover/focus affordances (subtle, industrial) */
 @media (prefers-reduced-motion: no-preference) {
   article.container-narrow.doc-grid .feature-card {
-    transition: border-color 0.18s ease, box-shadow 0.18s ease,
+    transition:
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
       outline-color 0.18s ease;
   }
 }
@@ -15690,7 +15792,9 @@ article.container-narrow .doc-grid {
 
 /* animate rotation + color */
 .btn[data-toggle-menu] .icon-rotate-up {
-  transition: transform 0.22s ease, color 0.15s ease;
+  transition:
+    transform 0.22s ease,
+    color 0.15s ease;
 }
 
 /* rotate when open */
@@ -16267,7 +16371,9 @@ html:not([data-theme="dark"]) .mini-theme-toggle .icon-moon {
     display: grid;
     place-items: center;
     font-size: 22px;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   /* 2) Default = closed (hamburger visible) */
@@ -16319,8 +16425,9 @@ i[data-lucide="star"] svg {
   fill: currentColor;
 }
 :root {
-  --ui-font: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  --ui-font:
+    "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   --nav-font: "Manrope", var(--ui-font);
   --nav-fg: hsl(0 0% 92% / 0.92);
   --nav-fg-muted: hsl(0 0% 92% / 0.72);
@@ -16725,7 +16832,9 @@ html:not([data-theme="dark"]) header .mini-theme-toggle .icon-moon {
   place-items: center;
   color: var(--fg);
   text-decoration: none;
-  transition: transform 0.18s ease, background-color 0.18s ease,
+  transition:
+    transform 0.18s ease,
+    background-color 0.18s ease,
     color 0.18s ease;
   pointer-events: auto;
   outline: none;
@@ -16780,14 +16889,32 @@ html[data-theme="dark"] {
 }
 
 /* 2026 navigation fix: SVG path for previous already points left. */
-.pager-btn--prev .pager-icon { transform: none !important; }
-.pager-btn { --btn-size: 68px; width: var(--btn-size); height: var(--btn-size); }
-.pager-icon { width: 54px; height: 54px; }
+.pager-btn--prev .pager-icon {
+  transform: none !important;
+}
+.pager-btn {
+  --btn-size: 68px;
+  width: var(--btn-size);
+  height: var(--btn-size);
+}
+.pager-icon {
+  width: 54px;
+  height: 54px;
+}
 @media (max-width: 1024px) {
-  .pager-btn { --btn-size: 58px; }
-  .pager-icon { width: 44px; height: 44px; }
+  .pager-btn {
+    --btn-size: 58px;
+  }
+  .pager-icon {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 /* Final navigation demo project-arrow direction guard. */
-.pager-btn--prev .pager-icon { transform: none !important; }
-.pager-btn--next .pager-icon { transform: none !important; }
+.pager-btn--prev .pager-icon {
+  transform: none !important;
+}
+.pager-btn--next .pager-icon {
+  transform: none !important;
+}

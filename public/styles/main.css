@@ -204,7 +204,7 @@ a {
   color: var(--muted);
   font-size: 1.2rem;
   line-height: 1.55;
-  margin: 0;
+  margin: 24px 0px;
 }
 
 /* ======================================

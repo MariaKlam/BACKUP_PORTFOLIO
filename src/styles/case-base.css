@@ -615,12 +615,59 @@ html[data-theme="dark"] {
   transform: none;
 }
 @media (max-width: 1024px) {
-  .tokens-case { --btn-size: 58px; }
-  .case-rail .pager-icon { width: 44px; height: 44px; }
+  .tokens-case {
+    --btn-size: 58px;
+  }
+  .case-rail .pager-icon {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 /* Final project-navigation direction guard. The prev SVG path already points left. */
-.pager-btn--prev .pager-icon { transform: none !important; }
-.pager-btn--next .pager-icon { transform: none !important; }
-.pager-btn { --btn-size: 70px !important; width: var(--btn-size); height: var(--btn-size); }
-.pager-icon { width: 54px !important; height: 54px !important; }
+.pager-btn--prev .pager-icon {
+  transform: none !important;
+}
+.pager-btn--next .pager-icon {
+  transform: none !important;
+}
+.pager-btn {
+  --btn-size: 70px !important;
+  width: var(--btn-size);
+  height: var(--btn-size);
+}
+.pager-icon {
+  width: 54px !important;
+  height: 54px !important;
+}
+
+@media (max-width: 760px) {
+  .case-rail {
+    position: fixed;
+    top: auto;
+    bottom: 18px;
+    z-index: 50;
+  }
+
+  .case-rail--left {
+    left: calc(50% - 34px);
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .case-rail--right {
+    left: calc(50% + 34px);
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .case-rail .pager-btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .case-rail .pager-icon {
+    width: 24px;
+    height: 24px;
+  }
+}

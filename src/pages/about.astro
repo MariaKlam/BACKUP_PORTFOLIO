@@ -23,7 +23,7 @@ import Base from "../layouts/Base.astro";
           <h1 class="about-title">About.</h1>
 
           <p class="about-lead">
-            I work across product design, UX/UI and frontend development. I’m drawn to the space between structure and expression where product logic, visual systems and frontend become one clear experience.
+            <strong>Maria Klammer</strong> — I work across product design, UX/UI and frontend development. I’m drawn to the space between structure and expression where product logic, visual systems and frontend become one clear experience.
           </p>
 
           <div class="about-actions">
@@ -838,5 +838,16 @@ import Base from "../layouts/Base.astro";
     }
 
   }
+
+  @media (max-width: 760px) {
+  .about-hero__copy {
+    width: 100%;
+    padding-bottom: 10rem;
+  }
+
+  .about-lead[data-astro-cid-kh7btl4r] {
+        max-width: 260px;
+  }
+}
 
 </style>
