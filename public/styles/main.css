@@ -1279,15 +1279,13 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 .bold-ticker {
   width: 100%;
   overflow: hidden;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in oklab, var(--bg) 94%, var(--fg) 6%);
+
   padding: clamp(1.2rem, 2.8vw, 2.4rem) 0;
 }
 .bold-ticker__rail {
   display: flex;
   width: max-content;
-  animation: boldTickerLoop 28s linear infinite;
+  animation: boldTickerLoop 60s linear infinite;
   will-change: transform;
 }
 .bold-ticker__track {
@@ -2101,7 +2099,7 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
   position: static !important;
   margin: 0 !important;
   padding: 14px var(--pad) 18px !important;
-  border-top: 1px solid var(--border) !important;
+
   background: var(--bg) !important;
 }
 .contact-shell .site-footer,
