@@ -123,18 +123,16 @@ import Base from "../layouts/Base.astro";
 
 
           <!-- =========================
-               ABOUT
+              ABOUT
           ========================== -->
 
           <div
             class="home-copy home-copy--about"
             id="aboutCopy"
           >
-
             <p class="home-kicker">
               ABOUT
             </p>
-
 
             <h2 class="home-about-title">
               <span class="about-title-desktop">
@@ -145,12 +143,11 @@ import Base from "../layouts/Base.astro";
               <span class="about-title-mobile">
                 Visual<br />
                 instinct.<br />
-                Built</br>
-                with</br>
+                Built<br />
+                with<br />
                 depth.
               </span>
             </h2>
-
 
             <p class="home-about-lead">
               I’m Maria, a product engineer with a strong visual side.
@@ -158,18 +155,6 @@ import Base from "../layouts/Base.astro";
               frontend engineering — shaping both how a product works
               and how it feels.
             </p>
-
-
-            <p class="home-about-note">
-              I take ideas from early structure and UX to polished,
-              production-ready interfaces. My work spans internal tools,
-              customer-facing products, design systems, automation and
-              AI-assisted visual workflows.
-            </p>
-
-
-
-
 
             <div class="home-actions">
 
@@ -186,7 +171,6 @@ import Base from "../layouts/Base.astro";
                   aria-hidden="true"
                 ></i>
               </a>
-
 
               <a
                 class="home-action home-action--secondary"
@@ -205,7 +189,58 @@ import Base from "../layouts/Base.astro";
               </a>
 
             </div>
+          </div>
 
+
+          <!-- =========================
+              PROCESS / AI
+          ========================== -->
+
+          <div
+            class="home-copy home-copy--process"
+            id="processCopy"
+          >
+            <p class="home-kicker">
+              PROCESS
+            </p>
+
+            <h2 class="home-about-title">
+              <span class="process-title-desktop">
+                Human first.<br />
+                Even with AI.
+              </span>
+
+              <span class="process-title-mobile">
+                Human<br />
+                first.<br />
+                Even<br/>with AI.
+              </span>
+            </h2>
+
+            <p class="home-about-lead">
+              I’m excited by what this new generation of tools makes possible,
+              and I like experimenting with them as part of the process.
+            </p>
+
+            <p class="home-about-note">
+              This hero began as one of my own photographs. I used AI-assisted
+              video to bring it to life through subtle breathing and movement,
+              while preserving natural texture, imperfection, light and identity.
+            </p>
+
+            <div class="home-actions">
+              <a
+                class="home-action home-action--primary"
+                href="/work"
+              >
+                <span>Explore my work</span>
+
+                <i
+                  class="ri-arrow-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
           </div>
 
 
@@ -256,6 +291,9 @@ import Base from "../layouts/Base.astro";
   const about =
     document.querySelector("#aboutCopy");
 
+  const process =
+    document.querySelector("#processCopy");
+
   const meta =
     document.querySelector("#homeMeta");
 
@@ -274,7 +312,8 @@ import Base from "../layouts/Base.astro";
   if (
     story instanceof HTMLElement &&
     intro instanceof HTMLElement &&
-    about instanceof HTMLElement
+    about instanceof HTMLElement &&
+    process instanceof HTMLElement
   ) {
 
     if (
@@ -311,7 +350,9 @@ import Base from "../layouts/Base.astro";
 
 
 
-      /* INTRO */
+      /* =========================
+         INTRO
+      ========================== */
 
       const introOpacity =
         clamp(
@@ -326,20 +367,58 @@ import Base from "../layouts/Base.astro";
 
 
 
-      /* ABOUT */
+      /* =========================
+         ABOUT
+      ========================== */
 
-      const aboutOpacity =
+      const aboutIn =
         clamp(
-          (progress - .27) * 2.05,
+          (progress - .22) * 2.8,
           0,
           1
         );
 
 
+      const aboutOut =
+        clamp(
+          1 - (progress - .58) * 5,
+          0,
+          1
+        );
+
+
+      const aboutOpacity =
+        Math.min(
+          aboutIn,
+          aboutOut
+        );
+
+
       const aboutY =
-        (1 - aboutOpacity) * 20;
+        (1 - aboutIn) * 20;
 
 
+
+      /* =========================
+         PROCESS — THIRD STATE
+      ========================== */
+
+      const processOpacity =
+        clamp(
+          (progress - .66) * 3.4,
+          0,
+          1
+        );
+
+
+      const processY =
+        (1 - processOpacity) * 20;
+
+
+
+      /* =========================
+         APPLY
+      ========================== */
 
       intro.style.opacity =
         String(introOpacity);
@@ -365,6 +444,19 @@ import Base from "../layouts/Base.astro";
         )`;
 
 
+      process.style.opacity =
+        String(processOpacity);
+
+
+      process.style.transform =
+        `translate3d(
+          0,
+          calc(-50% + ${processY}px),
+          0
+        )`;
+
+
+
       intro.style.pointerEvents =
         introOpacity > .45
           ? "auto"
@@ -377,8 +469,16 @@ import Base from "../layouts/Base.astro";
           : "none";
 
 
+      process.style.pointerEvents =
+        processOpacity > .7
+          ? "auto"
+          : "none";
 
-      /* META */
+
+
+      /* =========================
+         META
+      ========================== */
 
       if (
         meta instanceof HTMLElement
@@ -490,7 +590,7 @@ import Base from "../layouts/Base.astro";
 .home-story {
   position: relative;
   width: 100%;
-  height: 185svh;
+  height: 230svh;
   background: #23382b;
 }
 
@@ -597,7 +697,10 @@ import Base from "../layouts/Base.astro";
     pointer-events: none;
   }
 
-
+  .home-copy--process {
+    opacity: 0;
+    pointer-events: none;
+  }
 
   /* =========================================================
      KICKER
@@ -1188,27 +1291,19 @@ import Base from "../layouts/Base.astro";
      SMALL MOBILE
   ========================================================= */
 
-  @media
-  (max-width: 480px) {
+    @media (max-width: 480px) {
+      .home-about-note {
+        display: none;
+      }
 
-    .home-video {
-      object-position:
-        68% center;
+      .home-copy--process .home-about-note {
+        display: block;
+      }
+
+      .home-actions {
+        gap: 1.25rem;
+      }
     }
-
-
-    .home-about-note {
-      display:
-        none;
-    }
-
-
-    .home-actions {
-      gap:
-        1.25rem;
-    }
-
-  }
 
 
 
@@ -1476,7 +1571,7 @@ import Base from "../layouts/Base.astro";
 @media (max-width: 760px) {
   .home-story {
     position: relative;
-    height: 170dvh;
+    height: 220dvh;
   }
 
   .home-story__sticky {
@@ -1490,5 +1585,21 @@ import Base from "../layouts/Base.astro";
     height: 100dvh;
   }
 }
+.process-title-desktop {
+  display: inline;
+}
 
+.process-title-mobile {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .process-title-desktop {
+    display: none;
+  }
+
+  .process-title-mobile {
+    display: inline;
+  }
+}
 </style>
