@@ -1,0 +1,1350 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Maria Klammer | Product Engineer · UX/UI · Frontend"
+  bodyClass="home-shell"
+  noWrap={true}
+  hideFooter={true}
+>
+  <main class="home-page">
+
+    <section
+      class="home-story"
+      id="homeStory"
+    >
+
+      <div class="home-story__sticky">
+
+        <video
+          class="home-video"
+          id="homeVideo"
+          src="/videos/about-hero.mp4"
+          muted
+          playsinline
+          autoplay
+          loop
+          preload="auto"
+          disableRemotePlayback
+          aria-hidden="true"
+        ></video>
+
+
+        <div
+          class="home-shade"
+          aria-hidden="true"
+        ></div>
+
+
+        <div class="home-container home-stage">
+
+          <!-- =========================
+               INTRO
+          ========================== -->
+
+          <div
+            class="home-copy home-copy--intro"
+            id="introCopy"
+          >
+
+            <p class="home-kicker">
+              PRODUCT ENGINEER · UX/UI · FRONTEND · AI WORKFLOWS
+            </p>
+
+
+            <h1 class="home-title">
+              <span class="desktop-title">
+                I design &amp; build
+                <br />
+                digital products.
+              </span>
+
+              <span class="mobile-title">
+                I design
+                <br />
+                &amp; build
+                <br />
+                digital
+                <br />
+                products.
+              </span>
+            </h1>
+
+
+            <p class="home-lead">
+              From product thinking and UX/UI to frontend,
+              visual systems and AI-assisted workflows.
+            </p>
+
+
+            <div class="home-actions">
+
+              <a
+                class="home-action home-action--primary"
+                href="/work"
+              >
+                <span>
+                  View selected work
+                </span>
+
+                <i
+                  class="ri-arrow-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+
+              <a
+                class="home-action home-action--secondary"
+                href="#about"
+              >
+                <span>
+                  About me
+                </span>
+
+                <i
+                  class="ri-arrow-down-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =========================
+               ABOUT
+          ========================== -->
+
+          <div
+            class="home-copy home-copy--about"
+            id="aboutCopy"
+          >
+
+            <p class="home-kicker">
+              ABOUT
+            </p>
+
+
+            <h2 class="home-about-title">
+              Visual instinct.
+              <br />
+              Engineering depth.
+            </h2>
+
+
+            <p class="home-about-lead">
+              I’m Maria, a product engineer with a strong visual side.
+              I work across product thinking, interface design and
+              frontend engineering — shaping both how a product works
+              and how it feels.
+            </p>
+
+
+            <p class="home-about-note">
+              I take ideas from early structure and UX to polished,
+              production-ready interfaces. My work spans internal tools,
+              customer-facing products, design systems, automation and
+              AI-assisted visual workflows.
+            </p>
+
+
+
+
+
+            <div class="home-actions">
+
+              <a
+                class="home-action home-action--primary"
+                href="/work"
+              >
+                <span>
+                  Explore my work
+                </span>
+
+                <i
+                  class="ri-arrow-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+
+              <a
+                class="home-action home-action--secondary"
+                href="/cv/Maria_Klammer_cv.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                <span>
+                  View CV
+                </span>
+
+                <i
+                  class="ri-arrow-up-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =========================
+               BOTTOM META
+          ========================== -->
+
+          <div
+            class="home-meta"
+            id="homeMeta"
+            aria-hidden="true"
+          >
+            <span>PRODUCT</span>
+            <i></i>
+
+            <span>DESIGN</span>
+            <i></i>
+
+            <span>ENGINEERING</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="home-about-anchor"
+        id="about"
+        aria-hidden="true"
+      ></div>
+
+    </section>
+
+  </main>
+</Base>
+
+
+
+<script>
+  const story =
+    document.querySelector("#homeStory");
+
+  const intro =
+    document.querySelector("#introCopy");
+
+  const about =
+    document.querySelector("#aboutCopy");
+
+  const meta =
+    document.querySelector("#homeMeta");
+
+  const video =
+    document.querySelector("#homeVideo");
+
+
+  const clamp =
+    (value, min, max) =>
+      Math.min(
+        Math.max(value, min),
+        max
+      );
+
+
+  if (
+    story instanceof HTMLElement &&
+    intro instanceof HTMLElement &&
+    about instanceof HTMLElement
+  ) {
+
+    if (
+      video instanceof HTMLVideoElement
+    ) {
+      video.muted = true;
+      video.playsInline = true;
+
+      video
+        .play()
+        .catch(() => {});
+    }
+
+
+    const update = () => {
+
+      const rect =
+        story.getBoundingClientRect();
+
+
+      const scrollable =
+        story.offsetHeight -
+        window.innerHeight;
+
+
+      const progress =
+        scrollable > 0
+          ? clamp(
+              -rect.top / scrollable,
+              0,
+              1
+            )
+          : 0;
+
+
+
+      /* INTRO */
+
+      const introOpacity =
+        clamp(
+          1 - progress * 2.15,
+          0,
+          1
+        );
+
+
+      const introY =
+        progress * -20;
+
+
+
+      /* ABOUT */
+
+      const aboutOpacity =
+        clamp(
+          (progress - .27) * 2.05,
+          0,
+          1
+        );
+
+
+      const aboutY =
+        (1 - aboutOpacity) * 20;
+
+
+
+      intro.style.opacity =
+        String(introOpacity);
+
+
+      intro.style.transform =
+        `translate3d(
+          0,
+          calc(-50% + ${introY}px),
+          0
+        )`;
+
+
+      about.style.opacity =
+        String(aboutOpacity);
+
+
+      about.style.transform =
+        `translate3d(
+          0,
+          calc(-50% + ${aboutY}px),
+          0
+        )`;
+
+
+      intro.style.pointerEvents =
+        introOpacity > .45
+          ? "auto"
+          : "none";
+
+
+      about.style.pointerEvents =
+        aboutOpacity > .7
+          ? "auto"
+          : "none";
+
+
+
+      /* META */
+
+      if (
+        meta instanceof HTMLElement
+      ) {
+
+        const metaOpacity =
+          clamp(
+            1 - progress * 2.6,
+            0,
+            1
+          );
+
+
+        meta.style.opacity =
+          String(metaOpacity);
+
+
+        meta.style.transform =
+          `translate3d(
+            0,
+            ${progress * 7}px,
+            0
+          )`;
+      }
+    };
+
+
+    update();
+
+
+    window.addEventListener(
+      "scroll",
+      update,
+      {
+        passive: true
+      }
+    );
+
+
+    window.addEventListener(
+      "resize",
+      update
+    );
+  }
+</script>
+
+
+
+<style>
+
+  /* =========================================================
+     PAGE
+  ========================================================= */
+
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+
+  .home-page {
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    background: #23382b;
+  }
+
+
+  .home-container {
+    width: 100%;
+
+    max-width: var(--main-max);
+
+    margin-inline: auto;
+
+    padding-inline: var(--gutter);
+  }
+
+
+
+  /* =========================================================
+     STORY
+  ========================================================= */
+
+  .home-story {
+    position: relative;
+
+    width: 100%;
+    height: 185svh;
+
+    background: #23382b;
+  }
+
+
+  .home-story__sticky {
+    position: sticky;
+
+    top: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    color: #fff;
+
+    background: #23382b;
+  }
+
+
+
+  /* =========================================================
+     VIDEO
+  ========================================================= */
+
+  .home-video {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center center;
+
+    pointer-events: none;
+    user-select: none;
+  }
+
+
+
+  /* =========================================================
+     CONTRAST OVERLAY
+  ========================================================= */
+
+  .home-shade {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+
+      linear-gradient(
+        90deg,
+
+        rgba(10, 19, 13, .68) 0%,
+        rgba(10, 19, 13, .54) 23%,
+        rgba(10, 19, 13, .32) 41%,
+        rgba(10, 19, 13, .12) 57%,
+        rgba(10, 19, 13, 0) 73%
+      ),
+
+      linear-gradient(
+        180deg,
+
+        rgba(8, 16, 10, .08) 0%,
+        rgba(8, 16, 10, .02) 30%,
+        transparent 62%,
+        rgba(8, 16, 10, .15) 100%
+      );
+  }
+
+
+
+  /* =========================================================
+     STAGE
+  ========================================================= */
+
+  .home-stage {
+    position: relative;
+
+    z-index: 2;
+
+    height: 100svh;
+  }
+
+
+
+  /* =========================================================
+     COPY
+  ========================================================= */
+
+  .home-copy {
+    position: absolute;
+
+    top: 50%;
+    left: var(--gutter);
+
+    width:
+      min(
+        680px,
+        48vw
+      );
+
+    transform:
+      translateY(-50%);
+
+    will-change:
+      opacity,
+      transform;
+  }
+
+
+  .home-copy--intro {
+    opacity: 1;
+  }
+
+
+  .home-copy--about {
+    opacity: 0;
+
+    pointer-events: none;
+  }
+
+
+
+  /* =========================================================
+     KICKER
+  ========================================================= */
+
+  .home-kicker {
+    margin:
+      0 0 1.05rem;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size:
+      clamp(
+        .9rem,
+        .95vw,
+        1.02rem
+      );
+
+    font-weight: 600;
+
+    letter-spacing: .13em;
+
+    text-transform: uppercase;
+
+    color:
+      rgba(255,255,255,.94);
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.18);
+  }
+
+
+
+  /* =========================================================
+     HERO TITLE
+  ========================================================= */
+
+  .home-title {
+    max-width: 650px;
+
+    margin: 0;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif;
+
+    font-size:
+      clamp(
+        3.7rem,
+        4.9vw,
+        5.55rem
+      );
+
+    font-weight: 800;
+
+    line-height: 1.065;
+
+    letter-spacing: -.025em;
+
+    color: #fff;
+
+    text-shadow:
+      0 2px 18px
+      rgba(0,0,0,.15);
+  }
+
+
+
+  /* =========================================================
+     HERO LEAD
+  ========================================================= */
+
+  .home-lead {
+    max-width: 560px;
+
+    margin:
+      1.65rem 0 0;
+
+    font-size:
+      clamp(
+        1.12rem,
+        1.3vw,
+        1.3rem
+      );
+
+    font-weight: 500;
+
+    line-height: 1.58;
+
+    color:
+      rgba(255,255,255,.97);
+
+    text-shadow:
+      0 1px 10px
+      rgba(0,0,0,.18);
+  }
+
+
+
+  /* =========================================================
+     ABOUT TITLE
+  ========================================================= */
+
+  .home-about-title {
+    max-width: 640px;
+
+    margin: 0;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif;
+
+    font-size:
+      clamp(
+        3.4rem,
+        4.45vw,
+        5rem
+      );
+
+    font-weight: 800;
+
+    line-height: 1.05;
+
+    letter-spacing: -.027em;
+
+    color: #fff;
+
+    text-shadow:
+      0 2px 18px
+      rgba(0,0,0,.15);
+  }
+
+
+
+  /* =========================================================
+     ABOUT COPY
+  ========================================================= */
+
+  .home-about-lead {
+    max-width: 600px;
+
+    margin:
+      1.5rem 0 0;
+
+    font-size:
+      clamp(
+        1.08rem,
+        1.22vw,
+        1.22rem
+      );
+
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    color:
+      rgba(255,255,255,.98);
+
+    text-shadow:
+      0 1px 10px
+      rgba(0,0,0,.16);
+  }
+
+
+  .home-about-note {
+    max-width: 580px;
+
+    margin:
+      .85rem 0 0;
+
+    font-size:
+      1rem;
+
+    line-height: 1.6;
+
+    color:
+      rgba(255,255,255,.84);
+
+    text-shadow:
+      0 1px 10px
+      rgba(0,0,0,.15);
+  }
+
+
+
+  /* =========================================================
+     SKILLS
+  ========================================================= */
+
+  .home-skill-line {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: .7rem;
+
+    margin-top: 1.15rem;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size: .82rem;
+
+    font-weight: 600;
+
+    letter-spacing: .13em;
+
+    color:
+      rgba(255,255,255,.84);
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.16);
+  }
+
+
+  .home-skill-line i {
+    width: 16px;
+    height: 1px;
+
+    background:
+      rgba(255,255,255,.42);
+  }
+
+
+
+  /* =========================================================
+     ACTIONS
+  ========================================================= */
+
+  .home-actions {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 2rem;
+
+    margin-top: 2rem;
+  }
+
+
+  .home-action {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: .68rem;
+
+    padding:
+      0 0 .42rem;
+
+    border: 0;
+
+    border-bottom:
+      2px solid
+      rgba(255,255,255,.5);
+
+    border-radius: 0;
+
+    background: transparent;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size:
+      clamp(
+        1.32rem,
+        1.5vw,
+        1.55rem
+      );
+
+    font-weight: 700;
+
+    letter-spacing: .045em;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.16);
+
+    transition:
+      opacity .18s ease,
+      border-color .18s ease;
+  }
+
+
+  .home-action i {
+    font-size: 1.12em;
+
+    transition:
+      transform .18s ease;
+  }
+
+
+  .home-action:hover {
+    border-color: #fff;
+  }
+
+
+  .home-action--primary {
+    opacity: 1;
+  }
+
+
+  .home-action--primary:hover i {
+    transform:
+      translateX(4px);
+  }
+
+
+  .home-action--secondary {
+    opacity: .75;
+  }
+
+
+  .home-action--secondary:hover {
+    opacity: 1;
+  }
+
+
+
+  /* =========================================================
+     BOTTOM META
+  ========================================================= */
+
+  .home-meta {
+    position: absolute;
+
+    left: var(--gutter);
+
+    bottom: 2rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .85rem;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size: .86rem;
+
+    font-weight: 600;
+
+    letter-spacing: .16em;
+
+    color:
+      rgba(255,255,255,.72);
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.14);
+
+    pointer-events: none;
+  }
+
+
+  .home-meta i {
+    width: 20px;
+    height: 1px;
+
+    background:
+      rgba(255,255,255,.38);
+  }
+
+
+
+  /* =========================================================
+     ABOUT ANCHOR
+  ========================================================= */
+
+  .home-about-anchor {
+    position: absolute;
+
+    top: 58svh;
+    left: 0;
+
+    width: 1px;
+    height: 1px;
+
+    pointer-events: none;
+  }
+
+
+
+  /* =========================================================
+     HOME HEADER
+  ========================================================= */
+
+/* Homepage header text */
+
+:global(
+  body.home-shell
+  .brand-name
+) {
+  color: #fff !important;
+  opacity: 1 !important;
+
+  text-shadow:
+    0 1px 8px
+    rgba(0,0,0,.18);
+}
+
+
+:global(
+  body.home-shell
+  .nav a
+) {
+  color: #fff !important;
+  opacity: 1 !important;
+
+  text-shadow:
+    0 1px 8px
+    rgba(0,0,0,.18);
+}
+
+
+/* No theme switch on homepage.
+   Remove it from layout completely,
+   so WORK / CONTACT align correctly right. */
+
+:global(
+  body.home-shell
+  .mini-theme-toggle
+) {
+  display: none !important;
+}
+
+
+/* Since theme icon is gone, remove its extra spacing */
+
+:global(
+  body.home-shell
+  .header-right
+) {
+  gap: 0 !important;
+}
+
+  /* =========================================================
+     TABLET
+  ========================================================= */
+
+  @media
+  (max-width: 1000px) {
+
+    .home-video {
+      object-position:
+        58% center;
+    }
+
+
+    .home-copy {
+      width:
+        min(
+          570px,
+          52vw
+        );
+    }
+
+  }
+
+
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media
+  (max-width: 760px) {
+
+    .home-story {
+      height:
+        175svh;
+    }
+
+
+    .home-video {
+      object-position:
+        65% center;
+    }
+
+
+    .home-shade {
+      background:
+
+        linear-gradient(
+          180deg,
+
+          rgba(14,24,17,.05) 0%,
+          rgba(14,24,17,.12) 30%,
+          rgba(14,24,17,.72) 66%,
+          rgba(14,24,17,.94) 100%
+        );
+    }
+
+
+    .home-copy {
+      left:
+        var(--gutter);
+
+      right:
+        var(--gutter);
+
+      width:
+        auto;
+    }
+
+
+    .home-kicker {
+      font-size:
+        1rem;
+        max-width: 200px;
+    }
+
+
+    .home-title {
+      font-size:
+        clamp(
+          3rem,
+          13.5vw,
+          4.5rem
+        );
+    }
+
+
+    .home-lead {
+      font-size:
+        1rem;
+    }
+
+
+    .home-about-title {
+      font-size:
+        clamp(
+          2.85rem,
+          12.5vw,
+          4rem
+        );
+    }
+
+
+    .home-about-lead {
+      font-size:
+        1rem;
+    }
+
+
+    .home-about-note {
+      font-size:
+        .9rem;
+    }
+
+
+    .home-action {
+      font-size:
+        1.08rem;
+    }
+
+
+    .home-meta {
+      display:
+        none;
+    }
+
+  }
+
+
+
+  /* =========================================================
+     SMALL MOBILE
+  ========================================================= */
+
+  @media
+  (max-width: 480px) {
+
+    .home-video {
+      object-position:
+        68% center;
+    }
+
+
+    .home-about-note {
+      display:
+        none;
+    }
+
+
+    .home-actions {
+      gap:
+        1.25rem;
+    }
+
+  }
+
+
+
+  /* =========================================================
+     REDUCED MOTION
+  ========================================================= */
+
+  @media
+  (prefers-reduced-motion: reduce) {
+
+    :global(html) {
+      scroll-behavior:
+        auto;
+    }
+
+
+    .home-story {
+      height:
+        auto;
+    }
+
+
+    .home-story__sticky {
+      position:
+        relative;
+    }
+
+
+    .home-copy--intro {
+      opacity:
+        1 !important;
+
+      transform:
+        translateY(-50%)
+        !important;
+    }
+
+
+    .home-copy--about {
+      display:
+        none;
+    }
+
+  }
+
+  .desktop-title {
+  display: inline;
+}
+
+.mobile-title {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .desktop-title {
+    display: none;
+  }
+
+  .mobile-title {
+    display: inline;
+  }
+
+  .home-title {
+    max-width: 330px;
+
+    font-size:
+      clamp(
+        3rem,
+        13vw,
+        4.2rem
+      );
+
+    line-height: .98;
+  }
+}
+
+/* HOME — header always overlays hero */
+
+:global(body.home-shell .site-header),
+:global(body.home-shell .header-inner) {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+:global(body.home-shell .site-header) {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+
+  width: 100% !important;
+  margin: 0 !important;
+
+  z-index: 100 !important;
+}
+
+:global(body.home-shell .brand-name),
+:global(body.home-shell .nav a) {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+
+/* mobile */
+
+@media (max-width: 760px) {
+
+  :global(body.home-shell .header-inner) {
+    width: 100% !important;
+    max-width: none !important;
+
+    padding-inline: 16px !important;
+    margin: 0 !important;
+  }
+
+  :global(body.home-shell .brand-name) {
+    font-size: 1.2rem !important;
+    letter-spacing: .1em !important;
+  }
+
+  :global(body.home-shell .nav) {
+    gap: 1.15rem !important;
+  }
+
+  :global(body.home-shell .nav a) {
+    font-size: .84rem !important;
+    letter-spacing: .09em !important;
+    font-weight: 600 !important;
+  }
+
+  :global(body.home-shell .mini-theme-toggle) {
+    display: none !important;
+  }
+}
+
+
+
+</style>

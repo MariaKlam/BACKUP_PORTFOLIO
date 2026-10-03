@@ -1,0 +1,346 @@
+---
+import Base from "../../layouts/Base.astro";
+import "../../styles/case-base.css";     
+
+const title = "Case Study: UI Library & Token System";
+
+---
+<Base title={title} noWrap={false} hideFooter={false}>
+
+
+  <article class="container-narrow doc-grid tokens-case">
+      <!-- LEFT rail (Prev) -->
+    <nav class="case-rail case-rail--left" aria-label="Previous project">
+      <a class="pager-btn pager-btn--prev" href="/case-studies/isekas" aria-label="Previous: Isekas — Self-Service Checkout">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </a>
+    </nav>
+    <!-- LEFT: Narrative --------------------------------------------------->
+    <div class="doc-main">
+        <header class="case-hero">
+        <h1>UI Library & Token System</h1>
+        <p class="meta">Design System • Frontend • 2023–2025</p>
+        <p class="lede">
+          Composable tokens, themed components, and a docs site that keeps design and code in lockstep.
+        </p>
+      </header>
+      
+
+      <!-- Vertical hero gallery (under title, before text) -->
+<section class="hero-vertical" aria-label="Featured previews">
+  <button class="shot-tile ar-21x9"
+    data-full="/images/tokens/hero.webp"
+    data-title="Token Architecture"
+    data-cap="<p><strong>Core → Semantic → Component.</strong></p>
+    <ul>
+      <li>CSS variables as the source of truth.</li>
+      <li>Scalable folder structure to support the library.</li>
+      <li>Built-in utility classes for common patterns and states.</li>
+    </ul>">
+    <img src="/images/tokens/hero.webp" alt="Token architecture overview">
+  </button>
+</section>
+      
+<section id="s-architecture">
+  <h2>Context & Problem</h2>
+  <p>
+    Parallel UI work across products led to visual drift, duplicated CSS, and uneven accessibility.
+    We needed a shared design language and component system to align styles, behavior, and theming.
+  </p>
+</section>
+
+<section id="s-approach">
+  <h2>Approach</h2>
+  <ul>
+    <li>Defined a token hierarchy — <em>core → semantic → component</em> — for consistency and theming.</li>
+    <li>Centralized tokens and component styles in-platform for reuse across apps.</li>
+    <li>Light/Dark via <strong>semantic tokens only</strong> (no per-component overrides).</li>
+    <li>Accessible primitives with contrast, focus, and states handled by default.</li>
+  </ul>
+</section>
+
+<section id="s-outcomes">
+  <h2>Outcomes</h2>
+  <ul>
+    <li>Unified visual language and interaction patterns across products.</li>
+    <li>Simpler theming and maintenance through shared tokens and components.</li>
+    <li>Clear accessibility defaults (focus / contrast / states) across the system.</li>
+  </ul>
+</section>
+
+<section id="s-role">
+  <h2>My Role</h2>
+  <ul>
+    <li>End-to-end: design <em>and</em> development.</li>
+    <li>Token structure and dark-mode strategy.</li>
+    <li>Component APIs & states (navigation, forms, modals, alerts, tables, datepicker).</li>
+    <li>Developer guidelines and implementation docs.</li>
+  </ul>
+</section>
+
+<p class="flex-col links-container">
+  <a class="btn link-btn" href="/case-studies/dash-case">
+    <span class="btn-label">Check a demo of unified navigation menu</span>
+    <i class="ri-arrow-right-line"></i>
+  </a>
+  <a class="btn link-btn" href="/case-studies/dash-case">
+      <span class="btn-label">Dashboards and app interfaces</span>
+    <i class="ri-arrow-right-line"></i>
+  </a>
+</p>
+    </div>
+
+    <!-- RIGHT: Visual panels / screenshots ------------------------------->
+    <aside class="doc-aside feature-card">
+      <!-- Just images (2 columns) -->
+      <nav class="shots-grid" aria-label="Visual gallery">
+        <!-- Dark theme -->
+<button class="shot-tile"
+  data-full="/images/tokens/dark-theme.webp"
+  data-title="Theming — Dark"
+  data-cap="<p>One component set, two semantic maps.</p>
+  <ul>
+    <li>Swap <strong>semantic tokens only</strong> (no component overrides).</li>
+    <li>Contrast-checked roles (AA/AAA) baked into tokens.</li>
+    <li>Focus/state tokens stay consistent across themes.</li>
+  </ul>">
+  <img src="/images/tokens/dark-theme.webp" alt="Dark theme — token-driven theming">
+</button>
+
+<!-- Light theme -->
+<button class="shot-tile"
+  data-full="/images/tokens/light-theme-demo.webp"
+  data-title="Theming — Light"
+  data-cap="<p>Same components, different semantics.</p>
+  <ul>
+    <li>Light/Dark parity via role-based color tokens.</li>
+    <li>No per-component forks to maintain.</li>
+    <li>State and focus styling derived from the same map.</li>
+  </ul>">
+  <img src="/images/tokens/light-theme-demo.webp" alt="Light theme — token-driven theming">
+</button>
+
+<!-- Overview of components -->
+<button class="shot-tile"
+  data-full="/images/tokens/overview.webp"
+  data-title="Component Library Overview"
+  data-cap="<p>Everything needed for product UI at scale.</p>
+  <ul>
+    <li><strong>Navigation:</strong> menus, breadcrumbs, tabs.</li>
+    <li><strong>Forms:</strong> inputs, selects, multi-select with search &amp; select-all, swap fields, file inputs.</li>
+    <li><strong>Feedback:</strong> buttons, alerts, modals, toasts.</li>
+  </ul>">
+  <img src="/images/tokens/overview.webp" loading="lazy" alt="Overview of tokenized components">
+</button>
+
+<!-- Modals -->
+<button class="shot-tile"
+  data-full="/images/tokens/resource.webp"
+  data-title="Modal Variants"
+  data-cap="<p>Modal options for common and edge cases.</p>
+  <ul>
+    <li>Search dialogs and minimal headers for focused tasks.</li>
+    <li>Controlled/auto-open patterns for workflow steps.</li>
+    <li>Soft note variants for non-blocking information.</li>
+  </ul>">
+  <img src="/images/tokens/resource.webp" loading="lazy" alt="Modal variants — search, minimal, soft note">
+</button>
+
+<!-- Thank-you modal -->
+<button class="shot-tile"
+  data-full="/images/tokens/thank-you-modal-2.webp"
+  data-title="Thank-You Modal"
+  data-cap="<p>Branded confirmation with subtle CSS animation.</p>
+  <ul>
+    <li>Clear next steps and dismiss actions.</li>
+    <li>Accessible focus management on open/close.</li>
+  </ul>">
+  <img src="/images/tokens/thank-you-modal-2.webp" loading="lazy" alt="Thank-you confirmation modal">
+</button>
+
+<!-- Tables -->
+<button class="shot-tile"
+  data-full="/images/tokens/flex-table.webp"
+  data-title="Tables"
+  data-cap="<p>Multiple table options for different data needs.</p>
+  <ul>
+    <li>Standard HTML tables for simple datasets.</li>
+    <li>Flex-based tables for responsive layouts.</li>
+    <li>Patterns for large datasets and dense views.</li>
+    <li>Built-in hover states and collapsible columns.</li>
+  </ul>">
+  <img src="/images/tokens/flex-table.webp" loading="lazy" alt="Table patterns — HTML and flex-based">
+</button>
+
+<!-- States & A11y -->
+<button class="shot-tile"
+  data-full="/images/tokens/alert-success.webp"
+  data-title="States & Accessibility"
+  data-cap="<p>A11y-first defaults, driven by tokens.</p>
+  <ul>
+    <li>Focus rings via <code>--focus-ring</code> tokens (respects reduced motion).</li>
+    <li>Alert roles map to tokens: info, success, warning, danger.</li>
+    <li>Disabled/readonly/invalid states handled centrally.</li>
+  </ul>">
+  <img src="/images/tokens/alert-success.webp" loading="lazy" alt="Accessible success alert">
+</button>
+
+<!-- Soft alerts -->
+<button class="shot-tile"
+  data-full="/images/tokens/alert-soft.webp"
+  data-title="Soft Alerts"
+  data-cap="<p>Non-blocking, persistent messaging.</p>
+  <ul>
+    <li>Collapsible alerts that expand on hover for details.</li>
+    <li>Persistent variants that don’t auto-dismiss.</li>
+    <li>Softer palette for long-lived notes.</li>
+  </ul>">
+  <img src="/images/tokens/alert-soft.webp" loading="lazy" alt="Soft alert variants">
+</button>
+
+<!-- Custom datepicker -->
+<button class="shot-tile"
+  data-full="/images/tokens/datepicker.webp"
+  data-title="Custom Datepicker"
+  data-cap="<p>Lightweight, accessible date selection.</p>
+  <ul>
+    <li>Full keyboard support and focus management.</li>
+    <li>Quick selections for common ranges.</li>
+  </ul>">
+  <img src="/images/tokens/datepicker.webp" loading="lazy" alt="Custom, accessible datepicker">
+</button>
+
+<!-- Final / custom SVGs -->
+<button class="shot-tile"
+  data-full="/images/tokens/thanks.webp"
+  data-title="Custom SVGs & Final Notes"
+  data-cap="<p>Bespoke iconography and details.</p>
+  <ul>
+    <li><em>currentColor</em> strokes/fills for automatic theming.</li>
+    <li>Pixel-grid aligned, SVGO-optimized paths.</li>
+    <li>Consistent stroke widths at 16/20/24 sizes.</li>
+  </ul>">
+  <img src="/images/tokens/thanks.webp" loading="lazy" alt="Custom SVG set and closing notes">
+</button>
+      </nav>
+    </aside>
+
+        
+
+        
+
+    <!-- Lightweight lightbox (scoped to .tokens-case) -->
+    <!-- Lightweight lightbox (scoped to .tokens-case) -->
+<div class="tokens-lightbox" aria-hidden="true">
+  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
+    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+
+    <div class="tokens-lightbox__media">
+      <img class="tokens-lightbox__img" alt="" />
+    </div>
+    <aside class="tokens-lightbox__meta">
+      <h4 class="tokens-lightbox__title"></h4>
+      <div class="tokens-lightbox__cap"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- RIGHT rail (Next) -->
+    <nav class="case-rail case-rail--right" aria-label="Next project">
+      <a class="pager-btn pager-btn--next" href="/case-studies/dash-case" aria-label="Next: Dashboard & Application Patterns">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+  </article>
+  
+<script type="module">
+(() => {
+  const scope = document.querySelector('.tokens-case');
+  if (!scope) return;
+
+  const lb       = scope.querySelector('.tokens-lightbox');
+  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
+  const imgEl    = lb.querySelector('.tokens-lightbox__img');
+  const titleEl  = lb.querySelector('.tokens-lightbox__title');
+  const capEl    = lb.querySelector('.tokens-lightbox__cap');
+  const closeBtn = lb.querySelector('.tokens-lightbox__close');
+  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
+  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
+
+  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
+  let currentIndex = -1;
+  let lastFocus = null;
+
+  function extractDataFrom(el) {
+    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
+    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
+    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
+    const title = carrier.getAttribute('data-title') || img?.alt || '';
+    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
+    return { src, title, cap };
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const { src, title, cap } = extractDataFrom(tiles[index]);
+    lastFocus = document.activeElement;
+    imgEl.src = src;
+    titleEl.textContent = title;
+    capEl.innerHTML = cap;
+    lb.classList.add('is-open');
+    document.documentElement.classList.add('tokens-lightbox-open');
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.documentElement.classList.remove('tokens-lightbox-open');
+    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function showNext() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex + 1) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  function showPrev() {
+    if (currentIndex === -1) return;
+    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
+    openLightbox(currentIndex);
+  }
+
+  scope.addEventListener('click', e => {
+    const tile = e.target.closest('.shot-tile');
+    if (tile) {
+      e.preventDefault();
+      openLightbox(tiles.indexOf(tile));
+    }
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+})();
+</script>
+
+<style>
+  .feature-card {
+    padding: 40px 0;
+  }
+</style>
+
+</Base>
+
+

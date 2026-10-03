@@ -1,0 +1,4 @@
+portfolio-build: 2026-09-13-1710-hover-pixel-fix
+work-hover-seam: overlapped by 6px
+work-hover-grid-span: 1 / -1
+work-hover-arrow-cover: forced

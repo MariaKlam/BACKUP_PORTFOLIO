@@ -1,0 +1,7 @@
+PORTFOLIO BUILD 2026-09-13 16:12
+- About has NO portrait.
+- About starts on the same content grid as Work.
+- Work/Home summaries are hidden until hover and overlay the full row below without reflow.
+- Work list scrolls on desktop when needed.
+- Footer marquee has a fixed minimum visual height so large condensed text is not clipped.
+Verification URL after running locally: /version.txt

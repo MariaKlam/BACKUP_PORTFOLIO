@@ -1,0 +1,1088 @@
+---
+/* src/layouts/Base.astro */
+
+const {
+  title = "Maria Klammer – Portfolio",
+  bodyClass = "",
+  noWrap = false,
+  hideFooter = false,
+  mainClass = ""
+} = Astro.props;
+
+const here = Astro.url.pathname;
+
+const isActive = (hrefs: string | string[]) => {
+  const list = Array.isArray(hrefs)
+    ? hrefs
+    : [hrefs];
+
+  return list.some((href) =>
+    href === "/"
+      ? here === "/"
+      : here === href ||
+        here.startsWith(href + "/")
+  );
+};
+---
+
+<html lang="en">
+  <head>
+
+    <style is:inline>
+      html {
+        background: #ffffff;
+      }
+
+      html[data-theme="dark"] {
+        background: #0b0c0f;
+      }
+    </style>
+
+
+    <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <title>{title}</title>
+
+    <meta
+      name="robots"
+      content="noindex, nofollow"
+    />
+
+
+    <!-- =========================================
+         INSTANT THEME
+    ========================================== -->
+
+    <script is:inline>
+      (() => {
+        try {
+          const saved =
+            localStorage.getItem("theme");
+
+          const theme =
+            saved === "dark" ||
+            saved === "light"
+              ? saved
+              : window.matchMedia(
+                  "(prefers-color-scheme: dark)"
+                ).matches
+                ? "dark"
+                : "light";
+
+          document.documentElement.dataset.theme =
+            theme;
+
+          document.documentElement.style.colorScheme =
+            theme;
+
+        } catch {
+
+          document.documentElement.dataset.theme =
+            "light";
+
+          document.documentElement.style.colorScheme =
+            "light";
+        }
+      })();
+    </script>
+
+
+    <link
+      rel="stylesheet"
+      href="/styles/main.css"
+    />
+
+
+    <!-- =========================================
+         FONTS
+    ========================================== -->
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <style>
+
+      :root {
+        --ui-font:
+          "Inter",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+
+      body {
+        font-family: var(--ui-font);
+      }
+
+
+      /* HEADER */
+
+      .site-header {
+        width: 100%;
+
+        border: 0 !important;
+        border-bottom: 0 !important;
+
+        box-shadow: none !important;
+      }
+
+
+      .header-inner {
+        width: 100%;
+        max-width: var(--main-max);
+
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+
+      /* BRAND */
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+
+        flex: 0 0 auto;
+
+        color: var(--text);
+
+        text-decoration: none !important;
+
+        border: 0 !important;
+        outline: 0 !important;
+
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+
+
+      .brand:hover,
+      .brand:focus,
+      .brand:focus-visible {
+        border: 0 !important;
+        outline: 0 !important;
+
+        background: transparent !important;
+        box-shadow: none !important;
+
+        text-decoration: none !important;
+      }
+
+
+      .brand-name {
+        font-family:
+          "Oswald",
+          "Arial Narrow",
+          sans-serif;
+
+        font-size: 1.04rem;
+
+        font-weight: 700;
+
+        letter-spacing: .13em;
+
+        text-transform: uppercase;
+
+        line-height: 1;
+
+        white-space: nowrap;
+
+        border: 0 !important;
+        outline: 0 !important;
+
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+
+
+      /* RIGHT */
+
+      .header-right {
+        margin-left: auto;
+
+        display: flex;
+        align-items: center;
+
+        gap: 1.7rem;
+      }
+
+
+      /* NAV */
+
+      .nav {
+        display: flex;
+        align-items: center;
+
+        gap: 2rem;
+      }
+
+
+      .nav a {
+        position: relative;
+
+        display: inline-flex;
+        align-items: center;
+
+        min-height: 32px;
+
+        padding: 0 !important;
+
+        font-family:
+          "Oswald",
+          "Arial Narrow",
+          sans-serif;
+
+        font-size: .9rem;
+
+        font-weight: 600;
+
+        letter-spacing: .13em;
+
+        line-height: 1;
+
+        text-transform: uppercase;
+
+        text-decoration: none !important;
+
+        color: var(--text);
+
+        opacity: .7;
+
+        border: 0 !important;
+        border-radius: 0 !important;
+
+        outline: 0 !important;
+
+        background: transparent !important;
+
+        box-shadow: none !important;
+
+        transition:
+          opacity .18s ease,
+          color .18s ease;
+      }
+
+
+      .nav a:hover {
+        opacity: 1;
+
+        border: 0 !important;
+
+        background: transparent !important;
+
+        box-shadow: none !important;
+      }
+
+
+      .nav a[aria-current="page"] {
+        opacity: 1;
+
+        font-weight: 700;
+
+        color: var(--text);
+
+        border: 0 !important;
+        border-bottom: 0 !important;
+
+        border-radius: 0 !important;
+
+        outline: 0 !important;
+
+        background: transparent !important;
+
+        box-shadow: none !important;
+      }
+
+
+      .nav a[aria-current="page"]::before,
+      .nav a[aria-current="page"]::after {
+        display: none !important;
+
+        content: none !important;
+      }
+
+
+      /* THEME ICON */
+
+      .mini-theme-toggle {
+        width: 32px;
+        height: 32px;
+
+        padding: 0;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 0 !important;
+        outline: 0 !important;
+
+        border-radius: 50%;
+
+        background: transparent !important;
+
+        box-shadow: none !important;
+
+        color: var(--text);
+
+        opacity: .7;
+
+        cursor: pointer;
+
+        transition:
+          opacity .18s ease,
+          transform .18s ease;
+      }
+
+
+      .mini-theme-toggle:hover {
+        opacity: 1;
+
+        transform: translateY(-1px);
+
+        border: 0 !important;
+
+        background: transparent !important;
+      }
+
+
+      .mini-theme-toggle svg {
+        width: 16px;
+        height: 16px;
+
+        display: block;
+      }
+
+
+      html[data-theme="light"]
+      .mini-theme-toggle
+      .icon-sun {
+        display: none;
+      }
+
+
+      html[data-theme="light"]
+      .mini-theme-toggle
+      .icon-moon {
+        display: block;
+      }
+
+
+      html[data-theme="dark"]
+      .mini-theme-toggle
+      .icon-sun {
+        display: block;
+      }
+
+
+      html[data-theme="dark"]
+      .mini-theme-toggle
+      .icon-moon {
+        display: none;
+      }
+
+
+      /* old LIGHT / DARK pill */
+      .theme-toggle {
+        display: none !important;
+      }
+
+
+
+      /* MOBILE */
+
+      @media (max-width: 760px) {
+
+        .brand-name {
+          font-size: .84rem;
+        }
+
+
+        .header-right {
+          gap: 1rem;
+        }
+
+
+        .nav {
+          gap: 1.15rem;
+        }
+
+
+        .nav a {
+          font-size: .75rem;
+        }
+
+
+        .mini-theme-toggle {
+          width: 30px;
+          height: 30px;
+        }
+
+      }
+
+
+      @media (max-width: 480px) {
+
+        .header-inner {
+          padding-inline: 1rem;
+        }
+
+
+        .brand-name {
+          font-size: .72rem;
+        }
+
+
+        .nav {
+          gap: .75rem;
+        }
+
+
+        .nav a {
+          font-size: .65rem;
+        }
+
+      }
+
+      @media (max-width: 600px) {
+  .brand-name {
+    font-size: .9rem !important;
+    letter-spacing: .11em !important;
+  }
+
+  .nav a {
+    font-size: .82rem !important;
+    letter-spacing: .1em !important;
+  }
+
+  .nav {
+    gap: 1rem !important;
+  }
+}
+@media (max-width: 760px) {
+  .site-header {
+    width: 100% !important;
+    margin: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  .header-inner {
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .brand {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+
+  .brand-name {
+    font-size: .86rem !important;
+    letter-spacing: .1em !important;
+    white-space: nowrap;
+  }
+
+  .header-right {
+    margin-left: auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: .9rem !important;
+  }
+
+  .nav {
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 1rem !important;
+  }
+
+  .nav a {
+    font-size: .78rem !important;
+    letter-spacing: .09em !important;
+    white-space: nowrap;
+  }
+
+  .mini-theme-toggle {
+    width: 28px !important;
+    height: 28px !important;
+    flex: 0 0 28px !important;
+  }
+}
+/* =========================================
+   FINAL MOBILE HEADER
+========================================= */
+
+@media (max-width: 760px) {
+  .header-inner {
+    min-height: 68px;
+    padding-inline: 18px !important;
+  }
+
+  .brand-name {
+    font-size: 1.2rem !important;
+    letter-spacing: .1em !important;
+    font-weight: 700 !important;
+  }
+
+  .nav {
+    gap: 1.15rem !important;
+  }
+
+  .nav a {
+    font-size: 1.2rem !important;
+    letter-spacing: .09em !important;
+    font-weight: 700 !important;
+  }
+
+  .header-right {
+    gap: .85rem !important;
+  }
+
+  .mini-theme-toggle {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand-name {
+    font-size: .92rem !important;
+  }
+
+  .nav a {
+    font-size: .82rem !important;
+  }
+
+  .nav {
+    gap: .9rem !important;
+  }
+}
+
+    </style>
+
+
+    <slot name="head" />
+
+  </head>
+
+
+  <body
+    class={`menu__container has-thin-sidebar has-double-thin-sidebar menu--sidebar ${bodyClass}`}
+    style="--card: var(--bg)"
+  >
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+      <div class="header-inner">
+
+        <a
+          class="brand"
+          href="/"
+          aria-label="Maria Klammer — Home"
+        >
+          <span class="brand-name">
+            MARIA KLAMMER
+          </span>
+        </a>
+
+
+        <div class="header-right">
+
+          <nav
+            class="nav"
+            aria-label="Primary navigation"
+          >
+
+            <a
+              href="/work"
+              aria-current={
+                isActive([
+                  "/work",
+                  "/case-studies",
+                  "/projects"
+                ])
+                  ? "page"
+                  : undefined
+              }
+            >
+              Work
+            </a>
+
+
+            <a
+              href="/contact"
+              aria-current={
+                isActive("/contact")
+                  ? "page"
+                  : undefined
+              }
+            >
+              Contact
+            </a>
+
+          </nav>
+
+
+          <button
+            type="button"
+            class="mini-theme-toggle"
+            data-theme-toggle
+            aria-label="Switch theme"
+          >
+
+            <!-- sun -->
+            <svg
+              class="icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3.5"
+                />
+
+                <path
+                  d="
+                    M12 2.5v2.3
+                    M12 19.2v2.3
+                    M4.22 4.22l1.63 1.63
+                    M18.15 18.15l1.63 1.63
+                    M2.5 12h2.3
+                    M19.2 12h2.3
+                    M4.22 19.78l1.63-1.63
+                    M18.15 5.85l1.63-1.63
+                  "
+                />
+              </g>
+            </svg>
+
+
+            <!-- moon -->
+            <svg
+              class="icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="
+                  M20.5 14.2
+                  A8.5 8.5 0 0 1
+                  9.8 3.5
+                  A9 9 0 1 0
+                  20.5 14.2
+                  Z
+                "
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CONTENT
+    ========================================== -->
+
+    {
+      noWrap
+        ? <slot />
+        : (
+          <main class={`content ${mainClass}`}>
+            <div class="wrap">
+              <slot />
+            </div>
+          </main>
+        )
+    }
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    {
+      !hideFooter &&
+
+      <footer class="site-footer">
+
+        <div
+          class="bold-ticker"
+          aria-label="Product, design and engineering capabilities"
+        >
+
+          <div class="bold-ticker__rail">
+
+            <div class="bold-ticker__track">
+
+              <span>PRODUCT SYSTEMS</span><i>•</i>
+              <span>UX/UI</span><i>•</i>
+              <span>FRONTEND</span><i>•</i>
+              <span>AI WORKFLOWS</span><i>•</i>
+              <span>DESIGN SYSTEMS</span><i>•</i>
+              <span>BRAND DIRECTION</span><i>•</i>
+              <span>API INTEGRATIONS</span><i>•</i>
+
+            </div>
+
+
+            <div
+              class="bold-ticker__track"
+              aria-hidden="true"
+            >
+
+              <span>PRODUCT SYSTEMS</span><i>•</i>
+              <span>UX/UI</span><i>•</i>
+              <span>FRONTEND</span><i>•</i>
+              <span>AI WORKFLOWS</span><i>•</i>
+              <span>DESIGN SYSTEMS</span><i>•</i>
+              <span>BRAND DIRECTION</span><i>•</i>
+              <span>API INTEGRATIONS</span><i>•</i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="footer-copy">
+          © {new Date().getFullYear()} Maria Klammer — All rights reserved.
+        </div>
+
+      </footer>
+    }
+
+
+
+    <!-- =========================================
+         THEME
+    ========================================== -->
+
+    <script>
+      (function () {
+
+        const KEY = "theme";
+
+        const html =
+          document.documentElement;
+
+
+        function reflect(mode) {
+
+          document
+            .querySelectorAll(
+              "[data-theme-toggle]"
+            )
+            .forEach((btn) => {
+
+              btn.setAttribute(
+                "aria-label",
+                mode === "dark"
+                  ? "Switch to light theme"
+                  : "Switch to dark theme"
+              );
+
+            });
+        }
+
+
+        function setTheme(mode) {
+
+          html.dataset.theme =
+            mode;
+
+          html.style.colorScheme =
+            mode;
+
+          reflect(mode);
+
+          try {
+
+            localStorage.setItem(
+              KEY,
+              mode
+            );
+
+          } catch {}
+        }
+
+
+        reflect(
+          html.dataset.theme === "dark"
+            ? "dark"
+            : "light"
+        );
+
+
+        document.addEventListener(
+          "click",
+          (event) => {
+
+            const target =
+              event.target;
+
+            if (
+              !(target instanceof Element)
+            ) {
+              return;
+            }
+
+
+            const toggle =
+              target.closest(
+                "[data-theme-toggle]"
+              );
+
+
+            if (!toggle) {
+              return;
+            }
+
+
+            const current =
+              html.dataset.theme === "dark"
+                ? "dark"
+                : "light";
+
+
+            setTheme(
+              current === "dark"
+                ? "light"
+                : "dark"
+            );
+
+          }
+        );
+
+
+        const mq =
+          window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          );
+
+
+        mq.addEventListener?.(
+          "change",
+          (event) => {
+
+            const saved =
+              localStorage.getItem(KEY);
+
+            if (
+              saved !== "dark" &&
+              saved !== "light"
+            ) {
+
+              setTheme(
+                event.matches
+                  ? "dark"
+                  : "light"
+              );
+            }
+          }
+        );
+
+      })();
+    </script>
+
+
+
+    <!-- existing cover-card effects -->
+
+    <script is:inline>
+      (function () {
+
+        const cards =
+          document.querySelectorAll(
+            ".cover-card"
+          );
+
+        cards.forEach((el) => {
+
+          el.addEventListener(
+            "pointermove",
+            (event) => {
+
+              const rect =
+                el.getBoundingClientRect();
+
+              el.style.setProperty(
+                "--mx",
+                `${event.clientX - rect.left}px`
+              );
+
+              el.style.setProperty(
+                "--my",
+                `${event.clientY - rect.top}px`
+              );
+
+            }
+          );
+
+
+          el.addEventListener(
+            "pointerleave",
+            () => {
+
+              el.style.removeProperty(
+                "--mx"
+              );
+
+              el.style.removeProperty(
+                "--my"
+              );
+
+            }
+          );
+
+        });
+
+      })();
+    </script>
+
+
+    <script is:inline>
+      (() => {
+
+        const elements =
+          document.querySelectorAll(
+            ".cover-card"
+          );
+
+
+        if (
+          !("IntersectionObserver" in window) ||
+          !elements.length
+        ) {
+
+          elements.forEach((el) =>
+            el.classList.add(
+              "reveal-in"
+            )
+          );
+
+          return;
+        }
+
+
+        const observer =
+          new IntersectionObserver(
+            (entries) => {
+
+              entries.forEach(
+                (entry) => {
+
+                  if (
+                    entry.isIntersecting
+                  ) {
+
+                    entry.target.classList.add(
+                      "reveal-in"
+                    );
+
+                    observer.unobserve(
+                      entry.target
+                    );
+                  }
+                }
+              );
+
+            },
+            {
+              rootMargin:
+                "0px 0px -10% 0px",
+
+              threshold:
+                0.05
+            }
+          );
+
+
+        elements.forEach(
+          (el) =>
+            observer.observe(el)
+        );
+
+      })();
+    </script>
+
+  </body>
+</html>

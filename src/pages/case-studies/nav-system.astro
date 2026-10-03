@@ -1,0 +1,1420 @@
+i---
+import Base from "../../layouts/Base.astro";
+import "../../styles/nav.css";
+---
+
+<Base
+  title="Case Study: Unified Navigation"
+  bodyClass="menu--sidebar nav-system-page"
+  noWrap={true}
+  hideFooter={true}
+>
+
+<script type="module">
+/* ---------- tiny utils ---------- */
+const ready = (fn) =>
+  document.readyState === "loading"
+    ? document.addEventListener("DOMContentLoaded", fn, { once: true })
+    : fn();
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+/* Focus the trigger after ESC without showing a ring */
+function quietProgrammaticFocus(el) {
+  if (!el) return;
+  document.documentElement.classList.add("suppress-focus-ring");
+  el.focus({ preventScroll: true });
+  requestAnimationFrame(() => {
+    document.documentElement.classList.remove("suppress-focus-ring");
+  });
+}
+
+/* find a truly focusable child inside a trigger (optional) */
+function getFocusable(el) {
+  if (!el) return null;
+  const selector = [
+    "button",
+    "a[href]",
+    'input:not([type="hidden"])',
+    "select",
+    "textarea",
+    "[tabindex]:not([tabindex='-1'])",
+    "label[for]",
+  ].join(",");
+  return el.matches(selector) ? el : el.querySelector(selector);
+}
+
+/* ---------- public init ---------- */
+function initNavLite() {
+  // console.debug("[nav] initNavLite() called");
+  ready(() => {
+    wireLayoutToggle();
+    wireCaretOpeners();
+    wireCompanySubmenus();
+    wireSupportPanel();
+    wireCompanySearch();
+  });
+}
+
+/* ---------- 0) Sidebar <-> Topnav toggle ---------- */
+function wireLayoutToggle() {
+  const root = document.querySelector(".menu") || document.body;
+  if (root.dataset.navLiteLayout === "1") return;
+  root.dataset.navLiteLayout = "1";
+
+  // flip body + .menu
+  document.addEventListener("click", (e) => {
+    const btn = e.target && e.target.closest("[data-toggle-menu]");
+    if (!btn) return;
+
+    document.body.classList.toggle("menu--sidebar");
+    document.body.classList.toggle("menu--topnav");
+
+    const nav = document.querySelector(".menu");
+    if (nav) {
+      nav.classList.toggle("menu--sidebar");
+      nav.classList.toggle("menu--topnav");
+    }
+
+    btn.classList.toggle("is-open");
+  });
+
+  // keyboard support
+  document.addEventListener("keydown", (e) => {
+    const targetEl = e.target;
+    if (!targetEl || !targetEl.closest("[data-toggle-menu]")) return;
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    targetEl.click();
+  });
+}
+
+/* ---------- 0.5) Main nav groups (third-level) ---------- */
+function wireCaretOpeners() {
+  const root = document.querySelector(".menu") || document.body;
+  if (root.dataset.navLiteCarets === "1") return;
+  root.dataset.navLiteCarets = "1";
+
+  const groups = $(".menu") ? $$(".menu .sidebar-group[data-caret]") : [];
+  const headers = groups
+    .map((g) => g.querySelector(".sidebar__item"))
+    .filter(Boolean);
+
+  groups.forEach((group, idx) => {
+    const label = group.querySelector(".sidebar__item");
+    const panel = group.querySelector(".sub-menu_down");
+    if (!label || !panel) return;
+
+    if (!panel.id) panel.id = `menu-sub-${idx}`;
+    label.setAttribute("role", "button");
+    label.setAttribute("tabindex", "0");
+    label.setAttribute("aria-controls", panel.id);
+    label.setAttribute("aria-expanded", "false");
+
+    const open = () => {
+      groups.forEach((g) => {
+        if (g !== group) {
+          g.classList.remove("is-open");
+          const hdr = g.querySelector(".sidebar__item");
+          if (hdr) hdr.setAttribute("aria-expanded", "false");
+        }
+      });
+      group.classList.add("is-open");
+      label.setAttribute("aria-expanded", "true");
+    };
+    const close = () => {
+      group.classList.remove("is-open");
+      label.setAttribute("aria-expanded", "false");
+    };
+    const toggle = () => (group.classList.contains("is-open") ? close() : open());
+
+    label.addEventListener("click", toggle);
+    label.addEventListener("keydown", (e) => {
+      const k = e.key;
+      if (k === "Enter" || k === " ") {
+        e.preventDefault();
+        toggle();
+      }
+      if (k === "Escape") {
+        e.preventDefault();
+        close();
+      }
+      if (k === "ArrowDown" || k === "ArrowUp" || k === "Home" || k === "End") {
+        e.preventDefault();
+        let i = headers.indexOf(label);
+        if (k === "ArrowDown") i = (i + 1) % headers.length;
+        if (k === "ArrowUp") i = (i - 1 + headers.length) % headers.length;
+        if (k === "Home") i = 0;
+        if (k === "End") i = headers.length - 1;
+        headers[i] && headers[i].focus();
+      }
+    });
+  });
+
+  // Click outside closes any open group (capture to run early)
+  document.addEventListener(
+    "click",
+    (e) => {
+      const t = e.target;
+      if (t.closest(".menu .sidebar-group") || t.closest(".menu .sub-menu_down")) return;
+      groups.forEach((g) => {
+        g.classList.remove("is-open");
+        const hdr = g.querySelector(".sidebar__item");
+        if (hdr) hdr.setAttribute("aria-expanded", "false");
+      });
+    },
+    true
+  );
+}
+
+/* ---------- 2) Company submenus (toggle, outside, ESC) ---------- */
+function wireCompanySubmenus() {
+  const roots = $$(".company-sidebar");
+  if (!roots.length) return;
+
+  // per-root guard
+  roots.forEach((root) => {
+    if (root.dataset.navLiteCompany === "1") return;
+    root.dataset.navLiteCompany = "1";
+
+    if (root.dataset.subInit === "1") return;
+    root.dataset.subInit = "1";
+
+    let lastOpener = null;
+
+    const closeAll = (exceptSubmenu = null) => {
+      $$(".company-sidebar__submenu, .company-sidebar__submenu--below", root).forEach(
+        (el) => {
+          if (exceptSubmenu && el === exceptSubmenu) return;
+          el.classList.remove("submenu--open", "submenu--locked");
+          el.style.display = "none";
+          const owner = el.closest(".company-sidebar__item--has-submenu");
+          if (owner) owner.classList.remove("item--hovered");
+          const trig = owner && owner.querySelector(".company-sidebar__trigger");
+          if (trig) trig.setAttribute("aria-expanded", "false");
+        }
+      );
+    };
+
+    // reset start state
+    closeAll(null);
+
+    // wire each item
+    $$(".company-sidebar__item--has-submenu", root).forEach((item) => {
+      const trigger =
+        $(".company-sidebar__trigger, .thin-sidebar-item", item) || null;
+      const submenu =
+        $(".company-sidebar__submenu, .company-sidebar__submenu--below", item) ||
+        null;
+      if (!trigger || !submenu) return;
+
+      const open = () => {
+        if (!item.closest(".company-sidebar__submenu--below")) closeAll(submenu);
+        submenu.classList.add("submenu--open", "submenu--locked");
+        submenu.style.display = "block";
+        item.classList.add("item--hovered");
+        trigger.setAttribute("aria-expanded", "true");
+        lastOpener = trigger;
+      };
+
+      const close = () => {
+        submenu.classList.remove("submenu--open", "submenu--locked");
+        submenu.style.display = "none";
+        item.classList.remove("item--hovered");
+        trigger.setAttribute("aria-expanded", "false");
+      };
+
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        (submenu.classList.contains("submenu--open") ? close : open)();
+      });
+
+      trigger.addEventListener("keydown", (e) => {
+        const k = e.key;
+        if (k === "Enter" || k === " ") {
+          e.preventDefault();
+          trigger.click();
+        }
+      });
+    });
+
+    // outside click: close everything
+    document.addEventListener("click", (e) => {
+      if (!root.contains(e.target)) closeAll(null);
+    });
+
+    // ESC: close everything and return focus silently to the last opener
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const hadOpen =
+        $$(".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open", root)
+          .length > 0;
+      closeAll(null);
+      if (hadOpen) quietProgrammaticFocus(getFocusable(lastOpener) || lastOpener);
+    });
+  });
+}
+
+/* ---------- 3) Support panel (left overlay with form) ---------- */
+function wireSupportPanel() {
+  const cb = $("#toggleSidebarOptions");
+  const panel = $("#supportPanel");
+  const opener = $('label[for="toggleSidebarOptions"]');
+  if (!cb || !panel || !opener) return;
+
+  const reflect = () => {
+    opener.setAttribute("aria-expanded", cb.checked ? "true" : "false");
+    panel.hidden = false; // node stays; CSS handles visibility via :checked
+  };
+  cb.addEventListener("change", reflect);
+  reflect();
+
+  // Close on outside click
+  document.addEventListener(
+    "click",
+    (e) => {
+      if (!cb.checked) return;
+      const t = e.target;
+      if (t.closest("#supportPanel") || t.closest('label[for="toggleSidebarOptions"]')) return;
+      cb.checked = false;
+      cb.dispatchEvent(new Event("change", { bubbles: true }));
+    },
+    true
+  );
+
+  // ESC closes
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && cb.checked) {
+      cb.checked = false;
+      cb.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  });
+
+  // Don’t let file input labels close the overlay
+  $$(".fileInput", panel).forEach((inp) => {
+    const lbl = inp.closest("label");
+    if (!lbl) return;
+    ["mousedown", "click"].forEach((evt) =>
+      lbl.addEventListener(evt, (ev) => ev.stopPropagation(), true)
+    );
+  });
+}
+
+/* ---------- 4) Company search (filters + opens/closes) ---------- */
+function wireCompanySearch() {
+  const wrap = document.getElementById("accountSearchWrapper");
+  if (!wrap) return;
+
+  const input = document.getElementById("accountSearchInput");
+  const results = document.getElementById("accountSearchResults");
+  const submenu = document.getElementById("accountSearchWrapperContainer"); // panel
+  const item = wrap.closest(".company-sidebar__item--has-submenu");
+  const trigger = item && item.querySelector(".company-sidebar__trigger");
+  const root = item && item.closest(".company-sidebar");
+
+  // pool of accounts to search from the left sidebar
+  const pool = Array.from((root || document).querySelectorAll(".searchable-account, .location-item"));
+
+  if (!input || !results || !submenu || !item || !trigger) return;
+
+  const closeOthers = () => {
+    if (!root) return;
+    $$(".company-sidebar__submenu.submenu--open, .company-sidebar__submenu--below.submenu--open", root)
+      .forEach((el) => {
+        if (el === submenu) return;
+        el.classList.remove("submenu--open", "submenu--locked");
+        el.style.display = "none";
+        const owner = el.closest(".company-sidebar__item--has-submenu");
+        if (owner) owner.classList.remove("item--hovered");
+        const trig = owner && owner.querySelector(".company-sidebar__trigger");
+        if (trig) trig.setAttribute("aria-expanded", "false");
+      });
+  };
+
+  const setOpenState = (open) => {
+    if (open) {
+      closeOthers();
+      submenu.classList.add("submenu--open", "submenu--locked");
+      submenu.style.display = "block";
+      item.classList.add("item--hovered");
+      trigger.setAttribute("aria-expanded", "true");
+    } else {
+      submenu.classList.remove("submenu--open", "submenu--locked");
+      submenu.style.display = "none";
+      item.classList.remove("item--hovered");
+      trigger.setAttribute("aria-expanded", "false");
+    }
+  };
+
+  const renderNoResults = (query) => {
+    const li = document.createElement("li");
+    li.className = "no-results";
+    li.setAttribute("aria-live", "polite");
+    li.textContent = `No results for “${query}”.`;
+    results.appendChild(li);
+  };
+
+  const renderMatches = (q) => {
+    const query = q.trim().toLowerCase();
+    results.innerHTML = "";
+
+    if (!query) {
+      setOpenState(false);
+      return;
+    }
+
+    let matches = 0;
+    pool.forEach((el) => {
+      const name = (el.dataset.name || "").toLowerCase();
+      const num = (el.dataset.number || "").toLowerCase();
+      if (name.includes(query) || num.includes(query)) {
+        const li = document.createElement("li");
+        li.className = "location-item";
+        li.dataset.number = el.dataset.number || "";
+        li.innerHTML = `
+          <span class="account-name">${el.dataset.name || ""}</span>
+          <span class="account-number">#${el.dataset.number || ""}</span>
+        `;
+        results.appendChild(li);
+        matches++;
+      }
+    });
+
+    if (matches === 0) renderNoResults(q);
+    setOpenState(true); // keep panel visible + icon blue while searching
+  };
+
+  input.addEventListener("input", () => renderMatches(input.value));
+
+  results.addEventListener("click", (e) => {
+    const li = e.target && e.target.closest(".location-item");
+    if (!li) return;
+    input.value = li.dataset.number || "";
+    // setOpenState(false); // uncomment if you want to close after selection
+  });
+
+  input.addEventListener("focus", () => setOpenState(true));
+  input.addEventListener("blur", () => {
+    if (!input.value.trim()) setOpenState(false);
+  });
+}
+
+/* ---------- boot & SPA wiring ---------- */
+const boot = () => {
+  try { initNavLite(); } catch (err) { console.error("[nav] init failed:", err); }
+};
+
+boot();
+addEventListener("astro:page-load", boot);
+addEventListener("astro:before-swap", () => {
+  // clear per-root guards so rewiring works after swap
+  document.querySelectorAll(".menu, .company-sidebar").forEach((el) => {
+    if (el.dataset) {
+      delete el.dataset.navLiteLayout;
+      delete el.dataset.navLiteCarets;
+      delete el.dataset.navLiteCompany;
+      delete el.dataset.subInit;
+    }
+  });
+});
+</script>
+
+<script type="module">
+function wireHamburger() {
+  // prevent duplicate wiring when Astro re-renders
+  if (document.body.dataset.hamburgerWired === "1") return;
+  document.body.dataset.hamburgerWired = "1";
+
+  const overlay = document.querySelector(".mobile-menu-overlay");
+  const trigger = document.querySelector(".master-hamburger-button");
+  if (!overlay || !trigger) return;
+
+  const open = () => {
+    document.body.classList.add("mobile-open");
+    overlay.setAttribute("aria-hidden", "false");
+    trigger.setAttribute("aria-expanded", "true");
+  };
+  const close = () => {
+    document.body.classList.remove("mobile-open");
+    overlay.setAttribute("aria-hidden", "true");
+    trigger.setAttribute("aria-expanded", "false");
+  };
+  const toggle = () =>
+    document.body.classList.contains("mobile-open") ? close() : open();
+
+  // Click + touch (iOS)
+  trigger.addEventListener("click", toggle, { passive: true });
+  trigger.addEventListener("touchend", (e) => { e.preventDefault(); toggle(); }, { passive: false });
+
+  // Tap the dim area to close
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); }, { passive: true });
+
+  // ESC
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+}
+
+// boot on first load
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", wireHamburger);
+} else {
+  wireHamburger();
+}
+// boot again after Astro swaps the page
+addEventListener("astro:page-load", wireHamburger);
+</script>
+
+<script type="module">
+(() => {
+  const KEY = 'demo:favorites';
+  const DEMO_APP = { id: 'reports', label: 'Reports', icon: 'ri-file-text-line' };
+  const favList  = document.getElementById('favApps');
+  const starBtns = [...document.querySelectorAll('.favorite-toggle-button')];
+
+  const getFavs = () => {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+    catch { return []; }
+  };
+  const setFavs = (arr) => localStorage.setItem(KEY, JSON.stringify(arr));
+
+  const render = () => {
+    const favs = getFavs();
+    const isFav = favs.includes(DEMO_APP.id);
+
+    // Update all star buttons (in header, duplicated, etc.)
+    starBtns.forEach(btn => {
+      btn.classList.toggle('is-favorite', isFav);
+      btn.setAttribute('aria-pressed', String(isFav));
+      btn.title = isFav ? 'Remove from favorites' : 'Add to favorites';
+
+      // Only swap icon HTML for the icon variant.
+      // If the button has data-keep-label, leave its label as-is.
+      const keepLabel = btn.hasAttribute('data-keep-label');
+      if (!keepLabel) {
+        btn.innerHTML = isFav ? '<i class="ri-star-fill"></i>' : '<i class="ri-star-line"></i>';
+      }
+    });
+
+    // Rebuild favorites list
+    if (!favList) return;
+    favList.innerHTML = '';
+    favs.forEach(id => {
+      const app = id === DEMO_APP.id ? DEMO_APP : null;
+      if (!app) return;
+      const li = document.createElement('li');
+      li.className = 'thin-sidebar-item';
+      li.innerHTML = `
+        <a href="#" title="${app.label}">
+          <span class="sidebar-icon"><i class="${app.icon}"></i></span>
+          <span class="label">${app.label}</span>
+        </a>`;
+      favList.appendChild(li);
+    });
+  };
+
+  const toggleFavorite = () => {
+    const favs = new Set(getFavs());
+    favs.has(DEMO_APP.id) ? favs.delete(DEMO_APP.id) : favs.add(DEMO_APP.id);
+    setFavs([...favs]); render();
+  };
+
+  // Click on any star button
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.favorite-toggle-button');
+    if (!btn) return;
+    e.preventDefault();
+    toggleFavorite();
+  });
+
+  // Block demo form submit
+  document.querySelectorAll('.toggleFavoriteForm').forEach(f =>
+    f.addEventListener('submit', e => e.preventDefault())
+  );
+
+  render();
+  addEventListener?.('astro:page-load', render);
+})();
+</script>
+
+<!-- MASTER TOGGLE (mobile) -->
+<input type="checkbox" id="menuMasterToggle" hidden />
+<div class="master-menu_mobile-header">
+  <button type="button"
+          class="master-hamburger-button"
+          aria-expanded="false"
+          aria-controls="mobileMenuSheet">
+    <i class="ri-menu-line"></i>
+    <i class="ri-close-line"></i>
+  </button>
+</div>
+<div class="mobile-menu-overlay" id="mobileMenuSheet" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="thin-sidebar-group">
+    <!-- Left: Company mini sidebar -->
+    <aside class="extra-thin-sidebar company-sidebar">
+      <div class="thin-sidebar-icons">
+        <div class="account-switch-wrapper" id="accountSwitchWrapper2">
+          <ul id="locationList2" class="flex-col">
+            <!-- Active account (hardcoded) -->
+            <li class="company-sidebar__item company-sidebar__item--has-submenu" data-number="14224">
+              <div class="thin-sidebar-item company-sidebar__trigger">
+                <a href="#" class="account-switch-btn item--active">
+                  <span class="sidebar-icon-wrapper">
+                    <span class="company-name sidebar-icon">MK</span>
+                  </span>
+                  <span class="label">Maria</span>
+                  <span class="label" id="selectedLocation2" data-session="14224">#14224</span>
+                </a>
+              </div>
+            </li>
+
+            <!-- Users button -->
+            <li class="thin-sidebar-item flex-col align-center">
+              <a href="#" class="btn btn__secondary">
+                <i class="ri-user-line"></i>
+              </a>
+              <span class="label">Users</span>
+            </li>
+          </ul>
+
+          <div class="sidebar-divider mb-1"></div>
+
+          <!-- Other accounts list (example) -->
+          <div class="scroll-account-wrapper mt-1">
+            <ul class="scrollable-account-list">
+              <li class="company-sidebar__item company-sidebar__item--has-submenu searchable-account location-item flex-col" data-name="CAP" data-number="13188">
+                <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+                  <span class="sidebar-icon company-badge">CA</span>
+                  <span class="label mt-1">CAP</span>
+                  <span class="label">#131886</span>
+                </div>
+              </li>
+               <li class="company-sidebar__item company-sidebar__item--has-submenu searchable-account location-item flex-col" data-name="Apple" data-number="44567">
+                <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+                  <span class="sidebar-icon company-badge">AP</span>
+                  <span class="label mt-1">Apple</span>
+                  <span class="label">#445676</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Sticky actions -->
+          <div class="sticky-actions mb-auto">
+            <div class="thin-sidebar-item flex-col align-center company-sidebar__item--has-submenu">
+              <div class="thin-sidebar-item flex-col align-center company-sidebar__item--has-submenu">
+                    <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+                      <span class="btn btn__secondary">
+                         <i class="ri-community-line"></i>
+                      </span>
+                      <span class="label">Find Company</span>
+                    </div>
+                </div>
+              <div class="company-sidebar__submenu" id="accountSearchWrapperContainer">
+                <div class="company-sidebar__submenu-userinfo flex-col" id="accountSearchWrapper">
+                  <div class="sidebar-search-wrapper">
+                    <i class="ri-search-line"></i>
+                    <input id="accountSearchInput" class="sidebar-search-input" type="text" placeholder="Search company…" />
+                  </div>
+                  <ul id="accountSearchResults" class="search-results-list justify-between"></ul>
+                </div>
+              </div>
+             
+            </div>
+            
+
+            <div class="thin-sidebar-item flex-col align-center mt-1">
+              <a href="#" class="btn btn__secondary"><i class="ri-add-line"></i></a>
+              <span class="label">Add company</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-divider mb-1"></div>
+
+      <!-- Bottom: settings/help/logout/theme -->
+      <ul class="thin-sidebar--settings-container">
+        <li class="company-sidebar__item company-sidebar__item--has-submenu">
+          <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+            <span class="sidebar-icon"><i class="ri-settings-3-line"></i></span>
+            <span class="label">Settings</span>
+          </div>
+          <div class="company-sidebar__submenu--below">
+            <a href="#" class="company-sidebar__link flex align-center"><i class="ri-key-2-line"></i><span>Change password</span></a>
+            <a href="#" class="company-sidebar__link flex align-center"><i class="ri-lock-2-line"></i><span>Two-step auth</span></a>
+          </div>
+        </li>
+
+        <li class="company-sidebar__item company-sidebar__item--has-submenu">
+          <div class="thin-sidebar-item company-sidebar__trigger flex-col align-center">
+            <span class="sidebar-icon"><i class="ri-question-line"></i></span>
+            <span class="label">Help</span>
+          </div>
+          <div class="company-sidebar__submenu--below">
+            <a href="#" class="company-sidebar__link flex align-center" target="_blank" rel="noreferrer">
+              <i class="ri-book-open-line"></i><span>Wiki</span>
+            </a>
+            <label for="toggleSidebarOptions" class="company-sidebar__link flex align-center" aria-controls="supportPanel" aria-expanded="false">
+              <i class="ri-ticket-line"></i><span>Create<br>ticket</span>
+            </label>
+            <a href="#" class="company-sidebar__link flex align-center"><i class="ri-headphone-line"></i><span>Support agent</span></a>
+          </div>
+        </li>
+
+        <li>
+          <button class="thin-sidebar-item flex-col align-center" type="button">
+            <span class="sidebar-icon"><i class="ri-logout-box-line"></i></span>
+            <span class="label">Logout</span>
+          </button>
+        </li>
+
+        <li>
+              <!-- one compact button, shows the target theme -->
+              <button
+                type="button"
+                class="mini-theme-toggle"
+                data-theme-toggle
+                aria-label="Switch to dark theme"
+              >
+                <!-- Sun (shown in dark mode so user can switch to light) -->
+                <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+                  <g fill="currentColor" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4.25"/>
+                    <path d="M12 2.5v2.5M12 19v2.5M4.22 4.22l1.77 1.77M17.99 18l1.78 1.78M2.5 12H5M19 12h2.5M4.22 19.78L6 18M18 6l1.78-1.78"/>
+                  </g>
+                </svg>
+
+                <!-- Moon (shown in light mode so user can switch to dark) -->
+                <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M21 13.25A8.75 8.75 0 0 1 10.75 3 9.75 9.75 0 1 0 21 13.25z"
+                    fill="currentColor" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+        </li>
+          
+      </ul>
+    </aside>
+
+    <!-- Right: App switcher thin sidebar -->
+    <aside class="extra-thin-sidebar extra-thin-sidebar--second">
+      <div class="extra-thin-sidebar_header">
+      <form method="post" class="toggleFavoriteForm">
+        <button type="submit" aria-label="Toggle favorite" class="favorite-toggle-button">
+          <i class="ri-star-line"></i>
+        </button>
+      </form>
+        <button type="button" class="btn btn__secondary action-button--back" data-fallback="/work">
+          <i class="ri-arrow-left-line"></i>
+        </button>
+        <ul class="thin-sidebar-icons">
+          <li class="thin-sidebar-item">
+            <a href="#"><span class="sidebar-icon"><i class="ri-archive-2-line"></i></span><span class="label">Inventory</span></a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#"><span class="sidebar-icon"><i class="ri-group-line"></i></span><span class="label">Customers</span></a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#" title="Emails">
+              <span class="sidebar-icon"><i class="ri-mail-line"></i></span>
+              <span class="label">Emails</span>
+            </a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#" title="Locations">
+              <span class="sidebar-icon"><i class="ri-map-pin-2-line"></i></span>
+              <span class="label">Locations</span>
+             </a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#" title="Quote">
+              <span class="sidebar-icon"><i class="ri-file-list-3-line"></i></span>
+              <span class="label">Quote</span>
+             </a>
+          </li>
+          <li class="thin-sidebar-item">
+            <a href="#" title="App Store">
+              <span class="sidebar-icon"><i class="ri-add-circle-line"></i></span>
+              <span class="label">App Store</span>
+            </a>
+          </li>
+        </ul>
+        <!-- ⭐ Favorites appear here -->
+        <ul id="favApps" class="thin-sidebar-icons fav-apps"></ul>
+      </div>
+
+
+      <div class="mt-auto p-2">
+   
+            <button data-toggle-menu class="btn hide-on-mobile mt-2">
+          
+                <svg class="icon-rotate-up" width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd" d="M2.25635 0.916687C1.83538 0.916687 1.47868 1.06285 1.18701 1.35451C0.89554 1.64611 0.750026 2.00223 0.75 2.42303V13.577C0.750026 13.9978 0.89554 14.3539 1.18701 14.6455C1.47868 14.9372 1.83538 15.0834 2.25635 15.0834H12.1595C12.5805 15.0834 12.9372 14.9372 13.2288 14.6455C13.5204 14.3539 13.6666 13.9979 13.6667 13.577V2.42303C13.6666 2.00218 13.5204 1.64613 13.2288 1.35451C12.9372 1.06285 12.5805 0.916687 12.1595 0.916687H2.25635ZM7.77067 13.8334H2.25635C2.19218 13.8334 2.13309 13.8063 2.07975 13.7528C2.02648 13.6996 2.00003 13.641 2 13.577V2.42303C2.00003 2.35901 2.02648 2.30049 2.07975 2.24725C2.13309 2.19378 2.19218 2.16669 2.25635 2.16669H7.77067V13.8334Z"/>
+                </svg>
+           
+         
+         
+            </button>
+        </div>
+    </aside>
+
+
+  <!-- Main nav (sidebar/topnav switches via body class) -->
+  <nav class="menu menu--sidebar" aria-label="Main Navigation">
+    <div class="menu__header flex">
+      <a class="badge app__badge" href="#"><i class="ri-apps-2-fill"></i></a>
+      <h2 class="menu__title">Interactive demo of navigation menu</h2>
+    </div>
+
+    <div class="menu__center">
+      <!-- Group 1 -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="ri-dashboard-2-line"></i>
+          <span class="sidebar__label">Overview</span>
+        </label>
+         <div class="sub-menu_down">
+          <div class="sidebar__third-level-menu">
+            <div class="submenu-section">
+              <ul>
+                <li><a class="font-sm" href="#"><span>Dashboard</span></a></li>
+                <li><a class="font-sm" href="#"><span>Time logs</span></a></li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+       
+      </div>
+
+      <!-- Group 2 with 3rd-level sections -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="ri-settings-3-line"></i>
+          <span class="sidebar__label">Configuration</span>
+        </label>
+        <div class="sub-menu_down">
+          <div class="sidebar__third-level-menu">
+            <div class="submenu-section">
+              <ul>
+                <li><a class="font-sm" href="#"><span>Localization</span></a></li>
+                <li><a class="font-sm" href="#"><span>Users</span></a></li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3 with 3rd-level sections -->
+      <div class="sidebar-group" data-caret="1">
+        <label class="sidebar__item">
+          <i class="ri-shopping-cart-line"></i>
+          <span class="sidebar__label">Orders</span>
+        </label>
+        <div class="sub-menu_down">
+          <div class="sidebar__third-level-menu">
+            <div class="submenu-section">
+              <ul>
+                <li><a class="font-sm" href="#"><span>Sales</span></a></li>
+                <li><a class="font-sm" href="#"><span>Invoices</span></a></li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <!-- Topnav-only footer trigger (kept minimal) -->
+    <div class="flex only-topnav ml-auto gap-3 align-center">
+      <label class="landing-link" for="toggleTopnavFooter" title="App updated">
+        <i class="ri-checkbox-circle-line text-green mr-1" aria-hidden="true"></i>
+        <span class="text-green">v.</span><span class="text-green">1.0.0</span>
+      </label>
+      <label class="menu__item name-initial"><span id="userInitials">MK</span></label>
+      <div class="flex-col mr-0_8">
+        <span class="company-name" title="Demo Company">Demo Company</span>
+        <span class="sidebar-label" id="selectedLocation">142242425</span>
+      </div>
+    </div>
+    <input type="checkbox" id="toggleTopnavFooter" hidden />
+    <div class="menu__footer-wrapper">
+      <div class="menu__version">
+        <div class="flex align-center justify-between">
+          <span class="badge badge__uptodate"><i class="ri-checkbox-circle-line"></i>App is up to date!</span>
+          <div class="flex"><span class="label">v.</span><span class="ml-1">1.0.0</span></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+  </div>
+
+<!-- your case study content -->
+<article class="container-narrow doc-grid">
+
+  <div class="doc-main">
+   <h1 class="page-title">
+        Unified Navigation System
+      </h1>
+    <p class="meta">Role: Frontend & UX • Timeline: 2024–2025 • Tech: HTML, CSS, JS, GO</p>
+
+    <h2>Context & Problem</h2>
+    <p>Multiple apps used duplicated markup for sidebar/topnav with inconsistent behavior and a11y gaps.</p>
+
+    <h2>Approach</h2>
+    <ul>
+      <li>Single base markup toggled between sidebar and topnav via outer class</li>
+      <li>Mobile overlay with ESC / outside click / focus trap</li>
+      <li>Checkbox/radio for submenus; minimal JS</li>
+    </ul>
+
+    <h2>Behavior & Accessibility</h2>
+    <ul>
+      <li><strong>Keyboard:</strong> Enter/Space toggles sections, ESC closes.</li>
+      <li><strong>Outside click:</strong> Closes submenus, support panel, overlays.</li>
+      <li><strong>Mobile overlay:</strong> Hamburger toggles, scroll lock, aria-expanded.</li>
+    </ul>
+
+    <h2>Outcome</h2>
+    <ul>
+      <li>Removed duplicate HTML across all app views</li>
+      <li>Improved consistency + accessibility</li>
+      <li>Shared JSON + single asset enables rapid changes</li>
+    </ul>
+
+    <div class="handwritten handwritten-note-container">NEXT PROJECT · OR TEST THE SIDEBAR MOVEMENTS</div>
+    
+    <div class="flex arrows-container">
+     <!-- LEFT rail (Prev) -->
+    <nav class="case-rail case-rail--left" aria-label="Previous project">
+      <a class="pager-btn pager-btn--prev" href="/case-studies/visual-explorations" aria-label="Previous: Illustration & Visual Studies">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </a>
+    </nav>
+<div class="demo-controls">
+      <button class="btn-cv" data-toggle-menu>Toggle position</button>
+      <form method="post" class="toggleFavoriteForm">
+        <button
+          type="submit"
+          aria-label="Toggle favorite"
+          class="btn-cv favorite-toggle-button"
+          data-keep-label
+        >
+          Toggle favorites
+        </button>
+      </form>
+    </div>
+    <!-- RIGHT rail (Next) -->
+    <nav class="case-rail case-rail--right" aria-label="Next project">
+      <a class="pager-btn pager-btn--next" href="/case-studies/social-media-generator" aria-label="Next: AI Social Media Generator">
+        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+</div>
+  </div>
+
+  <aside class="doc-aside feature-card">
+    <div class="num">01.</div>
+      <h2>Menu Architecture & Structure</h2>
+
+    <ol class="tight">
+       <li>
+      <strong>Company Sidebar (Level 1)</strong> —  
+      A vertical thin sidebar always visible on desktop. It contains user identity, company switcher, language, theme toggle, and help/support entry points.
+      Submenus open below and close automatically on outside click or <kbd>ESC</kbd>.
+    </li>
+    <li>
+      <strong>Bookmarks / Favorites (Level 2)</strong> —  
+      A thin sidebar that lists user’s favorite or pinned apps. State is stored via CaFa configuration <code>favorite-apps</code>,
+      so the same favorites appear across sessions. Clicking a star toggles app visibility here instantly.
+    </li>
+    <li>
+      <strong>App Navigation (Level 3)</strong> —  
+      Each app imports a shared menu asset that builds its structure from JSON.  
+      The menu can switch between <em>sidebar</em> and <em>topnav</em> layouts using the same markup,
+      controlled by outer classes<br><code>.menu--sidebar</code> / <code>.menu--topnav</code>.
+    </li>
+    </ol>
+
+    <!-- Optional note about demo limitations -->
+    <div class="demo-note" role="note" aria-label="Demo limitations">
+      <i class="ri-information-line" aria-hidden="true"></i>
+      <p>This is a minimal interactive demo: focus trapping, routing tabindex, full screen reader labelling, and persisted favorites are omitted for brevity. A lot of functionality isn’t implemented here because it was tied to the client interface.</p>
+    </div>
+  </aside>
+</article>
+<script type="module">
+  // Back button: history.back() with fallback
+  document.addEventListener('click', (e) => {
+    const backBtn = e.target.closest('.action-button--back');
+    if (!backBtn) return;
+    e.preventDefault();
+    if (history.length > 1) history.back();
+    else location.assign(backBtn.dataset.fallback || '/');
+  });
+</script>
+
+</Base>
+
+<style is:global>
+  body[data-page="nav-system"] .site-footer { display: none !important; }
+
+  /* Prevent double top border when menu is directly under the header */
+.site-header + .menu--topnav {
+  border-top: none !important;
+}
+
+.feature-card, .arrows-container{
+  margin-bottom: 60px;
+}
+
+
+/* Re-enable Chrome scrollbar visuals just in this area */
+::-webkit-scrollbar {
+  width: 8px !important;                     
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,.35) !important;  
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,.08) !important;  
+}
+
+body.dark-mode,
+html[data-theme="dark"] { ::-webkit-scrollbar {
+  width: 8px !important;                     
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(247, 246, 246, 0.35) !important;  
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(226, 218, 218, 0.08) !important;  
+}
+}
+
+/* =========================================================
+   NAV SYSTEM CASE STUDY — PORTFOLIO HEADER
+========================================================= */
+
+/* DESKTOP — sidebar mode */
+@media (min-width: 1025px) {
+  body.nav-system-page.menu--sidebar .site-header {
+    margin-left: 312px !important;
+    width: calc(100% - 312px) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.nav-system-page.menu--sidebar .header-inner {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: 34px !important;
+    padding-right: 34px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* DESKTOP — topnav mode */
+  body.nav-system-page.menu--topnav .site-header {
+    margin-left: 122px !important;
+    width: calc(100% - 122px) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.nav-system-page.menu--topnav .header-inner {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: 34px !important;
+    padding-right: 34px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  /* Demo sidebars move into hamburger overlay,
+     so portfolio header uses full viewport again */
+
+  body.nav-system-page.menu--sidebar .site-header,
+  body.nav-system-page.menu--topnav .site-header {
+    margin-left: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    box-sizing: border-box !important;
+  }
+
+  body.nav-system-page.menu--sidebar .header-inner,
+  body.nav-system-page.menu--topnav .header-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+
+    box-sizing: border-box !important;
+  }
+
+  /* Keep portfolio identity visible */
+  body.nav-system-page .brand {
+    display: inline-flex !important;
+    min-width: 0;
+  }
+
+  /* Don't let right side push outside viewport */
+  body.nav-system-page .header-right {
+    margin-left: auto !important;
+    min-width: 0;
+  }
+}
+
+
+/* Smaller phones */
+
+@media (max-width: 600px) {
+
+
+
+  body.nav-system-page .brand-name {
+    font-size: 1.2rem !important;
+    letter-spacing: .1em !important;
+  }
+
+  body.nav-system-page .header-right {
+    gap: .75rem !important;
+  }
+
+  body.nav-system-page .portfolio-nav {
+    gap: .9rem !important;
+  }
+
+  body.nav-system-page .portfolio-nav a {
+    font-size: .66rem !important;
+    letter-spacing: .1em !important;
+  }
+
+  body.nav-system-page .mini-theme-toggle {
+    width: 28px !important;
+    height: 28px !important;
+    flex: 0 0 28px;
+  }
+}
+
+
+/* Very narrow phones */
+
+@media (max-width: 390px) {
+
+  body.nav-system-page .brand-name {
+    font-size: .64rem !important;
+  }
+
+  body.nav-system-page .portfolio-nav {
+    gap: .65rem !important;
+  }
+
+  body.nav-system-page .portfolio-nav a {
+    font-size: .6rem !important;
+  }
+
+  body.nav-system-page .mini-theme-toggle {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  body.nav-system-page.menu--sidebar .site-header {
+    margin-left: 360px !important;
+    width: calc(100% - 360px) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.nav-system-page.menu--sidebar .header-inner {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.nav-system-page.menu--topnav .site-header {
+    margin-left: 140px !important;
+    width: calc(100% - 140px) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.nav-system-page.menu--topnav .header-inner {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  body.nav-system-page .site-header {
+    margin-left: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.nav-system-page .header-inner {
+    width: 100% !important;
+    max-width: var(--main-max) !important;
+
+    margin-inline: auto !important;
+    padding-inline: var(--gutter) !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    box-sizing: border-box !important;
+  }
+
+  body.nav-system-page .brand {
+    display: inline-flex !important;
+    margin: 0 !important;
+  }
+
+  body.nav-system-page .header-right {
+    margin-left: auto !important;
+  }
+}
+
+/* =========================================================
+   NAV SYSTEM — MOBILE / TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  /* -----------------------------------------
+     HIDE INTERACTIVE DEMO NAVIGATION
+  ----------------------------------------- */
+
+  body.nav-system-page .master-menu_mobile-header,
+  body.nav-system-page .mobile-menu-overlay,
+  body.nav-system-page .extra-thin-sidebar,
+  body.nav-system-page .menu {
+    display: none !important;
+  }
+
+
+  /* -----------------------------------------
+     REMOVE DEMO LAYOUT OFFSETS
+  ----------------------------------------- */
+
+  body.nav-system-page {
+    --thin-left: 0px !important;
+    --thin-right: 0px !important;
+  }
+
+
+  /*
+    IMPORTANT:
+    only neutralise the desktop sidebar offset.
+
+    Do NOT redefine .header-inner,
+    .brand, .nav, fonts, gaps or padding here.
+
+    Base.astro handles the header exactly like
+    Social Media / Contact / other pages.
+  */
+
+  body.nav-system-page .site-header {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+
+  /* -----------------------------------------
+     HIDE MOBILE DEMO CONTROLS
+  ----------------------------------------- */
+
+  body.nav-system-page .demo-controls {
+    display: none !important;
+  }
+
+
+  /*
+    Don't show:
+    NEXT PROJECT · OR TEST THE SIDEBAR MOVEMENTS
+
+    Other case studies don't need this extra title.
+  */
+
+  body.nav-system-page .handwritten-note-container {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width: 760px) {
+
+  /* -----------------------------------------
+     CASE STUDY CONTENT
+  ----------------------------------------- */
+
+  body.nav-system-page .doc-grid {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    padding-left: var(--gutter) !important;
+    padding-right: var(--gutter) !important;
+
+    box-sizing: border-box !important;
+  }
+
+
+  body.nav-system-page .doc-main,
+  body.nav-system-page .doc-aside {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+
+  /* same natural top spacing as other case studies */
+
+  body.nav-system-page .page-title {
+    margin-top: 1.5rem !important;
+  }
+
+
+  /* -----------------------------------------
+     PREV / NEXT
+  ----------------------------------------- */
+
+  body.nav-system-page .arrows-container {
+    width: 100% !important;
+
+    margin:
+      1.75rem 0
+      2.25rem !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 3rem !important;
+  }
+
+
+  body.nav-system-page .case-rail {
+    position: static !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+  }
+
+
+  body.nav-system-page .pager-btn {
+    width: 42px !important;
+    height: 42px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+    background: transparent !important;
+
+    color: var(--text) !important;
+  }
+
+
+  body.nav-system-page .pager-icon {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE CARD
+  ----------------------------------------- */
+
+  body.nav-system-page .feature-card {
+    width: 100% !important;
+
+    margin-top: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+@media (max-width: 760px) {
+  body.nav-system-page .arrows-container {
+    width: 100% !important;
+    margin: 1.75rem 0 2.25rem !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 2.5rem !important;
+  }
+
+  body.nav-system-page .case-rail {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  body.nav-system-page .pager-btn {
+    --btn-size: 58px !important;
+
+    width: 58px !important;
+    height: 58px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  body.nav-system-page .pager-icon {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+</style>

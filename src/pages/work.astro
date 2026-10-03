@@ -1,0 +1,51 @@
+---
+import Base from "../layouts/Base.astro";
+import { projects } from "../data/projects";
+
+const rightProjects = projects.slice(1);
+---
+
+<Base title="Work | Maria Klammer" bodyClass="selected-work-shell">
+  <div class="work-split">
+    <aside class="left">
+      <section class="intro-block">
+        <h1 class="page-title">Selected Work.</h1>
+
+        <p class="lede"><strong>Maria Klammer.</strong> I design and build digital products across UX/UI, frontend, full-stack workflows and product systems. I turn complex workflows into clear, usable experiences.</p>
+      </section>
+
+      <a href={projects[0].link} class="feature-card card-bg">
+        <div class="num">01.</div>
+        <h3>{projects[0].title}</h3>
+        <p class="meta">{projects[0].role}</p>
+        <p class="summary">{projects[0].summary}</p>
+        <div class="chips">{projects[0].tech.map(t => <span class="chip">{t}</span>)}</div>
+        {projects[0].design?.length && (
+          <div class="chips">{projects[0].design.map(d => <span class="chip">{d}</span>)}</div>
+        )}
+      </a>
+    </aside>
+
+    <aside class="right" id="projList">
+      <ol class="project-list">
+        {rightProjects.map((p, i) => (
+          <li class="project-row" data-idx={i + 2}>
+            <a class="row-link" href={p.link}>
+              <span class="row-num">{String(i + 2).padStart(2,"0")}.</span>
+              <span class="row-copy">
+                <span class="row-title">{p.title}</span>
+                <span class="row-role">{p.role}</span>
+              </span>
+              <span class="row-summary">{p.summary}</span>
+              <span class="row-arrow" aria-hidden="true">
+                <svg class="row-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </aside>
+  </div>
+</Base>
