@@ -49,7 +49,14 @@ import Base from "../layouts/Base.astro";
           >
 
             <p class="home-kicker">
-              PRODUCT ENGINEER · UX/UI · FRONTEND · AI WORKFLOWS
+              <span class="kicker-desktop">
+                PRODUCT ENGINEER · UX/UI · FRONTEND · AI WORKFLOWS
+              </span>
+
+              <span class="kicker-mobile">
+                PRODUCT ENGINEER<br /> UX/UI · FRONTEND<br />
+                AI WORKFLOWS
+              </span>
             </p>
 
 
@@ -130,9 +137,18 @@ import Base from "../layouts/Base.astro";
 
 
             <h2 class="home-about-title">
-              Visual instinct.
-              <br />
-              Engineering depth.
+              <span class="about-title-desktop">
+                Visual instinct.<br />
+                Engineering depth.
+              </span>
+
+              <span class="about-title-mobile">
+                Visual<br />
+                instinct.<br />
+                Built</br>
+                with</br>
+                depth.
+              </span>
             </h2>
 
 
@@ -1345,6 +1361,65 @@ import Base from "../layouts/Base.astro";
   }
 }
 
+.about-title-mobile {
+  display: none;
+}
 
+@media (max-width: 760px) {
+  .about-title-desktop {
+    display: none;
+  }
+
+  .about-title-mobile {
+    display: inline;
+  }
+}
+
+.kicker-mobile {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .kicker-desktop {
+    display: none;
+  }
+
+  .kicker-mobile {
+    display: inline;
+  }
+
+  .home-kicker {
+    max-width: none;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-story {
+    min-height: 200svh;
+  }
+
+  .home-story__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .home-stage {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  .home-video,
+  .home-shade {
+    width: 100%;
+    height: 100%;
+  }
+
+  .home-video {
+    object-fit: cover;
+  }
+}
 
 </style>

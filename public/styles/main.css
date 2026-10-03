@@ -2312,9 +2312,6 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 .about-shell .about-page figure {
   display: none !important;
 }
-.contact-shell .page-spaced-contact {
-  padding-top: clamp(3.6rem, 6vw, 5.6rem) !important;
-}
 
 /* Footer ticker: leave enough height so nothing is cropped on about/contact/work. */
 .site-footer {

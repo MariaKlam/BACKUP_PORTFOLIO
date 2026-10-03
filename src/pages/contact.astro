@@ -69,7 +69,6 @@ import Base from "../layouts/Base.astro";
     max-width: 760px;
     min-height: min(640px, 70vh);
     padding-top: clamp(3.8rem, 7vw, 6.5rem);
-    padding-bottom: clamp(5rem, 10vw, 8rem);
   }
 
   .contact-kicker {
@@ -142,4 +141,27 @@ import Base from "../layouts/Base.astro";
       max-width: 100%;
     }
   }
+
+  @media (max-width: 760px) {
+  body.contact-shell {
+    min-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body.contact-shell main.content {
+    flex: 1 0 auto;
+  }
+
+  body.contact-shell .site-footer {
+    position: static !important;
+    margin-top: auto;
+  }
+
+  body.contact-shell .bold-ticker {
+    position: static !important;
+    width: 100%;
+    overflow: hidden;
+  }
+}
 </style>
