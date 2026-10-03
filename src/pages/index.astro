@@ -21,6 +21,7 @@ import Base from "../layouts/Base.astro";
           class="home-video"
           id="homeVideo"
           src="/videos/about-hero.mp4"
+          poster="/videos/hero-poster.png"
           muted
           playsinline
           autoplay
@@ -279,8 +280,6 @@ import Base from "../layouts/Base.astro";
   </main>
 </Base>
 
-
-
 <script>
   const story =
     document.querySelector("#homeStory");
@@ -328,6 +327,47 @@ import Base from "../layouts/Base.astro";
     }
 
 
+    let currentState = "";
+
+
+    const setState = (state) => {
+
+      if (state === currentState) {
+        return;
+      }
+
+      currentState = state;
+
+
+      intro.classList.toggle(
+        "is-active",
+        state === "intro"
+      );
+
+
+      about.classList.toggle(
+        "is-active",
+        state === "about"
+      );
+
+
+      process.classList.toggle(
+        "is-active",
+        state === "process"
+      );
+
+
+      if (
+        meta instanceof HTMLElement
+      ) {
+        meta.classList.toggle(
+          "is-active",
+          state === "intro"
+        );
+      }
+    };
+
+
     const update = () => {
 
       const rect =
@@ -349,159 +389,24 @@ import Base from "../layouts/Base.astro";
           : 0;
 
 
+      /*
+        0 ───────── 30%  INTRO
+        30% ─────── 64%  ABOUT
+        64% ────── 100%  PROCESS
+      */
 
-      /* =========================
-         INTRO
-      ========================== */
+      if (progress < .30) {
 
-      const introOpacity =
-        clamp(
-          1 - progress * 2.15,
-          0,
-          1
-        );
+        setState("intro");
 
+      } else if (progress < .64) {
 
-      const introY =
-        progress * -20;
+        setState("about");
 
+      } else {
 
+        setState("process");
 
-      /* =========================
-         ABOUT
-      ========================== */
-
-      const aboutIn =
-        clamp(
-          (progress - .22) * 2.8,
-          0,
-          1
-        );
-
-
-      const aboutOut =
-        clamp(
-          1 - (progress - .58) * 5,
-          0,
-          1
-        );
-
-
-      const aboutOpacity =
-        Math.min(
-          aboutIn,
-          aboutOut
-        );
-
-
-      const aboutY =
-        (1 - aboutIn) * 20;
-
-
-
-      /* =========================
-         PROCESS — THIRD STATE
-      ========================== */
-
-      const processOpacity =
-        clamp(
-          (progress - .66) * 3.4,
-          0,
-          1
-        );
-
-
-      const processY =
-        (1 - processOpacity) * 20;
-
-
-
-      /* =========================
-         APPLY
-      ========================== */
-
-      intro.style.opacity =
-        String(introOpacity);
-
-
-      intro.style.transform =
-        `translate3d(
-          0,
-          calc(-50% + ${introY}px),
-          0
-        )`;
-
-
-      about.style.opacity =
-        String(aboutOpacity);
-
-
-      about.style.transform =
-        `translate3d(
-          0,
-          calc(-50% + ${aboutY}px),
-          0
-        )`;
-
-
-      process.style.opacity =
-        String(processOpacity);
-
-
-      process.style.transform =
-        `translate3d(
-          0,
-          calc(-50% + ${processY}px),
-          0
-        )`;
-
-
-
-      intro.style.pointerEvents =
-        introOpacity > .45
-          ? "auto"
-          : "none";
-
-
-      about.style.pointerEvents =
-        aboutOpacity > .7
-          ? "auto"
-          : "none";
-
-
-      process.style.pointerEvents =
-        processOpacity > .7
-          ? "auto"
-          : "none";
-
-
-
-      /* =========================
-         META
-      ========================== */
-
-      if (
-        meta instanceof HTMLElement
-      ) {
-
-        const metaOpacity =
-          clamp(
-            1 - progress * 2.6,
-            0,
-            1
-          );
-
-
-        meta.style.opacity =
-          String(metaOpacity);
-
-
-        meta.style.transform =
-          `translate3d(
-            0,
-            ${progress * 7}px,
-            0
-          )`;
       }
     };
 
@@ -525,10 +430,7 @@ import Base from "../layouts/Base.astro";
   }
 </script>
 
-
-
 <style>
-
   /* =========================================================
      PAGE
   ========================================================= */
@@ -536,7 +438,6 @@ import Base from "../layouts/Base.astro";
   :global(html) {
     scroll-behavior: smooth;
   }
-
 
   .home-page {
     width: 100%;
@@ -548,15 +449,40 @@ import Base from "../layouts/Base.astro";
     background: #23382b;
   }
 
-
   .home-container {
     width: 100%;
-
     max-width: var(--main-max);
 
     margin-inline: auto;
-
     padding-inline: var(--gutter);
+  }
+
+
+  /* =========================================================
+     STORY
+  ========================================================= */
+
+  .home-story {
+    position: relative;
+
+    width: 100%;
+    height: 230svh;
+
+    background: #23382b;
+  }
+
+  .home-story__sticky {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    color: #fff;
+    background: #23382b;
   }
 
 
@@ -566,7 +492,6 @@ import Base from "../layouts/Base.astro";
 
   .home-video {
     position: absolute;
-
     inset: 0;
 
     z-index: 0;
@@ -583,32 +508,6 @@ import Base from "../layouts/Base.astro";
     user-select: none;
   }
 
-  /* =========================================================
-   STORY
-========================================================= */
-
-.home-story {
-  position: relative;
-  width: 100%;
-  height: 230svh;
-  background: #23382b;
-}
-
-.home-story__sticky {
-  position: sticky;
-  top: 0;
-
-  width: 100%;
-  height: 100svh;
-
-  overflow: hidden;
-  isolation: isolate;
-
-  color: #fff;
-  background: #23382b;
-}
-
-
 
   /* =========================================================
      CONTRAST OVERLAY
@@ -616,7 +515,6 @@ import Base from "../layouts/Base.astro";
 
   .home-shade {
     position: absolute;
-
     inset: 0;
 
     z-index: 1;
@@ -624,27 +522,22 @@ import Base from "../layouts/Base.astro";
     pointer-events: none;
 
     background:
-
       linear-gradient(
         90deg,
-
         rgba(10, 19, 13, .68) 0%,
         rgba(10, 19, 13, .54) 23%,
         rgba(10, 19, 13, .32) 41%,
         rgba(10, 19, 13, .12) 57%,
         rgba(10, 19, 13, 0) 73%
       ),
-
       linear-gradient(
         180deg,
-
         rgba(8, 16, 10, .08) 0%,
         rgba(8, 16, 10, .02) 30%,
         transparent 62%,
         rgba(8, 16, 10, .15) 100%
       );
   }
-
 
 
   /* =========================================================
@@ -656,9 +549,9 @@ import Base from "../layouts/Base.astro";
 
     z-index: 2;
 
+    width: 100%;
     height: 100svh;
   }
-
 
 
   /* =========================================================
@@ -677,30 +570,43 @@ import Base from "../layouts/Base.astro";
         48vw
       );
 
-    transform:
-      translateY(-50%);
-
     will-change:
       opacity,
       transform;
   }
 
-
-  .home-copy--intro {
-    opacity: 1;
-  }
-
-
-  .home-copy--about {
-    opacity: 0;
-
-    pointer-events: none;
-  }
-
+  .home-copy--intro,
+  .home-copy--about,
   .home-copy--process {
     opacity: 0;
     pointer-events: none;
+
+    transform:
+      translate3d(
+        0,
+        calc(-50% + 14px),
+        0
+      );
+
+    transition:
+      opacity .28s ease,
+      transform .36s ease;
   }
+
+  .home-copy.is-active {
+    opacity: 1;
+    pointer-events: auto;
+
+    transform:
+      translate3d(
+        0,
+        -50%,
+        0
+      );
+
+    transition-delay: .08s;
+  }
+
 
   /* =========================================================
      KICKER
@@ -723,7 +629,6 @@ import Base from "../layouts/Base.astro";
       );
 
     font-weight: 600;
-
     letter-spacing: .13em;
 
     text-transform: uppercase;
@@ -735,7 +640,6 @@ import Base from "../layouts/Base.astro";
       0 1px 8px
       rgba(0,0,0,.18);
   }
-
 
 
   /* =========================================================
@@ -760,9 +664,7 @@ import Base from "../layouts/Base.astro";
       );
 
     font-weight: 800;
-
     line-height: 1.065;
-
     letter-spacing: -.025em;
 
     color: #fff;
@@ -771,7 +673,6 @@ import Base from "../layouts/Base.astro";
       0 2px 18px
       rgba(0,0,0,.15);
   }
-
 
 
   /* =========================================================
@@ -792,7 +693,6 @@ import Base from "../layouts/Base.astro";
       );
 
     font-weight: 500;
-
     line-height: 1.58;
 
     color:
@@ -804,9 +704,8 @@ import Base from "../layouts/Base.astro";
   }
 
 
-
   /* =========================================================
-     ABOUT TITLE
+     ABOUT / PROCESS TITLE
   ========================================================= */
 
   .home-about-title {
@@ -827,9 +726,7 @@ import Base from "../layouts/Base.astro";
       );
 
     font-weight: 800;
-
     line-height: 1.05;
-
     letter-spacing: -.027em;
 
     color: #fff;
@@ -840,9 +737,8 @@ import Base from "../layouts/Base.astro";
   }
 
 
-
   /* =========================================================
-     ABOUT COPY
+     ABOUT / PROCESS COPY
   ========================================================= */
 
   .home-about-lead {
@@ -859,7 +755,6 @@ import Base from "../layouts/Base.astro";
       );
 
     font-weight: 500;
-
     line-height: 1.6;
 
     color:
@@ -870,16 +765,13 @@ import Base from "../layouts/Base.astro";
       rgba(0,0,0,.16);
   }
 
-
   .home-about-note {
     max-width: 580px;
 
     margin:
       .85rem 0 0;
 
-    font-size:
-      1rem;
-
+    font-size: 1rem;
     line-height: 1.6;
 
     color:
@@ -891,52 +783,6 @@ import Base from "../layouts/Base.astro";
   }
 
 
-
-  /* =========================================================
-     SKILLS
-  ========================================================= */
-
-  .home-skill-line {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    align-items: center;
-
-    gap: .7rem;
-
-    margin-top: 1.15rem;
-
-    font-family:
-      "Oswald",
-      "Arial Narrow",
-      sans-serif;
-
-    font-size: .82rem;
-
-    font-weight: 600;
-
-    letter-spacing: .13em;
-
-    color:
-      rgba(255,255,255,.84);
-
-    text-shadow:
-      0 1px 8px
-      rgba(0,0,0,.16);
-  }
-
-
-  .home-skill-line i {
-    width: 16px;
-    height: 1px;
-
-    background:
-      rgba(255,255,255,.42);
-  }
-
-
-
   /* =========================================================
      ACTIONS
   ========================================================= */
@@ -945,14 +791,12 @@ import Base from "../layouts/Base.astro";
     display: flex;
 
     align-items: center;
-
     flex-wrap: wrap;
 
     gap: 2rem;
 
     margin-top: 2rem;
   }
-
 
   .home-action {
     display: inline-flex;
@@ -987,13 +831,11 @@ import Base from "../layouts/Base.astro";
       );
 
     font-weight: 700;
-
     letter-spacing: .045em;
 
     line-height: 1;
 
     text-transform: uppercase;
-
     text-decoration: none;
 
     color: #fff;
@@ -1007,7 +849,6 @@ import Base from "../layouts/Base.astro";
       border-color .18s ease;
   }
 
-
   .home-action i {
     font-size: 1.12em;
 
@@ -1015,32 +856,26 @@ import Base from "../layouts/Base.astro";
       transform .18s ease;
   }
 
-
   .home-action:hover {
     border-color: #fff;
   }
 
-
   .home-action--primary {
     opacity: 1;
   }
-
 
   .home-action--primary:hover i {
     transform:
       translateX(4px);
   }
 
-
   .home-action--secondary {
     opacity: .75;
   }
 
-
   .home-action--secondary:hover {
     opacity: 1;
   }
-
 
 
   /* =========================================================
@@ -1051,7 +886,6 @@ import Base from "../layouts/Base.astro";
     position: absolute;
 
     left: var(--gutter);
-
     bottom: 2rem;
 
     display: flex;
@@ -1068,7 +902,6 @@ import Base from "../layouts/Base.astro";
     font-size: .86rem;
 
     font-weight: 600;
-
     letter-spacing: .16em;
 
     color:
@@ -1079,8 +912,16 @@ import Base from "../layouts/Base.astro";
       rgba(0,0,0,.14);
 
     pointer-events: none;
+
+    opacity: 0;
+
+    transition:
+      opacity .25s ease;
   }
 
+  .home-meta.is-active {
+    opacity: 1;
+  }
 
   .home-meta i {
     width: 20px;
@@ -1089,7 +930,6 @@ import Base from "../layouts/Base.astro";
     background:
       rgba(255,255,255,.38);
   }
-
 
 
   /* =========================================================
@@ -1109,72 +949,112 @@ import Base from "../layouts/Base.astro";
   }
 
 
+  /* =========================================================
+     TITLE VARIANTS
+  ========================================================= */
+
+  .desktop-title {
+    display: inline;
+  }
+
+  .mobile-title {
+    display: none;
+  }
+
+  .about-title-mobile {
+    display: none;
+  }
+
+  .process-title-mobile {
+    display: none;
+  }
+
+  .kicker-mobile {
+    display: none;
+  }
+
 
   /* =========================================================
      HOME HEADER
   ========================================================= */
 
-/* Homepage header text */
+  :global(
+    body.home-shell
+    .brand-name
+  ) {
+    color: #fff !important;
+    opacity: 1 !important;
 
-:global(
-  body.home-shell
-  .brand-name
-) {
-  color: #fff !important;
-  opacity: 1 !important;
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.18);
+  }
 
-  text-shadow:
-    0 1px 8px
-    rgba(0,0,0,.18);
-}
+  :global(
+    body.home-shell
+    .nav a
+  ) {
+    color: #fff !important;
+    opacity: 1 !important;
 
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.18);
+  }
 
-:global(
-  body.home-shell
-  .nav a
-) {
-  color: #fff !important;
-  opacity: 1 !important;
+  :global(
+    body.home-shell
+    .mini-theme-toggle
+  ) {
+    display: none !important;
+  }
 
-  text-shadow:
-    0 1px 8px
-    rgba(0,0,0,.18);
-}
+  :global(
+    body.home-shell
+    .header-right
+  ) {
+    gap: 0 !important;
+  }
 
+  :global(body.home-shell .site-header),
+  :global(body.home-shell .header-inner) {
+    background: transparent !important;
+    background-color: transparent !important;
 
-/* No theme switch on homepage.
-   Remove it from layout completely,
-   so WORK / CONTACT align correctly right. */
+    box-shadow: none !important;
+    border: 0 !important;
+  }
 
-:global(
-  body.home-shell
-  .mini-theme-toggle
-) {
-  display: none !important;
-}
+  :global(body.home-shell .site-header) {
+    position: fixed !important;
 
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
 
-/* Since theme icon is gone, remove its extra spacing */
+    width: 100% !important;
+    margin: 0 !important;
 
-:global(
-  body.home-shell
-  .header-right
-) {
-  gap: 0 !important;
-}
+    z-index: 100 !important;
+  }
+
+  :global(body.home-shell .brand-name),
+  :global(body.home-shell .nav a) {
+    color: #fff !important;
+    opacity: 1 !important;
+  }
+
 
   /* =========================================================
      TABLET
   ========================================================= */
 
-  @media
-  (max-width: 1000px) {
+  @media (max-width: 1000px) {
 
     .home-video {
       object-position:
         58% center;
     }
-
 
     .home-copy {
       width:
@@ -1183,37 +1063,70 @@ import Base from "../layouts/Base.astro";
           52vw
         );
     }
-
   }
-
 
 
   /* =========================================================
      MOBILE
   ========================================================= */
 
-  @media
-  (max-width: 760px) {
+  @media (max-width: 760px) {
+
+    .home-story {
+      position: relative;
+
+      width: 100%;
+      height: 220dvh;
+
+      background: #23382b;
+    }
+
+    .home-story__sticky {
+      position: sticky;
+      top: 0;
+
+      width: 100%;
+      height: 100dvh;
+
+      overflow: hidden;
+
+      background: #23382b;
+    }
+
+    .home-stage {
+      position: relative;
+
+      width: 100%;
+      height: 100dvh;
+      min-height: 100dvh;
+    }
+
+    .home-video,
+    .home-shade {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+    }
 
     .home-video {
+      object-fit: cover;
       object-position:
         65% center;
     }
 
-
     .home-shade {
       background:
-
         linear-gradient(
           180deg,
-
           rgba(14,24,17,.05) 0%,
           rgba(14,24,17,.12) 30%,
           rgba(14,24,17,.72) 66%,
           rgba(14,24,17,.94) 100%
         );
     }
-
 
     .home-copy {
       left:
@@ -1226,29 +1139,30 @@ import Base from "../layouts/Base.astro";
         auto;
     }
 
-
     .home-kicker {
-      font-size:
-        1rem;
-        max-width: 200px;
+      font-size: 1rem;
+
+      max-width: none;
+
+      line-height: 1.35;
     }
 
-
     .home-title {
+      max-width: 330px;
+
       font-size:
         clamp(
           3rem,
-          13.5vw,
-          4.5rem
+          13vw,
+          4.2rem
         );
-    }
 
+      line-height: .98;
+    }
 
     .home-lead {
-      font-size:
-        1rem;
+      font-size: 1rem;
     }
-
 
     .home-about-title {
       font-size:
@@ -1259,52 +1173,106 @@ import Base from "../layouts/Base.astro";
         );
     }
 
-
     .home-about-lead {
-      font-size:
-        1rem;
+      font-size: 1rem;
     }
-
 
     .home-about-note {
-      font-size:
-        .9rem;
+      font-size: .9rem;
     }
-
 
     .home-action {
-      font-size:
-        1.08rem;
+      font-size: 1.08rem;
     }
-
 
     .home-meta {
-      display:
-        none;
+      display: none;
     }
 
-  }
+    .desktop-title {
+      display: none;
+    }
 
+    .mobile-title {
+      display: inline;
+    }
+
+    .about-title-desktop {
+      display: none;
+    }
+
+    .about-title-mobile {
+      display: inline;
+    }
+
+    .process-title-desktop {
+      display: none;
+    }
+
+    .process-title-mobile {
+      display: inline;
+    }
+
+    .kicker-desktop {
+      display: none;
+    }
+
+    .kicker-mobile {
+      display: inline;
+    }
+
+    :global(body.home-shell .header-inner) {
+      width: 100% !important;
+      max-width: none !important;
+
+      padding-inline: 16px !important;
+      margin: 0 !important;
+    }
+
+    :global(body.home-shell .brand-name) {
+      font-size: 1.2rem !important;
+      letter-spacing: .1em !important;
+    }
+
+    :global(body.home-shell .nav) {
+      gap: 1.15rem !important;
+    }
+
+    :global(body.home-shell .nav a) {
+      font-size: 1.4rem !important;
+      letter-spacing: .09em !important;
+      font-weight: 600 !important;
+    }
+
+    :global(body.home-shell .mini-theme-toggle) {
+      display: none !important;
+    }
+  }
 
 
   /* =========================================================
      SMALL MOBILE
   ========================================================= */
 
-    @media (max-width: 480px) {
-      .home-about-note {
-        display: none;
-      }
+  @media (max-width: 480px) {
 
-      .home-copy--process .home-about-note {
-        display: block;
-      }
-
-      .home-actions {
-        gap: 1.25rem;
-      }
+    .home-video {
+      object-position:
+        68% center;
     }
 
+    .home-about-note {
+      display: none;
+    }
+
+    .home-copy--process .home-about-note {
+      display: block;
+    }
+
+    .home-actions {
+      gap: 1.25rem;
+    }
+  }
 
 
   /* =========================================================
@@ -1315,291 +1283,13 @@ import Base from "../layouts/Base.astro";
   (prefers-reduced-motion: reduce) {
 
     :global(html) {
-      scroll-behavior:
-        auto;
+      scroll-behavior: auto;
     }
 
-
-    .home-story {
-      height:
-        auto;
+    .home-copy--intro,
+    .home-copy--about,
+    .home-copy--process {
+      transition: none;
     }
-
-
-    .home-story__sticky {
-      position:
-        relative;
-    }
-
-
-    .home-copy--intro {
-      opacity:
-        1 !important;
-
-      transform:
-        translateY(-50%)
-        !important;
-    }
-
-
-    .home-copy--about {
-      display:
-        none;
-    }
-
   }
-
-  .desktop-title {
-  display: inline;
-}
-
-.mobile-title {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  .desktop-title {
-    display: none;
-  }
-
-  .mobile-title {
-    display: inline;
-  }
-
-  .home-title {
-    max-width: 330px;
-
-    font-size:
-      clamp(
-        3rem,
-        13vw,
-        4.2rem
-      );
-
-    line-height: .98;
-  }
-}
-
-/* HOME — header always overlays hero */
-
-:global(body.home-shell .site-header),
-:global(body.home-shell .header-inner) {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-}
-
-:global(body.home-shell .site-header) {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-
-  width: 100% !important;
-  margin: 0 !important;
-
-  z-index: 100 !important;
-}
-
-:global(body.home-shell .brand-name),
-:global(body.home-shell .nav a) {
-  color: #fff !important;
-  opacity: 1 !important;
-}
-
-
-/* mobile */
-
-@media (max-width: 760px) {
-
-  :global(body.home-shell .header-inner) {
-    width: 100% !important;
-    max-width: none !important;
-
-    padding-inline: 16px !important;
-    margin: 0 !important;
-  }
-
-  :global(body.home-shell .brand-name) {
-    font-size: 1.2rem !important;
-    letter-spacing: .1em !important;
-  }
-
-  :global(body.home-shell .nav) {
-    gap: 1.15rem !important;
-  }
-
-  :global(body.home-shell .nav a) {
-    font-size: 1.4rem !important;
-    letter-spacing: .09em !important;
-    font-weight: 600 !important;
-  }
-
-  :global(body.home-shell .mini-theme-toggle) {
-    display: none !important;
-  }
-}
-
-.about-title-mobile {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  .about-title-desktop {
-    display: none;
-  }
-
-  .about-title-mobile {
-    display: inline;
-  }
-}
-
-.kicker-mobile {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  .kicker-desktop {
-    display: none;
-  }
-
-  .kicker-mobile {
-    display: inline;
-  }
-
-  .home-kicker {
-    max-width: none;
-    line-height: 1.35;
-  }
-}
-
-@media (max-width: 760px) {
-  .home-story__sticky {
-    position: sticky;
-    top: 0;
-    height: 100dvh;
-    min-height: 100dvh;
-    overflow: hidden;
-  }
-
-  .home-stage {
-    height: 100dvh;
-    min-height: 100dvh;
-  }
-
-  .home-video,
-  .home-shade {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-@media (max-width: 760px) {
-  .home-story {
-    height: 160dvh;
-    min-height: 160dvh;
-    background: transparent !important;
-  }
-
-  .home-story__sticky {
-    position: sticky;
-    top: 0;
-    height: 100dvh;
-    min-height: 100dvh;
-    overflow: hidden;
-    background: transparent !important;
-  }
-
-  .home-stage {
-    height: 100dvh;
-    min-height: 100dvh;
-  }
-
-  .home-video,
-  .home-shade {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .home-video {
-    object-fit: cover;
-  }
-}
-
-@media (max-width: 760px) {
-  .home-story {
-    position: relative;
-    width: 100%;
-    height: 170dvh;
-    min-height: 0;
-    background: transparent;
-  }
-
-  .home-story__sticky {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100dvh;
-    min-height: 100dvh;
-    overflow: hidden;
-    background: transparent;
-  }
-
-  .home-stage {
-    position: relative;
-    width: 100%;
-    height: 100dvh;
-    min-height: 100dvh;
-  }
-
-  .home-video,
-  .home-shade {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .home-video {
-    object-fit: cover;
-  }
-}
-
-@media (max-width: 760px) {
-  .home-story {
-    position: relative;
-    height: 220dvh;
-  }
-
-  .home-story__sticky {
-    position: sticky;
-    top: 0;
-    height: 100dvh;
-    overflow: hidden;
-  }
-
-  .home-stage {
-    height: 100dvh;
-  }
-}
-.process-title-desktop {
-  display: inline;
-}
-
-.process-title-mobile {
-  display: none;
-}
-
-@media (max-width: 760px) {
-  .process-title-desktop {
-    display: none;
-  }
-
-  .process-title-mobile {
-    display: inline;
-  }
-}
 </style>
