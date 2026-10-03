@@ -460,40 +460,6 @@ import Base from "../layouts/Base.astro";
   }
 
 
-
-  /* =========================================================
-     STORY
-  ========================================================= */
-
-  .home-story {
-    position: relative;
-
-    width: 100%;
-    height: 185svh;
-
-    background: #23382b;
-  }
-
-
-  .home-story__sticky {
-    position: sticky;
-
-    top: 0;
-
-    width: 100%;
-    height: 100svh;
-
-    overflow: hidden;
-
-    isolation: isolate;
-
-    color: #fff;
-
-    background: #23382b;
-  }
-
-
-
   /* =========================================================
      VIDEO
   ========================================================= */
@@ -516,6 +482,31 @@ import Base from "../layouts/Base.astro";
     pointer-events: none;
     user-select: none;
   }
+
+  /* =========================================================
+   STORY
+========================================================= */
+
+.home-story {
+  position: relative;
+  width: 100%;
+  height: 185svh;
+  background: #23382b;
+}
+
+.home-story__sticky {
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  height: 100svh;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  color: #fff;
+  background: #23382b;
+}
 
 
 
@@ -1101,12 +1092,6 @@ import Base from "../layouts/Base.astro";
   @media
   (max-width: 760px) {
 
-    .home-story {
-      height:
-        175svh;
-    }
-
-
     .home-video {
       object-position:
         65% center;
@@ -1351,7 +1336,7 @@ import Base from "../layouts/Base.astro";
   }
 
   :global(body.home-shell .nav a) {
-    font-size: .84rem !important;
+    font-size: 1.4rem !important;
     letter-spacing: .09em !important;
     font-weight: 600 !important;
   }
@@ -1395,20 +1380,17 @@ import Base from "../layouts/Base.astro";
 }
 
 @media (max-width: 760px) {
-  .home-story {
-    min-height: 200svh;
-  }
-
   .home-story__sticky {
     position: sticky;
     top: 0;
-    height: 100svh;
+    height: 100dvh;
+    min-height: 100dvh;
     overflow: hidden;
   }
 
   .home-stage {
-    height: 100svh;
-    min-height: 100svh;
+    height: 100dvh;
+    min-height: 100dvh;
   }
 
   .home-video,
@@ -1416,9 +1398,96 @@ import Base from "../layouts/Base.astro";
     width: 100%;
     height: 100%;
   }
+}
+
+@media (max-width: 760px) {
+  .home-story {
+    height: 160dvh;
+    min-height: 160dvh;
+    background: transparent !important;
+  }
+
+  .home-story__sticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: transparent !important;
+  }
+
+  .home-stage {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .home-video,
+  .home-shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
 
   .home-video {
     object-fit: cover;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-story {
+    position: relative;
+    width: 100%;
+    height: 170dvh;
+    min-height: 0;
+    background: transparent;
+  }
+
+  .home-story__sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .home-stage {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .home-video,
+  .home-shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .home-video {
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-story {
+    position: relative;
+    height: 170dvh;
+  }
+
+  .home-story__sticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .home-stage {
+    height: 100dvh;
   }
 }
 
