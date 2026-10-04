@@ -536,9 +536,9 @@ import Base from "../layouts/Base.astro";
 
 
       const steelStartWidth =
-        isMobile
-          ? width * .78
-          : width * .53;
+      isMobile
+        ? width * .72
+        : width * .34;
 
 
       const steelStartHeight =
@@ -608,7 +608,7 @@ import Base from "../layouts/Base.astro";
       const finalStartWidth =
         isMobile
           ? width * .68
-          : width * .38;
+          : width * .32;
 
 
       const finalStartHeight =
@@ -2509,16 +2509,14 @@ import Base from "../layouts/Base.astro";
   position: relative;
 
   width: 1px;
-  height: 54px;
+  height: 210px;
 
   margin-top: .8rem;
 
   overflow: hidden;
 
-  background:
-    rgba(242, 241, 236, .16);
+  background: rgba(242, 241, 236, .16);
 }
-
 
 /* moving light */
 
@@ -2555,26 +2553,21 @@ import Base from "../layouts/Base.astro";
 
 
 @keyframes scrollLightDown {
-
   0% {
-    transform:
-      translate(-50%, -18px);
-
+    transform: translate(-50%, -24px);
     opacity: 0;
   }
 
-  18% {
+  15% {
     opacity: 1;
   }
 
-  72% {
+  75% {
     opacity: 1;
   }
 
   100% {
-    transform:
-      translate(-50%, 72px);
-
+    transform: translate(-50%, 235px);
     opacity: 0;
   }
 }
@@ -2590,7 +2583,7 @@ import Base from "../layouts/Base.astro";
   }
 
   .scroll-track {
-    height: 48px;
+    height: 98px;
     margin-top: .65rem;
   }
 
@@ -2601,7 +2594,15 @@ import Base from "../layouts/Base.astro";
       0 0 12px rgba(216, 242, 122, .48);
   }
 }
+.scroll-track {
+  height: 180px;
+}
 
+@media (max-width: 760px) {
+  .scroll-track {
+    height: 95px;
+  }
+}
 
 @media (max-width: 760px) {
   .final-content {
@@ -2667,4 +2668,6 @@ import Base from "../layouts/Base.astro";
 .icon-label {
   margin-top: auto;
 }
+
+
 </style>
