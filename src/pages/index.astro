@@ -38,8 +38,7 @@ import Base from "../layouts/Base.astro";
                 <span
                   class="intro-secondary"
                   data-text="instinct."
-                >
-                  instinct.
+                >instinct.
                 </span>
               </span>
 
@@ -52,14 +51,13 @@ import Base from "../layouts/Base.astro";
                   class="intro-primary"
                   data-text="Engineering"
                 >
-                  Engineering
+                Engineering
                 </span>
 
                 <span
                   class="intro-secondary"
                   data-text="depth."
-                >
-                  depth.
+                >depth.
                 </span>
               </span>
 
@@ -401,16 +399,11 @@ import Base from "../layouts/Base.astro";
       `${frameHeight}px`;
 
 
-    const radius =
-      lerp(
-        12,
-        0,
-        progress
-      );
+    const radius = 0;
 
 
     frame.style.borderRadius =
-      `${radius}px`;
+      `0px`;
   };
 
 
@@ -940,7 +933,7 @@ import Base from "../layouts/Base.astro";
 
   .intro-primary {
     color:
-      var(--home-lime);
+      var(--home-white);
   }
 
 
@@ -1183,7 +1176,7 @@ import Base from "../layouts/Base.astro";
       #111;
 
     border-radius:
-      12px;
+      0px;
 
     box-shadow:
       0 34px 100px
@@ -2669,5 +2662,151 @@ import Base from "../layouts/Base.astro";
   margin-top: auto;
 }
 
+.intro-primary,
+.intro-secondary {
+  color: var(--home-white);
+}
+.intro-secondary {
+  margin-left: 0.14em;
+}
 
+.intro-line::after {
+  opacity: 0;
+
+  filter:
+    blur(3px)
+    brightness(2);
+
+  text-shadow:
+    0 0 14px rgba(255,255,255,.38),
+    0 0 34px rgba(255,255,255,.24);
+
+  -webkit-mask-image:
+    linear-gradient(
+      104deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(0,0,0,.18) 40%,
+      rgba(0,0,0,.72) 46%,
+      #000 50%,
+      rgba(0,0,0,.72) 54%,
+      rgba(0,0,0,.18) 60%,
+      transparent 66%,
+      transparent 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      104deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(0,0,0,.18) 40%,
+      rgba(0,0,0,.72) 46%,
+      #000 50%,
+      rgba(0,0,0,.72) 54%,
+      rgba(0,0,0,.18) 60%,
+      transparent 66%,
+      transparent 100%
+    );
+
+  -webkit-mask-size: 260% 100%;
+  mask-size: 260% 100%;
+
+  animation: lineLightSweep 6.8s ease-in-out infinite;
+}
+
+.intro-line:nth-child(2)::after {
+  animation-delay: .18s;
+}
+
+@keyframes lineLightSweep {
+  0%,
+  12% {
+    -webkit-mask-position: 130% 0;
+    mask-position: 130% 0;
+    opacity: 0;
+  }
+
+  24% {
+    opacity: .3;
+  }
+
+  48% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: .48;
+  }
+
+  100% {
+    -webkit-mask-position: -30% 0;
+    mask-position: -30% 0;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .intro-primary::after,
+  .intro-secondary::after {
+    filter:
+      blur(2.4px)
+      brightness(1.8);
+
+    text-shadow:
+      0 0 12px rgba(255,255,255,.32),
+      0 0 26px rgba(255,255,255,.22);
+
+    -webkit-mask-size: 230% 100%;
+    mask-size: 230% 100%;
+
+    animation: mobileWordLight 6.8s ease-in-out infinite;
+  }
+
+  @keyframes mobileWordLight {
+    0%,
+    12% {
+      -webkit-mask-position: 130% 0;
+      mask-position: 130% 0;
+      opacity: 0;
+    }
+
+    24% {
+      opacity: .28;
+    }
+
+    48% {
+      opacity: .85;
+    }
+
+    72% {
+      opacity: .42;
+    }
+
+    100% {
+      -webkit-mask-position: -30% 0;
+      mask-position: -30% 0;
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .intro-title {
+    width: fit-content;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .intro-primary,
+  .intro-secondary {
+    display: block;
+    width: fit-content;
+    margin-inline: 0;
+  }
+
+  .intro-secondary {
+    margin-left: 0;
+  }
+}
 </style>
