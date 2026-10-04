@@ -20,6 +20,9 @@ import Base from "../layouts/Base.astro";
           class="story-scene story-scene--intro"
           id="sceneIntro"
         >
+
+        <div class="intro-pattern" aria-hidden="true"></div>
+
           <div class="intro-content">
 
             <h1 class="intro-title">
@@ -2537,28 +2540,27 @@ import Base from "../layouts/Base.astro";
 
   animation:
     scrollLightDown
-    4.5s
+    6.5s
     ease-in-out
     infinite;
 }
 
-
 @keyframes scrollLightDown {
   0%,
-  32% {
+  50% {
     transform: translate(-50%, -24px);
     opacity: 0;
   }
 
-  42% {
-    opacity: .35;
+  58% {
+    opacity: .25;
   }
 
-  52% {
+  68% {
     opacity: 1;
   }
 
-  82% {
+  86% {
     opacity: 1;
   }
 
@@ -2567,7 +2569,6 @@ import Base from "../layouts/Base.astro";
     opacity: 0;
   }
 }
-
 @media (max-width: 760px) {
 
   .scroll-cue {
@@ -2812,4 +2813,159 @@ import Base from "../layouts/Base.astro";
     margin-left: 0;
   }
 }
+
+.intro-line::after {
+  animation: lineLightDrift 6.5s ease-in-out infinite;
+}
+
+@keyframes lineLightDrift {
+  0% {
+    -webkit-mask-position: 115% 0;
+    mask-position: 115% 0;
+    opacity: .15;
+  }
+
+  42% {
+    -webkit-mask-position: 20% 0;
+    mask-position: 20% 0;
+    opacity: 1;
+  }
+
+  72% {
+    -webkit-mask-position: 52% 0;
+    mask-position: 52% 0;
+    opacity: .65;
+  }
+
+  100% {
+    -webkit-mask-position: 115% 0;
+    mask-position: 115% 0;
+    opacity: .15;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .intro-primary::after,
+  .intro-secondary::after {
+    filter:
+      blur(2.4px)
+      brightness(1.8);
+
+    text-shadow:
+      0 0 12px rgba(255,255,255,.32),
+      0 0 26px rgba(255,255,255,.22);
+
+    -webkit-mask-size: 230% 100%;
+    mask-size: 230% 100%;
+
+    animation:
+      mobileWordLightDrift
+      6.5s
+      ease-in-out
+      infinite;
+  }
+
+  @keyframes mobileWordLightDrift {
+
+    0% {
+      -webkit-mask-position: 115% 0;
+      mask-position: 115% 0;
+      opacity: .15;
+    }
+
+    42% {
+      -webkit-mask-position: 20% 0;
+      mask-position: 20% 0;
+      opacity: .85;
+    }
+
+    72% {
+      -webkit-mask-position: 52% 0;
+      mask-position: 52% 0;
+      opacity: .55;
+    }
+
+    100% {
+      -webkit-mask-position: 115% 0;
+      mask-position: 115% 0;
+      opacity: .15;
+    }
+  }
+
+  .scroll-light {
+    animation:
+      scrollLightDownMobile
+      6.5s
+      ease-in-out
+      infinite;
+  }
+
+  @keyframes scrollLightDownMobile {
+
+    0%,
+    50% {
+      transform: translate(-50%, -24px);
+      opacity: 0;
+    }
+
+    58% {
+      opacity: .25;
+    }
+
+    68% {
+      opacity: 1;
+    }
+
+    86% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(-50%, 120px);
+      opacity: 0;
+    }
+  }
+}
+
+/*Bacground binds*/
+.story-scene--intro {
+  position: absolute;
+  overflow: hidden;
+}
+
+.intro-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,.48),
+      rgba(0,0,0,.48)
+    ),
+    url('/images/visual/binds.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: .42;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  .hero-blinds-bg {
+    opacity: 0.32;
+    background-size: 165%;
+    background-position: left top 8%;
+    filter: blur(.5px);
+  }
+}
+
 </style>
