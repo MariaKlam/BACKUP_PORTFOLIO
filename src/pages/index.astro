@@ -2511,7 +2511,6 @@ import Base from "../layouts/Base.astro";
 }
 
 /* moving light */
-
 .scroll-light {
   position: absolute;
 
@@ -2538,23 +2537,28 @@ import Base from "../layouts/Base.astro";
 
   animation:
     scrollLightDown
-    2.25s
-    cubic-bezier(.45, 0, .25, 1)
+    4.5s
+    ease-in-out
     infinite;
 }
 
 
 @keyframes scrollLightDown {
-  0% {
+  0%,
+  32% {
     transform: translate(-50%, -24px);
     opacity: 0;
   }
 
-  15% {
+  42% {
+    opacity: .35;
+  }
+
+  52% {
     opacity: 1;
   }
 
-  75% {
+  82% {
     opacity: 1;
   }
 
@@ -2711,7 +2715,7 @@ import Base from "../layouts/Base.astro";
   -webkit-mask-size: 260% 100%;
   mask-size: 260% 100%;
 
-  animation: lineLightSweep 6.8s ease-in-out infinite;
+  animation: lineLightSweep 4.5s ease-in-out infinite;
 }
 
 .intro-line:nth-child(2)::after {
@@ -2759,7 +2763,7 @@ import Base from "../layouts/Base.astro";
     -webkit-mask-size: 230% 100%;
     mask-size: 230% 100%;
 
-    animation: mobileWordLight 6.8s ease-in-out infinite;
+    animation: mobileWordLight 4.5s ease-in-out infinite;
   }
 
   @keyframes mobileWordLight {
