@@ -1,0 +1,1295 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Maria Klammer | Product Engineer · UX/UI · Frontend"
+  bodyClass="home-shell"
+  noWrap={true}
+  hideFooter={true}
+>
+  <main class="home-page">
+
+    <section
+      class="home-story"
+      id="homeStory"
+    >
+
+      <div class="home-story__sticky">
+
+        <video
+          class="home-video"
+          id="homeVideo"
+          src="/videos/about-hero.mp4"
+          poster="/videos/hero-poster.png"
+          muted
+          playsinline
+          autoplay
+          loop
+          preload="auto"
+          disableRemotePlayback
+          aria-hidden="true"
+        ></video>
+
+
+        <div
+          class="home-shade"
+          aria-hidden="true"
+        ></div>
+
+
+        <div class="home-container home-stage">
+
+          <!-- =========================
+               INTRO
+          ========================== -->
+
+          <div
+            class="home-copy home-copy--intro"
+            id="introCopy"
+          >
+
+            <p class="home-kicker">
+              <span class="kicker-desktop">
+                PRODUCT ENGINEER · UX/UI · FRONTEND · AI WORKFLOWS
+              </span>
+
+              <span class="kicker-mobile">
+                PRODUCT ENGINEER<br /> UX/UI · FRONTEND<br />
+                AI WORKFLOWS
+              </span>
+            </p>
+
+
+            <h1 class="home-title">
+              <span class="desktop-title">
+                I design &amp; build
+                <br />
+                digital products.
+              </span>
+
+              <span class="mobile-title">
+                I design
+                <br />
+                &amp; build
+                <br />
+                digital
+                <br />
+                products.
+              </span>
+            </h1>
+
+
+            <p class="home-lead">
+              From product thinking and UX/UI to frontend,
+              visual systems and AI-assisted workflows.
+            </p>
+
+
+            <div class="home-actions">
+
+              <a
+                class="home-action home-action--primary"
+                href="/work"
+              >
+                <span>
+                  View selected work
+                </span>
+
+                <i
+                  class="ri-arrow-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+
+              <a
+                class="home-action home-action--secondary"
+                href="#about"
+              >
+                <span>
+                  About me
+                </span>
+
+                <i
+                  class="ri-arrow-down-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =========================
+              ABOUT
+          ========================== -->
+
+          <div
+            class="home-copy home-copy--about"
+            id="aboutCopy"
+          >
+            <p class="home-kicker">
+              ABOUT
+            </p>
+
+            <h2 class="home-about-title">
+              <span class="about-title-desktop">
+                Visual instinct.<br />
+                Engineering depth.
+              </span>
+
+              <span class="about-title-mobile">
+                Visual<br />
+                instinct.<br />
+                Built<br />
+                with<br />
+                depth.
+              </span>
+            </h2>
+
+            <p class="home-about-lead">
+              I’m Maria, a product engineer with a strong visual side.
+              I work across product thinking, interface design and
+              frontend engineering — shaping both how a product works
+              and how it feels.
+            </p>
+
+            <div class="home-actions">
+
+              <a
+                class="home-action home-action--primary"
+                href="/work"
+              >
+                <span>
+                  Explore my work
+                </span>
+
+                <i
+                  class="ri-arrow-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <a
+                class="home-action home-action--secondary"
+                href="/cv/Maria_Klammer_cv.pdf"
+                target="_blank"
+                rel="noopener"
+              >
+                <span>
+                  View CV
+                </span>
+
+                <i
+                  class="ri-arrow-up-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+            </div>
+          </div>
+
+
+          <!-- =========================
+              PROCESS / AI
+          ========================== -->
+
+          <div
+            class="home-copy home-copy--process"
+            id="processCopy"
+          >
+            <p class="home-kicker">
+              PROCESS
+            </p>
+
+            <h2 class="home-about-title">
+              <span class="process-title-desktop">
+                Human first.<br />
+                Even with AI.
+              </span>
+
+              <span class="process-title-mobile">
+                Human<br />
+                first.<br />
+                Even<br/>with AI.
+              </span>
+            </h2>
+
+            <p class="home-about-lead">
+              I’m excited by what this new generation of tools makes possible,
+              and I like experimenting with them as part of the process.
+            </p>
+
+            <p class="home-about-note">
+              This hero began as one of my own photographs. I used AI-assisted
+              video to bring it to life through subtle breathing and movement,
+              while preserving natural texture, imperfection, light and identity.
+            </p>
+
+            <div class="home-actions">
+              <a
+                class="home-action home-action--primary"
+                href="/work"
+              >
+                <span>Explore my work</span>
+
+                <i
+                  class="ri-arrow-right-line"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
+          </div>
+
+
+
+          <!-- =========================
+               BOTTOM META
+          ========================== -->
+
+          <div
+            class="home-meta"
+            id="homeMeta"
+            aria-hidden="true"
+          >
+            <span>PRODUCT</span>
+            <i></i>
+
+            <span>DESIGN</span>
+            <i></i>
+
+            <span>ENGINEERING</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="home-about-anchor"
+        id="about"
+        aria-hidden="true"
+      ></div>
+
+    </section>
+
+  </main>
+</Base>
+
+<script>
+  const story =
+    document.querySelector("#homeStory");
+
+  const intro =
+    document.querySelector("#introCopy");
+
+  const about =
+    document.querySelector("#aboutCopy");
+
+  const process =
+    document.querySelector("#processCopy");
+
+  const meta =
+    document.querySelector("#homeMeta");
+
+  const video =
+    document.querySelector("#homeVideo");
+
+
+  const clamp =
+    (value, min, max) =>
+      Math.min(
+        Math.max(value, min),
+        max
+      );
+
+
+  if (
+    story instanceof HTMLElement &&
+    intro instanceof HTMLElement &&
+    about instanceof HTMLElement &&
+    process instanceof HTMLElement
+  ) {
+
+    if (
+      video instanceof HTMLVideoElement
+    ) {
+      video.muted = true;
+      video.playsInline = true;
+
+      video
+        .play()
+        .catch(() => {});
+    }
+
+
+    let currentState = "";
+
+
+    const setState = (state) => {
+
+      if (state === currentState) {
+        return;
+      }
+
+      currentState = state;
+
+
+      intro.classList.toggle(
+        "is-active",
+        state === "intro"
+      );
+
+
+      about.classList.toggle(
+        "is-active",
+        state === "about"
+      );
+
+
+      process.classList.toggle(
+        "is-active",
+        state === "process"
+      );
+
+
+      if (
+        meta instanceof HTMLElement
+      ) {
+        meta.classList.toggle(
+          "is-active",
+          state === "intro"
+        );
+      }
+    };
+
+
+    const update = () => {
+
+      const rect =
+        story.getBoundingClientRect();
+
+
+      const scrollable =
+        story.offsetHeight -
+        window.innerHeight;
+
+
+      const progress =
+        scrollable > 0
+          ? clamp(
+              -rect.top / scrollable,
+              0,
+              1
+            )
+          : 0;
+
+
+      /*
+        0 ───────── 30%  INTRO
+        30% ─────── 64%  ABOUT
+        64% ────── 100%  PROCESS
+      */
+
+      if (progress < .30) {
+
+        setState("intro");
+
+      } else if (progress < .64) {
+
+        setState("about");
+
+      } else {
+
+        setState("process");
+
+      }
+    };
+
+
+    update();
+
+
+    window.addEventListener(
+      "scroll",
+      update,
+      {
+        passive: true
+      }
+    );
+
+
+    window.addEventListener(
+      "resize",
+      update
+    );
+  }
+</script>
+
+<style>
+  /* =========================================================
+     PAGE
+  ========================================================= */
+
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  .home-page {
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    background: #23382b;
+  }
+
+  .home-container {
+    width: 100%;
+    max-width: var(--main-max);
+
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+
+  /* =========================================================
+     STORY
+  ========================================================= */
+
+  .home-story {
+    position: relative;
+
+    width: 100%;
+    height: 230svh;
+
+    background: #23382b;
+  }
+
+  .home-story__sticky {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    height: 100svh;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    color: #fff;
+    background: #23382b;
+  }
+
+
+  /* =========================================================
+     VIDEO
+  ========================================================= */
+
+  .home-video {
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center center;
+
+    pointer-events: none;
+    user-select: none;
+  }
+
+
+  /* =========================================================
+     CONTRAST OVERLAY
+  ========================================================= */
+
+  .home-shade {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 19, 13, .68) 0%,
+        rgba(10, 19, 13, .54) 23%,
+        rgba(10, 19, 13, .32) 41%,
+        rgba(10, 19, 13, .12) 57%,
+        rgba(10, 19, 13, 0) 73%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(8, 16, 10, .08) 0%,
+        rgba(8, 16, 10, .02) 30%,
+        transparent 62%,
+        rgba(8, 16, 10, .15) 100%
+      );
+  }
+
+
+  /* =========================================================
+     STAGE
+  ========================================================= */
+
+  .home-stage {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    height: 100svh;
+  }
+
+
+  /* =========================================================
+     COPY
+  ========================================================= */
+
+  .home-copy {
+    position: absolute;
+
+    top: 50%;
+    left: var(--gutter);
+
+    width:
+      min(
+        680px,
+        48vw
+      );
+
+    will-change:
+      opacity,
+      transform;
+  }
+
+  .home-copy--intro,
+  .home-copy--about,
+  .home-copy--process {
+    opacity: 0;
+    pointer-events: none;
+
+    transform:
+      translate3d(
+        0,
+        calc(-50% + 14px),
+        0
+      );
+
+    transition:
+      opacity .28s ease,
+      transform .36s ease;
+  }
+
+  .home-copy.is-active {
+    opacity: 1;
+    pointer-events: auto;
+
+    transform:
+      translate3d(
+        0,
+        -50%,
+        0
+      );
+
+    transition-delay: .08s;
+  }
+
+
+  /* =========================================================
+     KICKER
+  ========================================================= */
+
+  .home-kicker {
+    margin:
+      0 0 1.05rem;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size:
+      clamp(
+        .9rem,
+        .95vw,
+        1.02rem
+      );
+
+    font-weight: 600;
+    letter-spacing: .13em;
+
+    text-transform: uppercase;
+
+    color:
+      rgba(255,255,255,.94);
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.18);
+  }
+
+
+  /* =========================================================
+     HERO TITLE
+  ========================================================= */
+
+  .home-title {
+    max-width: 650px;
+
+    margin: 0;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif;
+
+    font-size:
+      clamp(
+        3.7rem,
+        4.9vw,
+        5.55rem
+      );
+
+    font-weight: 800;
+    line-height: 1.065;
+    letter-spacing: -.025em;
+
+    color: #fff;
+
+    text-shadow:
+      0 2px 18px
+      rgba(0,0,0,.15);
+  }
+
+
+  /* =========================================================
+     HERO LEAD
+  ========================================================= */
+
+  .home-lead {
+    max-width: 560px;
+
+    margin:
+      1.65rem 0 0;
+
+    font-size:
+      clamp(
+        1.12rem,
+        1.3vw,
+        1.3rem
+      );
+
+    font-weight: 500;
+    line-height: 1.58;
+
+    color:
+      rgba(255,255,255,.97);
+
+    text-shadow:
+      0 1px 10px
+      rgba(0,0,0,.18);
+  }
+
+
+  /* =========================================================
+     ABOUT / PROCESS TITLE
+  ========================================================= */
+
+  .home-about-title {
+    max-width: 640px;
+
+    margin: 0;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif;
+
+    font-size:
+      clamp(
+        3.4rem,
+        4.45vw,
+        5rem
+      );
+
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -.027em;
+
+    color: #fff;
+
+    text-shadow:
+      0 2px 18px
+      rgba(0,0,0,.15);
+  }
+
+
+  /* =========================================================
+     ABOUT / PROCESS COPY
+  ========================================================= */
+
+  .home-about-lead {
+    max-width: 600px;
+
+    margin:
+      1.5rem 0 0;
+
+    font-size:
+      clamp(
+        1.08rem,
+        1.22vw,
+        1.22rem
+      );
+
+    font-weight: 500;
+    line-height: 1.6;
+
+    color:
+      rgba(255,255,255,.98);
+
+    text-shadow:
+      0 1px 10px
+      rgba(0,0,0,.16);
+  }
+
+  .home-about-note {
+    max-width: 580px;
+
+    margin:
+      .85rem 0 0;
+
+    font-size: 1rem;
+    line-height: 1.6;
+
+    color:
+      rgba(255,255,255,.84);
+
+    text-shadow:
+      0 1px 10px
+      rgba(0,0,0,.15);
+  }
+
+
+  /* =========================================================
+     ACTIONS
+  ========================================================= */
+
+  .home-actions {
+    display: flex;
+
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 2rem;
+
+    margin-top: 2rem;
+  }
+
+  .home-action {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: .68rem;
+
+    padding:
+      0 0 .42rem;
+
+    border: 0;
+
+    border-bottom:
+      2px solid
+      rgba(255,255,255,.5);
+
+    border-radius: 0;
+
+    background: transparent;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size:
+      clamp(
+        1.32rem,
+        1.5vw,
+        1.55rem
+      );
+
+    font-weight: 700;
+    letter-spacing: .045em;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: #fff;
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.16);
+
+    transition:
+      opacity .18s ease,
+      border-color .18s ease;
+  }
+
+  .home-action i {
+    font-size: 1.12em;
+
+    transition:
+      transform .18s ease;
+  }
+
+  .home-action:hover {
+    border-color: #fff;
+  }
+
+  .home-action--primary {
+    opacity: 1;
+  }
+
+  .home-action--primary:hover i {
+    transform:
+      translateX(4px);
+  }
+
+  .home-action--secondary {
+    opacity: .75;
+  }
+
+  .home-action--secondary:hover {
+    opacity: 1;
+  }
+
+
+  /* =========================================================
+     BOTTOM META
+  ========================================================= */
+
+  .home-meta {
+    position: absolute;
+
+    left: var(--gutter);
+    bottom: 2rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .85rem;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size: .86rem;
+
+    font-weight: 600;
+    letter-spacing: .16em;
+
+    color:
+      rgba(255,255,255,.72);
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.14);
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition:
+      opacity .25s ease;
+  }
+
+  .home-meta.is-active {
+    opacity: 1;
+  }
+
+  .home-meta i {
+    width: 20px;
+    height: 1px;
+
+    background:
+      rgba(255,255,255,.38);
+  }
+
+
+  /* =========================================================
+     ABOUT ANCHOR
+  ========================================================= */
+
+  .home-about-anchor {
+    position: absolute;
+
+    top: 58svh;
+    left: 0;
+
+    width: 1px;
+    height: 1px;
+
+    pointer-events: none;
+  }
+
+
+  /* =========================================================
+     TITLE VARIANTS
+  ========================================================= */
+
+  .desktop-title {
+    display: inline;
+  }
+
+  .mobile-title {
+    display: none;
+  }
+
+  .about-title-mobile {
+    display: none;
+  }
+
+  .process-title-mobile {
+    display: none;
+  }
+
+  .kicker-mobile {
+    display: none;
+  }
+
+
+  /* =========================================================
+     HOME HEADER
+  ========================================================= */
+
+  :global(
+    body.home-shell
+    .brand-name
+  ) {
+    color: #fff !important;
+    opacity: 1 !important;
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.18);
+  }
+
+  :global(
+    body.home-shell
+    .nav a
+  ) {
+    color: #fff !important;
+    opacity: 1 !important;
+
+    text-shadow:
+      0 1px 8px
+      rgba(0,0,0,.18);
+  }
+
+  :global(
+    body.home-shell
+    .mini-theme-toggle
+  ) {
+    display: none !important;
+  }
+
+  :global(
+    body.home-shell
+    .header-right
+  ) {
+    gap: 0 !important;
+  }
+
+  :global(body.home-shell .site-header),
+  :global(body.home-shell .header-inner) {
+    background: transparent !important;
+    background-color: transparent !important;
+
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+
+  :global(body.home-shell .site-header) {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+    margin: 0 !important;
+
+    z-index: 100 !important;
+  }
+
+  :global(body.home-shell .brand-name),
+  :global(body.home-shell .nav a) {
+    color: #fff !important;
+    opacity: 1 !important;
+  }
+
+
+  /* =========================================================
+     TABLET
+  ========================================================= */
+
+  @media (max-width: 1000px) {
+
+    .home-video {
+      object-position:
+        58% center;
+    }
+
+    .home-copy {
+      width:
+        min(
+          570px,
+          52vw
+        );
+    }
+  }
+
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media (max-width: 760px) {
+
+    .home-story {
+      position: relative;
+
+      width: 100%;
+      height: 220dvh;
+
+      background: #23382b;
+    }
+
+    .home-story__sticky {
+      position: sticky;
+      top: 0;
+
+      width: 100%;
+      height: 100dvh;
+
+      overflow: hidden;
+
+      background: #23382b;
+    }
+
+    .home-stage {
+      position: relative;
+
+      width: 100%;
+      height: 100dvh;
+      min-height: 100dvh;
+    }
+
+    .home-video,
+    .home-shade {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+    }
+
+    .home-video {
+      object-fit: cover;
+      object-position:
+        65% center;
+    }
+
+    .home-shade {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(14,24,17,.05) 0%,
+          rgba(14,24,17,.12) 30%,
+          rgba(14,24,17,.72) 66%,
+          rgba(14,24,17,.94) 100%
+        );
+    }
+
+    .home-copy {
+      left:
+        var(--gutter);
+
+      right:
+        var(--gutter);
+
+      width:
+        auto;
+    }
+
+    .home-kicker {
+      font-size: 1rem;
+
+      max-width: none;
+
+      line-height: 1.35;
+    }
+
+    .home-title {
+      max-width: 330px;
+
+      font-size:
+        clamp(
+          3rem,
+          13vw,
+          4.2rem
+        );
+
+      line-height: .98;
+    }
+
+    .home-lead {
+      font-size: 1rem;
+    }
+
+    .home-about-title {
+      font-size:
+        clamp(
+          2.85rem,
+          12.5vw,
+          4rem
+        );
+    }
+
+    .home-about-lead {
+      font-size: 1rem;
+    }
+
+    .home-about-note {
+      font-size: .9rem;
+    }
+
+    .home-action {
+      font-size: 1.08rem;
+    }
+
+    .home-meta {
+      display: none;
+    }
+
+    .desktop-title {
+      display: none;
+    }
+
+    .mobile-title {
+      display: inline;
+    }
+
+    .about-title-desktop {
+      display: none;
+    }
+
+    .about-title-mobile {
+      display: inline;
+    }
+
+    .process-title-desktop {
+      display: none;
+    }
+
+    .process-title-mobile {
+      display: inline;
+    }
+
+    .kicker-desktop {
+      display: none;
+    }
+
+    .kicker-mobile {
+      display: inline;
+    }
+
+    :global(body.home-shell .header-inner) {
+      width: 100% !important;
+      max-width: none !important;
+
+      padding-inline: 16px !important;
+      margin: 0 !important;
+    }
+
+    :global(body.home-shell .brand-name) {
+      font-size: 1.2rem !important;
+      letter-spacing: .1em !important;
+    }
+
+    :global(body.home-shell .nav) {
+      gap: 1.15rem !important;
+    }
+
+    :global(body.home-shell .nav a) {
+      font-size: 1.4rem !important;
+      letter-spacing: .09em !important;
+      font-weight: 600 !important;
+    }
+
+    :global(body.home-shell .mini-theme-toggle) {
+      display: none !important;
+    }
+  }
+
+
+  /* =========================================================
+     SMALL MOBILE
+  ========================================================= */
+
+  @media (max-width: 480px) {
+
+    .home-video {
+      object-position:
+        68% center;
+    }
+
+    .home-about-note {
+      display: none;
+    }
+
+    .home-copy--process .home-about-note {
+      display: block;
+    }
+
+    .home-actions {
+      gap: 1.25rem;
+    }
+  }
+
+
+  /* =========================================================
+     REDUCED MOTION
+  ========================================================= */
+
+  @media
+  (prefers-reduced-motion: reduce) {
+
+    :global(html) {
+      scroll-behavior: auto;
+    }
+
+    .home-copy--intro,
+    .home-copy--about,
+    .home-copy--process {
+      transition: none;
+    }
+  }
+</style>

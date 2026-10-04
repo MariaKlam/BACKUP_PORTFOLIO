@@ -9,363 +9,430 @@ import Base from "../layouts/Base.astro";
   hideFooter={true}
 >
   <main class="home-page">
+    <section class="visual-story" id="visualStory">
+      <div class="visual-sticky">
 
-    <section
-      class="home-story"
-      id="homeStory"
-    >
+        <!-- =====================================================
+             01 — INTRO
+        ====================================================== -->
 
-      <div class="home-story__sticky">
+        <section
+          class="story-scene story-scene--intro"
+          id="sceneIntro"
+        >
+          <div class="intro-content">
 
-        <video
-          class="home-video"
-          id="homeVideo"
-          src="/videos/about-hero.mp4"
-          poster="/videos/hero-poster.png"
-          muted
-          playsinline
-          autoplay
-          loop
-          preload="auto"
-          disableRemotePlayback
-          aria-hidden="true"
-        ></video>
+            <h1 class="intro-title">
 
+              <span
+                class="intro-line"
+                data-text="Visual instinct."
+              >
+                <span
+                  class="intro-primary"
+                  data-text="Visual"
+                >
+                  Visual
+                </span>
 
-        <div
-          class="home-shade"
-          aria-hidden="true"
-        ></div>
-
-
-        <div class="home-container home-stage">
-
-          <!-- =========================
-               INTRO
-          ========================== -->
-
-          <div
-            class="home-copy home-copy--intro"
-            id="introCopy"
-          >
-
-            <p class="home-kicker">
-              <span class="kicker-desktop">
-                PRODUCT ENGINEER · UX/UI · FRONTEND · AI WORKFLOWS
+                <span
+                  class="intro-secondary"
+                  data-text="instinct."
+                >
+                  instinct.
+                </span>
               </span>
 
-              <span class="kicker-mobile">
-                PRODUCT ENGINEER<br /> UX/UI · FRONTEND<br />
-                AI WORKFLOWS
-              </span>
-            </p>
 
+              <span
+                class="intro-line"
+                data-text="Engineering depth."
+              >
+                <span
+                  class="intro-primary"
+                  data-text="Engineering"
+                >
+                  Engineering
+                </span>
 
-            <h1 class="home-title">
-              <span class="desktop-title">
-                I design &amp; build
-                <br />
-                digital products.
+                <span
+                  class="intro-secondary"
+                  data-text="depth."
+                >
+                  depth.
+                </span>
               </span>
 
-              <span class="mobile-title">
-                I design
-                <br />
-                &amp; build
-                <br />
-                digital
-                <br />
-                products.
-              </span>
             </h1>
 
 
-            <p class="home-lead">
-              From product thinking and UX/UI to frontend,
-              visual systems and AI-assisted workflows.
-            </p>
+           <div class="scroll-cue" aria-hidden="true">
+              <span class="scroll-hint">
+                Scroll to explore
+              </span>
 
-
-            <div class="home-actions">
-
-              <a
-                class="home-action home-action--primary"
-                href="/work"
-              >
-                <span>
-                  View selected work
-                </span>
-
-                <i
-                  class="ri-arrow-right-line"
-                  aria-hidden="true"
-                ></i>
-              </a>
-
-
-              <a
-                class="home-action home-action--secondary"
-                href="#about"
-              >
-                <span>
-                  About me
-                </span>
-
-                <i
-                  class="ri-arrow-down-line"
-                  aria-hidden="true"
-                ></i>
-              </a>
-
+              <span class="scroll-track">
+                <span class="scroll-light"></span>
+              </span>
             </div>
 
           </div>
+        </section>
 
 
+        <!-- =====================================================
+             02 — KOMPA
+        ====================================================== -->
 
-          <!-- =========================
-              ABOUT
-          ========================== -->
-
+        <section
+          class="story-scene"
+          id="sceneKompa"
+        >
           <div
-            class="home-copy home-copy--about"
-            id="aboutCopy"
+            class="visual-frame visual-frame--square"
+            id="kompaFrame"
           >
-            <p class="home-kicker">
-              ABOUT
-            </p>
+            <img
+              src="/images/visual/kompa.webp"
+              alt="Visual composition study by Maria Klammer"
+            />
 
-            <h2 class="home-about-title">
-              <span class="about-title-desktop">
-                Visual instinct.<br />
-                Engineering depth.
-              </span>
+            <div class="frame-overlay"></div>
 
-              <span class="about-title-mobile">
-                Visual<br />
-                instinct.<br />
-                Built<br />
-                with<br />
-                depth.
-              </span>
-            </h2>
+            <div class="visual-copy">
+              <p class="visual-label">
+                <span>01</span>
+                <span>Visual thinking</span>
+              </p>
 
-            <p class="home-about-lead">
-              I’m Maria, a product engineer with a strong visual side.
-              I work across product thinking, interface design and
-              frontend engineering — shaping both how a product works
-              and how it feels.
-            </p>
+              <h2>
+                Visual instinct.
+              </h2>
+            </div>
+          </div>
+        </section>
 
-            <div class="home-actions">
 
-              <a
-                class="home-action home-action--primary"
-                href="/work"
-              >
-                <span>
-                  Explore my work
+        <!-- =====================================================
+             03 — STEEL
+        ====================================================== -->
+
+        <section
+          class="story-scene"
+          id="sceneSteel"
+        >
+          <div
+            class="visual-frame visual-frame--landscape"
+            id="steelFrame"
+          >
+            <img
+              src="/images/visual/steel-table.png"
+              alt="Hospitality visual direction by Maria Klammer"
+            />
+
+            <div
+              class="frame-overlay frame-overlay--steel"
+            ></div>
+
+            <div class="visual-copy">
+              <p class="visual-label">
+                <span>02</span>
+                <span>Direction</span>
+              </p>
+
+              <h2>
+                Product logic.<br />
+                Visual direction.
+              </h2>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =====================================================
+             04 — GIF
+        ====================================================== -->
+
+        <section
+          class="story-scene"
+          id="sceneGif"
+        >
+          <div
+            class="visual-frame visual-frame--square"
+            id="gifFrame"
+          >
+            <img
+              src="/images/visual/gif1.gif"
+              alt="Interaction and motion study by Maria Klammer"
+            />
+
+            <div class="frame-overlay"></div>
+
+            <div class="visual-copy">
+              <p class="visual-label">
+                <span>03</span>
+                <span>Interaction</span>
+              </p>
+
+              <h2>
+                Systems can<br />
+                still feel alive.
+              </h2>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =====================================================
+             05 — FINAL VIDEO
+        ====================================================== -->
+
+        <section
+          class="story-scene"
+          id="sceneFinal"
+        >
+          <div
+            class="visual-frame visual-frame--final"
+            id="finalFrame"
+          >
+            <video
+              class="final-video"
+              id="finalVideo"
+              src="/videos/about-hero.mp4"
+              poster="/videos/hero-poster.png"
+              muted
+              playsinline
+              autoplay
+              loop
+              preload="auto"
+              disableRemotePlayback
+              aria-hidden="true"
+            ></video>
+
+            <div class="final-shade"></div>
+
+
+            <div
+              class="final-content"
+              id="finalContent"
+            >
+
+              <p class="final-kicker">
+
+                <span class="kicker-desktop">
+                  Product Engineer · UX/UI · Frontend · AI Workflows
                 </span>
 
-                <i
-                  class="ri-arrow-right-line"
-                  aria-hidden="true"
-                ></i>
-              </a>
-
-              <a
-                class="home-action home-action--secondary"
-                href="/cv/Maria_Klammer_cv.pdf"
-                target="_blank"
-                rel="noopener"
-              >
-                <span>
-                  View CV
+                <span class="kicker-mobile">
+                  <span>Product Engineer</span>
+                  <span>UX/UI · Frontend</span>
+                  <span>AI Workflows</span>
                 </span>
 
-                <i
-                  class="ri-arrow-up-right-line"
-                  aria-hidden="true"
-                ></i>
-              </a>
+              </p>
+
+
+              <nav
+                class="final-icon-links"
+                aria-label="Portfolio links"
+              >
+
+                <a
+                  href="/work"
+                  class="final-icon-link"
+                  aria-label="View projects"
+                >
+                  <span
+                    class="folder-icon"
+                    aria-hidden="true"
+                  ></span>
+
+                  <span class="icon-label">
+                    Projects
+                  </span>
+                </a>
+
+
+                <a
+                  href="/cv/Maria_Klammer_cv.pdf"
+                  target="_blank"
+                  rel="noopener"
+                  class="final-icon-link"
+                  aria-label="View CV"
+                >
+                  <span
+                    class="document-icon"
+                    aria-hidden="true"
+                  >
+                    <span class="document-line"></span>
+                    <span class="document-line"></span>
+                    <span class="document-line"></span>
+                  </span>
+
+                  <span class="icon-label">
+                    CV
+                  </span>
+                </a>
+
+              </nav>
 
             </div>
           </div>
-
-
-          <!-- =========================
-              PROCESS / AI
-          ========================== -->
-
-          <div
-            class="home-copy home-copy--process"
-            id="processCopy"
-          >
-            <p class="home-kicker">
-              PROCESS
-            </p>
-
-            <h2 class="home-about-title">
-              <span class="process-title-desktop">
-                Human first.<br />
-                Even with AI.
-              </span>
-
-              <span class="process-title-mobile">
-                Human<br />
-                first.<br />
-                Even<br/>with AI.
-              </span>
-            </h2>
-
-            <p class="home-about-lead">
-              I’m excited by what this new generation of tools makes possible,
-              and I like experimenting with them as part of the process.
-            </p>
-
-            <p class="home-about-note">
-              This hero began as one of my own photographs. I used AI-assisted
-              video to bring it to life through subtle breathing and movement,
-              while preserving natural texture, imperfection, light and identity.
-            </p>
-
-            <div class="home-actions">
-              <a
-                class="home-action home-action--primary"
-                href="/work"
-              >
-                <span>Explore my work</span>
-
-                <i
-                  class="ri-arrow-right-line"
-                  aria-hidden="true"
-                ></i>
-              </a>
-            </div>
-          </div>
-
-
-
-          <!-- =========================
-               BOTTOM META
-          ========================== -->
-
-          <div
-            class="home-meta"
-            id="homeMeta"
-            aria-hidden="true"
-          >
-            <span>PRODUCT</span>
-            <i></i>
-
-            <span>DESIGN</span>
-            <i></i>
-
-            <span>ENGINEERING</span>
-          </div>
-
-        </div>
+        </section>
 
       </div>
-
-
-      <div
-        class="home-about-anchor"
-        id="about"
-        aria-hidden="true"
-      ></div>
-
     </section>
-
   </main>
 </Base>
 
+
 <script>
   const story =
-    document.querySelector("#homeStory");
+    document.querySelector("#visualStory");
 
-  const intro =
-    document.querySelector("#introCopy");
+  const sceneIntro =
+    document.querySelector("#sceneIntro");
 
-  const about =
-    document.querySelector("#aboutCopy");
+  const sceneKompa =
+    document.querySelector("#sceneKompa");
 
-  const process =
-    document.querySelector("#processCopy");
+  const sceneSteel =
+    document.querySelector("#sceneSteel");
 
-  const meta =
-    document.querySelector("#homeMeta");
+  const sceneGif =
+    document.querySelector("#sceneGif");
 
-  const video =
-    document.querySelector("#homeVideo");
+  const sceneFinal =
+    document.querySelector("#sceneFinal");
+
+  const kompaFrame =
+    document.querySelector("#kompaFrame");
+
+  const steelFrame =
+    document.querySelector("#steelFrame");
+
+  const gifFrame =
+    document.querySelector("#gifFrame");
+
+  const finalFrame =
+    document.querySelector("#finalFrame");
+
+  const finalContent =
+    document.querySelector("#finalContent");
+
+  const finalVideo =
+    document.querySelector("#finalVideo");
 
 
-  const clamp =
-    (value, min, max) =>
-      Math.min(
-        Math.max(value, min),
-        max
+  const clamp = (
+    value,
+    min = 0,
+    max = 1
+  ) =>
+    Math.min(
+      Math.max(value, min),
+      max
+    );
+
+
+  const range = (
+    progress,
+    start,
+    end
+  ) =>
+    clamp(
+      (progress - start) /
+      (end - start)
+    );
+
+
+  const lerp = (
+    from,
+    to,
+    progress
+  ) =>
+    from +
+    (to - from) * progress;
+
+
+  const viewport = () => ({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+
+  const setFrameSize = (
+    frame,
+    progress,
+    startWidth,
+    startHeight
+  ) => {
+
+    if (!(frame instanceof HTMLElement)) {
+      return;
+    }
+
+    const {
+      width,
+      height
+    } = viewport();
+
+
+    const frameWidth =
+      lerp(
+        startWidth,
+        width,
+        progress
       );
+
+
+    const frameHeight =
+      lerp(
+        startHeight,
+        height,
+        progress
+      );
+
+
+    frame.style.width =
+      `${frameWidth}px`;
+
+    frame.style.height =
+      `${frameHeight}px`;
+
+
+    const radius =
+      lerp(
+        12,
+        0,
+        progress
+      );
+
+
+    frame.style.borderRadius =
+      `${radius}px`;
+  };
 
 
   if (
     story instanceof HTMLElement &&
-    intro instanceof HTMLElement &&
-    about instanceof HTMLElement &&
-    process instanceof HTMLElement
+    sceneIntro instanceof HTMLElement &&
+    sceneKompa instanceof HTMLElement &&
+    sceneSteel instanceof HTMLElement &&
+    sceneGif instanceof HTMLElement &&
+    sceneFinal instanceof HTMLElement
   ) {
 
     if (
-      video instanceof HTMLVideoElement
+      finalVideo instanceof HTMLVideoElement
     ) {
-      video.muted = true;
-      video.playsInline = true;
+      finalVideo.muted = true;
+      finalVideo.playsInline = true;
 
-      video
+      finalVideo
         .play()
         .catch(() => {});
     }
-
-
-    let currentState = "";
-
-
-    const setState = (state) => {
-
-      if (state === currentState) {
-        return;
-      }
-
-      currentState = state;
-
-
-      intro.classList.toggle(
-        "is-active",
-        state === "intro"
-      );
-
-
-      about.classList.toggle(
-        "is-active",
-        state === "about"
-      );
-
-
-      process.classList.toggle(
-        "is-active",
-        state === "process"
-      );
-
-
-      if (
-        meta instanceof HTMLElement
-      ) {
-        meta.classList.toggle(
-          "is-active",
-          state === "intro"
-        );
-      }
-    };
 
 
     const update = () => {
@@ -382,31 +449,230 @@ import Base from "../layouts/Base.astro";
       const progress =
         scrollable > 0
           ? clamp(
-              -rect.top / scrollable,
-              0,
-              1
+              -rect.top /
+              scrollable
             )
           : 0;
 
 
-      /*
-        0 ───────── 30%  INTRO
-        30% ─────── 64%  ABOUT
-        64% ────── 100%  PROCESS
-      */
+      const {
+        width,
+        height
+      } = viewport();
 
-      if (progress < .30) {
 
-        setState("intro");
+      const isMobile =
+        width <= 760;
 
-      } else if (progress < .64) {
 
-        setState("about");
+      const minSide =
+        Math.min(
+          width,
+          height
+        );
 
-      } else {
 
-        setState("process");
+      /* =====================================================
+         INTRO
+      ====================================================== */
 
+      const introFade =
+        1 -
+        range(
+          progress,
+          .055,
+          .12
+        );
+
+
+      sceneIntro.style.opacity =
+        String(introFade);
+
+
+
+      /* =====================================================
+         KOMPA
+      ====================================================== */
+
+      const kompaProgress =
+        range(
+          progress,
+          .06,
+          .29
+        );
+
+
+      const kompaStart =
+        isMobile
+          ? minSide * .62
+          : minSide * .58;
+
+
+      setFrameSize(
+        kompaFrame,
+        kompaProgress,
+        kompaStart,
+        kompaStart
+      );
+
+
+      sceneKompa.style.opacity =
+        progress >= .045
+          ? "1"
+          : "0";
+
+
+
+      /* =====================================================
+         STEEL
+      ====================================================== */
+
+      const steelProgress =
+        range(
+          progress,
+          .26,
+          .49
+        );
+
+
+      const steelStartWidth =
+        isMobile
+          ? width * .78
+          : width * .53;
+
+
+      const steelStartHeight =
+        steelStartWidth * .62;
+
+
+      setFrameSize(
+        steelFrame,
+        steelProgress,
+        steelStartWidth,
+        steelStartHeight
+      );
+
+
+      sceneSteel.style.opacity =
+        progress >= .245
+          ? "1"
+          : "0";
+
+
+
+      /* =====================================================
+         GIF
+      ====================================================== */
+
+      const gifProgress =
+        range(
+          progress,
+          .46,
+          .69
+        );
+
+
+      const gifStart =
+        isMobile
+          ? minSide * .62
+          : minSide * .56;
+
+
+      setFrameSize(
+        gifFrame,
+        gifProgress,
+        gifStart,
+        gifStart
+      );
+
+
+      sceneGif.style.opacity =
+        progress >= .445
+          ? "1"
+          : "0";
+
+
+
+      /* =====================================================
+         FINAL VIDEO
+      ====================================================== */
+
+      const finalProgress =
+        range(
+          progress,
+          .66,
+          .87
+        );
+
+
+      const finalStartWidth =
+        isMobile
+          ? width * .68
+          : width * .38;
+
+
+      const finalStartHeight =
+        isMobile
+          ? finalStartWidth * 1.28
+          : finalStartWidth * .62;
+
+
+      setFrameSize(
+        finalFrame,
+        finalProgress,
+        finalStartWidth,
+        finalStartHeight
+      );
+
+
+      sceneFinal.style.opacity =
+        progress >= .645
+          ? "1"
+          : "0";
+
+
+      sceneFinal.style.pointerEvents =
+        progress >= .84
+          ? "auto"
+          : "none";
+
+
+
+      /* =====================================================
+         FINAL COPY
+      ====================================================== */
+
+      if (
+        finalContent instanceof HTMLElement
+      ) {
+
+        const copyProgress =
+          range(
+            progress,
+            .82,
+            .91
+          );
+
+
+        finalContent.style.opacity =
+          String(copyProgress);
+
+
+        if (isMobile) {
+
+          finalContent.style.transform =
+            "none";
+
+        } else {
+
+          finalContent.style.transform =
+            `translateY(
+              calc(
+                -50% +
+                ${(1 - copyProgress) * 16}px
+              )
+            )`;
+        }
       }
     };
 
@@ -430,31 +696,55 @@ import Base from "../layouts/Base.astro";
   }
 </script>
 
+
 <style>
+
+  /* =========================================================
+     COLORS
+  ========================================================= */
+
+  :root {
+    --home-bg:
+      #111210;
+
+    --home-white:
+      #f2f1ec;
+
+    --home-muted:
+      rgba(
+        242,
+        241,
+        236,
+        .62
+      );
+
+    --home-lime:
+      #d8f27a;
+  }
+
+
   /* =========================================================
      PAGE
   ========================================================= */
 
   :global(html) {
-    scroll-behavior: smooth;
+    scroll-behavior:
+      smooth;
   }
+
 
   .home-page {
-    width: 100%;
-    min-width: 0;
+    width:
+      100%;
 
-    margin: 0;
-    padding: 0;
+    margin:
+      0;
 
-    background: #23382b;
-  }
+    padding:
+      0;
 
-  .home-container {
-    width: 100%;
-    max-width: var(--main-max);
-
-    margin-inline: auto;
-    padding-inline: var(--gutter);
+    background:
+      var(--home-bg);
   }
 
 
@@ -462,107 +752,775 @@ import Base from "../layouts/Base.astro";
      STORY
   ========================================================= */
 
-  .home-story {
-    position: relative;
+  .visual-story {
+    position:
+      relative;
 
-    width: 100%;
-    height: 230svh;
+    width:
+      100%;
 
-    background: #23382b;
-  }
-
-  .home-story__sticky {
-    position: sticky;
-    top: 0;
-
-    width: 100%;
-    height: 100svh;
-
-    overflow: hidden;
-    isolation: isolate;
-
-    color: #fff;
-    background: #23382b;
-  }
-
-
-  /* =========================================================
-     VIDEO
-  ========================================================= */
-
-  .home-video {
-    position: absolute;
-    inset: 0;
-
-    z-index: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-    object-position: center center;
-
-    pointer-events: none;
-    user-select: none;
-  }
-
-
-  /* =========================================================
-     CONTRAST OVERLAY
-  ========================================================= */
-
-  .home-shade {
-    position: absolute;
-    inset: 0;
-
-    z-index: 1;
-
-    pointer-events: none;
+    height:
+      365svh;
 
     background:
-      linear-gradient(
-        90deg,
-        rgba(10, 19, 13, .68) 0%,
-        rgba(10, 19, 13, .54) 23%,
-        rgba(10, 19, 13, .32) 41%,
-        rgba(10, 19, 13, .12) 57%,
-        rgba(10, 19, 13, 0) 73%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(8, 16, 10, .08) 0%,
-        rgba(8, 16, 10, .02) 30%,
-        transparent 62%,
-        rgba(8, 16, 10, .15) 100%
+      var(--home-bg);
+  }
+
+
+  .visual-sticky {
+    position:
+      sticky;
+
+    top:
+      0;
+
+    width:
+      100%;
+
+    height:
+      100svh;
+
+    overflow:
+      hidden;
+
+    isolation:
+      isolate;
+
+    background:
+      radial-gradient(
+        circle at 50% 48%,
+        #191a17 0%,
+        #111210 70%
       );
   }
 
 
   /* =========================================================
-     STAGE
+     SCENES
   ========================================================= */
 
-  .home-stage {
-    position: relative;
+  .story-scene {
+    position:
+      absolute;
 
-    z-index: 2;
+    inset:
+      0;
 
-    width: 100%;
-    height: 100svh;
+    pointer-events:
+      none;
+  }
+
+
+  .story-scene--intro {
+    z-index:
+      10;
+
+    display:
+      grid;
+
+    place-items:
+      center;
+  }
+
+
+  #sceneKompa {
+    z-index:
+      20;
+  }
+
+
+  #sceneSteel {
+    z-index:
+      30;
+  }
+
+
+  #sceneGif {
+    z-index:
+      40;
+  }
+
+
+  #sceneFinal {
+    z-index:
+      50;
   }
 
 
   /* =========================================================
-     COPY
+     INTRO
   ========================================================= */
 
-  .home-copy {
-    position: absolute;
+  .intro-content {
+    width:
+      min(
+        1150px,
+        calc(
+          100% -
+          2 * var(--gutter)
+        )
+      );
 
-    top: 50%;
-    left: var(--gutter);
+    transform:
+      translateY(-18px);
+
+    text-align:
+      center;
+  }
+
+
+  .intro-title {
+    margin:
+      0;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif;
+
+    font-size:
+      clamp(
+        3.8rem,
+        6.5vw,
+        7rem
+      );
+
+    font-weight:
+      800;
+
+    line-height:
+      .9;
+
+    letter-spacing:
+      -.055em;
+
+    text-transform:
+      uppercase;
+
+    color:
+      var(--home-white);
+  }
+
+
+  /* desktop = exactly two rows */
+
+  .intro-line {
+    position:
+      relative;
+
+    display:
+      block;
+
+    width:
+      fit-content;
+
+    margin-inline:
+      auto;
+
+    white-space:
+      nowrap;
+  }
+
+
+  .intro-primary,
+  .intro-secondary {
+    position:
+      relative;
+
+    display:
+      inline-block;
+
+    opacity:
+      1;
+
+    filter:
+      none;
+  }
+
+
+  .intro-primary {
+    color:
+      var(--home-lime);
+  }
+
+
+  .intro-secondary {
+    color:
+      var(--home-white);
+  }
+
+
+  /*
+    IMPORTANT:
+    no individual word glow on desktop.
+  */
+
+  .intro-primary::after,
+  .intro-secondary::after {
+    content:
+      none;
+  }
+
+
+  /*
+    ONE light beam across each entire row.
+  */
+
+  .intro-line::after {
+    content:
+      attr(data-text);
+
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    pointer-events:
+      none;
+
+    color:
+      var(--home-white);
+
+    opacity:
+      0;
+
+    filter:
+      blur(2.2px)
+      brightness(1.55);
+
+    text-shadow:
+      0 0 12px
+      rgba(
+        255,
+        255,
+        255,
+        .26
+      ),
+      0 0 28px
+      rgba(
+        255,
+        255,
+        255,
+        .16
+      );
+
+    -webkit-mask-image:
+      linear-gradient(
+        104deg,
+        transparent 0%,
+        transparent 27%,
+        rgba(0,0,0,.1) 36%,
+        rgba(0,0,0,.55) 44%,
+        #000 50%,
+        rgba(0,0,0,.55) 56%,
+        rgba(0,0,0,.1) 64%,
+        transparent 73%,
+        transparent 100%
+      );
+
+    mask-image:
+      linear-gradient(
+        104deg,
+        transparent 0%,
+        transparent 27%,
+        rgba(0,0,0,.1) 36%,
+        rgba(0,0,0,.55) 44%,
+        #000 50%,
+        rgba(0,0,0,.55) 56%,
+        rgba(0,0,0,.1) 64%,
+        transparent 73%,
+        transparent 100%
+      );
+
+    -webkit-mask-size:
+      280% 100%;
+
+    mask-size:
+      280% 100%;
+
+    -webkit-mask-position:
+      130% 0;
+
+    mask-position:
+      130% 0;
+
+    animation:
+      lineLightSweep
+      7.8s
+      ease-in-out
+      infinite;
+  }
+
+
+  .intro-line:nth-child(2)::after {
+    animation-delay:
+      .45s;
+  }
+
+
+  @keyframes lineLightSweep {
+
+    0%,
+    12% {
+      -webkit-mask-position:
+        130% 0;
+
+      mask-position:
+        130% 0;
+
+      opacity:
+        0;
+    }
+
+    24% {
+      opacity:
+        .16;
+    }
+
+    48% {
+      opacity:
+        .62;
+    }
+
+    72% {
+      opacity:
+        .30;
+    }
+
+    100% {
+      -webkit-mask-position:
+        -30% 0;
+
+      mask-position:
+        -30% 0;
+
+      opacity:
+        0;
+    }
+
+  }
+
+
+  .scroll-hint {
+    display:
+      inline-flex;
+
+    align-items:
+      center;
+
+    gap:
+      .55rem;
+
+    margin:
+      2rem 0 0;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size:
+      .86rem;
+
+    font-weight:
+      600;
+
+    letter-spacing:
+      .14em;
+
+    text-transform:
+      uppercase;
+
+    color:
+      rgba(
+        242,
+        241,
+        236,
+        .50
+      );
+  }
+
+
+  .scroll-hint i {
+    font-size:
+      1rem;
+  }
+
+
+  /* =========================================================
+     VISUAL FRAMES
+  ========================================================= */
+
+  .visual-frame {
+    position:
+      absolute;
+
+    top:
+      50%;
+
+    left:
+      50%;
+
+    overflow:
+      hidden;
+
+    transform:
+      translate(
+        -50%,
+        -50%
+      );
+
+    transform-origin:
+      center center;
+
+    will-change:
+      width,
+      height,
+      border-radius;
+
+    background:
+      #111;
+
+    border-radius:
+      12px;
+
+    box-shadow:
+      0 34px 100px
+      rgba(
+        0,
+        0,
+        0,
+        .34
+      );
+  }
+
+
+  .visual-frame > img {
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    width:
+      100%;
+
+    height:
+      100%;
+
+    display:
+      block;
+
+    object-fit:
+      cover;
+
+    object-position:
+      center center;
+
+    user-select:
+      none;
+
+    pointer-events:
+      none;
+  }
+
+
+  #kompaFrame > img {
+    object-position:
+      center center;
+  }
+
+
+  #steelFrame > img {
+    object-position:
+      center center;
+  }
+
+
+  #gifFrame > img {
+    object-position:
+      center center;
+  }
+
+
+  /* =========================================================
+     FRAME OVERLAYS
+  ========================================================= */
+
+  .frame-overlay {
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    z-index:
+      1;
+
+    pointer-events:
+      none;
+
+    background:
+      linear-gradient(
+        180deg,
+        transparent 38%,
+        rgba(
+          0,
+          0,
+          0,
+          .07
+        ) 56%,
+        rgba(
+          0,
+          0,
+          0,
+          .54
+        ) 100%
+      );
+  }
+
+
+  .frame-overlay--steel {
+    background:
+      linear-gradient(
+        180deg,
+        transparent 40%,
+        rgba(
+          0,
+          0,
+          0,
+          .10
+        ) 62%,
+        rgba(
+          0,
+          0,
+          0,
+          .55
+        ) 100%
+      );
+  }
+
+
+  /* =========================================================
+     VISUAL COPY
+  ========================================================= */
+
+  .visual-copy {
+    position:
+      absolute;
+
+    z-index:
+      2;
+
+    left:
+      max(
+        3rem,
+        4vw
+      );
+
+    bottom:
+      max(
+        2.5rem,
+        5vh
+      );
+
+    color:
+      var(--home-lime);
+  }
+
+
+  .visual-label {
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    gap:
+      .65rem;
+
+    margin:
+      0 0 .7rem;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif;
+
+    font-size:
+      clamp(
+        .76rem,
+        .85vw,
+        .92rem
+      );
+
+    font-weight:
+      600;
+
+    letter-spacing:
+      .15em;
+
+    text-transform:
+      uppercase;
+
+    color:
+      var(--home-lime);
+  }
+
+
+  .visual-copy h2 {
+    margin:
+      0;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif;
+
+    font-size:
+      clamp(
+        2.9rem,
+        4.7vw,
+        5.5rem
+      );
+
+    font-weight:
+      800;
+
+    line-height:
+      .95;
+
+    letter-spacing:
+      -.04em;
+
+    color:
+      var(--home-lime);
+
+    text-shadow:
+      0 2px 24px
+      rgba(
+        0,
+        0,
+        0,
+        .20
+      );
+  }
+
+
+  /* =========================================================
+     FINAL VIDEO
+  ========================================================= */
+
+  .visual-frame--final {
+    background:
+      #23382b;
+  }
+
+
+  .final-video {
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    z-index:
+      0;
+
+    width:
+      100%;
+
+    height:
+      100%;
+
+    display:
+      block;
+
+    object-fit:
+      cover;
+
+    object-position:
+      center center;
+  }
+
+
+  .final-shade {
+    position:
+      absolute;
+
+    inset:
+      0;
+
+    z-index:
+      1;
+
+    pointer-events:
+      none;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(
+          10,
+          19,
+          13,
+          .68
+        ) 0%,
+        rgba(
+          10,
+          19,
+          13,
+          .54
+        ) 23%,
+        rgba(
+          10,
+          19,
+          13,
+          .32
+        ) 41%,
+        rgba(
+          10,
+          19,
+          13,
+          .12
+        ) 57%,
+        rgba(
+          10,
+          19,
+          13,
+          0
+        ) 73%
+      );
+  }
+
+
+  /* =========================================================
+     FINAL CONTENT — DESKTOP
+  ========================================================= */
+
+  .final-content {
+    position:
+      absolute;
+
+    z-index:
+      2;
+
+    top:
+      50%;
+
+    left:
+      max(
+        var(--gutter),
+        calc(
+          (
+            100vw -
+            var(--main-max)
+          ) /
+          2 +
+          var(--gutter)
+        )
+      );
 
     width:
       min(
@@ -570,51 +1528,21 @@ import Base from "../layouts/Base.astro";
         48vw
       );
 
+    opacity:
+      0;
+
+    transform:
+      translateY(-50%);
+
     will-change:
       opacity,
       transform;
   }
 
-  .home-copy--intro,
-  .home-copy--about,
-  .home-copy--process {
-    opacity: 0;
-    pointer-events: none;
 
-    transform:
-      translate3d(
-        0,
-        calc(-50% + 14px),
-        0
-      );
-
-    transition:
-      opacity .28s ease,
-      transform .36s ease;
-  }
-
-  .home-copy.is-active {
-    opacity: 1;
-    pointer-events: auto;
-
-    transform:
-      translate3d(
-        0,
-        -50%,
-        0
-      );
-
-    transition-delay: .08s;
-  }
-
-
-  /* =========================================================
-     KICKER
-  ========================================================= */
-
-  .home-kicker {
+  .final-kicker {
     margin:
-      0 0 1.05rem;
+      0 0 1.8rem;
 
     font-family:
       "Oswald",
@@ -622,447 +1550,365 @@ import Base from "../layouts/Base.astro";
       sans-serif;
 
     font-size:
-      clamp(
-        .9rem,
-        .95vw,
-        1.02rem
-      );
+      1.2rem !important;
 
-    font-weight: 600;
-    letter-spacing: .13em;
+    font-weight:
+      600;
 
-    text-transform: uppercase;
+    line-height:
+      1.4;
 
-    color:
-      rgba(255,255,255,.94);
+    letter-spacing:
+      .13em;
 
-    text-shadow:
-      0 1px 8px
-      rgba(0,0,0,.18);
-  }
-
-
-  /* =========================================================
-     HERO TITLE
-  ========================================================= */
-
-  .home-title {
-    max-width: 650px;
-
-    margin: 0;
-
-    font-family:
-      "Inter Tight",
-      var(--ui-font),
-      sans-serif;
-
-    font-size:
-      clamp(
-        3.7rem,
-        4.9vw,
-        5.55rem
-      );
-
-    font-weight: 800;
-    line-height: 1.065;
-    letter-spacing: -.025em;
-
-    color: #fff;
-
-    text-shadow:
-      0 2px 18px
-      rgba(0,0,0,.15);
-  }
-
-
-  /* =========================================================
-     HERO LEAD
-  ========================================================= */
-
-  .home-lead {
-    max-width: 560px;
-
-    margin:
-      1.65rem 0 0;
-
-    font-size:
-      clamp(
-        1.12rem,
-        1.3vw,
-        1.3rem
-      );
-
-    font-weight: 500;
-    line-height: 1.58;
+    text-transform:
+      uppercase;
 
     color:
-      rgba(255,255,255,.97);
+      var(--home-white);
 
-    text-shadow:
-      0 1px 10px
-      rgba(0,0,0,.18);
+    animation:
+      finalKickerDrift
+      7s
+      ease-in-out
+      infinite;
+  }
+
+
+  .kicker-desktop {
+    display:
+      inline;
+  }
+
+
+  .kicker-mobile {
+    display:
+      none;
   }
 
 
   /* =========================================================
-     ABOUT / PROCESS TITLE
+     FINAL ICON LINKS
   ========================================================= */
 
-  .home-about-title {
-    max-width: 640px;
+  .final-icon-links {
+    display:
+      flex;
 
-    margin: 0;
+    align-items:
+      flex-start;
 
-    font-family:
-      "Inter Tight",
-      var(--ui-font),
-      sans-serif;
+    gap:
+      2rem;
 
-    font-size:
-      clamp(
-        3.4rem,
-        4.45vw,
-        5rem
-      );
-
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -.027em;
-
-    color: #fff;
-
-    text-shadow:
-      0 2px 18px
-      rgba(0,0,0,.15);
+    animation:
+      finalLinksDrift
+      8s
+      ease-in-out
+      infinite;
   }
 
 
-  /* =========================================================
-     ABOUT / PROCESS COPY
-  ========================================================= */
+  .final-icon-link {
+    display:
+      flex;
 
-  .home-about-lead {
-    max-width: 600px;
+    flex-direction:
+      column;
 
-    margin:
-      1.5rem 0 0;
+    align-items:
+      center;
 
-    font-size:
-      clamp(
-        1.08rem,
-        1.22vw,
-        1.22rem
-      );
+    justify-content:
+      flex-start;
 
-    font-weight: 500;
-    line-height: 1.6;
+    gap:
+      .65rem;
 
     color:
-      rgba(255,255,255,.98);
+      var(--home-lime);
 
-    text-shadow:
-      0 1px 10px
-      rgba(0,0,0,.16);
-  }
+    text-decoration:
+      none;
 
-  .home-about-note {
-    max-width: 580px;
-
-    margin:
-      .85rem 0 0;
-
-    font-size: 1rem;
-    line-height: 1.6;
-
-    color:
-      rgba(255,255,255,.84);
-
-    text-shadow:
-      0 1px 10px
-      rgba(0,0,0,.15);
-  }
-
-
-  /* =========================================================
-     ACTIONS
-  ========================================================= */
-
-  .home-actions {
-    display: flex;
-
-    align-items: center;
-    flex-wrap: wrap;
-
-    gap: 2rem;
-
-    margin-top: 2rem;
-  }
-
-  .home-action {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: .68rem;
-
-    padding:
-      0 0 .42rem;
-
-    border: 0;
-
-    border-bottom:
-      2px solid
-      rgba(255,255,255,.5);
-
-    border-radius: 0;
-
-    background: transparent;
-
-    font-family:
-      "Oswald",
-      "Arial Narrow",
-      sans-serif;
-
-    font-size:
-      clamp(
-        1.32rem,
-        1.5vw,
-        1.55rem
-      );
-
-    font-weight: 700;
-    letter-spacing: .045em;
-
-    line-height: 1;
-
-    text-transform: uppercase;
-    text-decoration: none;
-
-    color: #fff;
-
-    text-shadow:
-      0 1px 8px
-      rgba(0,0,0,.16);
+    opacity:
+      .92;
 
     transition:
       opacity .18s ease,
-      border-color .18s ease;
-  }
-
-  .home-action i {
-    font-size: 1.12em;
-
-    transition:
       transform .18s ease;
   }
 
-  .home-action:hover {
-    border-color: #fff;
-  }
 
-  .home-action--primary {
-    opacity: 1;
-  }
+  .final-icon-link:hover {
+    opacity:
+      1;
 
-  .home-action--primary:hover i {
     transform:
-      translateX(4px);
-  }
-
-  .home-action--secondary {
-    opacity: .75;
-  }
-
-  .home-action--secondary:hover {
-    opacity: 1;
+      translateY(-3px);
   }
 
 
-  /* =========================================================
-     BOTTOM META
-  ========================================================= */
-
-  .home-meta {
-    position: absolute;
-
-    left: var(--gutter);
-    bottom: 2rem;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: .85rem;
-
+  .icon-label {
     font-family:
       "Oswald",
       "Arial Narrow",
       sans-serif;
 
-    font-size: .86rem;
+    font-size:
+      1rem !important;
 
-    font-weight: 600;
-    letter-spacing: .16em;
+    font-weight:
+      600;
+
+    line-height:
+      1;
+
+    letter-spacing:
+      .10em;
+
+    text-transform:
+      uppercase;
 
     color:
-      rgba(255,255,255,.72);
-
-    text-shadow:
-      0 1px 8px
-      rgba(0,0,0,.14);
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    transition:
-      opacity .25s ease;
+      var(--home-lime);
   }
 
-  .home-meta.is-active {
-    opacity: 1;
+
+  @keyframes finalKickerDrift {
+
+    0%,
+    100% {
+      opacity:
+        .88;
+
+      translate:
+        0 0;
+    }
+
+    50% {
+      opacity:
+        1;
+
+      translate:
+        0 -3px;
+    }
+
   }
 
-  .home-meta i {
-    width: 20px;
-    height: 1px;
+
+  @keyframes finalLinksDrift {
+
+    0%,
+    100% {
+      translate:
+        0 0;
+    }
+
+    50% {
+      translate:
+        0 3px;
+    }
+
+  }
+
+
+  /* =========================================================
+     FOLDER ICON
+  ========================================================= */
+
+  .folder-icon {
+    position:
+      relative;
+
+    display:
+      block;
+
+    width:
+      58px;
+
+    height:
+      42px;
+
+    border:
+      1.6px solid
+      var(--home-lime);
+
+    border-radius:
+      5px;
 
     background:
-      rgba(255,255,255,.38);
+      rgba(
+        216,
+        242,
+        122,
+        .025
+      );
+  }
+
+
+  .folder-icon::before {
+    content:
+      "";
+
+    position:
+      absolute;
+
+    top:
+      -9px;
+
+    left:
+      7px;
+
+    width:
+      25px;
+
+    height:
+      10px;
+
+    border:
+      1.6px solid
+      var(--home-lime);
+
+    border-bottom:
+      0;
+
+    border-radius:
+      4px 4px 0 0;
   }
 
 
   /* =========================================================
-     ABOUT ANCHOR
+     DOCUMENT ICON
   ========================================================= */
 
-  .home-about-anchor {
-    position: absolute;
+  .document-icon {
+    position:
+      relative;
 
-    top: 58svh;
-    left: 0;
+    display:
+      flex;
 
-    width: 1px;
-    height: 1px;
+    flex-direction:
+      column;
 
-    pointer-events: none;
+    align-items:
+      flex-start;
+
+    gap:
+      6px;
+
+    width:
+      38px;
+
+    height:
+      50px;
+
+    padding:
+      10px 7px;
+
+    border:
+      1.6px solid
+      var(--home-lime);
+
+    border-radius:
+      4px;
+
+    box-sizing:
+      border-box;
+  }
+
+
+  .document-line {
+    display:
+      block;
+
+    width:
+      100%;
+
+    height:
+      1.5px;
+
+    background:
+      var(--home-lime);
+  }
+
+
+  .document-line:last-child {
+    width:
+      70%;
   }
 
 
   /* =========================================================
-     TITLE VARIANTS
+     HEADER
   ========================================================= */
-
-  .desktop-title {
-    display: inline;
-  }
-
-  .mobile-title {
-    display: none;
-  }
-
-  .about-title-mobile {
-    display: none;
-  }
-
-  .process-title-mobile {
-    display: none;
-  }
-
-  .kicker-mobile {
-    display: none;
-  }
-
-
-  /* =========================================================
-     HOME HEADER
-  ========================================================= */
-
-  :global(
-    body.home-shell
-    .brand-name
-  ) {
-    color: #fff !important;
-    opacity: 1 !important;
-
-    text-shadow:
-      0 1px 8px
-      rgba(0,0,0,.18);
-  }
-
-  :global(
-    body.home-shell
-    .nav a
-  ) {
-    color: #fff !important;
-    opacity: 1 !important;
-
-    text-shadow:
-      0 1px 8px
-      rgba(0,0,0,.18);
-  }
-
-  :global(
-    body.home-shell
-    .mini-theme-toggle
-  ) {
-    display: none !important;
-  }
-
-  :global(
-    body.home-shell
-    .header-right
-  ) {
-    gap: 0 !important;
-  }
 
   :global(body.home-shell .site-header),
   :global(body.home-shell .header-inner) {
-    background: transparent !important;
-    background-color: transparent !important;
+    background:
+      transparent !important;
 
-    box-shadow: none !important;
-    border: 0 !important;
+    background-color:
+      transparent !important;
+
+    border:
+      0 !important;
+
+    box-shadow:
+      none !important;
   }
+
 
   :global(body.home-shell .site-header) {
-    position: fixed !important;
+    position:
+      fixed !important;
 
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
+    top:
+      0 !important;
 
-    width: 100% !important;
-    margin: 0 !important;
+    left:
+      0 !important;
 
-    z-index: 100 !important;
+    right:
+      0 !important;
+
+    width:
+      100% !important;
+
+    z-index:
+      100 !important;
   }
+
 
   :global(body.home-shell .brand-name),
   :global(body.home-shell .nav a) {
-    color: #fff !important;
-    opacity: 1 !important;
+    color:
+      var(--home-white) !important;
+
+    opacity:
+      1 !important;
+
+    text-shadow:
+      0 1px 8px
+      rgba(
+        0,
+        0,
+        0,
+        .18
+      );
   }
 
 
-  /* =========================================================
-     TABLET
-  ========================================================= */
+  :global(body.home-shell .mini-theme-toggle) {
+    display:
+      none !important;
+  }
 
-  @media (max-width: 1000px) {
 
-    .home-video {
-      object-position:
-        58% center;
-    }
-
-    .home-copy {
-      width:
-        min(
-          570px,
-          52vw
-        );
-    }
+  :global(body.home-shell .header-right) {
+    gap:
+      0 !important;
   }
 
 
@@ -1072,205 +1918,541 @@ import Base from "../layouts/Base.astro";
 
   @media (max-width: 760px) {
 
-    .home-story {
-      position: relative;
-
-      width: 100%;
-      height: 220dvh;
-
-      background: #23382b;
+    .visual-story {
+      height:
+        345dvh;
     }
 
-    .home-story__sticky {
-      position: sticky;
-      top: 0;
 
-      width: 100%;
-      height: 100dvh;
-
-      overflow: hidden;
-
-      background: #23382b;
+    .visual-sticky {
+      height:
+        100dvh;
     }
 
-    .home-stage {
-      position: relative;
 
-      width: 100%;
-      height: 100dvh;
-      min-height: 100dvh;
+    /* =======================================================
+       MOBILE INTRO
+       EXACTLY FOUR ROWS
+       ALL WHITE
+    ======================================================= */
+
+    .intro-content {
+      width:
+        calc(
+          100% -
+          32px
+        );
+
+      transform:
+        translateY(-12px);
+
+      text-align:
+        center;
     }
 
-    .home-video,
-    .home-shade {
-      position: absolute;
 
-      inset: 0;
+    .intro-title {
+      width:
+        100%;
 
-      width: 100%;
-      height: 100%;
+      font-size:
+        clamp(
+          2.75rem,
+          12vw,
+          4rem
+        );
+
+      line-height:
+        .9;
+
+      letter-spacing:
+        -.05em;
+
+      color:
+        var(--home-white);
     }
 
-    .home-video {
-      object-fit: cover;
+
+    /*
+      CRITICAL:
+      desktop row wrapper disappears.
+    */
+
+    .intro-line {
+      display:
+        contents;
+    }
+
+
+    /*
+      CRITICAL:
+      remove desktop full-row duplicate.
+      This is what caused the broken screenshot.
+    */
+
+    .intro-line::after {
+      content:
+        none !important;
+
+      display:
+        none !important;
+    }
+
+
+    /*
+      Four actual words become four rows.
+    */
+
+    .intro-primary,
+    .intro-secondary {
+      position:
+        relative;
+
+      display:
+        block;
+
+      width:
+        fit-content;
+
+      margin-inline:
+        auto;
+
+      white-space:
+        nowrap;
+
+      color:
+        var(--home-white);
+
+      opacity:
+        1;
+
+      filter:
+        none;
+    }
+
+
+    /*
+      subtle mobile shimmer on each word,
+      but NO lime / white alternating.
+    */
+
+    .intro-primary::after,
+    .intro-secondary::after {
+      content:
+        attr(data-text);
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      display:
+        block;
+
+      color:
+        var(--home-white);
+
+      pointer-events:
+        none;
+
+      opacity:
+        0;
+
+      filter:
+        blur(1.3px)
+        brightness(1.35);
+
+      -webkit-mask-image:
+        linear-gradient(
+          104deg,
+          transparent 0%,
+          transparent 30%,
+          rgba(0,0,0,.2) 42%,
+          #000 50%,
+          rgba(0,0,0,.2) 58%,
+          transparent 70%,
+          transparent 100%
+        );
+
+      mask-image:
+        linear-gradient(
+          104deg,
+          transparent 0%,
+          transparent 30%,
+          rgba(0,0,0,.2) 42%,
+          #000 50%,
+          rgba(0,0,0,.2) 58%,
+          transparent 70%,
+          transparent 100%
+        );
+
+      -webkit-mask-size:
+        260% 100%;
+
+      mask-size:
+        260% 100%;
+
+      animation:
+        mobileWordLight
+        8.5s
+        ease-in-out
+        infinite;
+    }
+
+
+    @keyframes mobileWordLight {
+
+      0%,
+      15% {
+        -webkit-mask-position:
+          125% 0;
+
+        mask-position:
+          125% 0;
+
+        opacity:
+          0;
+      }
+
+      48% {
+        opacity:
+          .38;
+      }
+
+      100% {
+        -webkit-mask-position:
+          -25% 0;
+
+        mask-position:
+          -25% 0;
+
+        opacity:
+          0;
+      }
+
+    }
+
+
+    .scroll-hint {
+      margin-top:
+        1.7rem;
+    }
+
+
+    /* =======================================================
+       MOBILE VISUALS
+    ======================================================= */
+
+    .visual-copy {
+      left:
+        18px;
+
+      right:
+        18px;
+
+      bottom:
+        2rem;
+    }
+
+
+    .visual-copy h2 {
+      font-size:
+        clamp(
+          2.35rem,
+          10.5vw,
+          3.65rem
+        );
+
+      line-height:
+        .95;
+    }
+
+
+    .visual-label {
+      font-size:
+        .78rem;
+    }
+
+
+    /* =======================================================
+       FINAL VIDEO MOBILE
+    ======================================================= */
+
+    .final-video {
       object-position:
-        65% center;
+        72% center;
     }
 
-    .home-shade {
+
+    .final-shade {
       background:
         linear-gradient(
           180deg,
-          rgba(14,24,17,.05) 0%,
-          rgba(14,24,17,.12) 30%,
-          rgba(14,24,17,.72) 66%,
-          rgba(14,24,17,.94) 100%
+          rgba(
+            12,
+            22,
+            15,
+            0
+          ) 0%,
+          rgba(
+            12,
+            22,
+            15,
+            .02
+          ) 44%,
+          rgba(
+            12,
+            22,
+            15,
+            .30
+          ) 64%,
+          rgba(
+            12,
+            22,
+            15,
+            .76
+          ) 100%
         );
     }
 
-    .home-copy {
+
+    /*
+      Keep copy low on shirt,
+      away from face.
+    */
+
+    .final-content {
       left:
-        var(--gutter);
+        18px;
 
       right:
-        var(--gutter);
+        auto;
+
+      top:
+        auto;
+
+      bottom:
+        30px;
 
       width:
-        auto;
+        220px;
+
+      max-width:
+        220px;
+
+      transform:
+        none !important;
     }
 
-    .home-kicker {
-      font-size: 1rem;
-
-      max-width: none;
-
-      line-height: 1.35;
-    }
-
-    .home-title {
-      max-width: 330px;
-
-      font-size:
-        clamp(
-          3rem,
-          13vw,
-          4.2rem
-        );
-
-      line-height: .98;
-    }
-
-    .home-lead {
-      font-size: 1rem;
-    }
-
-    .home-about-title {
-      font-size:
-        clamp(
-          2.85rem,
-          12.5vw,
-          4rem
-        );
-    }
-
-    .home-about-lead {
-      font-size: 1rem;
-    }
-
-    .home-about-note {
-      font-size: .9rem;
-    }
-
-    .home-action {
-      font-size: 1.08rem;
-    }
-
-    .home-meta {
-      display: none;
-    }
-
-    .desktop-title {
-      display: none;
-    }
-
-    .mobile-title {
-      display: inline;
-    }
-
-    .about-title-desktop {
-      display: none;
-    }
-
-    .about-title-mobile {
-      display: inline;
-    }
-
-    .process-title-desktop {
-      display: none;
-    }
-
-    .process-title-mobile {
-      display: inline;
-    }
 
     .kicker-desktop {
-      display: none;
+      display:
+        none;
     }
+
 
     .kicker-mobile {
-      display: inline;
+      display:
+        block;
     }
+
+
+    .kicker-mobile > span {
+      display:
+        block;
+
+      white-space:
+        nowrap;
+    }
+
+
+    /*
+      EXACTLY 1REM.
+    */
+
+    .final-kicker {
+      width:
+        220px;
+
+      max-width:
+        220px;
+
+      margin:
+        0 0 1.2rem;
+
+      font-size:
+        1rem !important;
+
+      line-height:
+        1.3;
+
+      letter-spacing:
+        .07em;
+
+      color:
+        var(--home-lime);
+    }
+
+
+    .final-icon-links {
+      gap:
+        1.75rem;
+    }
+
+
+    .final-icon-link {
+      gap:
+        .55rem;
+    }
+
+
+    .folder-icon {
+      width:
+        48px;
+
+      height:
+        35px;
+    }
+
+
+    .folder-icon::before {
+      top:
+        -8px;
+
+      width:
+        21px;
+
+      height:
+        9px;
+    }
+
+
+    .document-icon {
+      width:
+        32px;
+
+      height:
+        43px;
+
+      padding:
+        8px 6px;
+
+      gap:
+        5px;
+    }
+
+
+    /*
+      EXACTLY 1REM.
+    */
+
+    .icon-label {
+      font-size:
+        1rem !important;
+
+      line-height:
+        1;
+
+      letter-spacing:
+        .08em;
+    }
+
+
+    /* =======================================================
+       MOBILE HEADER
+    ======================================================= */
 
     :global(body.home-shell .header-inner) {
-      width: 100% !important;
-      max-width: none !important;
+      width:
+        100% !important;
 
-      padding-inline: 16px !important;
-      margin: 0 !important;
+      max-width:
+        none !important;
+
+      padding-inline:
+        16px !important;
     }
+
 
     :global(body.home-shell .brand-name) {
-      font-size: 1.2rem !important;
-      letter-spacing: .1em !important;
+      font-size:
+        1.2rem !important;
+
+      letter-spacing:
+        .1em !important;
     }
+
 
     :global(body.home-shell .nav) {
-      gap: 1.15rem !important;
+      gap:
+        1.15rem !important;
     }
+
 
     :global(body.home-shell .nav a) {
-      font-size: 1.4rem !important;
-      letter-spacing: .09em !important;
-      font-weight: 600 !important;
-    }
+      font-size:
+        .92rem !important;
 
-    :global(body.home-shell .mini-theme-toggle) {
-      display: none !important;
+      letter-spacing:
+        .09em !important;
+
+      font-weight:
+        600 !important;
     }
   }
 
 
   /* =========================================================
-     SMALL MOBILE
+     SMALL PHONES
   ========================================================= */
 
-  @media (max-width: 480px) {
+  @media (max-width: 390px) {
 
-    .home-video {
-      object-position:
-        68% center;
+    .intro-title {
+      font-size:
+        clamp(
+          2.55rem,
+          11.5vw,
+          3.45rem
+        );
     }
 
-    .home-about-note {
-      display: none;
+
+    .final-content {
+      left:
+        14px;
+
+      bottom:
+        22px;
+
+      width:
+        215px;
+
+      max-width:
+        215px;
     }
 
-    .home-copy--process .home-about-note {
-      display: block;
+
+    /*
+      DO NOT shrink these anymore.
+    */
+
+    .final-kicker {
+      width:
+        215px;
+
+      max-width:
+        215px;
+
+      font-size:
+        1rem !important;
     }
 
-    .home-actions {
-      gap: 1.25rem;
+
+    .icon-label {
+      font-size:
+        1rem !important;
     }
   }
 
@@ -1279,17 +2461,210 @@ import Base from "../layouts/Base.astro";
      REDUCED MOTION
   ========================================================= */
 
-  @media
-  (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
 
     :global(html) {
-      scroll-behavior: auto;
+      scroll-behavior:
+        auto;
     }
 
-    .home-copy--intro,
-    .home-copy--about,
-    .home-copy--process {
-      transition: none;
+
+    .intro-line::after,
+    .intro-primary::after,
+    .intro-secondary::after,
+    .final-kicker,
+    .final-icon-links {
+      animation:
+        none !important;
     }
   }
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 1.8rem;
+}
+
+.scroll-hint {
+  margin: 0;
+
+  font-family:
+    "Oswald",
+    "Arial Narrow",
+    sans-serif;
+
+  font-size: .86rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+
+  color: rgba(242, 241, 236, .55);
+}
+
+
+/* vertical scroll path */
+
+.scroll-track {
+  position: relative;
+
+  width: 1px;
+  height: 54px;
+
+  margin-top: .8rem;
+
+  overflow: hidden;
+
+  background:
+    rgba(242, 241, 236, .16);
+}
+
+
+/* moving light */
+
+.scroll-light {
+  position: absolute;
+
+  top: -16px;
+  left: 50%;
+
+  width: 3px;
+  height: 18px;
+
+  transform: translateX(-50%);
+
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(216, 242, 122, .95),
+      transparent
+    );
+
+  box-shadow:
+    0 0 10px rgba(216, 242, 122, .34);
+
+  animation:
+    scrollLightDown
+    2.25s
+    cubic-bezier(.45, 0, .25, 1)
+    infinite;
+}
+
+
+@keyframes scrollLightDown {
+
+  0% {
+    transform:
+      translate(-50%, -18px);
+
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate(-50%, 72px);
+
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .scroll-cue {
+    margin-top: 1.5rem;
+  }
+
+  .scroll-hint {
+    font-size: .8rem;
+  }
+
+  .scroll-track {
+    height: 48px;
+    margin-top: .65rem;
+  }
+
+  .scroll-light {
+    width: 3px;
+
+    box-shadow:
+      0 0 12px rgba(216, 242, 122, .48);
+  }
+}
+
+
+@media (max-width: 760px) {
+  .final-content {
+    bottom: 40px;
+  }
+
+  .final-icon-links {
+    gap: 2rem;
+  }
+}
+
+.folder-icon {
+  position: relative;
+  display: block;
+
+  width: 58px;
+  height: 42px;
+
+  border: 1.6px solid var(--home-lime);
+  border-radius: 5px;
+
+  background: var(--home-lime);
+
+  box-shadow:
+    0 0 18px rgba(216, 242, 122, .12);
+}
+
+.folder-icon::before {
+  content: "";
+
+  position: absolute;
+
+  top: -9px;
+  left: 7px;
+
+  width: 25px;
+  height: 10px;
+
+  border: 1.6px solid var(--home-lime);
+  border-bottom: 0;
+
+  border-radius: 4px 4px 0 0;
+
+  background: var(--home-lime);
+}
+
+.final-icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  min-height: 78px;
+
+  gap: .55rem;
+}
+
+.folder-icon,
+.document-icon {
+  flex: 0 0 auto;
+}
+
+.icon-label {
+  margin-top: auto;
+}
 </style>
