@@ -541,17 +541,14 @@ html[data-theme="dark"] {
   --shadow: rgba(0, 0, 0, 0.5);
 
   /*Background*/
-  --body: #161a1d;
-  --header-bg: #313d4c;
+  --body: #111210 --header-bg: #313d4c;
   --table-head-bg: rgba(28, 32, 35, 1);
   --table-row-hover: rgba(36, 40, 43, 1);
   --overlay-bg: rgba(255, 255, 255, 0.2);
   --textarea-bg: rgba(31, 32, 38, 1);
   --system-clr-bg-default: #161a1d;
 
-  --modal-background-color: #161a1d;
-
-  --prefilled-bg: #1c2430;
+  --modal-background-color: #111210 --prefilled-bg: #1c2430;
   --selection-bg: rgba(100, 150, 250, 0.4);
   --location-dropdown-bg: #1c222e;
 

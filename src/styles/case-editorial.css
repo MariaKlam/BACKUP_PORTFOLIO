@@ -147,8 +147,16 @@
   transition: transform 0.2s ease;
 }
 
+.case-back svg {
+  width: 28px;
+  height: 28px;
+
+  transition: transform 0.25s ease;
+  transform-origin: center;
+}
+
 .case-back:hover svg {
-  transform: translate(-4px, 4px);
+  transform: rotate(90deg);
 }
 
 /* =========================================================

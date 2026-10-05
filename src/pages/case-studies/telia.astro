@@ -274,92 +274,63 @@ const title = "Telia Help & Guides UX Analysis | Maria Klammer";
       </section>
 
 
-      <!-- ===================================================
-           03 — EXPLORATION
-      ==================================================== -->
+    <!-- ===================================================
+     03–04 — EXPLORATION + SOLUTION
+==================================================== -->
 
-      <section class="telia-section">
+<section class="telia-section">
 
-        <div class="telia-section__head">
+  <div class="telia-section__head">
 
-          <span class="telia-eyebrow">
-            03 / exploration
-          </span>
+    <span class="telia-eyebrow">
+      03–04 / exploration → solution
+    </span>
 
-          <h2>
-            Explore first.<br />
-            Simplify second.
-          </h2>
+    <h2>
+      Explore first.<br />
+      Simplify second.
+    </h2>
 
-          <p>
-            Different navigation patterns were prototyped and
-            tested before reducing the solution to a clearer
-            structure with visible choices and fewer hidden states.
-          </p>
+    <p>
+      Different navigation patterns were prototyped and tested
+      before reducing the solution to a clearer guided flow.
+    </p>
 
-        </div>
-
-
-        <figure class="telia-card telia-card--wide">
-
-          <img
-            src="/images/telia/slider.gif"
-            alt="Telia navigation prototype alternatives"
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Navigation exploration</strong>
-            <span>SKETCHES · PROTOTYPES · TESTING · ITERATION</span>
-          </figcaption>
-
-        </figure>
-
-      </section>
+  </div>
 
 
-      <!-- ===================================================
-           04 — SOLUTION
-      ==================================================== -->
+  <div class="telia-gif-grid">
 
-      <section class="telia-section">
+    <figure class="telia-card telia-card--gif">
+      <img
+        src="/images/telia/slider.gif"
+        alt="Telia navigation prototype alternatives"
+        loading="lazy"
+      />
 
-        <div class="telia-section__head">
-
-          <span class="telia-eyebrow">
-            04 / solution
-          </span>
-
-          <h2>
-            One step<br />
-            at a time.
-          </h2>
-
-          <p>
-            The final direction used progressive disclosure and
-            stronger hierarchy to turn a dense support article into
-            a guided mobile task.
-          </p>
-
-        </div>
+      <figcaption>
+        <strong>Navigation exploration</strong>
+        <span>SKETCHES · PROTOTYPES · TESTING · ITERATION</span>
+      </figcaption>
+    </figure>
 
 
-        <figure class="telia-card telia-card--wide">
+    <figure class="telia-card telia-card--gif">
+      <img
+        src="/images/telia/after_gif.webp"
+        alt="Improved factory reset help flow"
+        loading="lazy"
+      />
 
-          <img
-            src="/images/telia/after_gif.webp"
-            alt="Improved factory reset help flow"
-            loading="lazy"
-          />
+      <figcaption>
+        <strong>Guided help flow</strong>
+        <span>CLEAR STEPS · MOBILE FIRST · PROGRESSIVE DISCLOSURE</span>
+      </figcaption>
+    </figure>
 
-          <figcaption>
-            <strong>Guided help flow</strong>
-            <span>CLEAR STEPS · MOBILE FIRST · PROGRESSIVE DISCLOSURE</span>
-          </figcaption>
+  </div>
 
-        </figure>
-
-      </section>
+</section>
 
 
       <!-- ===================================================
@@ -388,8 +359,7 @@ const title = "Telia Help & Guides UX Analysis | Maria Klammer";
         </div>
 
 
-        <figure class="telia-card telia-card--wide">
-
+        <figure class="telia-card telia-card--comparison">
           <img
             src="/images/telia/vordlus.webp"
             alt="Comparison between prototype and Telia production navigation"
@@ -400,7 +370,6 @@ const title = "Telia Help & Guides UX Analysis | Maria Klammer";
             <strong>Prototype → product</strong>
             <span>VISIBLE OPTIONS · FEWER TAPS · CLEARER NAVIGATION</span>
           </figcaption>
-
         </figure>
 
       </section>
@@ -914,6 +883,76 @@ const title = "Telia Help & Guides UX Analysis | Maria Klammer";
       }
 
     }
+    .telia-hero {
+      width: min(100%, 980px);
+      margin-inline: auto;
+    }
+
+    .telia-hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
+      background: transparent;
+    }
+
+
+
+.telia-gif-grid {
+  width: min(100%, 880px);
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 28px;
+
+  align-items: start;
+}
+
+.telia-card--gif {
+  width: 100%;
+}
+
+.telia-card--gif img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+
+  background: #151815;
+}
+
+@media (max-width: 760px) {
+  .telia-gif-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.telia-card--comparison {
+  width: min(100%, 920px);
+  margin-inline: auto;
+}
+
+.telia-card--comparison img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 760px) {
+  .telia-card--comparison {
+    width: 100%;
+  }
+}
 
   </style>
 

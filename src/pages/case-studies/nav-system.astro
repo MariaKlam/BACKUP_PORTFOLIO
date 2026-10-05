@@ -1249,6 +1249,18 @@ body.nav-system-page.dark-mode {
   height: 28px;
 }
 
+.nav-editorial__back svg {
+  width: 28px;
+  height: 28px;
+
+  transform-origin: center;
+  transition: transform .25s ease;
+}
+
+.nav-editorial__back:hover svg {
+  transform: rotate(90deg);
+}
+
 
 /* =========================================================
    INTERACTIVE PROTOTYPE HEADER
@@ -1372,7 +1384,7 @@ body.nav-system-page.dark-mode {
 
   padding: clamp(28px, 3vw, 44px);
 
-  background: #111310;
+  background: var(--nav-case-bg);
 }
 
 
@@ -1496,21 +1508,31 @@ body.nav-system-page.dark-mode {
   color: var(--nav-case-fg);
 }
 
-
 .nav-editorial__next-arrow {
-  font-size: clamp(4.5rem, 7vw, 8rem);
-  line-height: .8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+
+  border: 2.5px solid var(--nav-case-lime);
+  border-radius: 50%;
 
   color: var(--nav-case-lime);
+  background: transparent;
 
-  transition: transform .2s ease;
+  font-family: Arial, sans-serif;
+  font-size: 2.3rem;
+  font-weight: 400;
+  line-height: 1;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    color .2s ease;
 }
-
-
-.nav-editorial__next:hover .nav-editorial__next-arrow {
-  transform: translate(8px, -8px);
-}
-
 
 /* =========================================================
    SCROLLBAR
@@ -1613,6 +1635,204 @@ body.nav-system-page::-webkit-scrollbar-track {
     align-items: end;
   }
 }
+/* =========================================================
+   FINAL ARROW OVERRIDES
+========================================================= */
 
+/* PROJECTS BACK ARROW */
+
+body.nav-system-page .nav-editorial__back svg {
+  width: 28px !important;
+  height: 28px !important;
+
+  transform: rotate(0deg) !important;
+  transform-origin: 50% 50% !important;
+
+  transition: transform .25s ease !important;
+}
+
+body.nav-system-page .nav-editorial__back:hover svg {
+  transform: rotate(90deg) !important;
+}
+
+
+/* NEXT PROJECT ARROW */
+
+body.nav-system-page .nav-editorial__next-arrow {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 76px !important;
+  height: 76px !important;
+  flex: 0 0 76px !important;
+
+  box-sizing: border-box;
+
+  border: 2.5px solid var(--nav-case-lime) !important;
+  border-radius: 50% !important;
+
+  background: transparent !important;
+  color: var(--nav-case-lime) !important;
+
+  font-family: Arial, sans-serif !important;
+  font-size: 2.3rem !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+
+  transition:
+    transform .22s ease,
+    background-color .22s ease,
+    color .22s ease !important;
+}
+
+body.nav-system-page .nav-editorial__next:hover .nav-editorial__next-arrow {
+  transform: translate(4px, -4px) !important;
+
+  background-color: var(--nav-case-lime) !important;
+  color: var(--nav-case-bg) !important;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+  body.nav-system-page .nav-editorial__next-arrow {
+    width: 58px !important;
+    height: 58px !important;
+    flex-basis: 58px !important;
+
+    font-size: 1.8rem !important;
+  }
+}
+
+/* NEXT PROJECT — FORCE HOVER */
+
+body.nav-system-page .nav-editorial__next-arrow {
+  background: transparent !important;
+  color: #d8f27a !important;
+  border: 2.5px solid #d8f27a !important;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease !important;
+}
+
+/* hover whole next-project link */
+body.nav-system-page .nav-editorial__next:hover .nav-editorial__next-arrow,
+
+/* hover arrow itself */
+body.nav-system-page .nav-editorial__next-arrow:hover {
+  background: #d8f27a !important;
+  color: #0d0f0d !important;
+
+  transform: translate(4px, -4px) !important;
+}
+
+/* =========================================================
+   UNIFY ALL DARK SURFACES
+========================================================= */
+
+:root {
+  --nav-case-bg: #111210;
+}
+
+/* page */
+html,
+body.nav-system-page,
+body.nav-system-page .nav-editorial {
+  background: #111210 !important;
+}
+
+/* portfolio header */
+body.nav-system-page .site-header,
+body.nav-system-page .header-inner {
+  background: #111210 !important;
+}
+
+/* architecture cards */
+body.nav-system-page .nav-editorial__architecture {
+  background: transparent !important;
+
+  gap: 0 !important;
+  padding: 0 !important;
+
+  border-top: 1px solid rgba(242, 241, 236, .12);
+  border-bottom: 1px solid rgba(242, 241, 236, .12);
+}
+
+body.nav-system-page .nav-editorial__architecture-item {
+  background: #111210 !important;
+}
+
+body.nav-system-page
+.nav-editorial__architecture-item
++ .nav-editorial__architecture-item {
+  border-left: 1px solid rgba(242, 241, 236, .12);
+}
+
+/* interactive nav — same dark family */
+body.nav-system-page .menu,
+body.nav-system-page .extra-thin-sidebar,
+body.nav-system-page .extra-thin-sidebar--second,
+body.nav-system-page .company-sidebar {
+  background: #111210 !important;
+}
+
+/* keep the nav separation only with borders */
+body.nav-system-page .extra-thin-sidebar,
+body.nav-system-page .extra-thin-sidebar--second,
+body.nav-system-page .menu {
+  border-color: rgba(242, 241, 236, .10) !important;
+}
+
+/* =========================================================
+   UNIFY DARK SURFACES
+========================================================= */
+
+:root {
+  --nav-case-bg: #111210;
+}
+
+/* page + header + main menu */
+html,
+body.nav-system-page,
+body.nav-system-page .nav-editorial,
+body.nav-system-page .site-header,
+body.nav-system-page .header-inner,
+body.nav-system-page .menu,
+body.nav-system-page .extra-thin-sidebar--second {
+  background: #111210 !important;
+}
+
+
+/* KEEP LEFT COMPANY RAIL DIFFERENT */
+body.nav-system-page .extra-thin-sidebar.company-sidebar {
+  background: #1f2b36 !important;
+}
+
+
+/* architecture cards = same as page */
+body.nav-system-page .nav-editorial__architecture {
+  background: transparent !important;
+  gap: 0 !important;
+  padding: 0 !important;
+
+  border-top: 1px solid rgba(242, 241, 236, .12);
+  border-bottom: 1px solid rgba(242, 241, 236, .12);
+}
+
+body.nav-system-page .nav-editorial__architecture-item {
+  background: #111210 !important;
+}
+
+body.nav-system-page
+.nav-editorial__architecture-item
++ .nav-editorial__architecture-item {
+  border-left: 1px solid rgba(242, 241, 236, .12);
+}
 
 </style>

@@ -92,15 +92,14 @@ const title = "AI Social Media Generator | Maria Klammer";
 
       </section>
 
+<!-- HERO -->
 
-      <!-- HERO -->
-
-      <figure class="case-hero-media">
-        <img
-          src="/images/social-media-generator/start.webp"
-          alt="AI Social Media Generator start page"
-        />
-      </figure>
+<section class="case-social-hero">
+  <img
+    src="/images/social-media-generator/instagram-grid.webp"
+    alt="Instagram content generated and published through the Social Media Generator"
+  />
+</section>
 
 
       <!-- FIRST GRID -->
@@ -110,10 +109,7 @@ const title = "AI Social Media Generator | Maria Klammer";
         aria-label="AI Social Media Generator screens"
       >
 
-        <figure
-          class="case-gallery__item
-                 case-gallery__item--landscape"
-        >
+        <figure class="case-gallery__item case-gallery__item--landscape case-gallery__item--zoom">
           <img
             src="/images/social-media-generator/connected.webp"
             alt="Connected Instagram account"
@@ -151,54 +147,29 @@ const title = "AI Social Media Generator | Maria Klammer";
       </section>
 
 
-      <!-- LARGE VISUAL -->
-
-      <section
-        class="case-gallery case-gallery--wide"
-      >
-
-        <figure
-          class="case-gallery__item
-                 case-gallery__item--natural"
-        >
-          <img
-            src="/images/social-media-generator/brand-brief.webp"
-            alt="Brand brief and content setup"
-            loading="lazy"
-          />
-        </figure>
-
-      </section>
-
-
       <!-- SECOND GRID -->
 
-      <section class="case-gallery">
+<!-- SECOND GRID -->
 
-        <figure
-          class="case-gallery__item
-                 case-gallery__item--landscape"
-        >
-          <img
-            src="/images/social-media-generator/planner-size.webp"
-            alt="Content cadence selection"
-            loading="lazy"
-          />
-        </figure>
+<section class="case-gallery">
 
+  <figure class="case-gallery__item case-gallery__item--landscape">
+    <img
+      src="/images/social-media-generator/planner-size.webp"
+      alt="Content cadence selection"
+      loading="lazy"
+    />
+  </figure>
 
-        <figure
-          class="case-gallery__item
-                 case-gallery__item--landscape"
-        >
-          <img
-            src="/images/social-media-generator/instagram-grid.webp"
-            alt="Published Instagram content grid"
-            loading="lazy"
-          />
-        </figure>
+  <figure class="case-gallery__item case-gallery__item--landscape">
+    <img
+      src="/images/social-media-generator/brand-brief.webp"
+      alt="Brand brief and content setup"
+      loading="lazy"
+    />
+  </figure>
 
-      </section>
+</section>
 
 
       <!-- FINAL IMAGE -->
@@ -251,4 +222,137 @@ const title = "AI Social Media Generator | Maria Klammer";
 
     </div>
   </article>
+  <style>
+  .case-social-hero {
+    width: 100%;
+    max-width: 1176px;
+
+    margin: 0 auto 48px;
+
+    overflow: hidden;
+  }
+
+  .case-social-hero img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    /* ära lase browseril seda üle originaalsuuruse venitada */
+    image-rendering: auto;
+  }
+
+  /*
+    Sama laius alumistele galeriidele,
+    et kõik vasak/right servad jookseksid kokku.
+  */
+  .case-gallery {
+    width: 100%;
+    max-width: 1176px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 760px) {
+    .case-social-hero,
+    .case-gallery {
+      max-width: none;
+      width: 100%;
+    }
+
+    .case-social-hero {
+      margin-bottom: 28px;
+    }
+  }
+.case-social-hero,
+.case-gallery {
+  width: 100%;
+  max-width: 1176px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-social-hero {
+  margin-bottom: 52px;
+}
+
+.case-social-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 2-column rows exactly span same width as hero */
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  /* important: smaller gap = larger images */
+  gap: 24px;
+
+  margin-bottom: 54px;
+}
+
+.case-gallery__item {
+  width: 100%;
+  margin: 0;
+}
+
+.case-gallery__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* single full-width image at bottom */
+.case-gallery--wide {
+  display: block;
+}
+
+.case-gallery--wide .case-gallery__item {
+  width: 100%;
+}
+
+.case-gallery--wide img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 760px) {
+  .case-social-hero,
+  .case-gallery {
+    width: 100%;
+    max-width: none;
+  }
+
+  .case-gallery {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .case-social-hero {
+    margin-bottom: 30px;
+  }
+}
+
+.case-gallery__item--zoom {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.case-gallery__item--zoom img {
+  width: 112%;
+  max-width: none;
+  height: auto;
+
+  margin-left: -6%;
+
+  transform: scale(1.08);
+  transform-origin: center center;
+}
+</style>
 </Base>

@@ -534,9 +534,16 @@ const title = "UI Library & Token System | Maria Klammer";
     }
 
 
-    .case-media--hero img {
-      aspect-ratio: 16 / 8.6;
-    }
+.case-media--hero {
+  max-width: 1280px;
+}
+
+.case-media--hero img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 7.2;
+  object-fit: cover;
+}
 
 
     .case-media--closing {
@@ -921,6 +928,17 @@ const title = "UI Library & Token System | Maria Klammer";
   }
 }
 
+.case-media--closing {
+  width: min(100% - 80px, 900px);
+  margin: clamp(90px, 10vw, 140px) auto 0;
+}
+
+.case-media--closing img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
   </style>
 
 </Base>
