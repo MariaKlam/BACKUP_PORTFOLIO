@@ -68,15 +68,17 @@ import Base from "../layouts/Base.astro";
 
 
            <div class="scroll-cue" aria-hidden="true">
-              <span class="scroll-hint">
-                Scroll to explore
-              </span>
+            <span class="scroll-hint scroll-hint--desktop">
+              Scroll to explore
+            </span>
 
-              <span class="scroll-track">
-                <span class="scroll-light"></span>
-              </span>
-            </div>
+            <span class="scroll-hint scroll-hint--mobile">
+              Swipe to explore
+            </span>
 
+            <span class="scroll-track">
+              <span class="scroll-light"></span>
+            </span>
           </div>
         </section>
 
@@ -2601,6 +2603,8 @@ import Base from "../layouts/Base.astro";
   }
 }
 
+
+
 @media (max-width: 760px) {
   .final-content {
     bottom: 40px;
@@ -2969,6 +2973,55 @@ import Base from "../layouts/Base.astro";
 
     filter: blur(10px);
     transform: scale(1.04);
+  }
+}
+
+@media (max-width: 760px) {
+  .scroll-light {
+    animation:
+      scrollLightUpMobile
+      6.5s
+      ease-in-out
+      infinite;
+  }
+
+  @keyframes scrollLightUpMobile {
+    0%,
+    50% {
+      transform: translate(-50%, 120px);
+      opacity: 0;
+    }
+
+    58% {
+      opacity: .25;
+    }
+
+    68% {
+      opacity: 1;
+    }
+
+    86% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(-50%, -24px);
+      opacity: 0;
+    }
+  }
+}
+
+.scroll-hint--mobile {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .scroll-hint--desktop {
+    display: none;
+  }
+
+  .scroll-hint--mobile {
+    display: inline-flex;
   }
 }
 
