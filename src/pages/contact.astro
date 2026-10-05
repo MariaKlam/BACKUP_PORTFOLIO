@@ -422,5 +422,50 @@ import Base from "../layouts/Base.astro";
 
     }
 
+    html,
+body.contact-shell {
+  height: 100%;
+  overflow: hidden !important;
+}
+
+body.contact-shell .contact-page {
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+body.contact-shell .site-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+
+  background: #0d0f0d !important;
+}
+
+@media (max-width: 760px) {
+  html,
+  body.contact-shell {
+    height: auto;
+    overflow-y: auto !important;
+  }
+
+  body.contact-shell .contact-page {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .contact-inner {
+    height: auto;
+    min-height: 100svh;
+
+    padding-top: 135px;
+    padding-bottom: 80px;
+  }
+}
+
   </style>
 </Base>
