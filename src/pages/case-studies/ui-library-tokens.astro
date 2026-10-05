@@ -1,346 +1,926 @@
 ---
 import Base from "../../layouts/Base.astro";
-import "../../styles/case-base.css";     
 
-const title = "Case Study: UI Library & Token System";
-
+const title = "UI Library & Token System | Maria Klammer";
 ---
-<Base title={title} noWrap={false} hideFooter={false}>
+
+<Base
+  title={title}
+  noWrap={true}
+  hideFooter={true}
+>
+
+  <main class="case-page">
+
+    <!-- ===================================================
+         INTRO
+    ==================================================== -->
+
+    <section class="case-intro">
+      <div class="case-intro__grid">
+
+        <div class="case-meta">
+          <span class="case-label">project</span>
+
+          <h1>
+            UI Library<br />
+            & Token<br />
+            System
+          </h1>
+
+          <a class="case-back" href="/projects">
+            <span class="case-back__arrow">↙</span>
+            Projects
+          </a>
+        </div>
 
 
-  <article class="container-narrow doc-grid tokens-case">
-      <!-- LEFT rail (Prev) -->
-    <nav class="case-rail case-rail--left" aria-label="Previous project">
-      <a class="pager-btn pager-btn--prev" href="/case-studies/isekas" aria-label="Previous: Isekas — Self-Service Checkout">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-      </a>
-    </nav>
-    <!-- LEFT: Narrative --------------------------------------------------->
-    <div class="doc-main">
-        <header class="case-hero">
-        <h1>UI Library & Token System</h1>
-        <p class="meta">Design System • Frontend • 2023–2025</p>
-        <p class="lede">
-          Composable tokens, themed components, and a docs site that keeps design and code in lockstep.
+        <div class="case-meta">
+          <span class="case-label">bio</span>
+
+          <p class="case-bio">
+            A shared design system connecting visual language,
+            interaction patterns and frontend implementation
+            across multiple products.
+          </p>
+        </div>
+
+
+        <div class="case-meta">
+          <span class="case-label">deliverables</span>
+
+          <div class="case-deliverables">
+            <span>Design system</span>
+            <span>Frontend</span>
+            <span>Design tokens</span>
+            <span>Accessibility</span>
+          </div>
+        </div>
+
+
+        <div class="case-meta">
+          <span class="case-label">year</span>
+          <p class="case-year">2023–2025</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
+    <section class="case-media case-media--hero">
+      <img
+        src="/images/tokens/hero.webp"
+        alt="UI Library and token architecture"
+      />
+    </section>
+
+
+    <!-- ===================================================
+         STATEMENT
+    ==================================================== -->
+
+    <section class="case-statement">
+      <span class="case-label">system</span>
+
+      <p>
+        One visual language.<br />
+        One token architecture.<br />
+        Multiple products.
+      </p>
+    </section>
+
+
+    <!-- ===================================================
+         THEMING
+    ==================================================== -->
+
+    <section class="case-section">
+
+      <div class="case-section__head">
+        <span class="case-label">01 / theming</span>
+
+        <h2>
+          Same components.<br />
+          Different semantics.
+        </h2>
+
+        <p>
+          Light and dark themes are driven by semantic tokens rather
+          than separate component implementations.
         </p>
-      </header>
-      
+      </div>
 
-      <!-- Vertical hero gallery (under title, before text) -->
-<section class="hero-vertical" aria-label="Featured previews">
-  <button class="shot-tile ar-21x9"
-    data-full="/images/tokens/hero.webp"
-    data-title="Token Architecture"
-    data-cap="<p><strong>Core → Semantic → Component.</strong></p>
-    <ul>
-      <li>CSS variables as the source of truth.</li>
-      <li>Scalable folder structure to support the library.</li>
-      <li>Built-in utility classes for common patterns and states.</li>
-    </ul>">
-    <img src="/images/tokens/hero.webp" alt="Token architecture overview">
-  </button>
-</section>
-      
-<section id="s-architecture">
-  <h2>Context & Problem</h2>
-  <p>
-    Parallel UI work across products led to visual drift, duplicated CSS, and uneven accessibility.
-    We needed a shared design language and component system to align styles, behavior, and theming.
-  </p>
-</section>
 
-<section id="s-approach">
-  <h2>Approach</h2>
-  <ul>
-    <li>Defined a token hierarchy — <em>core → semantic → component</em> — for consistency and theming.</li>
-    <li>Centralized tokens and component styles in-platform for reuse across apps.</li>
-    <li>Light/Dark via <strong>semantic tokens only</strong> (no per-component overrides).</li>
-    <li>Accessible primitives with contrast, focus, and states handled by default.</li>
-  </ul>
-</section>
+      <div class="case-grid case-grid--2">
 
-<section id="s-outcomes">
-  <h2>Outcomes</h2>
-  <ul>
-    <li>Unified visual language and interaction patterns across products.</li>
-    <li>Simpler theming and maintenance through shared tokens and components.</li>
-    <li>Clear accessibility defaults (focus / contrast / states) across the system.</li>
-  </ul>
-</section>
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/dark-theme.webp"
+            alt="Dark theme token system"
+            loading="lazy"
+          />
 
-<section id="s-role">
-  <h2>My Role</h2>
-  <ul>
-    <li>End-to-end: design <em>and</em> development.</li>
-    <li>Token structure and dark-mode strategy.</li>
-    <li>Component APIs & states (navigation, forms, modals, alerts, tables, datepicker).</li>
-    <li>Developer guidelines and implementation docs.</li>
-  </ul>
-</section>
+          <figcaption>
+            <strong>Dark theme</strong>
+            <span>semantic token mapping</span>
+          </figcaption>
+        </figure>
 
-<p class="flex-col links-container">
-  <a class="btn link-btn" href="/case-studies/dash-case">
-    <span class="btn-label">Check a demo of unified navigation menu</span>
-    <i class="ri-arrow-right-line"></i>
-  </a>
-  <a class="btn link-btn" href="/case-studies/dash-case">
-      <span class="btn-label">Dashboards and app interfaces</span>
-    <i class="ri-arrow-right-line"></i>
-  </a>
-</p>
-    </div>
 
-    <!-- RIGHT: Visual panels / screenshots ------------------------------->
-    <aside class="doc-aside feature-card">
-      <!-- Just images (2 columns) -->
-      <nav class="shots-grid" aria-label="Visual gallery">
-        <!-- Dark theme -->
-<button class="shot-tile"
-  data-full="/images/tokens/dark-theme.webp"
-  data-title="Theming — Dark"
-  data-cap="<p>One component set, two semantic maps.</p>
-  <ul>
-    <li>Swap <strong>semantic tokens only</strong> (no component overrides).</li>
-    <li>Contrast-checked roles (AA/AAA) baked into tokens.</li>
-    <li>Focus/state tokens stay consistent across themes.</li>
-  </ul>">
-  <img src="/images/tokens/dark-theme.webp" alt="Dark theme — token-driven theming">
-</button>
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/light-theme-demo.webp"
+            alt="Light theme token system"
+            loading="lazy"
+          />
 
-<!-- Light theme -->
-<button class="shot-tile"
-  data-full="/images/tokens/light-theme-demo.webp"
-  data-title="Theming — Light"
-  data-cap="<p>Same components, different semantics.</p>
-  <ul>
-    <li>Light/Dark parity via role-based color tokens.</li>
-    <li>No per-component forks to maintain.</li>
-    <li>State and focus styling derived from the same map.</li>
-  </ul>">
-  <img src="/images/tokens/light-theme-demo.webp" alt="Light theme — token-driven theming">
-</button>
+          <figcaption>
+            <strong>Light theme</strong>
+            <span>same component architecture</span>
+          </figcaption>
+        </figure>
 
-<!-- Overview of components -->
-<button class="shot-tile"
-  data-full="/images/tokens/overview.webp"
-  data-title="Component Library Overview"
-  data-cap="<p>Everything needed for product UI at scale.</p>
-  <ul>
-    <li><strong>Navigation:</strong> menus, breadcrumbs, tabs.</li>
-    <li><strong>Forms:</strong> inputs, selects, multi-select with search &amp; select-all, swap fields, file inputs.</li>
-    <li><strong>Feedback:</strong> buttons, alerts, modals, toasts.</li>
-  </ul>">
-  <img src="/images/tokens/overview.webp" loading="lazy" alt="Overview of tokenized components">
-</button>
+      </div>
+    </section>
 
-<!-- Modals -->
-<button class="shot-tile"
-  data-full="/images/tokens/resource.webp"
-  data-title="Modal Variants"
-  data-cap="<p>Modal options for common and edge cases.</p>
-  <ul>
-    <li>Search dialogs and minimal headers for focused tasks.</li>
-    <li>Controlled/auto-open patterns for workflow steps.</li>
-    <li>Soft note variants for non-blocking information.</li>
-  </ul>">
-  <img src="/images/tokens/resource.webp" loading="lazy" alt="Modal variants — search, minimal, soft note">
-</button>
 
-<!-- Thank-you modal -->
-<button class="shot-tile"
-  data-full="/images/tokens/thank-you-modal-2.webp"
-  data-title="Thank-You Modal"
-  data-cap="<p>Branded confirmation with subtle CSS animation.</p>
-  <ul>
-    <li>Clear next steps and dismiss actions.</li>
-    <li>Accessible focus management on open/close.</li>
-  </ul>">
-  <img src="/images/tokens/thank-you-modal-2.webp" loading="lazy" alt="Thank-you confirmation modal">
-</button>
+    <!-- ===================================================
+         COMPONENT SYSTEM
+    ==================================================== -->
 
-<!-- Tables -->
-<button class="shot-tile"
-  data-full="/images/tokens/flex-table.webp"
-  data-title="Tables"
-  data-cap="<p>Multiple table options for different data needs.</p>
-  <ul>
-    <li>Standard HTML tables for simple datasets.</li>
-    <li>Flex-based tables for responsive layouts.</li>
-    <li>Patterns for large datasets and dense views.</li>
-    <li>Built-in hover states and collapsible columns.</li>
-  </ul>">
-  <img src="/images/tokens/flex-table.webp" loading="lazy" alt="Table patterns — HTML and flex-based">
-</button>
+    <section class="case-section">
 
-<!-- States & A11y -->
-<button class="shot-tile"
-  data-full="/images/tokens/alert-success.webp"
-  data-title="States & Accessibility"
-  data-cap="<p>A11y-first defaults, driven by tokens.</p>
-  <ul>
-    <li>Focus rings via <code>--focus-ring</code> tokens (respects reduced motion).</li>
-    <li>Alert roles map to tokens: info, success, warning, danger.</li>
-    <li>Disabled/readonly/invalid states handled centrally.</li>
-  </ul>">
-  <img src="/images/tokens/alert-success.webp" loading="lazy" alt="Accessible success alert">
-</button>
+      <div class="case-section__head">
+        <span class="case-label">02 / components</span>
 
-<!-- Soft alerts -->
-<button class="shot-tile"
-  data-full="/images/tokens/alert-soft.webp"
-  data-title="Soft Alerts"
-  data-cap="<p>Non-blocking, persistent messaging.</p>
-  <ul>
-    <li>Collapsible alerts that expand on hover for details.</li>
-    <li>Persistent variants that don’t auto-dismiss.</li>
-    <li>Softer palette for long-lived notes.</li>
-  </ul>">
-  <img src="/images/tokens/alert-soft.webp" loading="lazy" alt="Soft alert variants">
-</button>
+        <h2>
+          Built for product<br />
+          UI at scale.
+        </h2>
+      </div>
 
-<!-- Custom datepicker -->
-<button class="shot-tile"
-  data-full="/images/tokens/datepicker.webp"
-  data-title="Custom Datepicker"
-  data-cap="<p>Lightweight, accessible date selection.</p>
-  <ul>
-    <li>Full keyboard support and focus management.</li>
-    <li>Quick selections for common ranges.</li>
-  </ul>">
-  <img src="/images/tokens/datepicker.webp" loading="lazy" alt="Custom, accessible datepicker">
-</button>
 
-<!-- Final / custom SVGs -->
-<button class="shot-tile"
-  data-full="/images/tokens/thanks.webp"
-  data-title="Custom SVGs & Final Notes"
-  data-cap="<p>Bespoke iconography and details.</p>
-  <ul>
-    <li><em>currentColor</em> strokes/fills for automatic theming.</li>
-    <li>Pixel-grid aligned, SVGO-optimized paths.</li>
-    <li>Consistent stroke widths at 16/20/24 sizes.</li>
-  </ul>">
-  <img src="/images/tokens/thanks.webp" loading="lazy" alt="Custom SVG set and closing notes">
-</button>
-      </nav>
-    </aside>
+      <figure class="case-figure case-figure--wide">
+        <img
+          src="/images/tokens/overview.webp"
+          alt="Overview of tokenized UI components"
+          loading="lazy"
+        />
 
-        
+        <figcaption>
+          <strong>Component library</strong>
+          <span>navigation · forms · feedback · tables · states</span>
+        </figcaption>
+      </figure>
 
-        
+    </section>
 
-    <!-- Lightweight lightbox (scoped to .tokens-case) -->
-    <!-- Lightweight lightbox (scoped to .tokens-case) -->
-<div class="tokens-lightbox" aria-hidden="true">
-  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
-    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
 
-    <div class="tokens-lightbox__media">
-      <img class="tokens-lightbox__img" alt="" />
-    </div>
-    <aside class="tokens-lightbox__meta">
-      <h4 class="tokens-lightbox__title"></h4>
-      <div class="tokens-lightbox__cap"></div>
-    </aside>
+    <!-- ===================================================
+         DETAILS GRID
+    ==================================================== -->
+
+    <section class="case-section">
+
+      <div class="case-section__head">
+        <span class="case-label">03 / interaction</span>
+
+        <h2>
+          Patterns instead<br />
+          of one-offs.
+        </h2>
+      </div>
+
+
+      <div class="case-grid case-grid--2">
+
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/resource.webp"
+            alt="Modal component variants"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Modal system</strong>
+            <span>shared structure · multiple contexts</span>
+          </figcaption>
+        </figure>
+
+
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/thank-you-modal-2.webp"
+            alt="Thank-you modal"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Confirmation states</strong>
+            <span>clear feedback and next actions</span>
+          </figcaption>
+        </figure>
+
+
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/flex-table.webp"
+            alt="Responsive table patterns"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Table patterns</strong>
+            <span>dense data · responsive behavior</span>
+          </figcaption>
+        </figure>
+
+
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/datepicker.webp"
+            alt="Accessible custom datepicker"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Datepicker</strong>
+            <span>keyboard-first interaction</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         ACCESSIBILITY
+    ==================================================== -->
+
+    <section class="case-section">
+
+      <div class="case-section__head">
+        <span class="case-label">04 / accessibility</span>
+
+        <h2>
+          States belong to<br />
+          the system.
+        </h2>
+
+        <p>
+          Focus, contrast, feedback and disabled states are defined
+          centrally rather than recreated product by product.
+        </p>
+      </div>
+
+
+      <div class="case-grid case-grid--2">
+
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/alert-success.webp"
+            alt="Accessible success alert"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>System states</strong>
+            <span>success · warning · danger · info</span>
+          </figcaption>
+        </figure>
+
+
+        <figure class="case-figure">
+          <img
+            src="/images/tokens/alert-soft.webp"
+            alt="Soft alert variants"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Soft feedback</strong>
+            <span>persistent non-blocking messaging</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================
+         CLOSING IMAGE
+    ==================================================== -->
+
+    <section class="case-media case-media--closing">
+      <img
+        src="/images/tokens/thanks.webp"
+        alt="Custom SVG and UI library details"
+        loading="lazy"
+      />
+    </section>
+
+
+   <!-- ===================================================
+     NEXT PROJECT
+==================================================== -->
+
+<a
+  class="case-next"
+  href="/case-studies/dash-case"
+>
+  <div>
+    <span class="case-next__eyebrow">
+      next project
+    </span>
+
+    <h2 class="case-next__title">
+      Dashboard &<br />
+      Application<br />
+      Patterns
+    </h2>
   </div>
-</div>
 
-<!-- RIGHT rail (Next) -->
-    <nav class="case-rail case-rail--right" aria-label="Next project">
-      <a class="pager-btn pager-btn--next" href="/case-studies/dash-case" aria-label="Next: Dashboard & Application Patterns">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </a>
-    </nav>
-  </article>
-  
-<script type="module">
-(() => {
-  const scope = document.querySelector('.tokens-case');
-  if (!scope) return;
+  <span
+    class="case-next__arrow"
+    aria-hidden="true"
+  >
+    ↗
+  </span>
+</a>
 
-  const lb       = scope.querySelector('.tokens-lightbox');
-  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
-  const imgEl    = lb.querySelector('.tokens-lightbox__img');
-  const titleEl  = lb.querySelector('.tokens-lightbox__title');
-  const capEl    = lb.querySelector('.tokens-lightbox__cap');
-  const closeBtn = lb.querySelector('.tokens-lightbox__close');
-  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
-  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
+  </main>
 
-  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
-  let currentIndex = -1;
-  let lastFocus = null;
 
-  function extractDataFrom(el) {
-    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
-    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
-    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
-    const title = carrier.getAttribute('data-title') || img?.alt || '';
-    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
-    return { src, title, cap };
-  }
+  <style is:global>
 
-  function openLightbox(index) {
-    currentIndex = index;
-    const { src, title, cap } = extractDataFrom(tiles[index]);
-    lastFocus = document.activeElement;
-    imgEl.src = src;
-    titleEl.textContent = title;
-    capEl.innerHTML = cap;
-    lb.classList.add('is-open');
-    document.documentElement.classList.add('tokens-lightbox-open');
-    closeBtn.focus();
-  }
+    /* =====================================================
+       PAGE
+    ====================================================== */
 
-  function closeLightbox() {
-    lb.classList.remove('is-open');
-    document.documentElement.classList.remove('tokens-lightbox-open');
-    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  function showNext() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex + 1) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  function showPrev() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  scope.addEventListener('click', e => {
-    const tile = e.target.closest('.shot-tile');
-    if (tile) {
-      e.preventDefault();
-      openLightbox(tiles.indexOf(tile));
+    html,
+    body {
+      background: #0d0f0d !important;
     }
-  });
 
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', showPrev);
-  nextBtn.addEventListener('click', showNext);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    body {
+      color: #f2f1ec;
+    }
 
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-  });
-})();
-</script>
 
-<style>
-  .feature-card {
-    padding: 40px 0;
+    .case-page {
+      --bg: #0d0f0d;
+      --fg: #f2f1ec;
+      --muted: rgba(242, 241, 236, .46);
+      --line: rgba(242, 241, 236, .13);
+      --lime: #d8f27a;
+
+      background: var(--bg);
+      color: var(--fg);
+
+      min-height: 100vh;
+      padding-top: 1px;
+    }
+
+
+    .case-intro,
+    .case-section,
+    .case-statement,
+    .case-media,
+    .case-next {
+      width: calc(100% - 80px);
+      max-width: 1500px;
+      margin-inline: auto;
+    }
+
+
+
+    /* =====================================================
+       INTRO
+    ====================================================== */
+
+    .case-intro {
+      padding-top: clamp(80px, 1vw, 180px);
+      padding-bottom: clamp(90px, 9vw, 130px);
+    }
+
+
+    .case-intro__grid {
+      display: grid;
+
+      grid-template-columns:
+        1.1fr
+        1.6fr
+        1.05fr
+        .6fr;
+
+      gap: clamp(34px, 4vw, 76px);
+      align-items: start;
+    }
+
+
+    .case-label {
+      display: block;
+
+      margin-bottom: 18px;
+
+      font-family: "Oswald", "Arial Narrow", sans-serif;
+
+      font-size: 1rem;
+      font-weight: 500;
+
+      letter-spacing: .09em;
+
+      color: var(--muted);
+
+      text-transform: lowercase;
+    }
+
+
+    .case-meta h1 {
+      margin: 0;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(3rem, 4.4vw, 5.5rem);
+      font-weight: 650;
+
+      line-height: .88;
+
+      letter-spacing: -.065em;
+    }
+
+
+    .case-bio {
+      margin: 0;
+
+      max-width: 520px;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(1.05rem, 1.4vw, 1.45rem);
+
+      line-height: 1.28;
+
+      letter-spacing: -.025em;
+    }
+
+
+    .case-deliverables {
+      display: flex;
+      flex-direction: column;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(1.3rem, 1.7vw, 1.8rem);
+
+      line-height: 1.07;
+
+      letter-spacing: -.035em;
+    }
+
+
+    .case-year {
+      margin: 0;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(1.35rem, 1.8vw, 1.85rem);
+    }
+
+
+    .case-back {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 11px;
+
+      margin-top: 44px;
+
+      color: var(--fg);
+
+      text-decoration: none;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: .95rem;
+      font-weight: 500;
+    }
+
+
+    .case-back__arrow {
+      font-size: 2rem;
+      font-weight: 300;
+    }
+
+
+
+    /* =====================================================
+       MEDIA
+    ====================================================== */
+
+    .case-media img,
+    .case-figure img {
+      display: block;
+
+      width: 100%;
+
+      object-fit: cover;
+
+      background: #151815;
+    }
+
+
+    .case-media--hero img {
+      aspect-ratio: 16 / 8.6;
+    }
+
+
+    .case-media--closing {
+      margin-top: clamp(120px, 12vw, 180px);
+    }
+
+
+    .case-media--closing img {
+      aspect-ratio: 16 / 8.6;
+    }
+
+
+
+    /* =====================================================
+       STATEMENT
+    ====================================================== */
+
+    .case-statement {
+      padding-top: clamp(130px, 13vw, 190px);
+      padding-bottom: clamp(130px, 13vw, 190px);
+    }
+
+
+    .case-statement p {
+      margin: 0;
+
+      max-width: 1250px;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(3.3rem, 7vw, 8rem);
+
+      font-weight: 650;
+
+      line-height: .87;
+
+      letter-spacing: -.07em;
+    }
+
+
+
+    /* =====================================================
+       SECTION
+    ====================================================== */
+
+    .case-section {
+      padding-top: clamp(85px, 9vw, 130px);
+    }
+
+
+    .case-section__head {
+      display: grid;
+
+      grid-template-columns: .7fr 1.25fr 1fr;
+
+      gap: clamp(30px, 5vw, 80px);
+
+      margin-bottom: clamp(50px, 6vw, 90px);
+
+      padding-top: 28px;
+
+      border-top: 1px solid var(--line);
+    }
+
+
+    .case-section__head h2 {
+      margin: 0;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(2.5rem, 4.5vw, 5.4rem);
+
+      font-weight: 650;
+
+      line-height: .9;
+
+      letter-spacing: -.06em;
+    }
+
+
+    .case-section__head > p {
+      margin: 0;
+
+      max-width: 480px;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(1rem, 1.2vw, 1.25rem);
+
+      line-height: 1.4;
+
+      color: rgba(242, 241, 236, .62);
+    }
+
+
+
+    /* =====================================================
+       GRID
+    ====================================================== */
+
+    .case-grid {
+      display: grid;
+    }
+
+
+    .case-grid--2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: clamp(34px, 4vw, 62px) clamp(22px, 2.5vw, 38px);
+    }
+
+
+    .case-figure {
+      margin: 0;
+    }
+
+
+    .case-figure img {
+      aspect-ratio: 16 / 9;
+    }
+
+
+    .case-figure--wide img {
+      aspect-ratio: 16 / 8.5;
+    }
+
+
+    .case-figure figcaption {
+      display: flex;
+      align-items: baseline;
+
+      gap: 13px;
+
+      padding-top: 12px;
+    }
+
+
+    .case-figure figcaption strong {
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(1.15rem, 1.55vw, 1.7rem);
+
+      font-weight: 600;
+
+      line-height: 1;
+
+      letter-spacing: -.035em;
+    }
+
+
+    .case-figure figcaption span {
+      font-family: "Oswald", "Arial Narrow", sans-serif;
+
+      font-size: 1rem;
+
+      letter-spacing: .06em;
+
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+
+
+    /* =====================================================
+       NEXT
+    ====================================================== */
+
+    .case-next {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: end;
+
+      gap: 50px;
+
+      margin-top: clamp(130px, 13vw, 190px);
+
+      padding-top: clamp(50px, 6vw, 80px);
+      padding-bottom: clamp(90px, 9vw, 130px);
+
+      border-top: 1px solid var(--line);
+
+      color: var(--fg);
+
+      text-decoration: none;
+    }
+
+
+    .case-next__eyebrow {
+      display: block;
+
+      margin-bottom: 20px;
+
+      font-family: "Oswald", "Arial Narrow", sans-serif;
+
+      font-size: .8rem;
+
+      letter-spacing: .09em;
+
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+
+    .case-next__title {
+      margin: 0;
+
+      font-family: "Inter Tight", sans-serif;
+
+      font-size: clamp(3.4rem, 6.8vw, 8rem);
+
+      font-weight: 650;
+
+      line-height: .86;
+
+      letter-spacing: -.07em;
+    }
+
+
+    .case-next__arrow {
+      color: var(--lime);
+
+      font-size: clamp(5rem, 8vw, 9rem);
+
+      line-height: .7;
+
+      transition: transform .2s ease;
+    }
+
+
+    .case-next:hover .case-next__arrow {
+      transform: translate(8px, -8px);
+    }
+
+
+
+    /* =====================================================
+       TABLET
+    ====================================================== */
+
+    @media (max-width: 1000px) {
+
+      .case-intro__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+
+      .case-section__head {
+        grid-template-columns: 1fr 1.5fr;
+      }
+
+
+      .case-section__head > p {
+        grid-column: 2;
+      }
+
+    }
+
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 760px) {
+
+      .case-intro,
+      .case-section,
+      .case-statement,
+      .case-media,
+      .case-next {
+        width: calc(100% - 32px);
+      }
+
+
+      .case-intro {
+        padding-top: 80px;
+      }
+
+
+      .case-intro__grid {
+        grid-template-columns: 1fr;
+
+        gap: 46px;
+      }
+
+
+      .case-meta h1 {
+        font-size: clamp(3.3rem, 15vw, 5.4rem);
+      }
+
+
+      .case-grid--2 {
+        grid-template-columns: 1fr;
+      }
+
+
+      .case-section__head {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+      }
+
+
+      .case-section__head > p {
+        grid-column: auto;
+      }
+
+
+      .case-statement {
+        padding-top: 90px;
+        padding-bottom: 100px;
+      }
+
+
+      .case-statement p {
+        font-size: clamp(3rem, 14vw, 5.2rem);
+      }
+
+
+      .case-next__title {
+        font-size: clamp(3rem, 14vw, 5rem);
+      }
+
+
+      .case-next__arrow {
+        font-size: 4.5rem;
+      }
+
+
+      .case-figure figcaption {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 5px;
+      }
+
+    }
+
+    .case-next__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 68px;
+  height: 68px;
+
+  flex: 0 0 68px;
+
+  border: 2px solid var(--lime);
+  border-radius: 50%;
+
+  color: var(--lime);
+
+  font-family: Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  line-height: 1;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease;
+}
+
+.case-next:hover .case-next__arrow {
+  background: var(--lime);
+  color: #0d0f0d;
+
+  transform: translate(4px, -4px);
+}
+
+@media (max-width: 760px) {
+  .case-next__arrow {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+
+    font-size: 1.8rem;
   }
-</style>
+}
+
+  </style>
 
 </Base>
-
-

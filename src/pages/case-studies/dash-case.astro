@@ -1,368 +1,854 @@
 ---
 import Base from "../../layouts/Base.astro";
-import "../../styles/case-base.css";   
+import "../../styles/case-editorial.css";
 
-const title = "Case Study: Dashboard & Application Patterns";
+const title = "Dashboard & Application Patterns | Maria Klammer";
 ---
 
-<Base title={title} noWrap={false} hideFooter={false}>
-  
+<Base
+  title={title}
+  bodyClass="case-editorial-shell"
+  noWrap={true}
+  hideFooter={true}
+>
+  <article class="case-editorial">
+    <div class="case-editorial__inner">
 
-  <article class="container-narrow doc-grid tokens-case">
-          <!-- LEFT rail (Prev) -->
-    <nav class="case-rail case-rail--left" aria-label="Previous project">
-      <a class="pager-btn pager-btn--prev" href="/case-studies/ui-library-tokens" aria-label="Previous: UI Library & Token System">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-      </a>
-    </nav>
-    <!-- LEFT: Narrative -->
-    <div class="doc-main">
-      <header class="case-hero">
-    <h1>Dashboard & <br> Application Patterns</h1>
-    <p class="meta">UX/UI • Frontend • 2023–2025</p>
-    <p class="lede">
-      Over 200 apps using the same UI Library and layout. Patterns used in back-office and operational apps. Independent functional Charts Library.
-    </p>
-  </header>
-      <!-- Hero preview -->
-      <section class="hero-vertical" aria-label="Featured preview">
-        <button class="shot-tile ar-21x9"
-          data-full="/images/tokens/bo-dashboard.webp"
-          data-title="Operational Dashboard"
-          data-cap="<p>Independent starting points for every client</p>
-          <ul>
-            <li>Customized layout options depending on clients needs.</li>
-            <li>App selection based on client preferences.</li>
-            <li>New vs existing clients separation for clearest starting point.</li>
-            <li>Theme options.</li>
-          </ul>">
-          <img src="/images/tokens/bo-dashboard.webp" alt="Operational dashboard overview">
-        </button>
+      <!-- ===================================================
+           META
+      ==================================================== -->
+
+      <section class="case-meta">
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            project
+          </p>
+
+          <h1 class="case-meta__value">
+            Dashboard &<br />
+            Application<br />
+            Patterns
+          </h1>
+
+          <a
+            class="case-back"
+            href="/projects"
+            aria-label="Back to projects"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 5L5 19" />
+              <path d="M5 19V8" />
+              <path d="M5 19h11" />
+            </svg>
+
+            Projects
+          </a>
+        </div>
+
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            bio
+          </p>
+
+          <p class="case-meta__bio">
+            A scalable application framework for data-heavy
+            operational products — shared layouts, dashboard
+            patterns, tables, states and chart components used
+            across a large product ecosystem.
+          </p>
+        </div>
+
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            deliverables
+          </p>
+
+          <div class="case-meta__stack">
+            <span>UX/UI</span>
+            <span>Frontend</span>
+            <span>Application patterns</span>
+            <span>Charts library</span>
+            <span>Accessibility</span>
+          </div>
+        </div>
+
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            year
+          </p>
+
+          <p class="case-meta__value">
+            2023–2025
+          </p>
+        </div>
+
       </section>
 
-      <section id="s-architecture">
-  <h2>Context & Problem</h2>
-  <p>
-    Multiple internal product teams needed consistent dashboards for daily operations.
-    Existing screens were built independently, leading to visual drift, inconsistent
-    interactions, and duplicated components. This caused slower workflows, higher
-    maintenance costs, and user confusion.
-  </p>
-</section>
 
-<section id="s-approach">
-  <h2>Approach</h2>
-  <ul>
-    <li>Defined standard page primitives - header, context bar, filters, content area, and actions.</li>
-    <li>Created reusable patterns for tables, forms, empty and error states.</li>
-    <li>Implemented keyboard-friendly navigation and predictable selection/submit behavior.</li>
-    <li>Developed responsive table systems (HTML/Flex) with sorting, bulk actions, and adaptive layouts.</li>
-    <li>Applied consistent spacing, contrast, and hierarchy through design tokens.</li>
-  </ul>
-</section>
+      <!-- ===================================================
+           HERO
+      ==================================================== -->
 
-<section id="s-outcomes">
-  <h2>Outcomes</h2>
-  <ul>
-    <li>Unified visual language across 200+ internal applications.</li>
-    <li>Reduced development time and support overhead through shared components.</li>
-    <li>Improved accessibility - focus management, ARIA coverage, and contrast compliance.</li>
-    <li>Established scalable design standards for future app development.</li>
-  </ul>
-</section>
-
-<section id="s-role">
-  <h2>My Role</h2>
-  <ul>
-    <li>Led end-to-end design and front-end implementation of the dashboard system.</li>
-    <li>Defined and documented layout primitives and data-heavy table patterns.</li>
-    <li>Built coded examples and developer guidance for cross-team adoption.</li>
-    <li>Collaborated with engineers to refine accessibility and responsive behaviors.</li>
-  </ul>
-</section>
-
-<section id="s-charts">
-  <h2>Charts Library</h2>
-  <p>
-    Built on top of <strong>Charts.css</strong>, extended with custom tokens, responsive layout options,
-    and light/dark theming. Unified color scales and typographic hierarchy ensure consistent visuals
-    across all dashboards. New chart types include <strong>radar, funnel, and calendar</strong> charts,
-    alongside core <strong>bar, line, pie, and donut</strong> types.
-  </p>
-
-  <section class="hero-vertical" aria-label="Charts Library Preview">
-    <button class="shot-tile ar-21x9"
-      data-full="/images/tokens/charts-library.webp"
-      data-title="Charts Library"
-      data-cap="<p>Over 20 chart foundations built for maintainable, accessible data visualization.</p>
-      <ul>
-        <li>Pure HTML/CSS base — no dependencies</li>
-        <li>Token-driven theming and typography</li>
-        <li>Animated transitions and responsive sizing</li>
-      </ul>">
-      <img src="/images/tokens/charts-library.webp" alt="Charts library overview">
-    </button>
-  </section>
-
-  <p class="aside-note">
-    Semantic, themeable, and maintainable chart components — extended for responsive layouts,
-    tooltips, and animation utilities.
-  </p>
-</section>
-<p class="flex-col links-container">
-  <a class="btn link-btn" href="/case-studies/ui-library-tokens">
-    <span class="btn-label">Check a demo of unified navigation menu</span>
-    <i class="ri-arrow-right-line"></i>
-  </a>
-</p>
-    </div>
-
-    <!-- RIGHT: Visual gallery -->
-    <!-- RIGHT: Visual gallery -->
-<aside class="doc-aside feature-card">
-  <nav class="shots-grid" aria-label="Visual gallery">
-
-    <button class="shot-tile"
-      data-full="/images/tokens/bo-main.webp"
-      data-title="Main Dashboards"
-      data-cap="<p>Adaptive dashboards for different client contexts.</p>
-      <ul>
-        <li>Post-login home and operational overviews</li>
-        <li>Configurable layout zones and theme variants</li>
-      </ul>">
-      <img src="/images/tokens/bo-main.webp" alt="Main dashboard variations">
-    </button>
-    <button class="shot-tile"
-      data-full="/images/tokens/login.webp"
-      data-title="Login"
-      data-cap="<p>Login page</p>
-      <ul>
-        <li>Login views for both themes</li>
-        <li>Covered all use cases - lost passwords, register, errors etc.</li>
-      </ul>">
-      <img src="/images/tokens/login.webp" loading="lazy" alt="Main dashboard variations">
-    </button>
-
-    <button class="shot-tile"
-      data-full="/images/tokens/post-login-d.webp"
-      data-title="Post-login View"
-      data-cap="<p>Compact dashboard layout for frequent actions.</p>
-      <ul>
-        <li>Quick access to key workflows</li>
-        <li>Designed for daily operational use</li>
-      </ul>">
-      <img src="/images/tokens/post-login-d.webp" loading="lazy" alt="Post-login dashboard view">
-    </button>
-
-    <button class="shot-tile"
-      data-full="/images/tokens/crmapp.webp"
-      data-title="CRM App"
-      data-cap="<p>Example of an app built on the shared UI Library.</p>
-      <ul>
-        <li>Consistent layout and navigation</li>
-        <li>Reusable table, form, and modal patterns</li>
-      </ul>">
-      <img src="/images/tokens/crmapp.webp" loading="lazy" alt="CRM app interface example">
-    </button>
-
-    <button class="shot-tile"
-      data-full="/images/tokens/sales.webp"
-      data-title="Sales Applications"
-      data-cap="<p>Operational apps using unified dashboard components.</p>
-      <ul>
-        <li>Responsive navigation and filtering</li>
-        <li>Consistent tables and bulk actions</li>
-      </ul>">
-      <img src="/images/tokens/sales.webp" loading="lazy" alt="Sales application interface">
-    </button>
-
-    <button class="shot-tile"
-      data-full="/images/tokens/wizard-dashboard.webp"
-      data-title="Wizard Dashboards"
-      data-cap="<p>Action-oriented dashboards guiding users through setup and workflows.</p>
-      <ul>
-        <li>Progressive disclosure for complex actions</li>
-        <li>Modular, themeable layouts</li>
-      </ul>">
-      <img src="/images/tokens/wizard-dashboard.webp" loading="lazy" alt="Wizard-style dashboard layouts">
-    </button>
-
-    <button class="shot-tile"
-      data-full="/images/tokens/pieline.webp"
-      data-title="Charts Library – Line & Pie"
-      data-cap="<p>Token-based chart system built on Charts.css.</p>
-      <ul>
-        <li>Light/dark themes and unified color scales</li>
-        <li>Pure CSS line and pie chart components</li>
-      </ul>">
-      <img src="/images/tokens/pieline.webp" loading="lazy" alt="Line and pie chart examples">
-    </button>
-
-    <button class="shot-tile"
-      data-full="/images/tokens/round.webp"
-      data-title="Charts Library – Donut"
-      data-cap="<p>Reusable donut chart component with tokenized color system.</p>
-      <ul>
-        <li>Theme-aware data visualization</li>
-        <li>Accessible and responsive CSS structure</li>
-      </ul>">
-      <img src="/images/tokens/round.webp" loading="lazy" alt="Donut chart component example">
-    </button>
-
-    <button class="shot-tile"
-      data-full="/images/tokens/radar-chart.webp"
-      data-title="Charts Library – Radar & Funnel"
-      data-cap="<p>Extended chart types for analytical dashboards.</p>
-      <ul>
-        <li>Radar, funnel, and calendar charts</li>
-        <li>Consistent typography and scale systems</li>
-      </ul>">
-      <img src="/images/tokens/radar-chart.webp" loading="lazy" alt="Radar and funnel chart examples">
-    </button>
-    <button class="shot-tile"
-      data-full="/images/tokens/bar.webp"
-      data-title="Charts Library – Radar & Funnel"
-      data-cap="<p>Extended chart types for analytical dashboards.</p>
-      <ul>
-        <li>Radar, funnel, and calendar charts</li>
-        <li>Consistent typography and scale systems</li>
-      </ul>">
-      <img src="/images/tokens/bar.webp" loading="lazy" alt="Radar and funnel chart examples">
-    </button>
+      <figure class="case-hero-media dashboard-hero">
+        <img
+          src="/images/tokens/bo-dashboard.webp"
+          alt="Operational dashboard overview"
+        />
+      </figure>
 
 
-  </nav>
+      <!-- ===================================================
+           STATEMENT
+      ==================================================== -->
 
-</aside>
+      <section class="case-statement">
 
-    <!-- Lightbox -->
-    <div class="tokens-lightbox" aria-hidden="true">
-  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
-    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+        <p class="case-statement__text">
+          One application language
+          across
+          <span class="case-statement__accent">
+            200+ product views.
+          </span>
+        </p>
 
-    <div class="tokens-lightbox__media">
-      <img class="tokens-lightbox__img" alt="" />
-    </div>
-    <aside class="tokens-lightbox__meta">
-      <h4 class="tokens-lightbox__title"></h4>
-      <div class="tokens-lightbox__cap"></div>
-    </aside>
-  </div>
-</div>
-<!-- RIGHT rail (Next) -->
-    <nav class="case-rail case-rail--right" aria-label="Next project">
-      <a class="pager-btn pager-btn--next" href="/case-studies/telia" aria-label="Next: Telia Help & Guides UX Analysis">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </section>
+
+
+      <!-- ===================================================
+           DASHBOARD SYSTEM
+      ==================================================== -->
+
+      <section class="dashboard-section">
+
+        <div class="dashboard-section__head">
+
+          <span class="dashboard-eyebrow">
+            01 / application system
+          </span>
+
+          <h2>
+            Same foundations.<br />
+            Different workflows.
+          </h2>
+
+          <p>
+            Shared page structure, navigation, filters, actions and
+            states allow individual applications to stay consistent
+            without becoming visually identical.
+          </p>
+
+        </div>
+
+
+        <div class="dashboard-grid dashboard-grid--2">
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/bo-main.webp"
+              alt="Main dashboard variations"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Main dashboards</strong>
+              <span>configurable product entry points</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/post-login-d.webp"
+              alt="Post login dashboard"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Post-login views</strong>
+              <span>context-aware starting points</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           PRODUCT APPLICATIONS
+      ==================================================== -->
+
+      <section class="dashboard-section">
+
+        <div class="dashboard-section__head">
+
+          <span class="dashboard-eyebrow">
+            02 / product patterns
+          </span>
+
+          <h2>
+            Built for real<br />
+            operational work.
+          </h2>
+
+          <p>
+            Dense application UI needs predictable hierarchy,
+            reusable interaction rules and enough flexibility for
+            different business contexts.
+          </p>
+
+        </div>
+
+
+        <div class="dashboard-grid dashboard-grid--2">
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/crmapp.webp"
+              alt="CRM application interface"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>CRM applications</strong>
+              <span>shared layout · forms · tables</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/sales.webp"
+              alt="Sales application interface"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Sales applications</strong>
+              <span>filtering · bulk actions · responsive data</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/wizard-dashboard.webp"
+              alt="Wizard dashboard"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Wizard flows</strong>
+              <span>progressive disclosure · guided actions</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/login.webp"
+              alt="Login interface"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>System entry</strong>
+              <span>authentication · errors · recovery states</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           CHART SYSTEM
+      ==================================================== -->
+
+      <section class="dashboard-section">
+
+        <div class="dashboard-section__head">
+
+          <span class="dashboard-eyebrow">
+            03 / data visualisation
+          </span>
+
+          <h2>
+            Charts belong to<br />
+            the system too.
+          </h2>
+
+          <p>
+            The chart library extends the same token architecture
+            into data visualisation with reusable, responsive and
+            theme-aware chart foundations.
+          </p>
+
+        </div>
+
+
+        <figure class="dashboard-card dashboard-card--wide">
+          <img
+            src="/images/tokens/charts-library.webp"
+            alt="Charts library overview"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Charts Library</strong>
+            <span>token driven · responsive · theme aware</span>
+          </figcaption>
+        </figure>
+
+
+        <div class="dashboard-grid dashboard-grid--3 charts-grid">
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/pieline.webp"
+              alt="Line and pie chart examples"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Line & pie</strong>
+              <span>core chart patterns</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/round.webp"
+              alt="Donut chart component"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Donut</strong>
+              <span>theme-aware data display</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="dashboard-card">
+            <img
+              src="/images/tokens/radar-chart.webp"
+              alt="Radar chart examples"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Radar & funnel</strong>
+              <span>extended analytical patterns</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           FINAL STATEMENT
+      ==================================================== -->
+
+      <section class="dashboard-final">
+
+        <span class="dashboard-eyebrow">
+          outcome
+        </span>
+
+        <p>
+          Less reinvention.<br />
+          More predictable products.
+        </p>
+
+      </section>
+
+
+      <!-- ===================================================
+           FINAL VISUAL
+      ==================================================== -->
+
+      <figure class="dashboard-final-image">
+        <img
+          src="/images/tokens/bar.webp"
+          alt="Bar chart system"
+          loading="lazy"
+        />
+      </figure>
+
+
+      <!-- ===================================================
+           NEXT PROJECT
+      ==================================================== -->
+
+      <a
+        class="case-next"
+        href="/case-studies/telia"
+      >
+
+        <div>
+          <span class="case-next__eyebrow">
+            next project
+          </span>
+
+          <h2 class="case-next__title">
+            Telia Help &<br />
+            Guides UX Analysis
+          </h2>
+        </div>
+
+
+        <span
+          class="case-next__arrow"
+          aria-hidden="true"
+        >
+          ↗
+        </span>
+
       </a>
-    </nav>
+
+    </div>
   </article>
-  
-<script type="module">
-(() => {
-  const scope = document.querySelector('.tokens-case');
-  if (!scope) return;
 
-  const lb       = scope.querySelector('.tokens-lightbox');
-  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
-  const imgEl    = lb.querySelector('.tokens-lightbox__img');
-  const titleEl  = lb.querySelector('.tokens-lightbox__title');
-  const capEl    = lb.querySelector('.tokens-lightbox__cap');
-  const closeBtn = lb.querySelector('.tokens-lightbox__close');
-  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
-  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
 
-  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
-  let currentIndex = -1;
-  let lastFocus = null;
+  <style is:global>
 
-  function extractDataFrom(el) {
-    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
-    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
-    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
-    const title = carrier.getAttribute('data-title') || img?.alt || '';
-    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
-    return { src, title, cap };
-  }
+    /* =====================================================
+       PAGE
+    ====================================================== */
 
-  function openLightbox(index) {
-    currentIndex = index;
-    const { src, title, cap } = extractDataFrom(tiles[index]);
-    lastFocus = document.activeElement;
-    imgEl.src = src;
-    titleEl.textContent = title;
-    capEl.innerHTML = cap;
-    lb.classList.add('is-open');
-    document.documentElement.classList.add('tokens-lightbox-open');
-    closeBtn.focus();
-  }
-
-  function closeLightbox() {
-    lb.classList.remove('is-open');
-    document.documentElement.classList.remove('tokens-lightbox-open');
-    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  function showNext() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex + 1) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  function showPrev() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  scope.addEventListener('click', e => {
-    const tile = e.target.closest('.shot-tile');
-    if (tile) {
-      e.preventDefault();
-      openLightbox(tiles.indexOf(tile));
+    html,
+    body {
+      background: #0d0f0d !important;
     }
-  });
 
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', showPrev);
-  nextBtn.addEventListener('click', showNext);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-  });
-})();
-</script>
-    <script type="module">
-(() => {
-  const prev = document.getElementById('pagerPrev');
-  const next = document.getElementById('pagerNext');
+    .dashboard-section,
+    .dashboard-final,
+    .dashboard-final-image {
+      width: 100%;
+    }
 
-  function inEditableContext(target) {
-    if (!target) return false;
-    if (target.isContentEditable) return true;
-    const t = target.tagName;
-    return t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT';
-  }
 
-  function modalOpen() {
-    // ignore if a modal/lightbox is open
-    return !!document.querySelector('[aria-modal="true"], .tokens-lightbox.is-open');
-  }
+    /* =====================================================
+       HERO
+    ====================================================== */
 
-  window.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.altKey || e.metaKey) return;
-    if (inEditableContext(e.target) || modalOpen()) return;
+    .dashboard-hero img {
+      display: block;
 
-    if (e.key === 'ArrowLeft' && prev) { e.preventDefault(); prev.click(); }
-    if (e.key === 'ArrowRight' && next) { e.preventDefault(); next.click(); }
-  }, { passive: false });
-})();
-</script>
+      width: 100%;
+      aspect-ratio: 16 / 8.2;
+
+      object-fit: cover;
+
+      background: #151815;
+    }
+
+
+    /* =====================================================
+       SECTIONS
+    ====================================================== */
+
+    .dashboard-section {
+      margin-top: clamp(120px, 12vw, 190px);
+    }
+
+
+    .dashboard-section__head {
+      display: grid;
+
+      grid-template-columns:
+        .65fr
+        1.25fr
+        1fr;
+
+      gap: clamp(32px, 5vw, 82px);
+
+      padding-top: 28px;
+      margin-bottom: clamp(54px, 6vw, 90px);
+
+      border-top:
+        1px solid
+        rgba(242,241,236,.13);
+    }
+
+
+    .dashboard-eyebrow {
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
+
+      font-size: .75rem;
+
+      letter-spacing: .09em;
+
+      text-transform: lowercase;
+
+      color:
+        rgba(242,241,236,.45);
+    }
+
+
+    .dashboard-section__head h2 {
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(2.7rem, 4.5vw, 5.4rem);
+
+      font-weight: 650;
+
+      line-height: .9;
+
+      letter-spacing: -.06em;
+
+      color: #f2f1ec;
+    }
+
+
+    .dashboard-section__head p {
+      max-width: 460px;
+
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(1rem, 1.15vw, 1.2rem);
+
+      line-height: 1.42;
+
+      color:
+        rgba(242,241,236,.62);
+    }
+
+
+    /* =====================================================
+       GRID
+    ====================================================== */
+
+    .dashboard-grid {
+      display: grid;
+    }
+
+
+    .dashboard-grid--2 {
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+      gap:
+        clamp(42px, 4vw, 68px)
+        clamp(22px, 2.6vw, 40px);
+    }
+
+
+    .dashboard-grid--3 {
+      grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+      gap: 24px;
+    }
+
+
+    .dashboard-card {
+      margin: 0;
+    }
+
+
+    .dashboard-card img {
+      display: block;
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      object-fit: cover;
+
+      background: #151815;
+    }
+
+
+    .dashboard-card--wide {
+      margin-bottom: 34px;
+    }
+
+
+    .dashboard-card--wide img {
+      aspect-ratio: 16 / 7.8;
+    }
+
+
+    .dashboard-card figcaption {
+      display: flex;
+      align-items: baseline;
+
+      gap: 12px;
+
+      padding-top: 12px;
+    }
+
+
+    .dashboard-card figcaption strong {
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(1.15rem, 1.5vw, 1.65rem);
+
+      font-weight: 600;
+
+      line-height: 1;
+
+      letter-spacing: -.035em;
+
+      color: #f2f1ec;
+    }
+
+
+    .dashboard-card figcaption span {
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
+
+      font-size: 1rem;
+
+      letter-spacing: .06em;
+
+      text-transform: uppercase;
+
+      color:
+        rgba(242,241,236,.42);
+    }
+
+
+    /* =====================================================
+       CHARTS
+    ====================================================== */
+
+    .charts-grid {
+      margin-top: 26px;
+    }
+
+
+    /* =====================================================
+       FINAL STATEMENT
+    ====================================================== */
+
+    .dashboard-final {
+      display: grid;
+
+      grid-template-columns:
+        .65fr 2.25fr;
+
+      gap: 40px;
+
+      margin-top:
+        clamp(140px, 14vw, 210px);
+
+      padding-top: 28px;
+
+      border-top:
+        1px solid
+        rgba(242,241,236,.13);
+    }
+
+
+    .dashboard-final p {
+      max-width: 1100px;
+
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(3.4rem, 7vw, 8rem);
+
+      font-weight: 650;
+
+      line-height: .87;
+
+      letter-spacing: -.07em;
+
+      color: #f2f1ec;
+    }
+
+
+    .dashboard-final-image {
+      margin-top:
+        clamp(100px, 10vw, 150px);
+    }
+
+
+    .dashboard-final-image img {
+      display: block;
+
+      width: 100%;
+
+      aspect-ratio: 16 / 8;
+
+      object-fit: cover;
+
+      background: #151815;
+    }
+
+
+    /* =====================================================
+       NEXT ARROW
+       same as other editorial case pages
+    ====================================================== */
+
+    .case-next__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 68px;
+      height: 68px;
+
+      flex: 0 0 68px;
+
+      border: 2px solid #d8f27a;
+      border-radius: 50%;
+
+      color: #d8f27a;
+
+      font-family: Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+
+    .case-next:hover .case-next__arrow {
+      background: #d8f27a;
+
+      color: #0d0f0d;
+
+      transform:
+        translate(4px,-4px);
+    }
+
+
+    /* =====================================================
+       TABLET
+    ====================================================== */
+
+    @media (max-width: 1000px) {
+
+      .dashboard-section__head {
+        grid-template-columns:
+          1fr 1.5fr;
+      }
+
+
+      .dashboard-section__head p {
+        grid-column: 2;
+      }
+
+
+      .dashboard-grid--3 {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 760px) {
+
+      .dashboard-section {
+        margin-top: 100px;
+      }
+
+
+      .dashboard-section__head {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+      }
+
+
+      .dashboard-section__head p {
+        grid-column: auto;
+      }
+
+
+      .dashboard-grid--2,
+      .dashboard-grid--3 {
+        grid-template-columns: 1fr;
+      }
+
+
+      .dashboard-card figcaption {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 5px;
+      }
+
+
+      .dashboard-final {
+        grid-template-columns: 1fr;
+
+        gap: 24px;
+
+        margin-top: 110px;
+      }
+
+
+      .dashboard-final p {
+        font-size:
+          clamp(3rem, 14vw, 5.2rem);
+      }
+
+
+      .case-next__arrow {
+        width: 54px;
+        height: 54px;
+
+        flex-basis: 54px;
+
+        font-size: 1.8rem;
+      }
+
+    }
+
+  </style>
 
 </Base>

@@ -10,7 +10,7 @@
   --accent: #3b82f6;
   --num-bg: #0f0f10;
 
-  --main-max: 1400px;
+  --main-max: 1580px;
   --gutter: clamp(16px, 4vw, 40px);
   --pad: 1rem;
   --r: 8px;
@@ -1285,7 +1285,7 @@ html[data-theme="light"] .mini-theme-toggle .icon-moon {
 .bold-ticker__rail {
   display: flex;
   width: max-content;
-  animation: boldTickerLoop 60s linear infinite;
+  animation: boldTickerLoop 90s linear infinite;
   will-change: transform;
 }
 .bold-ticker__track {

@@ -1,14 +1,23 @@
-i---
+---
 import Base from "../../layouts/Base.astro";
 import "../../styles/nav.css";
 ---
 
 <Base
   title="Case Study: Unified Navigation"
-  bodyClass="menu--sidebar nav-system-page"
+  bodyClass="menu--sidebar nav-system-page dark-mode"
   noWrap={true}
   hideFooter={true}
 >
+
+<script is:inline>
+  document.documentElement.setAttribute("data-theme", "dark");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.setAttribute("data-theme", "dark");
+    document.body.classList.add("dark-mode");
+  });
+</script>
 
 <script type="module">
 /* ---------- tiny utils ---------- */
@@ -857,100 +866,147 @@ addEventListener("astro:page-load", wireHamburger);
 </div>
   </div>
 
-<!-- your case study content -->
-<article class="container-narrow doc-grid">
+<!-- editorial case study content -->
+<main class="nav-editorial">
 
-  <div class="doc-main">
-   <h1 class="page-title">
-        Unified Navigation System
-      </h1>
-    <p class="meta">Role: Frontend & UX • Timeline: 2024–2025 • Tech: HTML, CSS, JS, GO</p>
+  <section class="nav-editorial__intro">
+    <div class="nav-editorial__meta">
 
-    <h2>Context & Problem</h2>
-    <p>Multiple apps used duplicated markup for sidebar/topnav with inconsistent behavior and a11y gaps.</p>
+      <div class="nav-editorial__block nav-editorial__block--project">
+        <p class="nav-editorial__label">project</p>
 
-    <h2>Approach</h2>
-    <ul>
-      <li>Single base markup toggled between sidebar and topnav via outer class</li>
-      <li>Mobile overlay with ESC / outside click / focus trap</li>
-      <li>Checkbox/radio for submenus; minimal JS</li>
-    </ul>
+        <h1 class="nav-editorial__title">
+          Unified<br />
+          Navigation<br />
+          System
+        </h1>
 
-    <h2>Behavior & Accessibility</h2>
-    <ul>
-      <li><strong>Keyboard:</strong> Enter/Space toggles sections, ESC closes.</li>
-      <li><strong>Outside click:</strong> Closes submenus, support panel, overlays.</li>
-      <li><strong>Mobile overlay:</strong> Hamburger toggles, scroll lock, aria-expanded.</li>
-    </ul>
+        <a class="nav-editorial__back" href="/projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <path d="M19 5L5 19" />
+            <path d="M5 19V8" />
+            <path d="M5 19h11" />
+          </svg>
+          Projects
+        </a>
+      </div>
 
-    <h2>Outcome</h2>
-    <ul>
-      <li>Removed duplicate HTML across all app views</li>
-      <li>Improved consistency + accessibility</li>
-      <li>Shared JSON + single asset enables rapid changes</li>
-    </ul>
+      <div class="nav-editorial__block">
+        <p class="nav-editorial__label">bio</p>
+        <p class="nav-editorial__bio">
+          A shared navigation architecture for a multi-product application
+          ecosystem — replacing duplicated menu markup with one reusable,
+          accessible system.
+        </p>
+      </div>
 
-    <div class="handwritten handwritten-note-container">NEXT PROJECT · OR TEST THE SIDEBAR MOVEMENTS</div>
-    
-    <div class="flex arrows-container">
-     <!-- LEFT rail (Prev) -->
-    <nav class="case-rail case-rail--left" aria-label="Previous project">
-      <a class="pager-btn pager-btn--prev" href="/case-studies/visual-explorations" aria-label="Previous: Illustration & Visual Studies">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-      </a>
-    </nav>
-<div class="demo-controls">
-      <button class="btn-cv" data-toggle-menu>Toggle position</button>
-      <form method="post" class="toggleFavoriteForm">
-        <button
-          type="submit"
-          aria-label="Toggle favorite"
-          class="btn-cv favorite-toggle-button"
-          data-keep-label
-        >
-          Toggle favorites
+      <div class="nav-editorial__block">
+        <p class="nav-editorial__label">deliverables</p>
+
+        <div class="nav-editorial__stack">
+          <span>Frontend architecture</span>
+          <span>UX</span>
+          <span>Interaction system</span>
+          <span>Accessibility</span>
+        </div>
+      </div>
+
+      <div class="nav-editorial__block">
+        <p class="nav-editorial__label">year</p>
+        <p class="nav-editorial__year">2024–2025</p>
+      </div>
+
+    </div>
+
+    <div class="nav-editorial__demo-head">
+      <div>
+        <p class="nav-editorial__label">interactive prototype</p>
+        <h2>Try the navigation.</h2>
+      </div>
+
+      <div class="nav-editorial__controls">
+        <button class="nav-editorial__control" type="button" data-toggle-menu>
+          Toggle position
         </button>
-      </form>
+
+        <form method="post" class="toggleFavoriteForm">
+          <button
+            type="submit"
+            aria-label="Toggle favorite"
+            class="nav-editorial__control favorite-toggle-button"
+            data-keep-label
+          >
+            Toggle favorites
+          </button>
+        </form>
+      </div>
     </div>
-    <!-- RIGHT rail (Next) -->
-    <nav class="case-rail case-rail--right" aria-label="Next project">
-      <a class="pager-btn pager-btn--next" href="/case-studies/social-media-generator" aria-label="Next: AI Social Media Generator">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </a>
-    </nav>
-</div>
-  </div>
+  </section>
 
-  <aside class="doc-aside feature-card">
-    <div class="num">01.</div>
-      <h2>Menu Architecture & Structure</h2>
 
-    <ol class="tight">
-       <li>
-      <strong>Company Sidebar (Level 1)</strong> —  
-      A vertical thin sidebar always visible on desktop. It contains user identity, company switcher, language, theme toggle, and help/support entry points.
-      Submenus open below and close automatically on outside click or <kbd>ESC</kbd>.
-    </li>
-    <li>
-      <strong>Bookmarks / Favorites (Level 2)</strong> —  
-      A thin sidebar that lists user’s favorite or pinned apps. State is stored via CaFa configuration <code>favorite-apps</code>,
-      so the same favorites appear across sessions. Clicking a star toggles app visibility here instantly.
-    </li>
-    <li>
-      <strong>App Navigation (Level 3)</strong> —  
-      Each app imports a shared menu asset that builds its structure from JSON.  
-      The menu can switch between <em>sidebar</em> and <em>topnav</em> layouts using the same markup,
-      controlled by outer classes<br><code>.menu--sidebar</code> / <code>.menu--topnav</code>.
-    </li>
-    </ol>
+  <section class="nav-editorial__statement">
+    <p>
+      One shared navigation system instead of duplicated markup
+      across multiple products.
+    </p>
+  </section>
 
-    <!-- Optional note about demo limitations -->
-    <div class="demo-note" role="note" aria-label="Demo limitations">
-      <i class="ri-information-line" aria-hidden="true"></i>
-      <p>This is a minimal interactive demo: focus trapping, routing tabindex, full screen reader labelling, and persisted favorites are omitted for brevity. A lot of functionality isn’t implemented here because it was tied to the client interface.</p>
+
+  <section class="nav-editorial__architecture" aria-label="Navigation architecture">
+
+    <article class="nav-editorial__architecture-item">
+      <span class="nav-editorial__num">01.</span>
+      <h3>Company sidebar</h3>
+      <p>
+        Persistent product-level navigation for user identity, company
+        switching, language, theme and support actions.
+      </p>
+    </article>
+
+    <article class="nav-editorial__architecture-item">
+      <span class="nav-editorial__num">02.</span>
+      <h3>Favorites</h3>
+      <p>
+        Pinned applications remain consistent across sessions and can be
+        changed directly from the navigation.
+      </p>
+    </article>
+
+    <article class="nav-editorial__architecture-item">
+      <span class="nav-editorial__num">03.</span>
+      <h3>App navigation</h3>
+      <p>
+        One shared menu structure switches between sidebar and topnav
+        layouts without duplicating markup.
+      </p>
+    </article>
+
+  </section>
+
+
+  <section class="nav-editorial__behavior">
+    <p class="nav-editorial__label">system behavior</p>
+
+    <p class="nav-editorial__behavior-copy">
+      Keyboard navigation, ESC handling, outside-click closing and responsive
+      behavior were designed as part of the system rather than added afterwards.
+    </p>
+  </section>
+
+
+  <a class="nav-editorial__next" href="/case-studies/isekas">
+    <div>
+      <span class="nav-editorial__next-label">next project</span>
+      <h2>Isekas<br />Self-Service</h2>
     </div>
-  </aside>
-</article>
+
+    <span class="nav-editorial__next-arrow" aria-hidden="true">↗</span>
+  </a>
+
+</main>
+
 <script type="module">
   // Back button: history.back() with fallback
   document.addEventListener('click', (e) => {
@@ -965,56 +1021,57 @@ addEventListener("astro:page-load", wireHamburger);
 </Base>
 
 <style is:global>
-  body[data-page="nav-system"] .site-footer { display: none !important; }
-
-  /* Prevent double top border when menu is directly under the header */
-.site-header + .menu--topnav {
-  border-top: none !important;
-}
-
-.feature-card, .arrows-container{
-  margin-bottom: 60px;
-}
-
-
-/* Re-enable Chrome scrollbar visuals just in this area */
-::-webkit-scrollbar {
-  width: 8px !important;                     
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,.35) !important;  
-  border-radius: 4px !important;
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,.08) !important;  
-}
-
-body.dark-mode,
-html[data-theme="dark"] { ::-webkit-scrollbar {
-  width: 8px !important;                     
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(247, 246, 246, 0.35) !important;  
-  border-radius: 4px !important;
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgba(226, 218, 218, 0.08) !important;  
-}
-}
-
 /* =========================================================
-   NAV SYSTEM CASE STUDY — PORTFOLIO HEADER
+   UNIFIED NAVIGATION SYSTEM
+   Original interactive nav stays untouched.
+   This CSS only styles/positions the portfolio case content.
 ========================================================= */
 
-/* DESKTOP — sidebar mode */
+:root {
+  --nav-case-bg: #0d0f0d;
+  --nav-case-fg: #f2f1ec;
+  --nav-case-muted: rgba(242, 241, 236, .43);
+  --nav-case-line: rgba(242, 241, 236, .12);
+  --nav-case-lime: #d8f27a;
+
+  /*
+    This is the width of the ORIGINAL working nav in sidebar mode.
+    We do not resize or restyle the nav itself.
+  */
+  --nav-case-sidebar-space: 350px;
+}
+
+
+/* =========================================================
+   PAGE / DARK MODE
+========================================================= */
+
+html,
+body.nav-system-page {
+  background: var(--nav-case-bg) !important;
+}
+
+body.nav-system-page {
+  color: var(--nav-case-fg) !important;
+  overflow-x: hidden;
+}
+
+
+/* Keep the existing product navigation dark.
+   nav.css already contains the real dark theme tokens. */
+body.nav-system-page.dark-mode {
+  color-scheme: dark;
+}
+
+
+/* =========================================================
+   PORTFOLIO HEADER
+========================================================= */
+
 @media (min-width: 1025px) {
   body.nav-system-page.menu--sidebar .site-header {
-    margin-left: 312px !important;
-    width: calc(100% - 312px) !important;
+    margin-left: var(--nav-case-sidebar-space) !important;
+    width: calc(100% - var(--nav-case-sidebar-space)) !important;
     box-sizing: border-box !important;
   }
 
@@ -1027,137 +1084,11 @@ html[data-theme="dark"] { ::-webkit-scrollbar {
     box-sizing: border-box !important;
   }
 
-  /* DESKTOP — topnav mode */
-  body.nav-system-page.menu--topnav .site-header {
-    margin-left: 122px !important;
-    width: calc(100% - 122px) !important;
-    box-sizing: border-box !important;
-  }
-
-  body.nav-system-page.menu--topnav .header-inner {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding-left: 34px !important;
-    padding-right: 34px !important;
-    box-sizing: border-box !important;
-  }
-}
-
-
-/* =========================================================
-   MOBILE / TABLET
-========================================================= */
-
-@media (max-width: 1024px) {
-
-  /* Demo sidebars move into hamburger overlay,
-     so portfolio header uses full viewport again */
-
-  body.nav-system-page.menu--sidebar .site-header,
-  body.nav-system-page.menu--topnav .site-header {
-    margin-left: 0 !important;
-    left: 0 !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    box-sizing: border-box !important;
-  }
-
-  body.nav-system-page.menu--sidebar .header-inner,
-  body.nav-system-page.menu--topnav .header-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-
-    margin: 0 !important;
-
-
-    box-sizing: border-box !important;
-  }
-
-  /* Keep portfolio identity visible */
-  body.nav-system-page .brand {
-    display: inline-flex !important;
-    min-width: 0;
-  }
-
-  /* Don't let right side push outside viewport */
-  body.nav-system-page .header-right {
-    margin-left: auto !important;
-    min-width: 0;
-  }
-}
-
-
-/* Smaller phones */
-
-@media (max-width: 600px) {
-
-
-
-  body.nav-system-page .brand-name {
-    font-size: 1.2rem !important;
-    letter-spacing: .1em !important;
-  }
-
-  body.nav-system-page .header-right {
-    gap: .75rem !important;
-  }
-
-  body.nav-system-page .portfolio-nav {
-    gap: .9rem !important;
-  }
-
-  body.nav-system-page .portfolio-nav a {
-    font-size: .66rem !important;
-    letter-spacing: .1em !important;
-  }
-
-  body.nav-system-page .mini-theme-toggle {
-    width: 28px !important;
-    height: 28px !important;
-    flex: 0 0 28px;
-  }
-}
-
-
-/* Very narrow phones */
-
-@media (max-width: 390px) {
-
-  body.nav-system-page .brand-name {
-    font-size: .64rem !important;
-  }
-
-  body.nav-system-page .portfolio-nav {
-    gap: .65rem !important;
-  }
-
-  body.nav-system-page .portfolio-nav a {
-    font-size: .6rem !important;
-  }
-
-  body.nav-system-page .mini-theme-toggle {
-    width: 26px !important;
-    height: 26px !important;
-  }
-}
-
-@media (min-width: 1025px) {
-  body.nav-system-page.menu--sidebar .site-header {
-    margin-left: 360px !important;
-    width: calc(100% - 360px) !important;
-    box-sizing: border-box !important;
-  }
-
-  body.nav-system-page.menu--sidebar .header-inner {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-  }
-
+  /*
+    When the user switches the app menu to topnav,
+    only the two narrow rails remain on the left.
+    This is the same behavior the old case used.
+  */
   body.nav-system-page.menu--topnav .site-header {
     margin-left: 140px !important;
     width: calc(100% - 140px) !important;
@@ -1168,253 +1099,520 @@ html[data-theme="dark"] { ::-webkit-scrollbar {
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
-
+    padding-left: 34px !important;
+    padding-right: 34px !important;
     box-sizing: border-box !important;
-  }
-}
-
-@media (max-width: 1024px) {
-  body.nav-system-page .site-header {
-    margin-left: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  body.nav-system-page .header-inner {
-    width: 100% !important;
-    max-width: var(--main-max) !important;
-
-    margin-inline: auto !important;
-    padding-inline: var(--gutter) !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-
-    box-sizing: border-box !important;
-  }
-
-  body.nav-system-page .brand {
-    display: inline-flex !important;
-    margin: 0 !important;
-  }
-
-  body.nav-system-page .header-right {
-    margin-left: auto !important;
-  }
-}
-
-/* =========================================================
-   NAV SYSTEM — MOBILE / TABLET
-========================================================= */
-
-@media (max-width: 1024px) {
-
-  /* -----------------------------------------
-     HIDE INTERACTIVE DEMO NAVIGATION
-  ----------------------------------------- */
-
-  body.nav-system-page .master-menu_mobile-header,
-  body.nav-system-page .mobile-menu-overlay,
-  body.nav-system-page .extra-thin-sidebar,
-  body.nav-system-page .menu {
-    display: none !important;
-  }
-
-
-  /* -----------------------------------------
-     REMOVE DEMO LAYOUT OFFSETS
-  ----------------------------------------- */
-
-  body.nav-system-page {
-    --thin-left: 0px !important;
-    --thin-right: 0px !important;
-  }
-
-
-  /*
-    IMPORTANT:
-    only neutralise the desktop sidebar offset.
-
-    Do NOT redefine .header-inner,
-    .brand, .nav, fonts, gaps or padding here.
-
-    Base.astro handles the header exactly like
-    Social Media / Contact / other pages.
-  */
-
-  body.nav-system-page .site-header {
-    margin-left: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-  }
-
-
-  /* -----------------------------------------
-     HIDE MOBILE DEMO CONTROLS
-  ----------------------------------------- */
-
-  body.nav-system-page .demo-controls {
-    display: none !important;
-  }
-
-
-  /*
-    Don't show:
-    NEXT PROJECT · OR TEST THE SIDEBAR MOVEMENTS
-
-    Other case studies don't need this extra title.
-  */
-
-  body.nav-system-page .handwritten-note-container {
-    display: none !important;
   }
 }
 
 
 /* =========================================================
-   PHONE
+   EDITORIAL CASE
 ========================================================= */
 
-@media (max-width: 760px) {
+.nav-editorial {
+  position: relative;
+  z-index: 1;
 
-  /* -----------------------------------------
-     CASE STUDY CONTENT
-  ----------------------------------------- */
+  background: var(--nav-case-bg);
+  color: var(--nav-case-fg);
 
-  body.nav-system-page .doc-grid {
-    display: block !important;
+  min-height: 100vh;
+}
 
-    width: 100% !important;
-    max-width: none !important;
 
-    margin: 0 !important;
-
-    padding-left: var(--gutter) !important;
-    padding-right: var(--gutter) !important;
-
-    box-sizing: border-box !important;
+@media (min-width: 1025px) {
+  body.nav-system-page.menu--sidebar .nav-editorial {
+    margin-left: var(--nav-case-sidebar-space);
+    width: calc(100% - var(--nav-case-sidebar-space));
   }
 
-
-  body.nav-system-page .doc-main,
-  body.nav-system-page .doc-aside {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-
-  /* same natural top spacing as other case studies */
-
-  body.nav-system-page .page-title {
-    margin-top: 1.5rem !important;
-  }
-
-
-  /* -----------------------------------------
-     PREV / NEXT
-  ----------------------------------------- */
-
-  body.nav-system-page .arrows-container {
-    width: 100% !important;
-
-    margin:
-      1.75rem 0
-      2.25rem !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    gap: 3rem !important;
-  }
-
-
-  body.nav-system-page .case-rail {
-    position: static !important;
-
-    width: auto !important;
-    height: auto !important;
-
-    margin: 0 !important;
-  }
-
-
-  body.nav-system-page .pager-btn {
-    width: 42px !important;
-    height: 42px !important;
-
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    padding: 0 !important;
-
-    border: 0 !important;
-    background: transparent !important;
-
-    color: var(--text) !important;
-  }
-
-
-  body.nav-system-page .pager-icon {
-    width: 30px !important;
-    height: 30px !important;
-  }
-
-
-  /* -----------------------------------------
-     FEATURE CARD
-  ----------------------------------------- */
-
-  body.nav-system-page .feature-card {
-    width: 100% !important;
-
-    margin-top: 1.5rem !important;
-    margin-bottom: 2rem !important;
+  body.nav-system-page.menu--topnav .nav-editorial {
+    margin-left: 140px;
+    width: calc(100% - 140px);
   }
 }
-@media (max-width: 760px) {
-  body.nav-system-page .arrows-container {
+
+
+.nav-editorial__intro,
+.nav-editorial__statement,
+.nav-editorial__architecture,
+.nav-editorial__behavior,
+.nav-editorial__next {
+  width: calc(100% - 68px);
+  max-width: 1360px;
+  margin-inline: auto;
+}
+
+
+.nav-editorial__intro {
+  padding-top: clamp(80px, 1vw, 220px);
+  padding-bottom: clamp(78px, 8vw, 118px);
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.nav-editorial__meta {
+  display: grid;
+  grid-template-columns: 1.08fr 1.65fr 1.13fr .64fr;
+  gap: clamp(30px, 4vw, 72px);
+  align-items: start;
+}
+
+
+.nav-editorial__label {
+  margin: 0 0 18px;
+
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .08em;
+
+  color: var(--nav-case-muted);
+
+  text-transform: lowercase;
+}
+
+
+.nav-editorial__title {
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(2.7rem, 4vw, 5rem);
+  font-weight: 650;
+  line-height: .9;
+  letter-spacing: -.06em;
+
+  color: var(--nav-case-fg);
+}
+
+
+.nav-editorial__bio {
+  max-width: 530px;
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.42rem);
+  line-height: 1.28;
+  letter-spacing: -.025em;
+
+  color: var(--nav-case-fg);
+}
+
+
+.nav-editorial__stack {
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(1.2rem, 1.65vw, 1.7rem);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+
+  color: var(--nav-case-fg);
+}
+
+
+.nav-editorial__year {
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(1.3rem, 1.7vw, 1.75rem);
+  line-height: 1;
+
+  color: var(--nav-case-fg);
+}
+
+
+.nav-editorial__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 42px;
+
+  color: var(--nav-case-fg);
+  text-decoration: none;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: .95rem;
+  font-weight: 500;
+}
+
+
+.nav-editorial__back svg {
+  width: 28px;
+  height: 28px;
+}
+
+
+/* =========================================================
+   INTERACTIVE PROTOTYPE HEADER
+========================================================= */
+
+.nav-editorial__demo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+
+  margin-top: clamp(92px, 9vw, 138px);
+
+  padding-top: 28px;
+
+  border-top: 1px solid var(--nav-case-line);
+}
+
+
+.nav-editorial__demo-head h2 {
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4.9rem);
+  font-weight: 650;
+  line-height: .92;
+  letter-spacing: -.055em;
+
+  color: var(--nav-case-fg);
+}
+
+
+.nav-editorial__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.nav-editorial__controls form {
+  margin: 0;
+}
+
+
+.nav-editorial__control {
+  min-height: 44px;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(216, 242, 122, .62);
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: var(--nav-case-lime);
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: .9rem;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background .18s ease,
+    color .18s ease,
+    transform .18s ease;
+}
+
+
+.nav-editorial__control:hover {
+  background: var(--nav-case-lime);
+  color: var(--nav-case-bg);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   STATEMENT
+========================================================= */
+
+.nav-editorial__statement {
+  padding-top: clamp(100px, 10vw, 155px);
+  padding-bottom: clamp(105px, 11vw, 165px);
+}
+
+
+.nav-editorial__statement p {
+  max-width: 1120px;
+
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(3.2rem, 6.5vw, 7.4rem);
+  font-weight: 650;
+  line-height: .89;
+  letter-spacing: -.065em;
+
+  color: var(--nav-case-fg);
+}
+
+
+/* =========================================================
+   ARCHITECTURE
+========================================================= */
+
+.nav-editorial__architecture {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 1px;
+
+  padding: 1px;
+
+  background: var(--nav-case-line);
+}
+
+
+.nav-editorial__architecture-item {
+  min-height: 320px;
+
+  padding: clamp(28px, 3vw, 44px);
+
+  background: #111310;
+}
+
+
+.nav-editorial__num {
+  display: block;
+
+  margin-bottom: 72px;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--nav-case-lime);
+}
+
+
+.nav-editorial__architecture-item h3 {
+  margin: 0 0 14px;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(1.7rem, 2.25vw, 2.8rem);
+  font-weight: 650;
+  line-height: .96;
+  letter-spacing: -.045em;
+
+  color: var(--nav-case-fg);
+}
+
+
+.nav-editorial__architecture-item p {
+  max-width: 360px;
+
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: 1rem;
+  line-height: 1.45;
+
+  color: rgba(242, 241, 236, .65);
+}
+
+
+/* =========================================================
+   BEHAVIOR
+========================================================= */
+
+.nav-editorial__behavior {
+  display: grid;
+  grid-template-columns: .52fr 1.48fr;
+
+  gap: 54px;
+
+  margin-top: clamp(100px, 10vw, 150px);
+  margin-bottom: clamp(105px, 11vw, 165px);
+
+  padding-top: 28px;
+
+  border-top: 1px solid var(--nav-case-line);
+}
+
+
+.nav-editorial__behavior-copy {
+  max-width: 860px;
+
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(1.9rem, 3.25vw, 3.9rem);
+  font-weight: 550;
+  line-height: .98;
+  letter-spacing: -.05em;
+
+  color: var(--nav-case-fg);
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+.nav-editorial__next {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+
+  padding-top: clamp(50px, 6vw, 84px);
+  padding-bottom: clamp(80px, 8vw, 120px);
+
+  border-top: 1px solid var(--nav-case-line);
+
+  color: var(--nav-case-fg);
+  text-decoration: none;
+}
+
+
+.nav-editorial__next-label {
+  display: block;
+
+  margin-bottom: 20px;
+
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-size: .8rem;
+  letter-spacing: .08em;
+
+  color: var(--nav-case-muted);
+
+  text-transform: uppercase;
+}
+
+
+.nav-editorial__next h2 {
+  margin: 0;
+
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(3.1rem, 6vw, 7rem);
+  font-weight: 650;
+  line-height: .88;
+  letter-spacing: -.065em;
+
+  color: var(--nav-case-fg);
+}
+
+
+.nav-editorial__next-arrow {
+  font-size: clamp(4.5rem, 7vw, 8rem);
+  line-height: .8;
+
+  color: var(--nav-case-lime);
+
+  transition: transform .2s ease;
+}
+
+
+.nav-editorial__next:hover .nav-editorial__next-arrow {
+  transform: translate(8px, -8px);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+body.nav-system-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+body.nav-system-page::-webkit-scrollbar-thumb {
+  background: rgba(242, 241, 236, .28);
+  border-radius: 4px;
+}
+
+
+body.nav-system-page::-webkit-scrollbar-track {
+  background: rgba(242, 241, 236, .05);
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+  body.nav-system-page .site-header {
+    margin-left: 0 !important;
     width: 100% !important;
-    margin: 1.75rem 0 2.25rem !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    gap: 2.5rem !important;
   }
 
-  body.nav-system-page .case-rail {
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
+  body.nav-system-page .nav-editorial {
+    margin-left: 0 !important;
+    width: 100% !important;
   }
 
-  body.nav-system-page .pager-btn {
-    --btn-size: 58px !important;
-
-    width: 58px !important;
-    height: 58px !important;
-
-    display: grid !important;
-    place-items: center !important;
-
-    padding: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
+  .nav-editorial__meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 46px 28px;
   }
 
-  body.nav-system-page .pager-icon {
-    width: 44px !important;
-    height: 44px !important;
+  .nav-editorial__controls {
+    display: none;
   }
 }
+
+
+@media (max-width: 760px) {
+  .nav-editorial__intro,
+  .nav-editorial__statement,
+  .nav-editorial__architecture,
+  .nav-editorial__behavior,
+  .nav-editorial__next {
+    width: calc(100% - 32px);
+  }
+
+  .nav-editorial__intro {
+    padding-top: 80px;
+  }
+
+  .nav-editorial__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-editorial__title {
+    font-size: clamp(3.2rem, 15vw, 5.1rem);
+  }
+
+  .nav-editorial__demo-head {
+    margin-top: 68px;
+  }
+
+  .nav-editorial__statement {
+    padding-top: 80px;
+    padding-bottom: 90px;
+  }
+
+  .nav-editorial__statement p {
+    font-size: clamp(2.8rem, 13vw, 4.9rem);
+  }
+
+  .nav-editorial__architecture {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-editorial__architecture-item {
+    min-height: 0;
+  }
+
+  .nav-editorial__num {
+    margin-bottom: 46px;
+  }
+
+  .nav-editorial__behavior {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .nav-editorial__next {
+    align-items: end;
+  }
+}
+
+
 </style>

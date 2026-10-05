@@ -26,18 +26,8 @@ const isActive = (hrefs: string | string[]) => {
 ---
 
 <html lang="en">
+
   <head>
-
-    <style is:inline>
-      html {
-        background: #ffffff;
-      }
-
-      html[data-theme="dark"] {
-        background: #0b0c0f;
-      }
-    </style>
-
 
     <meta charset="utf-8" />
 
@@ -46,53 +36,18 @@ const isActive = (hrefs: string | string[]) => {
       content="width=device-width,initial-scale=1"
     />
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <title>{title}</title>
-
     <meta
       name="robots"
       content="noindex, nofollow"
     />
 
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon.png"
+    />
 
-    <!-- =========================================
-         INSTANT THEME
-    ========================================== -->
-
-    <script is:inline>
-      (() => {
-        try {
-          const saved =
-            localStorage.getItem("theme");
-
-          const theme =
-            saved === "dark" ||
-            saved === "light"
-              ? saved
-              : window.matchMedia(
-                  "(prefers-color-scheme: dark)"
-                ).matches
-                ? "dark"
-                : "light";
-
-          document.documentElement.dataset.theme =
-            theme;
-
-          document.documentElement.style.colorScheme =
-            theme;
-
-        } catch {
-
-          document.documentElement.dataset.theme =
-            "light";
-
-          document.documentElement.style.colorScheme =
-            "light";
-        }
-      })();
-    </script>
-
+    <title>{title}</title>
 
     <link
       rel="stylesheet"
@@ -100,9 +55,7 @@ const isActive = (hrefs: string | string[]) => {
     />
 
 
-    <!-- =========================================
-         FONTS
-    ========================================== -->
+    <!-- FONTS -->
 
     <link
       rel="preconnect"
@@ -131,10 +84,6 @@ const isActive = (hrefs: string | string[]) => {
     />
 
 
-    <!-- =========================================
-         HEADER
-    ========================================== -->
-
     <style>
 
       :root {
@@ -145,21 +94,43 @@ const isActive = (hrefs: string | string[]) => {
           BlinkMacSystemFont,
           "Segoe UI",
           sans-serif;
+
+        --base-bg: #0b0c0f;
+        --base-text: #f2f1ec;
+      }
+
+
+      html {
+        background: var(--base-bg);
+        color-scheme: dark;
       }
 
 
       body {
+        margin: 0;
+
+        background: var(--base-bg);
+        color: var(--base-text);
+
         font-family: var(--ui-font);
       }
 
 
-      /* HEADER */
+
+      /* =====================================================
+         HEADER
+      ====================================================== */
 
       .site-header {
+        position: relative;
+        z-index: 100;
+
         width: 100%;
 
         border: 0 !important;
         border-bottom: 0 !important;
+
+        background: transparent;
 
         box-shadow: none !important;
       }
@@ -170,23 +141,31 @@ const isActive = (hrefs: string | string[]) => {
         max-width: var(--main-max);
 
         margin-inline: auto;
+
         padding-inline: var(--gutter);
 
         display: flex;
+
         align-items: center;
         justify-content: space-between;
+
+        box-sizing: border-box;
       }
 
 
-      /* BRAND */
+
+      /* =====================================================
+         BRAND
+      ====================================================== */
 
       .brand {
         display: inline-flex;
+
         align-items: center;
 
         flex: 0 0 auto;
 
-        color: var(--text);
+        color: var(--base-text);
 
         text-decoration: none !important;
 
@@ -229,30 +208,34 @@ const isActive = (hrefs: string | string[]) => {
 
         white-space: nowrap;
 
-        border: 0 !important;
-        outline: 0 !important;
-
-        background: transparent !important;
-        box-shadow: none !important;
+        color: var(--base-text);
       }
 
 
-      /* RIGHT */
+
+      /* =====================================================
+         RIGHT
+      ====================================================== */
 
       .header-right {
         margin-left: auto;
 
         display: flex;
+
         align-items: center;
 
         gap: 1.7rem;
       }
 
 
-      /* NAV */
+
+      /* =====================================================
+         NAV
+      ====================================================== */
 
       .nav {
         display: flex;
+
         align-items: center;
 
         gap: 2rem;
@@ -263,6 +246,7 @@ const isActive = (hrefs: string | string[]) => {
         position: relative;
 
         display: inline-flex;
+
         align-items: center;
 
         min-height: 32px;
@@ -286,9 +270,9 @@ const isActive = (hrefs: string | string[]) => {
 
         text-decoration: none !important;
 
-        color: var(--text);
+        color: var(--base-text);
 
-        opacity: .7;
+        opacity: .68;
 
         border: 0 !important;
         border-radius: 0 !important;
@@ -307,12 +291,6 @@ const isActive = (hrefs: string | string[]) => {
 
       .nav a:hover {
         opacity: 1;
-
-        border: 0 !important;
-
-        background: transparent !important;
-
-        box-shadow: none !important;
       }
 
 
@@ -321,18 +299,7 @@ const isActive = (hrefs: string | string[]) => {
 
         font-weight: 700;
 
-        color: var(--text);
-
-        border: 0 !important;
-        border-bottom: 0 !important;
-
-        border-radius: 0 !important;
-
-        outline: 0 !important;
-
-        background: transparent !important;
-
-        box-shadow: none !important;
+        color: var(--base-text);
       }
 
 
@@ -344,274 +311,181 @@ const isActive = (hrefs: string | string[]) => {
       }
 
 
-      /* THEME ICON */
 
-      .mini-theme-toggle {
-        width: 32px;
-        height: 32px;
-
-        padding: 0;
-
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-
-        border: 0 !important;
-        outline: 0 !important;
-
-        border-radius: 50%;
-
-        background: transparent !important;
-
-        box-shadow: none !important;
-
-        color: var(--text);
-
-        opacity: .7;
-
-        cursor: pointer;
-
-        transition:
-          opacity .18s ease,
-          transform .18s ease;
-      }
-
-
-      .mini-theme-toggle:hover {
-        opacity: 1;
-
-        transform: translateY(-1px);
-
-        border: 0 !important;
-
-        background: transparent !important;
-      }
-
-
-      .mini-theme-toggle svg {
-        width: 20px;
-        height: 20px;
-
-        display: block;
-      }
-
-
-      html[data-theme="light"]
-      .mini-theme-toggle
-      .icon-sun {
-        display: none;
-      }
-
-
-      html[data-theme="light"]
-      .mini-theme-toggle
-      .icon-moon {
-        display: block;
-      }
-
-
-      html[data-theme="dark"]
-      .mini-theme-toggle
-      .icon-sun {
-        display: block;
-      }
-
-
-      html[data-theme="dark"]
-      .mini-theme-toggle
-      .icon-moon {
-        display: none;
-      }
-
-
-      /* old LIGHT / DARK pill */
-      .theme-toggle {
-        display: none !important;
-      }
-
-
-
-      /* MOBILE */
+      /* =====================================================
+         MOBILE
+      ====================================================== */
 
       @media (max-width: 760px) {
 
+        .header-inner {
+          min-height: 68px;
+
+          padding-left: 18px !important;
+          padding-right: 18px !important;
+        }
+
+
         .brand-name {
-          font-size: 1.2rem;
+          font-size: 1.2rem !important;
+
+          letter-spacing: .1em !important;
+
+          font-weight: 700 !important;
         }
 
 
         .header-right {
-          gap: 1rem;
+          gap: .85rem;
         }
 
 
         .nav {
-          gap: 1.15rem;
+          gap: 1.15rem !important;
         }
 
 
         .nav a {
-          font-size: .75rem;
-        }
+          font-size: 1.2rem !important;
 
+          letter-spacing: .09em !important;
 
-        .mini-theme-toggle {
-          width: 30px;
-          height: 30px;
+          font-weight: 700 !important;
+
+          white-space: nowrap;
         }
 
       }
 
 
-      @media (max-width: 480px) {
-
-        .header-inner {
-          padding-inline: 1rem;
-        }
-
+      @media (max-width: 390px) {
 
         .brand-name {
-          font-size: .72rem;
-        }
-
-
-        .nav {
-          gap: .75rem;
+          font-size: 1.2rem !important;
         }
 
 
         .nav a {
-          font-size: .65rem;
+          font-size: 1.2rem !important;
+        }
+
+
+        .nav {
+          gap: .9rem !important;
         }
 
       }
 
-      @media (max-width: 600px) {
-  .brand-name {
-    font-size: 1.2rem !important;
-    letter-spacing: .11em !important;
-  }
 
-  .nav a {
-    font-size: .82rem !important;
-    letter-spacing: .1em !important;
-  }
 
-  .nav {
-    gap: 1rem !important;
-  }
-}
-@media (max-width: 760px) {
-  .site-header {
-    width: 100% !important;
-    margin: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-  }
+      /* =====================================================
+         FOOTER
+      ====================================================== */
 
-  .header-inner {
-    width: 100% !important;
-    max-width: none !important;
+      .site-footer {
+        overflow: hidden;
 
-    margin: 0 !important;
+        background: var(--base-bg);
 
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+        color: var(--base-text);
+      }
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
 
-    box-sizing: border-box !important;
-  }
+      .bold-ticker {
+        width: 100%;
 
-  .brand {
-    flex: 0 0 auto !important;
-    margin: 0 !important;
-  }
+        overflow: hidden;
 
-  .brand-name {
-    font-size: 1.4rem !important;
-    letter-spacing: .1em !important;
-    white-space: nowrap;
-  }
+        padding: 1.3rem 0;
+      }
 
-  .header-right {
-    margin-left: auto !important;
 
-    display: flex !important;
-    align-items: center !important;
+      .bold-ticker__rail {
+        display: flex;
 
-    gap: .9rem !important;
-  }
+        width: max-content;
+      }
 
-  .nav {
-    display: flex !important;
-    align-items: center !important;
 
-    gap: 1rem !important;
-  }
+      .bold-ticker__track span {
+        font-family:
+          "Oswald",
+          "Arial Narrow",
+          sans-serif;
 
-  .nav a {
-    font-size: .78rem !important;
-    letter-spacing: .09em !important;
-    white-space: nowrap;
-  }
+        font-size:
+          clamp(
+            2rem,
+            3vw,
+            3.5rem
+          );
 
-  .mini-theme-toggle {
-    width: 28px !important;
-    height: 28px !important;
-    flex: 0 0 28px !important;
-  }
-}
-/* =========================================
-   FINAL MOBILE HEADER
-========================================= */
+        font-weight: 700;
 
-@media (max-width: 760px) {
-  .header-inner {
-    min-height: 68px;
-    padding-inline: 18px !important;
-  }
+        line-height: 1;
 
-  .brand-name {
-    font-size: 1.2rem !important;
-    letter-spacing: .1em !important;
-    font-weight: 700 !important;
-  }
+        letter-spacing: -.02em;
 
-  .nav {
-    gap: 1.15rem !important;
-  }
+        text-transform: uppercase;
 
-  .nav a {
-    font-size: 1.2rem !important;
-    letter-spacing: .09em !important;
-    font-weight: 700 !important;
-  }
+        color: var(--base-text);
+      }
 
-  .header-right {
-    gap: .85rem !important;
-  }
 
-  .mini-theme-toggle {
-    width: 30px !important;
-    height: 30px !important;
-  }
-}
+      .bold-ticker__track i {
+        margin:
+          0
+          1.5rem;
 
-@media (max-width: 390px) {
-  .brand-name {
-    font-size: 1.2rem !important;
-  }
+        font-style: normal;
 
-  .nav a {
-    font-size: 1.2rem !important;
-  }
+        opacity: .25;
+      }
 
-  .nav {
-    gap: .9rem !important;
-  }
+
+      @keyframes tickerMove {
+
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-100%);
+        }
+
+      }
+
+
+      .footer-copy {
+        padding:
+          .8rem
+          var(--gutter)
+          1rem;
+
+        text-align: center;
+
+        font-size: .72rem;
+
+        color:
+          rgba(
+            242,
+            241,
+            236,
+            .48
+          );
+      }
+
+
+      @media (prefers-reduced-motion: reduce) {
+
+        .bold-ticker__track {
+          animation: none;
+        }
+
+      }
+
+      :global(body.projects-shell .footer-copy) {
+  display: none !important;
 }
 
     </style>
@@ -622,14 +496,16 @@ const isActive = (hrefs: string | string[]) => {
   </head>
 
 
+
   <body
     class={`menu__container has-thin-sidebar has-double-thin-sidebar menu--sidebar ${bodyClass}`}
     style="--card: var(--bg)"
   >
 
-    <!-- =========================================
+
+    <!-- =====================================================
          HEADER
-    ========================================== -->
+    ====================================================== -->
 
     <header class="site-header">
 
@@ -640,9 +516,11 @@ const isActive = (hrefs: string | string[]) => {
           href="/"
           aria-label="Maria Klammer — Home"
         >
+
           <span class="brand-name">
             MARIA KLAMMER
           </span>
+
         </a>
 
 
@@ -653,20 +531,19 @@ const isActive = (hrefs: string | string[]) => {
             aria-label="Primary navigation"
           >
 
-            <a
-              href="/work"
-              aria-current={
-                isActive([
-                  "/work",
-                  "/case-studies",
-                  "/projects"
-                ])
-                  ? "page"
-                  : undefined
-              }
-            >
-              Work
-            </a>
+          <a
+  href="/projects"
+  aria-current={
+    isActive([
+      "/projects",
+      "/case-studies"
+    ])
+      ? "page"
+      : undefined
+  }
+>
+  Projects
+</a>
 
 
             <a
@@ -682,72 +559,6 @@ const isActive = (hrefs: string | string[]) => {
 
           </nav>
 
-
-          <button
-            type="button"
-            class="mini-theme-toggle"
-            data-theme-toggle
-            aria-label="Switch theme"
-          >
-
-            <!-- sun -->
-            <svg
-              class="icon-sun"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <g
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-              >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3.5"
-                />
-
-                <path
-                  d="
-                    M12 2.5v2.3
-                    M12 19.2v2.3
-                    M4.22 4.22l1.63 1.63
-                    M18.15 18.15l1.63 1.63
-                    M2.5 12h2.3
-                    M19.2 12h2.3
-                    M4.22 19.78l1.63-1.63
-                    M18.15 5.85l1.63-1.63
-                  "
-                />
-              </g>
-            </svg>
-
-
-            <!-- moon -->
-            <svg
-              class="icon-moon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="
-                  M20.5 14.2
-                  A8.5 8.5 0 0 1
-                  9.8 3.5
-                  A9 9 0 1 0
-                  20.5 14.2
-                  Z
-                "
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-          </button>
-
         </div>
 
       </div>
@@ -756,9 +567,9 @@ const isActive = (hrefs: string | string[]) => {
 
 
 
-    <!-- =========================================
+    <!-- =====================================================
          CONTENT
-    ========================================== -->
+    ====================================================== -->
 
     {
       noWrap
@@ -774,9 +585,9 @@ const isActive = (hrefs: string | string[]) => {
 
 
 
-    <!-- =========================================
+    <!-- =====================================================
          FOOTER
-    ========================================== -->
+    ====================================================== -->
 
     {
       !hideFooter &&
@@ -832,148 +643,19 @@ const isActive = (hrefs: string | string[]) => {
 
 
 
-    <!-- =========================================
-         THEME
-    ========================================== -->
-
-    <script>
-      (function () {
-
-        const KEY = "theme";
-
-        const html =
-          document.documentElement;
-
-
-        function reflect(mode) {
-
-          document
-            .querySelectorAll(
-              "[data-theme-toggle]"
-            )
-            .forEach((btn) => {
-
-              btn.setAttribute(
-                "aria-label",
-                mode === "dark"
-                  ? "Switch to light theme"
-                  : "Switch to dark theme"
-              );
-
-            });
-        }
-
-
-        function setTheme(mode) {
-
-          html.dataset.theme =
-            mode;
-
-          html.style.colorScheme =
-            mode;
-
-          reflect(mode);
-
-          try {
-
-            localStorage.setItem(
-              KEY,
-              mode
-            );
-
-          } catch {}
-        }
-
-
-        reflect(
-          html.dataset.theme === "dark"
-            ? "dark"
-            : "light"
-        );
-
-
-        document.addEventListener(
-          "click",
-          (event) => {
-
-            const target =
-              event.target;
-
-            if (
-              !(target instanceof Element)
-            ) {
-              return;
-            }
-
-
-            const toggle =
-              target.closest(
-                "[data-theme-toggle]"
-              );
-
-
-            if (!toggle) {
-              return;
-            }
-
-
-            const current =
-              html.dataset.theme === "dark"
-                ? "dark"
-                : "light";
-
-
-            setTheme(
-              current === "dark"
-                ? "light"
-                : "dark"
-            );
-
-          }
-        );
-
-
-        const mq =
-          window.matchMedia(
-            "(prefers-color-scheme: dark)"
-          );
-
-
-        mq.addEventListener?.(
-          "change",
-          (event) => {
-
-            const saved =
-              localStorage.getItem(KEY);
-
-            if (
-              saved !== "dark" &&
-              saved !== "light"
-            ) {
-
-              setTheme(
-                event.matches
-                  ? "dark"
-                  : "light"
-              );
-            }
-          }
-        );
-
-      })();
-    </script>
-
-
-
-    <!-- existing cover-card effects -->
+    <!-- =====================================================
+         COVER CARD EFFECT
+    ====================================================== -->
 
     <script is:inline>
-      (function () {
+
+      (() => {
 
         const cards =
           document.querySelectorAll(
             ".cover-card"
           );
+
 
         cards.forEach((el) => {
 
@@ -984,10 +666,12 @@ const isActive = (hrefs: string | string[]) => {
               const rect =
                 el.getBoundingClientRect();
 
+
               el.style.setProperty(
                 "--mx",
                 `${event.clientX - rect.left}px`
               );
+
 
               el.style.setProperty(
                 "--my",
@@ -1002,13 +686,9 @@ const isActive = (hrefs: string | string[]) => {
             "pointerleave",
             () => {
 
-              el.style.removeProperty(
-                "--mx"
-              );
+              el.style.removeProperty("--mx");
 
-              el.style.removeProperty(
-                "--my"
-              );
+              el.style.removeProperty("--my");
 
             }
           );
@@ -1016,10 +696,17 @@ const isActive = (hrefs: string | string[]) => {
         });
 
       })();
+
     </script>
 
 
+
+    <!-- =====================================================
+         CARD REVEAL
+    ====================================================== -->
+
     <script is:inline>
+
       (() => {
 
         const elements =
@@ -1045,6 +732,7 @@ const isActive = (hrefs: string | string[]) => {
 
         const observer =
           new IntersectionObserver(
+
             (entries) => {
 
               entries.forEach(
@@ -1058,14 +746,18 @@ const isActive = (hrefs: string | string[]) => {
                       "reveal-in"
                     );
 
+
                     observer.unobserve(
                       entry.target
                     );
+
                   }
+
                 }
               );
 
             },
+
             {
               rootMargin:
                 "0px 0px -10% 0px",
@@ -1073,6 +765,7 @@ const isActive = (hrefs: string | string[]) => {
               threshold:
                 0.05
             }
+
           );
 
 
@@ -1082,7 +775,9 @@ const isActive = (hrefs: string | string[]) => {
         );
 
       })();
+
     </script>
 
   </body>
+
 </html>

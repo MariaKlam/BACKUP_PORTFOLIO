@@ -1,0 +1,1121 @@
+---
+import Base from "../layouts/Base.astro";
+import { projects } from "../data/projects";
+
+const preferredOrder = [
+  "Email Marketing Platform",
+  "AI Social Media Generator",
+  "FLAX Hospitality POS",
+  "Unified Navigation System",
+  "Isekas Self-Service",
+  "UI Library & Token System",
+  "Dashboard & Application Patterns",
+  "Telia Help & Guides UX Analysis",
+  "Brand & Visual Identity",
+  "Illustration & Visual Studies",
+];
+
+const orderedProjects = [...projects].sort((a, b) => {
+  const ai = preferredOrder.indexOf(a.title);
+  const bi = preferredOrder.indexOf(b.title);
+
+  return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+});
+
+const coverFor = (title) => {
+  const t = title.toLowerCase();
+
+  if (t.includes("email") || t.includes("marketing")) {
+    return "/images/email-marketing/email-marketing-hero.webp";
+  }
+
+  if (t.includes("social") || t.includes("media generator")) {
+    return "/images/social-media-generator/start.webp";
+  }
+
+  if (t.includes("flax")) {
+    return "/images/flax/hero.webp";
+  }
+
+  if (t.includes("navigation") || t.includes("unified")) {
+    return "/images/email-marketing/menu_works.png";
+  }
+
+  if (t.includes("isekas")) {
+    return "/images/isekas/hero.webp";
+  }
+
+  if (t.includes("token") || t.includes("ui library")) {
+    return "/images/tokens/hero.webp";
+  }
+
+  if (t.includes("dashboard") || t.includes("application pattern")) {
+    return "/images/tokens/bo-dashboard.webp";
+  }
+
+  if (t.includes("telia")) {
+    return "/images/telia/telia-hero.webp";
+  }
+
+  if (t.includes("brand")) {
+    return "/images/design/beauty.webp";
+  }
+
+  if (t.includes("illustration") || t.includes("visual studies")) {
+    return "/images/visual/kompa.webp";
+  }
+
+  return "/images/visual/steel-table.png";
+};
+---
+
+<Base
+  title="Projects | Maria Klammer"
+  bodyClass="projects-shell"
+  noWrap={true}
+  hideFooter={false}
+>
+  <main class="projects-page">
+
+    <!-- =====================================================
+         INTRO
+    ====================================================== -->
+
+    <header class="projects-intro">
+
+      <h1 class="projects-title">
+        projects
+      </h1>
+
+      <p class="projects-description">
+        Product systems, interfaces and visual direction.
+        Selected work across product design, frontend and engineering.
+      </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         PROJECT GRID
+    ====================================================== -->
+
+    <section
+      class="projects-section"
+      aria-label="Projects"
+    >
+
+      <div class="projects-grid">
+
+        {orderedProjects.map((project, i) => {
+          const image = coverFor(project.title);
+
+          return (
+            <a
+              href={project.link}
+              class="project-card"
+              aria-label={`View ${project.title}`}
+            >
+
+              <div class="project-media">
+
+                <!-- COLOR IMAGE -->
+                <img
+                  class="project-image project-image--normal"
+                  src={image}
+                  alt={project.title}
+                  loading={i < 4 ? "eager" : "lazy"}
+                />
+
+
+                <!-- XRAY IMAGE -->
+                <img
+                  class="project-image project-image--xray"
+                  src={image}
+                  alt=""
+                  aria-hidden="true"
+                />
+
+
+                <!-- XRAY WASH -->
+                <div
+                  class="project-xray-wash"
+                  aria-hidden="true"
+                ></div>
+
+
+                <!-- PROJECT NAME -->
+                <div class="project-overlay">
+                  <h2>{project.title}</h2>
+                </div>
+
+
+                <!-- CUSTOM CURSOR -->
+                <span
+                  class="project-cursor"
+                  aria-hidden="true"
+                >
+                  ↗
+                </span>
+
+              </div>
+
+
+              <!-- ROLE -->
+              <div class="project-caption">
+                <span>{project.role}</span>
+              </div>
+
+            </a>
+          );
+        })}
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       CURSOR SCRIPT
+  ====================================================== -->
+
+  <script is:inline>
+    (() => {
+      const mediaBlocks =
+        document.querySelectorAll(".project-media");
+
+      mediaBlocks.forEach((media) => {
+        const cursor =
+          media.querySelector(".project-cursor");
+
+        if (!cursor) return;
+
+        media.addEventListener("pointerenter", () => {
+          media.classList.add("is-hovered");
+        });
+
+        media.addEventListener("pointermove", (event) => {
+          const rect =
+            media.getBoundingClientRect();
+
+          cursor.style.left =
+            `${event.clientX - rect.left}px`;
+
+          cursor.style.top =
+            `${event.clientY - rect.top}px`;
+        });
+
+        media.addEventListener("pointerleave", () => {
+          media.classList.remove("is-hovered");
+        });
+      });
+    })();
+  </script>
+
+
+  <style is:global>
+
+    /* =====================================================
+       VARIABLES
+    ====================================================== */
+
+    :root {
+      --projects-bg: #111210;
+      --projects-fg: #f2f1ec;
+      --projects-lime: #d8f27a;
+      --projects-muted: rgba(242, 241, 236, .62);
+    }
+
+
+    html,
+    body.projects-shell {
+      background:
+        var(--projects-bg) !important;
+
+      color:
+        var(--projects-fg) !important;
+    }
+
+
+    body.projects-shell {
+      overflow-x: hidden;
+    }
+
+
+    /* =====================================================
+       PAGE WIDTH
+       SAME LOGIC AS HEADER
+    ====================================================== */
+
+    .projects-page {
+      width:
+        min(
+          calc(100% - 48px),
+          1500px
+        );
+
+      margin-inline: auto;
+
+      padding-top: 108px;
+
+      padding-bottom: 110px;
+
+      box-sizing: border-box;
+    }
+
+
+    /* =====================================================
+       INTRO
+    ====================================================== */
+
+    .projects-intro {
+      position: relative;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        390px;
+
+      align-items: end;
+
+      gap: 50px;
+
+      min-height: 105px;
+
+      margin-bottom: 18px;
+    }
+
+
+    .projects-title {
+      position: relative;
+
+      z-index: 20;
+
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(
+          6rem,
+          8.4vw,
+          9rem
+        );
+
+      font-weight: 800;
+
+      line-height: .82;
+
+      letter-spacing: -.07em;
+
+      text-transform: lowercase;
+
+      color:
+        var(--projects-fg);
+
+
+      transform: translate(-5px, 24px);
+
+
+      pointer-events: none;
+    }
+
+
+    .projects-description {
+      width: 390px;
+
+      max-width: 390px;
+
+      margin:
+        0
+        0
+        5px;
+
+      justify-self: end;
+
+      text-align: right;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size: 1.2rem;
+
+      font-weight: 500;
+
+      line-height: 1.3;
+
+      letter-spacing: -.01em;
+
+      color:
+        rgba(
+          242,
+          241,
+          236,
+          .9
+        );
+    }
+
+
+    /* =====================================================
+       GRID
+    ====================================================== */
+
+    .projects-section {
+      position: relative;
+    }
+
+
+    .projects-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+
+      column-gap: 26px;
+
+      row-gap: 52px;
+    }
+
+
+    /* =====================================================
+       CARD
+    ====================================================== */
+
+    .project-card {
+      display: block;
+
+      min-width: 0;
+
+      color: inherit;
+
+      text-decoration: none;
+    }
+
+
+    /* =====================================================
+       MEDIA
+    ====================================================== */
+
+    .project-media {
+      position: relative;
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9.7;
+
+      overflow: hidden;
+
+      isolation: isolate;
+
+      background: #171815;
+
+      cursor: none;
+    }
+
+
+    /* =====================================================
+       BASE IMAGE
+    ====================================================== */
+
+    .project-image {
+      position: absolute;
+
+      inset: 0;
+
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      transition:
+        opacity .35s ease,
+        transform .65s cubic-bezier(.2,.7,.2,1),
+        filter .35s ease;
+    }
+
+
+    /* =====================================================
+       COLOR IMAGE
+       HIDDEN BY DEFAULT ON DESKTOP
+    ====================================================== */
+
+    .project-image--normal {
+      z-index: 2;
+
+      opacity: 0;
+
+      transform:
+        scale(1.008);
+
+      filter:
+        brightness(.96)
+        saturate(1);
+    }
+
+
+    /* =====================================================
+       XRAY DEFAULT
+    ====================================================== */
+
+    .project-image--xray {
+      z-index: 1;
+
+      opacity: 1;
+
+      transform:
+        scale(1.004);
+
+      filter:
+        grayscale(1)
+        invert(1)
+        contrast(1.2)
+        brightness(.72)
+        saturate(0);
+    }
+
+
+    .project-xray-wash {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 3;
+
+      opacity: 1;
+
+      pointer-events: none;
+
+      background:
+        rgba(
+          104,
+          109,
+          106,
+          .17
+        );
+
+      mix-blend-mode: multiply;
+
+      transition:
+        opacity .35s ease;
+    }
+
+
+    /* =====================================================
+       PROJECT TITLE
+    ====================================================== */
+
+    .project-overlay {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 30;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding:
+        clamp(
+          24px,
+          3vw,
+          46px
+        );
+
+      box-sizing: border-box;
+
+      pointer-events: none;
+    }
+
+
+    .project-overlay h2 {
+      position: relative;
+
+      z-index: 31;
+
+      max-width: 88%;
+
+      margin: 0;
+
+      text-align: center;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(
+          2.45rem,
+          3.45vw,
+          4.35rem
+        );
+
+      font-weight: 760;
+
+      line-height: .92;
+
+      /*
+        wider / less compressed
+      */
+      letter-spacing: -.012em;
+
+      color:
+        var(--projects-lime) !important;
+
+      text-wrap: balance;
+
+      text-shadow:
+        0 3px 20px
+        rgba(
+          0,
+          0,
+          0,
+          .42
+        );
+
+      transform:
+        translateY(3%);
+
+      opacity: 1;
+
+      visibility: visible;
+
+      transition:
+        transform .3s ease;
+    }
+
+
+    /* =====================================================
+       HOVER = COLOR
+    ====================================================== */
+
+    .project-card:hover
+    .project-image--normal {
+      opacity: 1;
+
+      transform:
+        scale(1.02);
+    }
+
+
+    .project-card:hover
+    .project-image--xray {
+      opacity: 0;
+    }
+
+
+    .project-card:hover
+    .project-xray-wash {
+      opacity: 0;
+    }
+
+
+    .project-card:hover
+    .project-overlay h2 {
+      transform:
+        translateY(3%)
+        scale(1.018);
+    }
+
+
+    /* =====================================================
+       CUSTOM CURSOR
+    ====================================================== */
+
+    .project-cursor {
+      position: absolute;
+
+      z-index: 50;
+
+      left: 0;
+      top: 0;
+
+      width: 72px;
+      height: 72px;
+
+      display: grid;
+
+      place-items: center;
+
+      border:
+        2.5px solid
+        var(--projects-lime);
+
+      border-radius: 50%;
+
+      color:
+        var(--projects-lime);
+
+      background:
+        transparent;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 2rem;
+
+      font-weight: 800;
+
+      line-height: 1;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transform:
+        translate(-50%, -50%)
+        scale(.8);
+
+      transition:
+        opacity .15s ease,
+        transform .18s ease;
+    }
+
+
+    .project-media.is-hovered
+    .project-cursor {
+      opacity: 1;
+
+      transform:
+        translate(-50%, -50%)
+        scale(1);
+    }
+
+
+    /* =====================================================
+       CAPTION
+    ====================================================== */
+
+    .project-caption {
+      display: block;
+
+      width: 100%;
+
+      padding-top: 14px;
+    }
+
+
+    .project-caption span {
+      display: block;
+
+      margin: 0;
+
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
+
+      font-size:
+        1rem !important;
+
+      font-weight: 600;
+
+      line-height: 1.2;
+
+      letter-spacing: .09em;
+
+      text-transform: uppercase;
+
+      color:
+        rgba(
+          242,
+          241,
+          236,
+          .68
+        ) !important;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ====================================================== */
+
+    body.projects-shell
+    .site-header {
+      position: fixed !important;
+
+      top: 0 !important;
+
+      left: 0 !important;
+
+      right: 0 !important;
+
+      z-index: 1000 !important;
+
+      width: 100% !important;
+
+      background:
+        #111210 !important;
+
+      border: 0 !important;
+
+      box-shadow: none !important;
+    }
+
+
+    /* =====================================================
+       FOOTER / TICKER
+    ====================================================== */
+
+    body.projects-shell
+    .site-footer {
+      background:
+        #111210 !important;
+
+      color:
+        #f2f1ec !important;
+    }
+
+
+    body.projects-shell
+    .bold-ticker {
+      background:
+        #111210 !important;
+
+      padding-top: 3rem;
+
+      padding-bottom: 2rem;
+    }
+
+
+    body.projects-shell
+    .bold-ticker__track {
+      animation-duration:
+        44s !important;
+    }
+
+
+    body.projects-shell
+    .footer-copy {
+      display:
+        none !important;
+    }
+
+
+    /* =====================================================
+       TABLET
+    ====================================================== */
+
+    @media (max-width: 980px) {
+
+      .projects-page {
+        width:
+          calc(100% - 36px);
+
+        padding-top: 40px;
+      }
+
+
+      .projects-intro {
+        grid-template-columns:
+          1fr
+          290px;
+
+        gap: 30px;
+      }
+
+
+      .projects-description {
+        width: 290px;
+
+        max-width: 290px;
+      }
+
+
+      .project-overlay h2 {
+        font-size:
+          clamp(
+            2.1rem,
+            4.3vw,
+            3.5rem
+          );
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 760px) {
+
+      .projects-page {
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+
+        padding:
+          100px
+          16px
+          70px;
+
+        box-sizing:
+          border-box;
+      }
+
+
+      /* ---------------------------
+         INTRO NORMAL FLOW
+      ---------------------------- */
+
+      .projects-intro {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 16px;
+
+        min-height: 0;
+
+        margin-bottom: 30px;
+      }
+
+
+      .projects-title {
+        position: static;
+
+        width: 100%;
+
+        margin: 0;
+
+        transform: none;
+
+        font-size:
+          clamp(
+            4rem,
+            18vw,
+            5.2rem
+          );
+
+        line-height: .85;
+
+        letter-spacing: -.055em;
+      }
+
+
+      .projects-description {
+        width: 88%;
+
+        max-width: none;
+
+        margin:
+          0
+          0
+          0
+          auto;
+
+        text-align: right;
+
+        font-size: 1rem;
+
+        line-height: 1.3;
+      }
+
+
+      /* ---------------------------
+         ONE COLUMN
+      ---------------------------- */
+
+      .projects-grid {
+        grid-template-columns:
+          1fr;
+
+        column-gap: 0;
+
+        row-gap: 40px;
+      }
+
+
+      .project-media {
+        width: 100%;
+
+        aspect-ratio: 4 / 3;
+
+        cursor: pointer;
+      }
+
+
+      /* ---------------------------
+         MOBILE = COLOR
+      ---------------------------- */
+
+      .project-image--normal {
+        display: block !important;
+
+        opacity: 1 !important;
+
+        transform:
+          scale(1.001) !important;
+
+        filter:
+          brightness(.9)
+          saturate(.96);
+      }
+
+
+      .project-image--xray,
+      .project-xray-wash,
+      .project-cursor {
+        display:
+          none !important;
+      }
+
+
+      /* ---------------------------
+         TITLE ON IMAGE
+      ---------------------------- */
+
+      .project-overlay {
+        padding: 20px;
+      }
+
+
+      .project-overlay h2 {
+        max-width: 92%;
+
+        font-size:
+          clamp(
+            2.15rem,
+            9.5vw,
+            3.25rem
+          );
+
+        line-height: .92;
+
+        letter-spacing: -.01em;
+
+        transform: none;
+
+        text-shadow:
+          0 3px 18px
+          rgba(
+            0,
+            0,
+            0,
+            .38
+          );
+      }
+
+
+      .project-card:hover
+      .project-overlay h2 {
+        transform: none;
+      }
+
+
+      /* ---------------------------
+         ROLE
+      ---------------------------- */
+
+      .project-caption {
+        padding-top: 12px;
+      }
+
+
+      .project-caption span {
+        font-size:
+          1rem !important;
+
+        line-height:
+          1.2;
+
+        letter-spacing:
+          .085em;
+      }
+
+
+      body.projects-shell
+      .bold-ticker {
+        padding-top:
+          2.3rem;
+
+        padding-bottom:
+          1.6rem;
+      }
+
+    }
+
+
+    /* =====================================================
+       SMALL PHONE
+    ====================================================== */
+
+    @media (max-width: 390px) {
+
+      .projects-page {
+        padding-inline: 14px;
+      }
+
+
+      .projects-title {
+        font-size:
+          clamp(
+            3.7rem,
+            18vw,
+            4.8rem
+          );
+      }
+
+
+      .projects-description {
+        width: 92%;
+      }
+
+
+      .project-overlay h2 {
+        font-size:
+          clamp(
+            2rem,
+            9.7vw,
+            2.85rem
+          );
+      }
+
+    }
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ====================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .project-image,
+      .project-xray-wash,
+      .project-cursor,
+      .project-overlay h2 {
+        transition:
+          none !important;
+      }
+
+
+      body.projects-shell
+      .bold-ticker__track {
+        animation:
+          none !important;
+      }
+
+    }
+
+  </style>
+
+</Base>

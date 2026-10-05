@@ -1,305 +1,293 @@
 ---
 import Base from "../../layouts/Base.astro";
-import "../../styles/case-base.css";   
+import "../../styles/case-editorial.css";
 
-const title = "Case Study: Email Marketing Platform";
+const title = "Email Marketing Platform | Maria Klammer";
 ---
 
-<Base title={title} noWrap={false} hideFooter={false}>
-  <article class="container-narrow doc-grid tokens-case">
-    <!-- LEFT rail (Prev) -->
-    <nav class="case-rail case-rail--left" aria-label="Previous project">
-      <a class="pager-btn pager-btn--prev" href="/case-studies/social-media-generator" aria-label="Previous: AI Social Media Generator">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-      </a>
-    </nav>
+<Base
+  title={title}
+  bodyClass="case-editorial-shell"
+  noWrap={true}
+  hideFooter={true}
+>
 
-    <!-- LEFT: Narrative -->
-    <div class="doc-main">
-      <header class="case-hero">
-        <h1>Email Marketing Application</h1>
-        <p class="meta">Product Design • UX/UI • Frontend</p>
-        <p class="lede">
-          Worked on an Email Marketing platform with multiple campaign creation flows,
-          including AI-assisted editing, template-based editing, and campaign management tools.
-          The goal was to make campaign creation faster, more flexible, and easier to manage. Landing page available at <a href="https://marketing.voog.com" target="_blank" rel="noopener">marketing.voog.com</a>
-        </p>
-      </header>
+  <article class="case-editorial">
 
-      <!-- Hero preview -->
-      <section class="hero-vertical" aria-label="Featured preview">
-        <button
-          class="shot-tile ar-21x9"
-          data-full="/images/email-marketing/email-marketing-hero.webp"
-          data-title="Email Marketing platform overview"
-          data-cap="<p>Built product features for flexible campaign creation and management.</p>
-          <ul>
-            <li>Multiple editing flows for different user needs.</li>
-            <li>AI-assisted template editing and campaign creation.</li>
-            <li>Campaign scheduling and automation support.</li>
-            <li>Email tracking and management tools.</li>
-          </ul>"
+    <div class="case-editorial__inner">
+
+      <!-- ===================================================
+           META
+      ==================================================== -->
+
+      <section class="case-meta">
+
+        <div class="case-meta__block">
+
+          <p class="case-meta__label">
+            project
+          </p>
+
+          <h1 class="case-meta__value">
+            Email Marketing<br />
+            Platform
+          </h1>
+
+
+          <a
+            class="case-back"
+            href="/projects"
+            aria-label="Back to projects"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 5L5 19" />
+              <path d="M5 19V8" />
+              <path d="M5 19h11" />
+            </svg>
+
+            Projects
+          </a>
+
+        </div>
+
+
+        <div class="case-meta__block">
+
+          <p class="case-meta__label">
+            bio
+          </p>
+
+          <p class="case-meta__bio">
+            Campaign creation and management product with
+            multiple editing flows, AI-assisted workflows,
+            automation, analytics and tracking.
+          </p>
+
+        </div>
+
+
+        <div class="case-meta__block">
+
+          <p class="case-meta__label">
+            deliverables
+          </p>
+
+          <div class="case-meta__stack">
+            <span>Product design</span>
+            <span>Frontend</span>
+            <span>AI workflows</span>
+            <span>Campaign systems</span>
+          </div>
+
+        </div>
+
+
+        <div class="case-meta__block">
+
+          <p class="case-meta__label">
+            year
+          </p>
+
+          <p class="case-meta__value">
+            2025–2026
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           HERO
+      ==================================================== -->
+
+      <figure class="case-hero-media">
+
+        <img
+          src="/images/email-marketing/email-marketing-hero.webp"
+          alt="Email Marketing Platform overview"
+        />
+
+      </figure>
+
+
+
+      <!-- ===================================================
+           FIRST VISUAL GRID
+      ==================================================== -->
+
+      <section
+        class="case-gallery"
+        aria-label="Email Marketing Platform screens"
+      >
+
+        <figure
+          class="case-gallery__item
+                 case-gallery__item--landscape"
         >
           <img
-            src="/images/email-marketing/email-marketing-hero.webp"
-            alt="Email Marketing platform overview"
-          >
-        </button>
+            src="/images/email-marketing/signup.webp"
+            alt="Email Marketing signup flow"
+            loading="lazy"
+          />
+        </figure>
+
+
+        <figure
+          class="case-gallery__item
+                 case-gallery__item--landscape"
+        >
+          <img
+            src="/images/email-marketing/welcome.webp"
+            alt="Email Marketing welcome screen"
+            loading="lazy"
+          />
+        </figure>
+
       </section>
 
-      <section id="s-context">
-        <h2>Context</h2>
-        <p>
-          This project focused on building product features for an Email Marketing platform used to
-          create, manage, and monitor campaigns. The product needed to support different ways of
-          building emails depending on user skill level and campaign type, while keeping the workflow
-          clear and efficient.
+
+
+      <!-- ===================================================
+           STATEMENT
+      ==================================================== -->
+
+      <section class="case-statement">
+
+        <p class="case-statement__text">
+          Built across campaign creation,
+          <span class="case-statement__accent">
+            AI-assisted editing,
+          </span>
+          scheduling, tracking and automation.
         </p>
+
       </section>
 
-      <section id="s-problem">
-        <h2>Problem</h2>
-        <p>
-          Email campaign creation can quickly become complex when users need different editing modes,
-          scheduling options, and visibility into campaign performance. The challenge was to support
-          both flexibility and ease of use without making the product feel fragmented or overwhelming.
-        </p>
-        <ul>
-          <li><strong>Multiple creation flows:</strong> users needed different ways to create campaigns depending on their goals and skills.</li>
-          <li><strong>Workflow complexity:</strong> campaign setup, editing, scheduling, and tracking needed to feel connected and manageable.</li>
-          <li><strong>Scalability:</strong> the interface had to support growing product features while staying consistent.</li>
-        </ul>
+
+
+      <!-- ===================================================
+           LARGE AI VISUAL
+      ==================================================== -->
+
+      <section
+        class="case-gallery case-gallery--wide"
+      >
+
+        <figure
+          class="case-gallery__item
+                 case-gallery__item--natural"
+        >
+          <img
+            src="/images/email-marketing/ai-example.webp"
+            alt="AI-assisted email editing workflow"
+            loading="lazy"
+          />
+        </figure>
+
       </section>
 
-      <section id="s-approach">
-        <h2>Approach</h2>
-        <ul>
-          <li>Worked on product flows for creating and managing email campaigns.</li>
-          <li>Built features for <strong>AI-assisted email template editing</strong>.</li>
-          <li>Supported multiple editing paths, including <strong>template-based</strong> and more guided campaign creation flows.</li>
-          <li>Worked on <strong>campaign scheduling</strong>, automation-related workflows, and management tools.</li>
-          <li>Contributed to <strong>email tracking functionality, subscribe & unsubscribe flows</strong> and interfaces supporting campaign monitoring.</li>
-          <li>Focused on keeping the experience reusable, scalable, and aligned with the broader product system.</li>
-        </ul>
+
+
+      <!-- ===================================================
+           TEMPLATE GRID
+      ==================================================== -->
+
+      <section class="case-gallery">
+
+        <figure
+          class="case-gallery__item
+                 case-gallery__item--landscape"
+        >
+          <img
+            src="/images/email-marketing/smaily.webp"
+            alt="Email marketing template"
+            loading="lazy"
+          />
+        </figure>
+
+
+        <figure
+          class="case-gallery__item
+                 case-gallery__item--landscape"
+        >
+          <img
+            src="/images/email-marketing/colorful.webp"
+            alt="Colorful email campaign template"
+            loading="lazy"
+          />
+        </figure>
+
       </section>
 
-      <section id="s-outcomes">
-        <h2>Outcomes</h2>
-        <ul>
-          <li>Improved flexibility by supporting different campaign creation methods.</li>
-          <li>Helped structure workflows for editing, scheduling, and managing campaigns more clearly.</li>
-          <li>Contributed to a product experience that balanced feature depth with usability.</li>
-          <li>Expanded the platform with tools for campaign automation and tracking.</li>
-        </ul>
+
+
+      <!-- ===================================================
+           FINAL FULL WIDTH VISUAL
+      ==================================================== -->
+
+      <section
+        class="case-gallery case-gallery--wide"
+      >
+
+        <figure
+          class="case-gallery__item
+                 case-gallery__item--natural"
+        >
+          <img
+            src="/images/email-marketing/magnum.webp"
+            alt="Email campaign example"
+            loading="lazy"
+          />
+        </figure>
+
       </section>
 
-      <section id="s-role">
-        <h2>My Role</h2>
-        <ul>
-          <li>Worked on product design and frontend implementation for Email Marketing features.</li>
-          <li>Contributed to editing flows, campaign management interfaces, and tracking-related functionality.</li>
-          <li>Helped shape scalable UI patterns for a growing product feature set.</li>
-        </ul>
-      </section>
-
-      <p class="flex-col links-container">
-        <a class="btn link-btn" href="/work">
-          <span class="btn-label">See all projects</span>
-          <i class="ri-arrow-right-line"></i>
-        </a>
-
-        <a class="btn link-btn" href="/case-studies/ui-library-tokens">
-          <span class="btn-label">See my UI Library project</span>
-          <i class="ri-arrow-right-line"></i>
-        </a>
-      </p>
-    </div>
-        <!-- RIGHT: Visual gallery -->
-<!-- RIGHT: Visual gallery -->
-<aside class="doc-aside feature-card">
-<nav class="shots-grid" aria-label="Visual gallery">
-
-  <button class="shot-tile"
-    data-full="/images/email-marketing/signup.webp"
-    data-title="Signup flow"
-    data-cap="<p>User onboarding</p>
-    <ul>
-      <li>Simple signup flow for creating a new marketing account.</li>
-      <li>Guides users through initial setup and campaign creation.</li>
-      <li>Designed to reduce friction for first-time users.</li>
-    </ul>">
-    <img src="/images/email-marketing/signup.webp" alt="Email marketing signup flow">
-  </button>
-
-  <button class="shot-tile"
-    data-full="/images/email-marketing/welcome.webp"
-    data-title="Welcome screen"
-    data-cap="<p>Initial dashboard experience</p>
-    <ul>
-      <li>Introduces the main campaign creation options.</li>
-      <li>Highlights different editing flows available to the user.</li>
-      <li>Provides a clear starting point for creating campaigns.</li>
-    </ul>">
-    <img src="/images/email-marketing/welcome.webp" alt="Email marketing welcome screen">
-  </button>
-
-  <button class="shot-tile"
-    data-full="/images/email-marketing/smaily.webp"
-    data-title="Template preview"
-    data-cap="<p>Email template preview</p>
-    <ul>
-      <li>Pre-designed templates for faster campaign creation.</li>
-      <li>Helps users start with a structured layout.</li>
-      <li>Templates can be customized or generated using AI tools.</li>
-    </ul>">
-    <img src="/images/email-marketing/smaily.webp" alt="Email template preview">
-  </button>
-
-  <button class="shot-tile"
-    data-full="/images/email-marketing/ai-example.webp"
-    data-title="AI-assisted editor"
-    data-cap="<p>AI-powered email creation</p>
-    <ul>
-      <li>Generate email content using AI assistance.</li>
-      <li>Helps users quickly create campaign drafts.</li>
-      <li>Supports editing and refining generated content.</li>
-    </ul>">
-    <img loading="lazy" src="/images/email-marketing/ai-example.webp" alt="AI email editor">
-  </button>
-
-  <button class="shot-tile"
-    data-full="/images/email-marketing/magnum.webp"
-    data-title="Campaign example"
-    data-cap="<p>Campaign layout example</p>
-    <ul>
-      <li>Example marketing email built using the editor.</li>
-      <li>Shows layout flexibility and visual customization.</li>
-      <li>Designed to support different campaign styles.</li>
-    </ul>">
-    <img loading="lazy" src="/images/email-marketing/magnum.webp" alt="Campaign email example">
-  </button>
-
-  <button class="shot-tile"
-    data-full="/images/email-marketing/colorful.webp"
-    data-title="Visual template"
-    data-cap="<p>Template design variations</p>
-    <ul>
-      <li>Supports different visual styles and brand themes.</li>
-      <li>Flexible components allow quick layout changes.</li>
-      <li>Designed for reusable campaign templates.</li>
-    </ul>">
-    <img loading="lazy" src="/images/email-marketing/colorful.webp" alt="Colorful email template design">
-  </button>
 
 
+      <!-- ===================================================
+           NEXT PROJECT
+      ==================================================== -->
 
-</nav>
+      <a
+        class="case-next"
+        href="/case-studies/social-media-generator"
+      >
 
-</aside>
+        <div>
 
-    <!-- Lightbox -->
-    <div class="tokens-lightbox" aria-hidden="true">
-  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
-    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+          <span class="case-next__eyebrow">
+            next project
+          </span>
 
-    <div class="tokens-lightbox__media">
-      <img class="tokens-lightbox__img" alt="" />
-    </div>
-    <aside class="tokens-lightbox__meta">
-      <h4 class="tokens-lightbox__title"></h4>
-      <div class="tokens-lightbox__cap"></div>
-    </aside>
-  </div>
-</div>
+          <h2 class="case-next__title">
+            AI Social Media<br />
+            Generator
+          </h2>
 
-<!-- RIGHT rail (Next) -->
-    <nav class="case-rail case-rail--right" aria-label="Next project">
-      <a class="pager-btn pager-btn--next" href="/case-studies/flax" aria-label="Next: FLAX Hospitality">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </div>
+
+
+        <span
+          class="case-next__arrow"
+          aria-hidden="true"
+        >
+          ↗
+        </span>
+
       </a>
-    </nav>
+
+    </div>
+
   </article>
-  
-<script type="module">
-(() => {
-  const scope = document.querySelector('.tokens-case');
-  if (!scope) return;
-
-  const lb       = scope.querySelector('.tokens-lightbox');
-  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
-  const imgEl    = lb.querySelector('.tokens-lightbox__img');
-  const titleEl  = lb.querySelector('.tokens-lightbox__title');
-  const capEl    = lb.querySelector('.tokens-lightbox__cap');
-  const closeBtn = lb.querySelector('.tokens-lightbox__close');
-  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
-  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
-
-  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
-  let currentIndex = -1;
-  let lastFocus = null;
-
-  function extractDataFrom(el) {
-    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
-    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
-    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
-    const title = carrier.getAttribute('data-title') || img?.alt || '';
-    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
-    return { src, title, cap };
-  }
-
-  function openLightbox(index) {
-    currentIndex = index;
-    const { src, title, cap } = extractDataFrom(tiles[index]);
-    lastFocus = document.activeElement;
-    imgEl.src = src;
-    titleEl.textContent = title;
-    capEl.innerHTML = cap;
-    lb.classList.add('is-open');
-    document.documentElement.classList.add('tokens-lightbox-open');
-    closeBtn.focus();
-  }
-
-  function closeLightbox() {
-    lb.classList.remove('is-open');
-    document.documentElement.classList.remove('tokens-lightbox-open');
-    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  function showNext() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex + 1) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  function showPrev() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  scope.addEventListener('click', e => {
-    const tile = e.target.closest('.shot-tile');
-    if (tile) {
-      e.preventDefault();
-      openLightbox(tiles.indexOf(tile));
-    }
-  });
-
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', showPrev);
-  nextBtn.addEventListener('click', showNext);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-  });
-})();
-</script>
 
 </Base>

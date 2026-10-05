@@ -1,343 +1,1006 @@
 ---
 import Base from "../../layouts/Base.astro";
-import "../../styles/case-base.css";
+import "../../styles/case-editorial.css";
 
-const title = "Case Study: Visual explorations";
+const title = "Illustration & Visual Studies | Maria Klammer";
 ---
-<Base title={title} noWrap={false} hideFooter={false}>
-  
 
-  <article class="container-narrow doc-grid tokens-case">
-              <!-- LEFT rail (Prev) -->
-    <nav class="case-rail case-rail--left" aria-label="Previous project">
-      <a class="pager-btn pager-btn--prev" href="/case-studies/graphic-design" aria-label="Previous: Brand & Visual Identity">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-      </a>
-    </nav>
-    <div class="doc-main">
+<Base
+  title={title}
+  bodyClass="case-editorial-shell"
+  noWrap={true}
+  hideFooter={true}
+>
+  <article class="case-editorial">
+    <div class="case-editorial__inner">
 
-      <section class="hero-vertical" aria-label="Featured previews">
-        <button class="shot-tile ar-21x9"
-          data-full="/images/visual/kompa.webp"
-          data-title="Visual Composition"
-          data-cap="
-          <ul>
-            <li>Abstract form and rhythm to create visual flow.</li>
-            <li>Study of repetition and focal hierarchy.</li>
-            <li>Merging design system logic with artistic texture.</li>
-          </ul>">
-          <img decoding="async" src="/images/visual/kompa.webp" alt="Visual composition exploration">
-        </button>
+      <!-- ===================================================
+           META
+      ==================================================== -->
+
+      <section class="case-meta">
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">project</p>
+
+          <h1 class="case-meta__value">
+            Illustration &<br />
+            Visual Studies
+          </h1>
+
+          <a
+            class="case-back"
+            href="/projects"
+            aria-label="Back to projects"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 5L5 19" />
+              <path d="M5 19V8" />
+              <path d="M5 19h11" />
+            </svg>
+
+            Projects
+          </a>
+        </div>
+
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">bio</p>
+
+          <p class="case-meta__bio">
+            An ongoing exploration of composition, rhythm,
+            movement and atmosphere across illustration,
+            posters and creative coding.
+          </p>
+        </div>
+
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">deliverables</p>
+
+          <div class="case-meta__stack">
+            <span>Illustration</span>
+            <span>Poster design</span>
+            <span>Creative coding</span>
+            <span>Visual composition</span>
+            <span>Art direction</span>
+          </div>
+        </div>
+
+
+        <div class="case-meta__block">
+          <p class="case-meta__label">years</p>
+
+          <p class="case-meta__value">
+            2012–2025
+          </p>
+        </div>
+
       </section>
 
-      <header class="case-hero mt-header">
-    <h1>Visual explorations</h1>
-    <p class="meta">Graphic Design • Illustration • Art Direction • 2013–2025</p>
-    <p class="lede">
-      These illustrations are part of an ongoing exploration of composition, rhythm, and atmosphere - principles that also guide my work in UX and UI. I combine traditional techniques with digital tools to create expressive, balanced visuals that merge artistic intuition with design structure.
-    </p>
-  </header>
 
-      <section id="s-context">
-        <h2>Context & Purpose</h2>
-        <p>
-          Illustration has always been part of how I think and design. My education in fine arts gave me a foundation in composition, light, and storytelling - 
-          skills that translate directly into product design and interface clarity. These explorations help me maintain an emotional and narrative sensibility 
-          within structured, system-driven work.
+      <!-- ===================================================
+           HERO
+      ==================================================== -->
+
+      <figure class="visual-hero">
+        <img
+          src="/images/visual/kompa.webp"
+          alt="Abstract visual composition"
+        />
+      </figure>
+
+
+      <!-- ===================================================
+           STATEMENT
+      ==================================================== -->
+
+      <section class="case-statement">
+
+        <p class="case-statement__text">
+          Structure and instinct
+          can exist in the
+          <span class="case-statement__accent">
+            same image.
+          </span>
         </p>
+
       </section>
 
-      <section id="s-approach">
-        <h2>Approach</h2>
-        <ul>
-          <li>Composition - if I do illustration for a project I think where to put text right away.</li>
-          <li>Experimenting with mixed media - from ink and graphite to 3D renders and vector layers.</li>
-          <li>Focusing on composition, movement, and focal points to communicate emotion.</li>
-          <li>Adapting illustration methods to digital product contexts: icons, hero imagery, and editorial visuals.</li>
-          <li>Integrating storytelling and atmosphere into structured layouts and UI patterns.</li>
-        </ul>
+
+      <!-- ===================================================
+           01 / DIGITAL
+      ==================================================== -->
+
+      <section class="visual-section">
+
+        <div class="visual-section__head">
+
+          <span class="visual-eyebrow">
+            01 / digital
+          </span>
+
+          <h2>
+            Motion,<br />
+            rhythm, systems.
+          </h2>
+
+          <p>
+            Digital experiments let me work with repetition,
+            timing and composition in ways that sit somewhere
+            between interface logic and visual art.
+          </p>
+
+        </div>
+
+
+        <div class="visual-grid visual-grid--2">
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/gif1.gif"
+              alt="Creative JavaScript composition"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Creative JavaScript composition</strong>
+              <span>CREATIVE CODE · MOTION · RHYTHM</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/supernoova.webp"
+              alt="Supernoova fashion show poster"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Supernoova</strong>
+              <span>ILLUSTRATION · POSTER · ART DIRECTION</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
       </section>
 
-      <section id="s-outcomes">
-        <h2>Outcomes</h2>
-        <ul>
-          <li>Developed a personal visual language that connects artistic intuition with interface design principles.</li>
-          <li>Improved understanding of rhythm, spacing, and balance - directly influencing my UI layout work.</li>
-          <li>Created cohesive visual systems for campaigns and digital experiences through illustration.</li>
-        </ul>
+
+      <!-- ===================================================
+           02 / INK
+      ==================================================== -->
+
+      <section class="visual-section">
+
+        <div class="visual-section__head">
+
+          <span class="visual-eyebrow">
+            02 / ink
+          </span>
+
+          <h2>
+            Movement through<br />
+            contrast and space.
+          </h2>
+
+          <p>
+            Traditional ink work became a way to study
+            focal points, visual weight and negative space
+            before translating the same thinking into digital work.
+          </p>
+
+        </div>
+
+
+        <div class="visual-grid visual-grid--2">
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/divein.webp"
+              alt="Dive In ink illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Dive In</strong>
+              <span>INK · COMPOSITION · MOVEMENT</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/metskits.webp"
+              alt="Autumn Is Coming ink illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Autumn Is Coming</strong>
+              <span>INK · BALANCE · TEXT SPACE</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/trapped.webp"
+              alt="Trapped ink illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Trapped</strong>
+              <span>INK · PERSPECTIVE · CONFINEMENT</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/spring.webp"
+              alt="Spring ink illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Spring</strong>
+              <span>INK · ORGANIC FORM · LIGHTNESS</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
       </section>
 
-      <section id="s-role">
-        <h2>My Background</h2>
-        <ul>
-          <li>Bachelor of Arts in Fine Arts - Estonian Academy of Arts.</li>
-          <li>Professional experience across art direction, illustration, and interface design.</li>
-          <li>Bridging artistic craft with structured design systems in UX/UI environments.</li>
-          <li>Continuous exploration of how emotional tone and aesthetics can support usability and clarity.</li>
-        </ul>
+
+      <!-- ===================================================
+           PATTERN
+      ==================================================== -->
+
+      <section class="visual-wide-block">
+
+        <span class="visual-eyebrow">
+          repetition study
+        </span>
+
+        <figure class="visual-card visual-card--wide">
+          <img
+            src="/images/visual/trapped_pattern.webp"
+            alt="Pattern composition based on Trapped illustration"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Pattern Composition</strong>
+            <span>REPETITION · SCALE · RHYTHM · STRUCTURE</span>
+          </figcaption>
+        </figure>
+
       </section>
 
-       <p class="flex-col links-container">
-        <a class="btn link-btn" href="/case-studies/nav-system">
-          <span class="btn-label">Check a demo of unified navigation menu</span>
-          <i class="ri-arrow-right-line"></i>
-        </a>
-        <a class="btn link-btn" href="/case-studies/dash-case">
-            <span class="btn-label">Dashboards and app interfaces</span>
-          <i class="ri-arrow-right-line"></i>
-        </a>
-      </p>
-    </div>
 
-    <aside class="doc-aside feature-card">
-      <nav class="shots-grid" aria-label="Visual gallery">
-        <button class="shot-tile"
-          data-full="/images/visual/supernoova.webp"
-          data-title="Poster for Supernoova Fashion Show"
-          data-cap="<p>Digital illustration. Supernoova as an outer-space goddess representing the show’s galactic theme.</p>">
-          <img decoding="async" src="/images/visual/supernoova.webp" alt="Poster: Supernoova fashion show — outer-space goddess illustration" loading="lazy">
-        </button>
+      <!-- ===================================================
+           BIG STATEMENT
+      ==================================================== -->
 
-        <button class="shot-tile"
-          data-full="/images/visual/gif1.gif"
-          data-title="Creative JavaScript Composition"
-          data-cap="<p>Creative coding experiment in pure JavaScript — exploring composition, rhythm, and minimal, expressive motion.</p>">
-          <img decoding="async" src="/images/visual/gif1.gif" alt="Abstract grid animation created with JavaScript" loading="lazy">
-        </button>
+      <section class="visual-statement">
 
-        <button class="shot-tile"
-          data-full="/images/visual/divein.webp"
-          data-title="Dive In"
-          data-cap="<p>Digitized traditional ink illustration.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/divein.webp" alt="Ink illustration titled ‘Dive In’">
-        </button>
+        <span class="visual-eyebrow">
+          composition
+        </span>
 
-        <button class="shot-tile"
-          data-full="/images/visual/metskits.webp"
-          data-title="Autumn Is Coming"
-          data-cap="<p>Digitized traditional ink illustration, composed to work with a text block on the left.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/metskits.webp" alt="Autumn is coming — ink illustration">
-        </button>
+        <p>
+          I usually think about
+          the text before the image
+          is even finished.
+        </p>
 
-        <button class="shot-tile"
-          data-full="/images/visual/trapped.webp"
-          data-title="Trapped"
-          data-cap="<p>Digitized traditional ink illustration. A composition study exploring confinement and perspective.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/trapped.webp" alt="Trapped — composition study in ink">
-        </button>
+      </section>
 
-        <button class="shot-tile"
-          data-full="/images/visual/trapped_pattern.webp"
-          data-title="Pattern Composition"
-          data-cap="<p>Repetition study based on <em>Trapped</em> — exploring rhythm, balance, and structure at scale.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/trapped_pattern.webp" alt="Pattern derived from Trapped illustration">
-        </button>
 
-        <button class="shot-tile"
-          data-full="/images/visual/tartu.webp"
-          data-title="Poster Composition"
-          data-cap="<p>Event poster illustration. Composition and visual hierarchy designed with text placement from the start.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/tartu.webp" alt="Event poster — composition with integrated typography">
-        </button>
+      <!-- ===================================================
+           03 / POSTERS
+      ==================================================== -->
 
-        <button class="shot-tile"
-          data-full="/images/visual/unblock.webp"
-          data-title="Poster Composition"
-          data-cap="<p>Poster illustration. Balancing hand-drawn forms with typographic structure to create rhythm and hierarchy.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/unblock.webp" alt="Poster illustration — image and type hierarchy">
-        </button>
+      <section class="visual-section">
 
-        <button class="shot-tile"
-          data-full="/images/visual/tekhnasia.webp"
-          data-title="Poster Composition"
-          data-cap="<p>Poster illustration. Composition and type integration studied together for balanced storytelling.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/tekhnasia.webp" alt="Event poster — composition and typography integration">
-        </button>
+        <div class="visual-section__head">
 
-        <button class="shot-tile"
-          data-full="/images/visual/dnbb.webp"
-          data-title="Music & Form"
-          data-cap="<p>Poster illustration exploring movement, rhythm, and composition with integrated typography.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/dnbb.webp" alt="Music-inspired poster — dynamic composition with type">
-        </button>
+          <span class="visual-eyebrow">
+            03 / posters
+          </span>
 
-        <button class="shot-tile"
-          data-full="/images/visual/TTT1.webp"
-          data-title="Music & Form"
-          data-cap="<p>Event poster illustration. Dynamic composition and how illustrated forms interact with type layout.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/TTT1.webp" alt="Event poster — dynamic composition interacting with typography">
-        </button>
+          <h2>
+            Image and type<br />
+            designed together.
+          </h2>
 
-        <button class="shot-tile"
-          data-full="/images/visual/spring.webp"
-          data-title="Spring"
-          data-cap="<p>Digitized ink illustration.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/spring.webp" alt="Spring — ink illustration">
-        </button>
+          <p>
+            In poster work, illustration is never separate
+            from typography. The composition is built around
+            where information will eventually live.
+          </p>
 
-        <button class="shot-tile"
-          data-full="/images/visual/armada.webp"
-          data-title="CD Cover (2012)"
-          data-cap="<p>Dynamic composition inspired by movement and sound. CD cover for Armada (Raun Juurikas, Peedu Kass, Andre Maaker).</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/armada.webp" alt="CD cover — dynamic composition">
-        </button>
+        </div>
 
-        <button class="shot-tile"
-          data-full="/images/visual/hoone.webp"
-          data-title="Ministry of Defence"
-          data-cap="<p>Illustration of the Ministry of Defence building at Sakala 1/3, Tallinn.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/hoone.webp" alt="Ministry of Defence building — illustration">
-        </button>
 
-        <button class="shot-tile"
-          data-full="/images/visual/vinni.webp"
-          data-title="Vinni Municipality"
-          data-cap="<p>Illustrated sightseeing map for Vinni municipality.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/vinni.webp" alt="Illustrated sightseeing map — Vinni municipality">
-        </button>
+        <div class="visual-grid visual-grid--2">
 
-        <button class="shot-tile"
-          data-full="/images/visual/koos.webp"
-          data-title="Koos.io"
-          data-cap="<p>Traditional watercolor illustration created as a corporate gift.</p>">
-          <img decoding="async" loading="lazy" src="/images/visual/koos.webp" alt="Watercolor illustration titled ‘Koos’">
-        </button>
-      </nav>
-    </aside>
+          <figure class="visual-card">
+            <img
+              src="/images/visual/tartu.webp"
+              alt="Event poster composition"
+              loading="lazy"
+            />
 
-<!-- Lightweight lightbox (scoped to .tokens-case) -->
-<div class="tokens-lightbox" aria-hidden="true">
-  <div class="tokens-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
-    <button class="tokens-lightbox__close" type="button" aria-label="Close (Esc)">×</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__prev" aria-label="Previous image">‹</button>
-    <button class="tokens-lightbox__nav tokens-lightbox__next" aria-label="Next image">›</button>
+            <figcaption>
+              <strong>Tartu</strong>
+              <span>POSTER · ILLUSTRATION · TYPE HIERARCHY</span>
+            </figcaption>
+          </figure>
 
-    <div class="tokens-lightbox__media">
-      <img class="tokens-lightbox__img" alt="" />
-    </div>
-    <aside class="tokens-lightbox__meta">
-      <h4 class="tokens-lightbox__title"></h4>
-      <div class="tokens-lightbox__cap"></div>
-    </aside>
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/unblock.webp"
+              alt="Unblock poster illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Unblock</strong>
+              <span>HAND DRAWN · TYPOGRAPHY · RHYTHM</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/tekhnasia.webp"
+              alt="Tekhnasia poster"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Tekhnasia</strong>
+              <span>EVENT POSTER · TYPE · COMPOSITION</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/dnbb.webp"
+              alt="Music poster illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Music & Form</strong>
+              <span>POSTER · MOVEMENT · MUSIC</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card visual-card--wide">
+            <img
+              src="/images/visual/TTT1.webp"
+              alt="Event poster with integrated typography"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Event composition</strong>
+              <span>ILLUSTRATION · TYPOGRAPHY · ART DIRECTION</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           04 / MUSIC
+      ==================================================== -->
+
+      <section class="visual-section">
+
+        <div class="visual-section__head">
+
+          <span class="visual-eyebrow">
+            04 / music
+          </span>
+
+          <h2>
+            Sound translated<br />
+            into image.
+          </h2>
+
+          <p>
+            Music-related work explores pace, repetition
+            and dynamic balance through visual composition.
+          </p>
+
+        </div>
+
+
+        <figure class="visual-card visual-card--wide">
+          <img
+            src="/images/visual/armada.webp"
+            alt="Armada CD cover"
+            loading="lazy"
+          />
+
+          <figcaption>
+            <strong>Armada</strong>
+            <span>CD COVER · MUSIC · DYNAMIC COMPOSITION · 2012</span>
+          </figcaption>
+        </figure>
+
+      </section>
+
+
+      <!-- ===================================================
+           05 / PLACE
+      ==================================================== -->
+
+      <section class="visual-section">
+
+        <div class="visual-section__head">
+
+          <span class="visual-eyebrow">
+            05 / place
+          </span>
+
+          <h2>
+            Illustration as<br />
+            visual memory.
+          </h2>
+
+          <p>
+            Architecture, maps and local identity become
+            narrative material rather than simply documentation.
+          </p>
+
+        </div>
+
+
+        <div class="visual-grid visual-grid--2">
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/hoone.webp"
+              alt="Ministry of Defence building illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Sakala 1/3</strong>
+              <span>ARCHITECTURE · ILLUSTRATION · TALLINN</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card">
+            <img
+              src="/images/visual/vinni.webp"
+              alt="Vinni municipality illustrated sightseeing map"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Vinni Municipality</strong>
+              <span>ILLUSTRATED MAP · PLACE · STORYTELLING</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="visual-card visual-card--wide">
+            <img
+              src="/images/visual/koos.webp"
+              alt="Koos.io watercolor illustration"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Koos.io</strong>
+              <span>WATERCOLOR · CORPORATE GIFT · ILLUSTRATION</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           FINAL
+      ==================================================== -->
+
+      <section class="visual-final">
+
+        <span class="visual-eyebrow">
+          approach
+        </span>
+
+        <p>
+          Visual thinking before
+          visual decoration.
+        </p>
+
+      </section>
+
+
+      <!-- ===================================================
+           NEXT PROJECT
+      ==================================================== -->
+
+<a
+  class="case-next"
+  href="/case-studies/email-marketing"
+>
+
+  <div>
+    <span class="case-next__eyebrow">
+      next project
+    </span>
+
+    <h2 class="case-next__title">
+      Email Marketing<br />
+      Platform
+    </h2>
   </div>
-</div>
-<!-- RIGHT rail (Next) -->
-    <nav class="case-rail case-rail--right" aria-label="Next project">
-      <a class="pager-btn pager-btn--next" href="/case-studies/nav-system" aria-label="Next: Unified Navigation System">
-        <svg class="pager-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </a>
-    </nav>
+
+
+  <span
+    class="case-next__arrow"
+    aria-hidden="true"
+  >
+    ↗
+  </span>
+
+</a>
+
+    </div>
   </article>
-  
-<script type="module">
-(() => {
-  const scope = document.querySelector('.tokens-case');
-  if (!scope) return;
 
-  const lb       = scope.querySelector('.tokens-lightbox');
-  const dlg      = lb.querySelector('.tokens-lightbox__dialog');
-  const imgEl    = lb.querySelector('.tokens-lightbox__img');
-  const titleEl  = lb.querySelector('.tokens-lightbox__title');
-  const capEl    = lb.querySelector('.tokens-lightbox__cap');
-  const closeBtn = lb.querySelector('.tokens-lightbox__close');
-  const prevBtn  = lb.querySelector('.tokens-lightbox__prev');
-  const nextBtn  = lb.querySelector('.tokens-lightbox__next');
 
-  const tiles = Array.from(scope.querySelectorAll('.shot-tile'));
-  let currentIndex = -1;
-  let lastFocus = null;
+  <style is:global>
 
-  function extractDataFrom(el) {
-    const carrier = el.closest('[data-full],[data-cap],[data-title]') || el;
-    const img     = (el.tagName === 'IMG') ? el : carrier.querySelector('img');
-    const src   = carrier.getAttribute('data-full') || img?.currentSrc || img?.src || '';
-    const title = carrier.getAttribute('data-title') || img?.alt || '';
-    const cap   = carrier.getAttribute('data-cap') || img?.title || '';
-    return { src, title, cap };
-  }
-
-  function openLightbox(index) {
-    currentIndex = index;
-    const { src, title, cap } = extractDataFrom(tiles[index]);
-    lastFocus = document.activeElement;
-    imgEl.src = src;
-    titleEl.textContent = title;
-    capEl.innerHTML = cap;
-    lb.classList.add('is-open');
-    document.documentElement.classList.add('tokens-lightbox-open');
-    closeBtn.focus();
-  }
-
-  function closeLightbox() {
-    lb.classList.remove('is-open');
-    document.documentElement.classList.remove('tokens-lightbox-open');
-    imgEl.src = ''; titleEl.textContent = ''; capEl.textContent = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  function showNext() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex + 1) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  function showPrev() {
-    if (currentIndex === -1) return;
-    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-    openLightbox(currentIndex);
-  }
-
-  scope.addEventListener('click', e => {
-    const tile = e.target.closest('.shot-tile');
-    if (tile) {
-      e.preventDefault();
-      openLightbox(tiles.indexOf(tile));
+    html,
+    body {
+      background: #0d0f0d !important;
     }
-  });
 
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', showPrev);
-  nextBtn.addEventListener('click', showNext);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-  });
-})();
-</script>
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .visual-hero {
+      margin: 0;
+    }
+
+
+    .visual-hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      background: #151815;
+    }
+
+
+    /* =====================================================
+       SECTION
+    ====================================================== */
+
+    .visual-section {
+      margin-top:
+        clamp(120px, 12vw, 190px);
+    }
+
+
+    .visual-section__head {
+      display: grid;
+
+      grid-template-columns:
+        .65fr 1.25fr 1fr;
+
+      gap:
+        clamp(32px, 5vw, 82px);
+
+      padding-top: 28px;
+
+      margin-bottom:
+        clamp(54px, 6vw, 90px);
+
+      border-top:
+        1px solid
+        rgba(242,241,236,.13);
+    }
+
+
+    .visual-eyebrow {
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
+
+      font-size: 1rem;
+      font-weight: 500;
+
+      line-height: 1;
+
+      letter-spacing: .07em;
+
+      text-transform: uppercase;
+
+      color:
+        rgba(242,241,236,.48);
+    }
+
+
+    .visual-section__head h2 {
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(2.7rem, 4.5vw, 5.4rem);
+
+      font-weight: 650;
+
+      line-height: .9;
+
+      letter-spacing: -.06em;
+
+      color: #f2f1ec;
+    }
+
+
+    .visual-section__head p {
+      max-width: 470px;
+
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(1rem, 1.2vw, 1.25rem);
+
+      line-height: 1.42;
+
+      color:
+        rgba(242,241,236,.63);
+    }
+
+
+    /* =====================================================
+       GRID
+    ====================================================== */
+
+    .visual-grid {
+      display: grid;
+    }
+
+
+    .visual-grid--2 {
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+      gap:
+        clamp(44px, 4vw, 72px)
+        clamp(22px, 2.6vw, 40px);
+    }
+
+
+    /* =====================================================
+       IMAGE
+       IMPORTANT: no forced aspect ratio
+    ====================================================== */
+
+    .visual-card {
+      margin: 0;
+      min-width: 0;
+    }
+
+
+    .visual-card img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      max-width: 100%;
+
+      background: #151815;
+    }
+
+
+    .visual-card--wide {
+      grid-column: 1 / -1;
+    }
+
+
+    /* =====================================================
+       CAPTIONS
+    ====================================================== */
+
+    .visual-card figcaption {
+      display: flex;
+
+      align-items: baseline;
+
+      gap: 16px;
+
+      padding-top: 14px;
+    }
+
+
+    .visual-card figcaption strong {
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(1.3rem, 1.7vw, 1.8rem);
+
+      font-weight: 600;
+
+      line-height: 1;
+
+      letter-spacing: -.04em;
+
+      color: #f2f1ec;
+    }
+
+
+    .visual-card figcaption span {
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
+
+      font-size: 1rem;
+
+      font-weight: 500;
+
+      line-height: 1.15;
+
+      letter-spacing: .045em;
+
+      text-transform: uppercase;
+
+      color:
+        rgba(242,241,236,.48);
+    }
+
+
+    /* =====================================================
+       WIDE BLOCK
+    ====================================================== */
+
+    .visual-wide-block {
+      margin-top:
+        clamp(130px, 13vw, 200px);
+
+      padding-top: 28px;
+
+      border-top:
+        1px solid
+        rgba(242,241,236,.13);
+    }
+
+
+    .visual-wide-block
+    .visual-card {
+      margin-top: 34px;
+    }
+
+
+    /* =====================================================
+       STATEMENTS
+    ====================================================== */
+
+    .visual-statement,
+    .visual-final {
+      display: grid;
+
+      grid-template-columns:
+        .65fr 2.25fr;
+
+      gap: 40px;
+
+      margin-top:
+        clamp(145px,14vw,220px);
+
+      margin-bottom:
+        clamp(140px,13vw,200px);
+
+      padding-top: 28px;
+
+      border-top:
+        1px solid
+        rgba(242,241,236,.13);
+    }
+
+
+    .visual-statement p,
+    .visual-final p {
+      max-width: 1150px;
+
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(3.4rem,6.8vw,7.8rem);
+
+      font-weight: 650;
+
+      line-height: .87;
+
+      letter-spacing: -.07em;
+
+      color: #f2f1ec;
+    }
+
+
+    /* =====================================================
+       NEXT PROJECT ARROW
+    ====================================================== */
+
+    .case-next__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 68px;
+      height: 68px;
+
+      flex: 0 0 68px;
+
+      border: 2px solid #d8f27a;
+      border-radius: 50%;
+
+      color: #d8f27a;
+
+      font-family: Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+
+    .case-next:hover
+    .case-next__arrow {
+      background: #d8f27a;
+
+      color: #0d0f0d;
+
+      transform:
+        translate(4px,-4px);
+    }
+
+
+    /* =====================================================
+       TABLET
+    ====================================================== */
+
+    @media (max-width: 1000px) {
+
+      .visual-section__head {
+        grid-template-columns:
+          1fr 1.5fr;
+      }
+
+
+      .visual-section__head p {
+        grid-column: 2;
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 760px) {
+
+      .visual-section {
+        margin-top: 100px;
+      }
+
+
+      .visual-section__head {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+      }
+
+
+      .visual-section__head p {
+        grid-column: auto;
+      }
+
+
+      .visual-grid--2 {
+        grid-template-columns: 1fr;
+      }
+
+
+      .visual-card--wide {
+        grid-column: auto;
+      }
+
+
+      .visual-card figcaption {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 7px;
+      }
+
+
+      .visual-card figcaption span {
+        font-size: 1rem;
+      }
+
+
+      .visual-statement,
+      .visual-final {
+        grid-template-columns: 1fr;
+
+        gap: 24px;
+
+        margin-top: 110px;
+        margin-bottom: 110px;
+      }
+
+
+      .visual-statement p,
+      .visual-final p {
+        font-size:
+          clamp(3rem,14vw,5.2rem);
+      }
+
+
+      .case-next__arrow {
+        width: 54px;
+        height: 54px;
+
+        flex-basis: 54px;
+
+        font-size: 1.8rem;
+      }
+
+    }
+
+  </style>
 
 </Base>
-<style>
-  .hero-vertical {
-    margin-top: 40px;
-  }
-
-  .feature-card {
-  position: sticky;
-  top: clamp(50px, 8vh, 90px) !important;
-  height: fit-content;
-  box-shadow: none;
-  padding: 40px 0;
-}
-
-.ar-21x9 {
-  aspect-ratio: 21 / 9; /* consistent height across all hero images */
-  display: block;
-}
-
-.ar-21x9 img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media (max-width: 767.98px) {
-  .hero-vertical {
-    margin-top: 20px;
-  }
-
-}
-</style>

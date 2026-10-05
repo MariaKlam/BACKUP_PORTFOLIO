@@ -2,166 +2,431 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Contact | Maria Klammer" bodyClass="contact-shell">
-  <section class="contact-page page-spaced-contact">
-    <p class="contact-kicker">PRODUCT · DESIGN · CODE</p>
+<Base
+  title="Contact | Maria Klammer"
+  bodyClass="contact-shell"
+  noWrap={true}
+  hideFooter={true}
+>
+  <main class="contact-page">
+    <div class="contact-inner">
 
-  <h1 class="page-title">Contact.</h1>
+      <section class="contact-copy">
 
-    <p class="contact-lead">
-  I’m based in Tallinn.
-  Open engineering & design opportunities.
-</p>
+        <p class="contact-kicker">
+          PRODUCT · DESIGN · CODE
+        </p>
 
-    <p class="contact-note">
-      Have a product, interface or messy workflow that needs clarity? Let’s talk.
-    </p>
+        <h1 class="contact-title">
+          contact
+        </h1>
 
-    <div class="contact-stack">
-      <p class="icon-text">
-        <i class="ri-mail-line" aria-hidden="true"></i>
-        <a href="mailto:mariaklammer.est@gmail.com">
-          mariaklammer.est@gmail.com
-        </a>
-      </p>
+        <p class="contact-lead">
+          I’m based in Tallinn.<br />
+          Open engineering & design opportunities.
+        </p>
 
-      <p class="icon-text">
-        <i class="ri-map-pin-line" aria-hidden="true"></i>
-        <span>Tallinn, Estonia</span>
-      </p>
+        <p class="contact-note">
+          Have a product, interface or messy workflow that needs clarity?
+          Let’s talk.
+        </p>
+
+
+        <div class="contact-details">
+
+          <a
+            class="contact-detail contact-detail--email"
+            href="mailto:mariaklammer.est@gmail.com"
+          >
+            <i class="ri-mail-line" aria-hidden="true"></i>
+            <span>mariaklammer.est@gmail.com</span>
+          </a>
+
+          <div class="contact-detail">
+            <i class="ri-map-pin-line" aria-hidden="true"></i>
+            <span>Tallinn, Estonia</span>
+          </div>
+
+        </div>
+
+
+        <nav class="contact-links" aria-label="Contact links">
+
+          <a
+            href="/cv/Maria_Klammer_cv.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="ri-external-link-line" aria-hidden="true"></i>
+            <span>View CV</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/maria-klammer/"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="ri-linkedin-fill" aria-hidden="true"></i>
+            <span>LinkedIn</span>
+          </a>
+
+        </nav>
+
+      </section>
+
     </div>
+  </main>
 
-    <div class="actions">
-      <a
-        class="btn-cv"
-        href="/cv/Maria_Klammer_cv.pdf"
-        target="_blank"
-        rel="noopener"
-      >
-        <i class="ri-external-link-line" aria-hidden="true"></i>
-        View CV
-      </a>
 
-      <a
-        class="btn-cv"
-        href="https://www.linkedin.com/in/maria-klammer/"
-        target="_blank"
-        rel="noopener"
-      >
-        <i class="ri-linkedin-fill" aria-hidden="true"></i>
-        LinkedIn
-      </a>
+  <style is:global>
 
-      <a
-        class="btn-cv btn--secondary"
-        href="/cv/Maria_Klammer_cv.pdf"
-        download
-      >
-        <i class="ri-download-2-line" aria-hidden="true"></i>
-        Download CV
-      </a>
-    </div>
-  </section>
-</Base>
-
-<style>
-  .page-spaced-contact {
-    max-width: 760px;
-    min-height: min(640px, 70vh);
-    padding-top: clamp(3.8rem, 7vw, 6.5rem);
-  }
-
-  .contact-kicker {
-    margin: 0 0 0.9rem;
-    font-family: "Oswald", "Arial Narrow", sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .contact-lead {
-    max-width: 620px;
-    margin: 1.35rem 0 1rem;
-    font-size: clamp(1.08rem, 1.7vw, 1.32rem);
-    line-height: 1.5;
-  }
-
-  .contact-note {
-    max-width: 560px;
-    margin: 0 0 1.9rem;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.55;
-  }
-
-  .contact-stack {
-    margin-top: 1.4rem;
-  }
-
-  .icon-text {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    margin: 0.65rem 0;
-  }
-
-  .icon-text i {
-    font-size: 1.2rem;
-    opacity: 0.8;
-  }
-
-  .icon-text a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .icon-text a:hover {
-    text-decoration: underline;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-top: 2rem;
-  }
-
-  @media (max-width: 760px) {
-    .page-spaced-contact {
-      min-height: auto;
-      padding-top: 3rem;
+    :root {
+      --contact-bg: #0d0f0d;
+      --contact-fg: #f2f1ec;
+      --contact-muted: rgba(242,241,236,.48);
+      --contact-lime: #d8f27a;
     }
+
+
+    html,
+    body.contact-shell {
+      background: var(--contact-bg) !important;
+      color: var(--contact-fg) !important;
+    }
+
+
+    body.contact-shell {
+      min-height: 100svh;
+      overflow-x: hidden;
+    }
+
+
+    /* =====================================================
+       PAGE
+    ====================================================== */
+
+    .contact-page {
+      min-height: 100svh;
+      background: var(--contact-bg);
+      color: var(--contact-fg);
+    }
+
+
+    .contact-inner {
+      width: min(
+        calc(100% - 48px),
+        1290px
+      );
+
+      margin-inline: auto;
+
+      padding-top:
+        clamp(
+          150px,
+          11vw,
+          190px
+        );
+
+      padding-bottom:
+        110px;
+    }
+
+
+    /* =====================================================
+       COPY
+    ====================================================== */
+
+    .contact-copy {
+      max-width: 780px;
+    }
+
+
+    .contact-kicker {
+      margin: 0 0 22px;
+
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
+
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+
+      letter-spacing: .1em;
+      text-transform: uppercase;
+
+      color: var(--contact-fg);
+    }
+
+
+    .contact-title {
+      margin: 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(
+          5.3rem,
+          8.2vw,
+          8.8rem
+        );
+
+      font-weight: 650;
+      line-height: .84;
+
+      letter-spacing: -.075em;
+
+      text-transform: lowercase;
+
+      color: var(--contact-fg);
+    }
+
 
     .contact-lead {
-      max-width: 100%;
+      max-width: 650px;
+
+      margin:
+        46px 0 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size:
+        clamp(
+          1.45rem,
+          2vw,
+          2rem
+        );
+
+      font-weight: 500;
+      line-height: 1.18;
+
+      letter-spacing: -.035em;
+
+      color: var(--contact-fg);
     }
+
 
     .contact-note {
-      max-width: 100%;
+      max-width: 590px;
+
+      margin:
+        22px 0 0;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size: 1rem;
+      line-height: 1.5;
+
+      color: var(--contact-muted);
     }
-  }
 
-  @media (max-width: 760px) {
-  body.contact-shell {
-    min-height: 100svh;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
 
-  body.contact-shell main.content {
-    flex: 1 0 auto;
-  }
+    /* =====================================================
+       DETAILS
+    ====================================================== */
 
-  body.contact-shell .site-footer {
-    position: static !important;
-    margin-top: auto;
-  }
+    .contact-details {
+      display: flex;
+      flex-direction: column;
 
-  body.contact-shell .bold-ticker {
-    position: static !important;
-    width: 100%;
-    overflow: hidden;
-  }
+      gap: 16px;
+
+      margin-top: 40px;
+    }
+
+
+    .contact-detail {
+      display: inline-flex;
+      align-items: center;
+
+      width: fit-content;
+
+      gap: 12px;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size: 1rem;
+      line-height: 1.2;
+
+      color: var(--contact-fg);
+
+      text-decoration: none;
+    }
+
+
+    .contact-detail i {
+      font-size: 1.15rem;
+
+      color:
+        rgba(242,241,236,.7);
+    }
+
+
+    .contact-detail--email {
+      color: var(--contact-lime);
+
+      transition:
+        opacity .18s ease;
+    }
+
+
+    .contact-detail--email i {
+      color: var(--contact-lime);
+    }
+
+
+    .contact-detail--email:hover {
+      opacity: .7;
+    }
+
+
+    /* =====================================================
+       LINKS
+    ====================================================== */
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap:
+        20px 30px;
+
+      margin-top: 42px;
+    }
+
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 8px;
+
+      color: var(--contact-fg);
+
+      text-decoration: none;
+
+      font-family:
+        "Inter Tight",
+        sans-serif;
+
+      font-size: 1rem;
+      font-weight: 550;
+      line-height: 1;
+
+      transition:
+        color .18s ease,
+        transform .18s ease;
+    }
+
+
+    .contact-links a i {
+      font-size: 1.05rem;
+
+      color: var(--contact-lime);
+    }
+
+
+    .contact-links a:hover {
+      color: var(--contact-lime);
+
+      transform:
+        translateY(-1px);
+    }
+
+    .contact-inner {
+  width: min(calc(100% - 48px), 1500px);
+  margin-inline: auto;
+
+  min-height: calc(100svh - 90px);
+
+  display: flex;
+  align-items: center;
+
+  padding-top: 40px;
+  padding-bottom: 70px;
 }
-</style>
+
+
+    /* =====================================================
+       MOBILE
+    ====================================================== */
+
+    @media (max-width: 760px) {
+
+      .contact-inner {
+        width:
+          calc(100% - 32px);
+
+        padding-top: 135px;
+        padding-bottom: 80px;
+      }
+
+
+      .contact-copy {
+        max-width: none;
+      }
+
+
+      .contact-kicker {
+        font-size: 1rem;
+        margin-bottom: 18px;
+      }
+
+
+      .contact-title {
+        font-size:
+          clamp(
+            4.3rem,
+            21vw,
+            6.1rem
+          );
+      }
+
+
+      .contact-lead {
+        margin-top: 34px;
+
+        font-size:
+          clamp(
+            1.35rem,
+            6vw,
+            1.75rem
+          );
+      }
+
+
+      .contact-note {
+        max-width: 100%;
+
+        font-size: 1rem;
+      }
+
+
+      .contact-details {
+        margin-top: 34px;
+      }
+
+
+      .contact-links {
+        flex-direction: row;
+        align-items: center;
+
+        gap:
+          18px 24px;
+
+        margin-top: 38px;
+      }
+
+    }
+
+  </style>
+</Base>
