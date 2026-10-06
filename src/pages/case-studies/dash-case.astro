@@ -168,16 +168,16 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
           </figure>
 
 
-          <figure class="dashboard-card">
+                    <figure class="dashboard-card">
             <img
-              src="/images/tokens/post-login-d.webp"
-              alt="Post login dashboard"
+              src="/images/tokens/wizard-dashboard.webp"
+              alt="Wizard dashboard"
               loading="lazy"
             />
 
             <figcaption>
-              <strong>Post-login views</strong>
-              <span>context-aware starting points</span>
+              <strong>Wizard flows</strong>
+              <span>progressive disclosure · guided actions</span>
             </figcaption>
           </figure>
 
@@ -242,32 +242,36 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
           </figure>
 
 
-          <figure class="dashboard-card">
+                    <figure class="dashboard-card">
             <img
-              src="/images/tokens/wizard-dashboard.webp"
-              alt="Wizard dashboard"
+              src="/images/tokens/post-login-d.webp"
+              alt="Post login dashboard"
               loading="lazy"
             />
 
             <figcaption>
-              <strong>Wizard flows</strong>
-              <span>progressive disclosure · guided actions</span>
+              <strong>Post-login views</strong>
+              <span>context-aware starting points</span>
             </figcaption>
           </figure>
 
 
-          <figure class="dashboard-card">
-            <img
-              src="/images/tokens/login.webp"
-              alt="Login interface"
-              loading="lazy"
-            />
+          <figure class="dashboard-card dashboard-card--system-entry">
 
-            <figcaption>
-              <strong>System entry</strong>
-              <span>authentication · errors · recovery states</span>
-            </figcaption>
-          </figure>
+  <div class="dashboard-card__media dashboard-card__media--system-entry">
+    <img
+      src="/images/tokens/login.webp"
+      alt="Login interface"
+      loading="lazy"
+    />
+  </div>
+
+  <figcaption>
+    <strong>System entry</strong>
+    <span>authentication · errors · recovery states</span>
+  </figcaption>
+
+</figure>
 
         </div>
 
@@ -344,17 +348,21 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
           </figure>
 
 
-          <figure class="dashboard-card">
-            <img
-              src="/images/tokens/radar-chart.webp"
-              alt="Radar chart examples"
-              loading="lazy"
-            />
+          <figure class="dashboard-card dashboard-card--radar">
+
+            <div class="dashboard-card__media dashboard-card__media--radar">
+              <img
+                src="/images/tokens/radar-chart.webp"
+                alt="Radar chart examples"
+                loading="lazy"
+              />
+            </div>
 
             <figcaption>
               <strong>Radar & funnel</strong>
               <span>extended analytical patterns</span>
             </figcaption>
+
           </figure>
 
         </div>
@@ -449,17 +457,16 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
     /* =====================================================
        HERO
     ====================================================== */
+.dashboard-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
 
-    .dashboard-hero img {
-      display: block;
+  aspect-ratio: auto;
+  object-fit: contain;
 
-      width: 100%;
-      aspect-ratio: 16 / 8.2;
-
-      object-fit: cover;
-
-      background: #151815;
-    }
+  background: #151815;
+}
 
 
     /* =====================================================
@@ -578,17 +585,16 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
     }
 
 
-    .dashboard-card img {
-      display: block;
+.dashboard-card img {
+  display: block;
+  width: 100%;
+  height: auto;
 
-      width: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
 
-      aspect-ratio: 16 / 9;
-
-      object-fit: cover;
-
-      background: #151815;
-    }
+  background: #151815;
+}
 
 
     .dashboard-card--wide {
@@ -596,9 +602,13 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
     }
 
 
-    .dashboard-card--wide img {
-      aspect-ratio: 16 / 7.8;
-    }
+.dashboard-card--wide img {
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: auto;
+  object-fit: contain;
+}
 
 
     .dashboard-card figcaption {
@@ -706,17 +716,16 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
     }
 
 
-    .dashboard-final-image img {
-      display: block;
+.dashboard-final-image img {
+  display: block;
+  width: 100%;
+  height: auto;
 
-      width: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
 
-      aspect-ratio: 16 / 8;
-
-      object-fit: cover;
-
-      background: #151815;
-    }
+  background: #151815;
+}
 
 
     /* =====================================================
@@ -848,6 +857,134 @@ const title = "Dashboard & Application Patterns | Maria Klammer";
       }
 
     }
+
+/* =====================================================
+   SAFE BOTTOM CROPS
+===================================================== */
+
+.dashboard-card__media {
+  width: 100%;
+  overflow: hidden;
+  background: #151815;
+}
+
+.dashboard-card__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+
+/* System entry — only trim bottom */
+.dashboard-card__media--system-entry {
+  aspect-ratio: 16 / 7.1;
+}
+
+.dashboard-card__media--system-entry img {
+  width: 100%;
+  height: auto;
+}
+
+
+.dashboard-card__media--radar {
+  aspect-ratio: 16 / 7.6;
+}
+
+.dashboard-card__media--radar img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 760px) {
+
+  .dashboard-card,
+  .dashboard-card__media,
+  .dashboard-grid {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .dashboard-card__media--system-entry {
+    aspect-ratio: 16 / 7.6;
+  }
+
+  .dashboard-card__media--radar {
+    aspect-ratio: 16 / 7.8;
+  }
+
+  .dashboard-card__media img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .case-editorial__inner {
+    width: 100%;
+    max-width: none;
+
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+
+    box-sizing: border-box;
+  }
+
+  .case-meta,
+  .case-hero-media,
+  .case-statement,
+  .dashboard-section,
+  .dashboard-final,
+  .dashboard-final-image,
+  .case-next {
+    width: 100%;
+    max-width: none;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    box-sizing: border-box;
+  }
+
+  .dashboard-grid {
+    width: 100%;
+    max-width: 100%;
+
+    margin-left: 0;
+    margin-right: 0;
+
+    box-sizing: border-box;
+  }
+
+  .dashboard-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dashboard-card img,
+  .dashboard-card__media,
+  .dashboard-card__media img,
+  .dashboard-hero img,
+  .dashboard-final-image img {
+    width: 100%;
+    max-width: 100%;
+
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 
   </style>
 
