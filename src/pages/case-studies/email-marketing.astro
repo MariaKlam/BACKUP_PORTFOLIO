@@ -355,34 +355,36 @@ const title = "Email Marketing Platform | Maria Klammer";
     }
 
 
-    /* =====================================================
-       SECOND PAIR
-       SMAILY + WELCOME
-    ===================================================== */
+  /* =====================================================
+   SECOND PAIR
+   SMAILY + WELCOME
+===================================================== */
 
-    .case-gallery--wide-pair
-    .case-gallery__item {
-      height:
-        clamp(
-          280px,
-          24vw,
-          400px
-        );
+.case-gallery--wide-pair {
+  align-items: stretch;
+}
 
-      overflow: hidden;
-    }
+.case-gallery--wide-pair
+.case-gallery__item {
+  height: clamp(
+    260px,
+    22vw,
+    360px
+  );
 
+  overflow: hidden;
+}
 
-    .case-gallery--wide-pair
-    .case-gallery__item img {
-      width: 100%;
-      height: auto;
+.case-gallery--wide-pair
+.case-gallery__item img {
+  display: block;
 
-      object-position:
-        top center;
-    }
+  width: 100%;
+  height: 100%;
 
-
+  object-fit: cover;
+  object-position: top center;
+}
     /* =====================================================
        FULL WIDTH VISUALS
     ===================================================== */
