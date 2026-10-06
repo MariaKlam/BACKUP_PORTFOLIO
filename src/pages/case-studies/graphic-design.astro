@@ -436,7 +436,7 @@ const title = "Brand & Visual Identity | Maria Klammer";
         </div>
 
 
-        <figure class="design-card design-card--wide">
+        <figure class="design-card design-card--wide design-card--viru">
           <img
             src="/images/design/viru-hotell.webp"
             alt="Viru Hotel 50th anniversary illustration"
@@ -671,9 +671,17 @@ const title = "Brand & Visual Identity | Maria Klammer";
     }
 
 
+
     .design-card--wide {
-      grid-column: 1 / -1;
-    }
+  grid-column: 1 / -1;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.design-card--viru {
+  max-width: 900px;
+}
 
 
 
