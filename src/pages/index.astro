@@ -2540,34 +2540,37 @@ import Base from "../layouts/Base.astro";
   box-shadow:
     0 0 10px rgba(216, 242, 122, .34);
 
+}
+
+
+.scroll-light {
   animation:
     scrollLightDown
-    6.5s
+    4s
     ease-in-out
     infinite;
 }
 
 @keyframes scrollLightDown {
-  0%,
-  50% {
+  0% {
     transform: translate(-50%, -24px);
     opacity: 0;
   }
 
-  58% {
-    opacity: .25;
+  10% {
+    opacity: .35;
   }
 
-  68% {
+  22% {
     opacity: 1;
   }
 
-  86% {
+  72% {
     opacity: 1;
   }
 
   100% {
-    transform: translate(-50%, 235px);
+    transform: translate(-50%, 205px);
     opacity: 0;
   }
 }
@@ -2900,7 +2903,7 @@ import Base from "../layouts/Base.astro";
   .scroll-light {
     animation:
       scrollLightDownMobile
-      6.5s
+      4s
       ease-in-out
       infinite;
   }
