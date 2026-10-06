@@ -180,65 +180,48 @@ const title = "Isekas Self-Service Checkout | Maria Klammer";
       </section>
 
 
-      <!-- ===================================================
-           PRICING + ORIGINAL CONCEPT
-      ==================================================== -->
+    <!-- ===================================================
+     PRICING + LIVE CTA
+==================================================== -->
 
-      <section class="case-gallery">
+<section class="case-duo-row">
 
-        <figure
-          class="case-gallery__item
-                 case-gallery__item--landscape"
-        >
-          <img
-            src="/images/isekas/pricing.webp"
-            alt="Isekas pricing and configuration options"
-            loading="lazy"
-          />
-        </figure>
+  <figure
+    class="case-gallery__item
+           case-gallery__item--landscape"
+  >
+    <img
+      src="/images/isekas/pricing.webp"
+      alt="Isekas pricing and configuration options"
+      loading="lazy"
+    />
+  </figure>
 
+  <section class="case-live-strip">
+    <div>
+      <p class="case-meta__label">
+        live
+      </p>
 
-        <figure
-          class="case-gallery__item
-                 case-gallery__item--landscape"
-        >
-          <img
-            src="/images/isekas/concept.webp"
-            alt="Earlier Isekas landing page concept"
-            loading="lazy"
-          />
-        </figure>
+      <h3>
+        See the product in context.
+      </h3>
+    </div>
 
-      </section>
+    <a
+      href="https://isekas.kassa.net/"
+      target="_blank"
+      rel="noreferrer"
+      class="case-live-strip__link"
+    >
+      Visit site ↗
+    </a>
+  </section>
 
-
-      <!-- ===================================================
-           LIVE LINK
-      ==================================================== -->
-
-      <section class="case-live-strip">
-
-        <div>
-          <p class="case-meta__label">
-            live
-          </p>
-
-          <h3>
-            See the product in context.
-          </h3>
-        </div>
+</section>
 
 
-        <a
-          href="https://isekas.kassa.net/"
-          target="_blank"
-          rel="noreferrer"
-          class="case-live-strip__link"
-        >
-          Visit site ↗
-        </a>
 
-      </section>
 
 
       <!-- ===================================================
@@ -483,6 +466,70 @@ const title = "Isekas Self-Service Checkout | Maria Klammer";
 
   .case-gallery__item--landscape img {
     height: auto;
+  }
+}
+
+.case-duo-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+
+  width: 100%;
+  max-width: 1176px;
+
+  margin: 24px auto 48px;
+
+  align-items: stretch;
+}
+
+.case-duo-row .case-gallery__item,
+.case-duo-row .case-live-strip {
+  height: 100%;
+  margin: 0;
+}
+
+.case-duo-row .case-gallery__item {
+  overflow: hidden;
+}
+
+.case-duo-row .case-gallery__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top center;
+}
+
+.case-live-strip {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+
+  gap: 30px;
+
+  padding: clamp(28px, 4vw, 54px);
+
+  box-sizing: border-box;
+
+  background: #191a17;
+  border: 1px solid rgba(242, 241, 236, .09);
+}
+
+@media (max-width: 760px) {
+  .case-duo-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .case-duo-row .case-gallery__item,
+  .case-duo-row .case-live-strip {
+    height: auto;
+  }
+
+  .case-duo-row .case-gallery__item img {
+    height: auto;
+    object-fit: contain;
   }
 }
 </style>
