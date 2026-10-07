@@ -9,281 +9,338 @@ import Base from "../layouts/Base.astro";
   hideFooter={true}
 >
   <main class="home-page">
-    <section class="visual-story" id="visualStory">
-      <div class="visual-sticky">
+   <section class="visual-story" id="visualStory">
+  <div class="visual-sticky">
 
-        <!-- =====================================================
-             01 — INTRO
-        ====================================================== -->
+    <!-- =====================================================
+         GLOBAL BACKGROUND
+         stays behind intro + expanding visual scenes
+    ====================================================== -->
 
-        <section
-          class="story-scene story-scene--intro"
-          id="sceneIntro"
-        >
+   <picture class="intro-pattern" aria-hidden="true">
+  <source
+    media="(max-width: 760px)"
+    srcset="/images/visual/binds_mobile.webp"
+  />
 
-        <div class="intro-pattern" aria-hidden="true"></div>
-
-          <div class="intro-content">
-
-            <h1 class="intro-title">
-
-              <span
-                class="intro-line"
-                data-text="Visual instinct."
-              >
-                <span
-                  class="intro-primary"
-                  data-text="Visual"
-                >
-                  Visual
-                </span>
-
-                <span
-                  class="intro-secondary"
-                  data-text="instinct."
-                >instinct.
-                </span>
-              </span>
+  <img
+    src="/images/visual/binds.webp"
+    alt=""
+    fetchpriority="high"
+    decoding="sync"
+  />
+</picture>
 
 
-              <span
-                class="intro-line"
-                data-text="Engineering depth."
-              >
-                <span
-                  class="intro-primary"
-                  data-text="Engineering"
-                >
-                Engineering
-                </span>
+    <!-- =====================================================
+         01 — INTRO
+    ====================================================== -->
 
-                <span
-                  class="intro-secondary"
-                  data-text="depth."
-                >depth.
-                </span>
-              </span>
+    <section
+      class="story-scene story-scene--intro"
+      id="sceneIntro"
+    >
 
-            </h1>
+      <div class="intro-content">
 
+        <h1 class="intro-title">
 
-           <div class="scroll-cue" aria-hidden="true">
-            <span class="scroll-hint scroll-hint--desktop">
-              Scroll to explore
-            </span>
-
-            <span class="scroll-hint scroll-hint--mobile">
-              Swipe to explore
-            </span>
-
-            <span class="scroll-track">
-              <span class="scroll-light"></span>
-            </span>
-          </div>
-        </section>
-
-
-        <!-- =====================================================
-             02 — KOMPA
-        ====================================================== -->
-
-        <section
-          class="story-scene"
-          id="sceneKompa"
-        >
-          <div
-            class="visual-frame visual-frame--square"
-            id="kompaFrame"
+          <span
+            class="intro-line"
+            data-text="Visual instinct."
           >
-            <img
-              src="/images/visual/kompa.webp"
-              alt="Visual composition study by Maria Klammer"
-            />
-
-            <div class="frame-overlay"></div>
-
-            <div class="visual-copy">
-              <p class="visual-label">
-                <span>01</span>
-                <span>Visual thinking</span>
-              </p>
-
-              <h2>
-                Visual instinct.
-              </h2>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- =====================================================
-             03 — STEEL
-        ====================================================== -->
-
-        <section
-          class="story-scene"
-          id="sceneSteel"
-        >
-          <div
-            class="visual-frame visual-frame--landscape"
-            id="steelFrame"
-          >
-            <img
-              src="/images/visual/steel-table.png"
-              alt="Hospitality visual direction by Maria Klammer"
-            />
-
-            <div
-              class="frame-overlay frame-overlay--steel"
-            ></div>
-
-            <div class="visual-copy">
-              <p class="visual-label">
-                <span>02</span>
-                <span>Direction</span>
-              </p>
-
-              <h2>
-                Product logic.<br />
-                Visual direction.
-              </h2>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- =====================================================
-             04 — GIF
-        ====================================================== -->
-
-        <section
-          class="story-scene"
-          id="sceneGif"
-        >
-          <div
-            class="visual-frame visual-frame--square"
-            id="gifFrame"
-          >
-            <img
-              src="/images/visual/gif1.gif"
-              alt="Interaction and motion study by Maria Klammer"
-            />
-
-            <div class="frame-overlay"></div>
-
-            <div class="visual-copy">
-              <p class="visual-label">
-                <span>03</span>
-                <span>Interaction</span>
-              </p>
-
-              <h2>
-                Systems can<br />
-                still feel alive.
-              </h2>
-            </div>
-          </div>
-        </section>
-
-
-        <!-- =====================================================
-             05 — FINAL VIDEO
-        ====================================================== -->
-
-        <section
-          class="story-scene"
-          id="sceneFinal"
-        >
-          <div
-            class="visual-frame visual-frame--final"
-            id="finalFrame"
-          >
-            <video
-              class="final-video"
-              id="finalVideo"
-              src="/videos/about-hero.mp4"
-              poster="/videos/hero-poster.png"
-              muted
-              playsinline
-              autoplay
-              loop
-              preload="auto"
-              disableRemotePlayback
-              aria-hidden="true"
-            ></video>
-
-            <div class="final-shade"></div>
-
-
-            <div
-              class="final-content"
-              id="finalContent"
+            <span
+              class="intro-primary"
+              data-text="Visual"
             >
+              Visual
+            </span>
 
-              <p class="final-kicker">
-
-                <span class="kicker-desktop">
-                  Product Engineer · UX/UI · Frontend · AI Workflows
-                </span>
-
-                <span class="kicker-mobile">
-                  <span>Product Engineer</span>
-                  <span>UX/UI · Frontend</span>
-                  <span>AI Workflows</span>
-                </span>
-
-              </p>
+            <span
+              class="intro-secondary"
+              data-text="instinct."
+            >
+              instinct.
+            </span>
+          </span>
 
 
-              <nav
-                class="final-icon-links"
-                aria-label="Portfolio links"
-              >
+          <span
+            class="intro-line"
+            data-text="Engineering depth."
+          >
+            <span
+              class="intro-primary"
+              data-text="Engineering"
+            >
+              Engineering
+            </span>
 
-               <a
-                  href="/cv/Maria_Klammer_cv.pdf"
-                  target="_blank"
-                  rel="noopener"
-                  class="final-icon-link"
-                  aria-label="View CV"
-                >
-                  <span
-                    class="document-icon"
-                    aria-hidden="true"
-                  >
-                    <span class="document-line"></span>
-                    <span class="document-line"></span>
-                    <span class="document-line"></span>
-                  </span>
+            <span
+              class="intro-secondary"
+              data-text="depth."
+            >
+              depth.
+            </span>
+          </span>
 
-                  <span class="icon-label">
-                    CV
-                  </span>
-                </a>
+        </h1>
 
-                <a
-                  href="/projects"
-                  class="final-icon-link"
-                  aria-label="View projects"
-                >
-                  <span
-                    class="folder-icon"
-                    aria-hidden="true"
-                  ></span>
 
-                  <span class="icon-label">
-                    Projects
-                  </span>
-                </a>
+        <div
+          class="scroll-cue"
+          aria-hidden="true"
+        >
+          <span
+            class="scroll-hint scroll-hint--desktop"
+          >
+            Scroll to explore
+          </span>
 
-              </nav>
+          <span
+            class="scroll-hint scroll-hint--mobile"
+          >
+            Swipe to explore
+          </span>
 
-            </div>
-          </div>
-        </section>
+          <span class="scroll-track">
+            <span class="scroll-light"></span>
+          </span>
+        </div>
 
       </div>
+
     </section>
+
+
+    <!-- =====================================================
+         02 — KOMPA
+    ====================================================== -->
+
+    <section
+      class="story-scene"
+      id="sceneKompa"
+    >
+
+      <div
+        class="visual-frame visual-frame--square"
+        id="kompaFrame"
+      >
+
+        <img
+          src="/images/visual/kompa.webp"
+          alt="Visual composition study by Maria Klammer"
+        />
+
+        <div class="frame-overlay"></div>
+
+        <div class="visual-copy">
+
+          <p class="visual-label">
+            <span>01</span>
+            <span>Visual thinking</span>
+          </p>
+
+          <h2>
+            Visual instinct.
+          </h2>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         03 — STEEL
+    ====================================================== -->
+
+    <section
+      class="story-scene"
+      id="sceneSteel"
+    >
+
+      <div
+        class="visual-frame visual-frame--landscape"
+        id="steelFrame"
+      >
+
+        <img
+          src="/images/visual/steel-table.png"
+          alt="Hospitality visual direction by Maria Klammer"
+        />
+
+        <div
+          class="frame-overlay frame-overlay--steel"
+        ></div>
+
+        <div class="visual-copy">
+
+          <p class="visual-label">
+            <span>02</span>
+            <span>Direction</span>
+          </p>
+
+          <h2>
+            Product logic.<br />
+            Visual direction.
+          </h2>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         04 — GIF
+    ====================================================== -->
+
+    <section
+      class="story-scene"
+      id="sceneGif"
+    >
+
+      <div
+        class="visual-frame visual-frame--square"
+        id="gifFrame"
+      >
+
+        <img
+          src="/images/visual/gif1.gif"
+          alt="Interaction and motion study by Maria Klammer"
+        />
+
+        <div class="frame-overlay"></div>
+
+        <div class="visual-copy">
+
+          <p class="visual-label">
+            <span>03</span>
+            <span>Interaction</span>
+          </p>
+
+          <h2>
+            Systems can<br />
+            still feel alive.
+          </h2>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         05 — FINAL VIDEO
+    ====================================================== -->
+
+    <section
+      class="story-scene"
+      id="sceneFinal"
+    >
+
+      <div
+        class="visual-frame visual-frame--final"
+        id="finalFrame"
+      >
+
+        <video
+          class="final-video"
+          id="finalVideo"
+          src="/videos/about-hero.mp4"
+          poster="/videos/hero-poster.png"
+          muted
+          playsinline
+          autoplay
+          loop
+          preload="auto"
+          disableRemotePlayback
+          aria-hidden="true"
+        ></video>
+
+        <div class="final-shade"></div>
+
+
+        <div
+          class="final-content"
+          id="finalContent"
+        >
+
+          <p class="final-kicker">
+
+            <span class="kicker-desktop">
+              Product Engineer · UX/UI · Frontend · AI Workflows
+            </span>
+
+            <span class="kicker-mobile">
+              <span>Product Engineer</span>
+              <span>UX/UI · Frontend</span>
+              <span>AI Workflows</span>
+            </span>
+
+          </p>
+
+
+          <nav
+            class="final-icon-links"
+            aria-label="Portfolio links"
+          >
+
+            <a
+              href="/cv/Maria_Klammer_cv.pdf"
+              target="_blank"
+              rel="noopener"
+              class="final-icon-link"
+              aria-label="View CV"
+            >
+
+              <span
+                class="document-icon"
+                aria-hidden="true"
+              >
+                <span class="document-line"></span>
+                <span class="document-line"></span>
+                <span class="document-line"></span>
+              </span>
+
+              <span class="icon-label">
+                CV
+              </span>
+
+            </a>
+
+
+            <a
+              href="/projects"
+              class="final-icon-link"
+              aria-label="View projects"
+            >
+
+              <span
+                class="folder-icon"
+                aria-hidden="true"
+              ></span>
+
+              <span class="icon-label">
+                Projects
+              </span>
+
+            </a>
+
+          </nav>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</section>
   </main>
 </Base>
 
@@ -763,33 +820,74 @@ import Base from "../layouts/Base.astro";
       var(--home-bg);
   }
 
+.visual-sticky {
+  position: sticky;
+  top: 0;
 
-  .visual-sticky {
-    position:
-      sticky;
+  width: 100%;
+  height: 100svh;
 
-    top:
-      0;
+  overflow: hidden;
+  isolation: isolate;
 
-    width:
-      100%;
+  background:
+    url("/images/visual/binds.webp")
+    center center / cover
+    no-repeat;
 
-    height:
-      100svh;
+  background-color: #43503f;
+}
 
-    overflow:
-      hidden;
+.intro-pattern {
+  position: absolute;
+  inset: -2%;
+  z-index: 0;
 
-    isolation:
-      isolate;
+  display: block;
 
-    background:
-      radial-gradient(
-        circle at 50% 48%,
-        #191a17 0%,
-        #111210 70%
-      );
+  pointer-events: none;
+
+  filter: blur(10px);
+  transform: scale(1.04);
+}
+
+.intro-pattern img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+
+.story-scene--intro {
+  z-index: 10;
+}
+
+#sceneKompa {
+  z-index: 20;
+}
+
+#sceneSteel {
+  z-index: 30;
+}
+
+#sceneGif {
+  z-index: 40;
+}
+
+#sceneFinal {
+  z-index: 50;
+}
+
+@media (max-width: 760px) {
+  .intro-pattern img {
+    object-position: center top;
   }
+}
 
 
   /* =========================================================
@@ -1921,10 +2019,17 @@ import Base from "../layouts/Base.astro";
     }
 
 
-    .visual-sticky {
-      height:
-        100dvh;
-    }
+   @media (max-width: 760px) {
+  .visual-sticky {
+    height: 100dvh;
+
+    background-image:
+      url("/images/visual/binds_mobile.webp");
+
+    background-position:
+      center top;
+  }
+}
 
 
     /* =======================================================
@@ -2941,41 +3046,36 @@ import Base from "../layouts/Base.astro";
   overflow: hidden;
 }
 
-
 .intro-pattern {
   position: absolute;
   inset: -2%;
   z-index: 0;
+
+  display: block;
+
   pointer-events: none;
-
-  background-image:
-    url('/images/visual/binds.webp');
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  opacity: 1;
 
   filter: blur(10px);
   transform: scale(1.04);
 }
 
+.intro-pattern img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
 @media (max-width: 760px) {
   .intro-pattern {
     inset: -2%;
+  }
 
-    background-image:
-      url('/images/visual/binds_mobile.webp');
-
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-
-    opacity: 1;
-
-    filter: blur(10px);
-    transform: scale(1.04);
+  .intro-pattern img {
+    object-position: center top;
   }
 }
 
