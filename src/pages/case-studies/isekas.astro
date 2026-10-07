@@ -98,11 +98,21 @@ const title = "Isekas Self-Service Checkout | Maria Klammer";
            HERO
       ==================================================== -->
 
-      <figure class="case-hero-media">
-        <img
-          src="/images/isekas/hero.webp"
-          alt="Isekas self-service checkout landing page"
-        />
+      <figure class="case-hero-media case-hero-media--video">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="/images/isekas/hero.webp"
+          aria-label="Isekas self-service checkout experience"
+        >
+          <source
+            src="/videos/iseka-screen.mp4"
+            type="video/mp4"
+          />
+        </video>
       </figure>
 
 
@@ -531,5 +541,16 @@ const title = "Isekas Self-Service Checkout | Maria Klammer";
     height: auto;
     object-fit: contain;
   }
+}
+
+.case-hero-media--video {
+  overflow: hidden;
+  background: #111210;
+}
+
+.case-hero-media--video video {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 </style>
