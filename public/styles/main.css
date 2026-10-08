@@ -43,15 +43,6 @@
   --card-bg: #16191c;
 }
 
-@font-face {
-  font-family: "Inter Tight";
-  src: url("/fonts/inter-tight.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 100 900;
-
-  /* oluline */
-  font-display: block;
-}
 /* ======================================
    BASE
 ====================================== */
@@ -62,10 +53,6 @@ html,
 body {
   height: 100%;
   margin: 0;
-}
-
-html {
-  scrollbar-gutter: stable;
 }
 body {
   background: var(--bg);
