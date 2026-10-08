@@ -915,7 +915,7 @@ addEventListener("astro:page-load", wireHamburger);
 
       <div class="nav-editorial__block">
         <p class="nav-editorial__label">year</p>
-        <p class="nav-editorial__year">2024–2025</p>
+        <p class="nav-editorial__year">2025</p>
       </div>
 
     </div>
@@ -1039,8 +1039,15 @@ addEventListener("astro:page-load", wireHamburger);
     We do not resize or restyle the nav itself.
   */
   --nav-case-sidebar-space: 350px;
-}
 
+  --case-bg: #111210;
+  --case-fg: #f2f1ec;
+  --case-muted: rgba(242, 241, 236, 0.48);
+  --case-soft: rgba(242, 241, 236, 0.72);
+  --case-line: rgba(242, 241, 236, 0.12);
+  --case-lime: #d8f27a;
+
+}
 
 /* =========================================================
    PAGE / DARK MODE
@@ -1181,50 +1188,67 @@ body.nav-system-page.dark-mode {
 .nav-editorial__title {
   margin: 0;
 
-  font-family: "Inter Tight", sans-serif;
-  font-size: clamp(2.7rem, 4vw, 5rem);
-  font-weight: 650;
-  line-height: .9;
-  letter-spacing: -.06em;
+  font-family: "Inter Tight", var(--ui-font), sans-serif;
 
-  color: var(--nav-case-fg);
+  font-size: clamp(1.35rem, 1.75vw, 2rem);
+
+  font-weight: 600;
+
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+
+  color: var(--case-fg);
 }
 
 
 .nav-editorial__bio {
-  max-width: 530px;
+   max-width: 430px;
+
   margin: 0;
 
-  font-family: "Inter Tight", sans-serif;
-  font-size: clamp(1.05rem, 1.35vw, 1.42rem);
-  line-height: 1.28;
-  letter-spacing: -.025em;
+  font-family: "Inter Tight", var(--ui-font), sans-serif;
 
-  color: var(--nav-case-fg);
+  font-size: clamp(0.98rem, 1.05vw, 1.1rem);
+
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+
+  color: var(--case-soft);
 }
 
 
 .nav-editorial__stack {
-  display: flex;
+   display: flex;
   flex-direction: column;
 
-  font-family: "Inter Tight", sans-serif;
-  font-size: clamp(1.2rem, 1.65vw, 1.7rem);
-  line-height: 1.08;
-  letter-spacing: -.03em;
+  gap: 2px;
 
-  color: var(--nav-case-fg);
+  margin: 0;
+
+  font-family: "Inter Tight", var(--ui-font), sans-serif;
+
+  font-size: clamp(1.25rem, 1.65vw, 1.85rem);
+
+  font-weight: 500;
+
+  line-height: 1.04;
+  letter-spacing: -0.035em;
 }
 
 
 .nav-editorial__year {
   margin: 0;
 
-  font-family: "Inter Tight", sans-serif;
-  font-size: clamp(1.3rem, 1.7vw, 1.75rem);
-  line-height: 1;
+  font-family: "Inter Tight", var(--ui-font), sans-serif;
 
-  color: var(--nav-case-fg);
+  font-size: clamp(1.35rem, 1.75vw, 2rem);
+
+  font-weight: 600;
+
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+
+  color: var(--case-fg);
 }
 
 
@@ -1589,10 +1613,6 @@ body.nav-system-page::-webkit-scrollbar-track {
     width: calc(100% - 32px);
   }
 
-  .nav-editorial__intro {
-    padding-top: 80px;
-  }
-
   .nav-editorial__meta {
     grid-template-columns: 1fr;
   }
@@ -1732,62 +1752,7 @@ body.nav-system-page .nav-editorial__next-arrow:hover {
   transform: translate(4px, -4px) !important;
 }
 
-/* =========================================================
-   UNIFY ALL DARK SURFACES
-========================================================= */
 
-:root {
-  --nav-case-bg: #111210;
-}
-
-/* page */
-html,
-body.nav-system-page,
-body.nav-system-page .nav-editorial {
-  background: #111210 !important;
-}
-
-/* portfolio header */
-body.nav-system-page .site-header,
-body.nav-system-page .header-inner {
-  background: #111210 !important;
-}
-
-/* architecture cards */
-body.nav-system-page .nav-editorial__architecture {
-  background: transparent !important;
-
-  gap: 0 !important;
-  padding: 0 !important;
-
-  border-top: 1px solid rgba(242, 241, 236, .12);
-  border-bottom: 1px solid rgba(242, 241, 236, .12);
-}
-
-body.nav-system-page .nav-editorial__architecture-item {
-  background: #111210 !important;
-}
-
-body.nav-system-page
-.nav-editorial__architecture-item
-+ .nav-editorial__architecture-item {
-  border-left: 1px solid rgba(242, 241, 236, .12);
-}
-
-/* interactive nav — same dark family */
-body.nav-system-page .menu,
-body.nav-system-page .extra-thin-sidebar,
-body.nav-system-page .extra-thin-sidebar--second,
-body.nav-system-page .company-sidebar {
-  background: #111210 !important;
-}
-
-/* keep the nav separation only with borders */
-body.nav-system-page .extra-thin-sidebar,
-body.nav-system-page .extra-thin-sidebar--second,
-body.nav-system-page .menu {
-  border-color: rgba(242, 241, 236, .10) !important;
-}
 
 /* =========================================================
    UNIFY DARK SURFACES
@@ -1835,4 +1800,999 @@ body.nav-system-page
   border-left: 1px solid rgba(242, 241, 236, .12);
 }
 
+/* =========================================================
+   NAV SYSTEM — FINAL MOBILE FIX
+   Match editorial case-study mobile layout
+========================================================= */
+
+@media (max-width: 760px) {
+
+  /* ---------------------------------------------------------
+     REMOVE INTERACTIVE NAV DEMO FROM MOBILE
+  --------------------------------------------------------- */
+
+  #menuMasterToggle,
+  .master-menu_mobile-header,
+  .mobile-menu-overlay,
+  .thin-sidebar-group,
+  body.nav-system-page .company-sidebar,
+  body.nav-system-page .extra-thin-sidebar,
+  body.nav-system-page .extra-thin-sidebar--second,
+  body.nav-system-page .menu,
+  body.nav-system-page .nav-editorial__demo-head {
+    display: none !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     REMOVE DESKTOP NAV OFFSETS
+  --------------------------------------------------------- */
+
+  body.nav-system-page .site-header {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  body.nav-system-page .nav-editorial {
+    margin-left: 0 !important;
+    width: 100% !important;
+
+    background: #111210 !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     INTRO WRAPPER — SAME AS EDITORIAL
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__intro {
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    padding:
+      108px
+      18px
+      72px !important;
+
+    box-sizing: border-box;
+  }
+
+
+  /* ---------------------------------------------------------
+     META — 2 × 2 GRID EXACTLY LIKE EDITORIAL
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__meta {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr) !important;
+
+    gap:
+      34px
+      18px !important;
+
+    align-items: start;
+
+    margin: 0 0 54px !important;
+  }
+
+  body.nav-system-page .nav-editorial__block {
+    min-width: 0 !important;
+    width: auto !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     LABELS
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__label {
+    margin:
+      0 0 10px !important;
+
+    font-family:
+      "Oswald",
+      "Arial Narrow",
+      sans-serif !important;
+
+    font-size:
+      0.66rem !important;
+
+    font-weight:
+      500 !important;
+
+    line-height:
+      1 !important;
+
+    letter-spacing:
+      0.08em !important;
+
+    text-transform:
+      lowercase !important;
+
+    color:
+      rgba(242, 241, 236, 0.48) !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     PROJECT TITLE — SAME SIZE AS EDITORIAL
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__title {
+    margin: 0 !important;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif !important;
+
+    font-size:
+      1.32rem !important;
+
+    font-weight:
+      600 !important;
+
+    line-height:
+      1.04 !important;
+
+    letter-spacing:
+      -0.035em !important;
+
+    color:
+      #f2f1ec !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     BIO
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__bio {
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif !important;
+
+    font-size:
+      0.92rem !important;
+
+    font-weight:
+      400 !important;
+
+    line-height:
+      1.34 !important;
+
+    letter-spacing:
+      -0.012em !important;
+
+    color:
+      rgba(242, 241, 236, 0.72) !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     DELIVERABLES
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__stack {
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 2px !important;
+
+    margin: 0 !important;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif !important;
+
+    font-size:
+      1.2rem !important;
+
+    font-weight:
+      500 !important;
+
+    line-height:
+      1.04 !important;
+
+    letter-spacing:
+      -0.035em !important;
+
+    color:
+      #f2f1ec !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     YEAR
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__year {
+    margin: 0 !important;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif !important;
+
+    font-size:
+      1.32rem !important;
+
+    font-weight:
+      600 !important;
+
+    line-height:
+      1.04 !important;
+
+    letter-spacing:
+      -0.035em !important;
+
+    color:
+      #f2f1ec !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     PROJECTS BACK LINK
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__back {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    gap: 10px !important;
+
+    margin-top:
+      22px !important;
+
+    font-family:
+      "Inter Tight",
+      var(--ui-font),
+      sans-serif !important;
+
+    font-size:
+      0.95rem !important;
+
+    font-weight:
+      500 !important;
+
+    color:
+      #f2f1ec !important;
+
+    text-decoration:
+      none !important;
+  }
+
+  body.nav-system-page .nav-editorial__back svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     REST OF PAGE — SAME MOBILE WIDTH
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__statement,
+  body.nav-system-page .nav-editorial__architecture,
+  body.nav-system-page .nav-editorial__behavior,
+  body.nav-system-page .nav-editorial__next {
+    width:
+      calc(100% - 36px) !important;
+
+    max-width:
+      none !important;
+
+    margin-left:
+      18px !important;
+
+    margin-right:
+      18px !important;
+
+    box-sizing:
+      border-box;
+  }
+
+
+  /* ---------------------------------------------------------
+     STATEMENT
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__statement {
+    padding:
+      72px 0 !important;
+  }
+
+  body.nav-system-page .nav-editorial__statement p {
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    font-size:
+      clamp(
+        2.2rem,
+        11vw,
+        3.5rem
+      ) !important;
+
+    font-weight:
+      600 !important;
+
+    line-height:
+      0.98 !important;
+
+    letter-spacing:
+      -0.055em !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     ARCHITECTURE
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__architecture {
+    display: grid !important;
+
+    grid-template-columns:
+      1fr !important;
+
+    gap: 0 !important;
+
+    padding: 0 !important;
+
+    background:
+      transparent !important;
+
+    border-top:
+      1px solid rgba(242, 241, 236, 0.12);
+
+    border-bottom:
+      1px solid rgba(242, 241, 236, 0.12);
+  }
+
+  body.nav-system-page .nav-editorial__architecture-item {
+    min-height: 0 !important;
+
+    padding:
+      28px 0 !important;
+
+    background:
+      transparent !important;
+  }
+
+  body.nav-system-page
+  .nav-editorial__architecture-item
+  + .nav-editorial__architecture-item {
+    border-top:
+      1px solid rgba(242, 241, 236, 0.12);
+  }
+
+  body.nav-system-page .nav-editorial__num {
+    margin-bottom:
+      28px !important;
+  }
+
+  body.nav-system-page .nav-editorial__architecture-item h3 {
+    font-size:
+      1.5rem !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     BEHAVIOR
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__behavior {
+    display: block !important;
+
+    margin-top:
+      72px !important;
+
+    margin-bottom:
+      72px !important;
+
+    padding-top:
+      24px !important;
+  }
+
+  body.nav-system-page .nav-editorial__behavior-copy {
+    max-width:
+      none !important;
+
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      ) !important;
+
+    font-weight:
+      600 !important;
+
+    line-height:
+      0.98 !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     NEXT PROJECT
+  --------------------------------------------------------- */
+
+  body.nav-system-page .nav-editorial__next {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto !important;
+
+    align-items:
+      end !important;
+
+    gap:
+      18px !important;
+
+    padding-top:
+      26px !important;
+
+    padding-bottom:
+      72px !important;
+  }
+
+  body.nav-system-page .nav-editorial__next h2 {
+    font-size:
+      clamp(
+        2.4rem,
+        10vw,
+        3.8rem
+      ) !important;
+  }
+
+  body.nav-system-page .nav-editorial__next-arrow {
+    width:
+      58px !important;
+
+    height:
+      58px !important;
+
+    flex:
+      0 0 58px !important;
+
+    font-size:
+      1.8rem !important;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .nav-editorial__meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 34px 18px !important;
+    align-items: start !important;
+    margin-bottom: 54px !important;
+  }
+
+  .nav-editorial__block {
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .nav-editorial__block--project {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .nav-editorial__block:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  .nav-editorial__block:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  .nav-editorial__block:nth-child(3) {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+  }
+
+  .nav-editorial__block:nth-child(4) {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }
+
+  .nav-editorial__intro {
+    padding: 108px 18px 72px !important;
+  }
+
+  .nav-editorial__label {
+    margin: 0 0 10px !important;
+    font-size: 0.66rem !important;
+  }
+
+  .nav-editorial__title,
+  .nav-editorial__year {
+    font-size: 1.32rem !important;
+    line-height: 1.04 !important;
+  }
+
+  .nav-editorial__bio {
+    font-size: 0.92rem !important;
+    line-height: 1.34 !important;
+  }
+
+  .nav-editorial__stack {
+    font-size: 1.2rem !important;
+    line-height: 1.04 !important;
+  }
+
+  .nav-editorial__back {
+    margin-top: 22px !important;
+  }
+
+  /* hide demo nav on mobile */
+  .master-menu_mobile-header,
+  .mobile-menu-overlay,
+  .thin-sidebar-group,
+  .menu,
+  .extra-thin-sidebar,
+  .extra-thin-sidebar--second,
+  .company-sidebar,
+  .nav-editorial__demo-head {
+    display: none !important;
+  }
+}
+/* =========================================================
+   FINAL NAV CASE ALIGNMENT
+   Match the other editorial case studies
+========================================================= */
+
+/* ---------- DESKTOP ---------- */
+
+body.nav-system-page .nav-editorial__intro {
+  padding-top: 112px !important;
+  padding-bottom: 54px !important;
+}
+
+body.nav-system-page .nav-editorial__meta {
+  grid-template-columns:
+    1.05fr
+    1.65fr
+    1.3fr
+    0.55fr !important;
+
+  gap: clamp(28px, 4vw, 74px) !important;
+}
+
+body.nav-system-page .nav-editorial__title,
+body.nav-system-page .nav-editorial__year {
+  font-size: clamp(1.35rem, 1.75vw, 2rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.035em !important;
+}
+
+body.nav-system-page .nav-editorial__bio {
+  max-width: 430px !important;
+  font-size: clamp(0.98rem, 1.05vw, 1.1rem) !important;
+  line-height: 1.34 !important;
+}
+
+body.nav-system-page .nav-editorial__stack {
+  font-size: clamp(1.25rem, 1.65vw, 1.85rem) !important;
+  line-height: 1.04 !important;
+}
+
+body.nav-system-page .nav-editorial__year {
+  white-space: nowrap !important;
+}
+
+body.nav-system-page .nav-editorial__back {
+  margin-top: 38px !important;
+}
+
+
+/* prototype algab kohe pärast meta osa */
+
+body.nav-system-page .nav-editorial__demo-head {
+  margin-top: 0px !important;
+  padding-top: 26px !important;
+}
+
+
+/* ---------- BIG STATEMENT ---------- */
+
+body.nav-system-page .nav-editorial__statement {
+  padding-top: 76px !important;
+  padding-bottom: 88px !important;
+}
+
+body.nav-system-page .nav-editorial__statement p {
+  max-width: 900px !important;
+
+  font-size: clamp(
+    2.5rem,
+    4.5vw,
+    5.2rem
+  ) !important;
+
+  font-weight: 650 !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.055em !important;
+}
+
+
+/* ---------- ARCHITECTURE ---------- */
+
+body.nav-system-page .nav-editorial__architecture-item {
+  min-height: 270px !important;
+  padding: clamp(26px, 2.5vw, 38px) !important;
+}
+
+body.nav-system-page .nav-editorial__num {
+  margin-bottom: 52px !important;
+}
+
+body.nav-system-page .nav-editorial__architecture-item h3 {
+  font-size: clamp(1.5rem, 1.9vw, 2.35rem) !important;
+}
+
+
+/* ---------- BEHAVIOR TEXT ---------- */
+
+body.nav-system-page .nav-editorial__behavior {
+  margin-top: 88px !important;
+  margin-bottom: 100px !important;
+}
+
+body.nav-system-page .nav-editorial__behavior-copy {
+  max-width: 760px !important;
+
+  font-size: clamp(
+    1.8rem,
+    2.7vw,
+    3.4rem
+  ) !important;
+
+  line-height: 0.98 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+  body.nav-system-page .nav-editorial__intro,
+  body.nav-system-page .nav-editorial__statement,
+  body.nav-system-page .nav-editorial__architecture,
+  body.nav-system-page .nav-editorial__behavior,
+  body.nav-system-page .nav-editorial__next {
+    width: calc(100% - 36px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+
+  /* ülemine osa — vähem tühja ruumi */
+
+  body.nav-system-page .nav-editorial__intro {
+    padding-top: 0px !important;
+    padding-bottom: 28px !important;
+  }
+
+
+  /* sama 2 x 2 layout nagu teistel case study lehtedel */
+
+  body.nav-system-page .nav-editorial__meta {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr) !important;
+
+    gap: 30px 18px !important;
+
+    margin: 0 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__block {
+    min-width: 0 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__label {
+    margin: 0 0 10px !important;
+
+    font-size: 0.66rem !important;
+    line-height: 1 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__title,
+  body.nav-system-page .nav-editorial__year {
+    font-size: 1.32rem !important;
+    font-weight: 600 !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.035em !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__bio {
+    max-width: none !important;
+
+    font-size: 0.92rem !important;
+    font-weight: 400 !important;
+    line-height: 1.34 !important;
+    letter-spacing: -0.012em !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__stack {
+    gap: 1px !important;
+
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+    line-height: 1.04 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__year {
+    white-space: nowrap !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__back {
+    margin-top: 22px !important;
+
+    font-size: 0.95rem !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__back svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+
+  /* prototype demo mobiilis ei näidata */
+
+  body.nav-system-page .nav-editorial__demo-head {
+    display: none !important;
+  }
+
+
+  /* statement tuleb meta järel palju lähemale */
+
+  body.nav-system-page .nav-editorial__statement {
+    padding-top: 48px !important;
+    padding-bottom: 58px !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__statement p {
+    max-width: none !important;
+
+    font-size: clamp(
+      2rem,
+      9vw,
+      2.75rem
+    ) !important;
+
+    font-weight: 650 !important;
+    line-height: 0.94 !important;
+    letter-spacing: -0.05em !important;
+  }
+
+
+  /* architecture cards */
+
+  body.nav-system-page .nav-editorial__architecture {
+    grid-template-columns: 1fr !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__architecture-item {
+    min-height: 0 !important;
+    padding: 24px 0 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__num {
+    margin-bottom: 28px !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__architecture-item h3 {
+    font-size: 1.65rem !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__architecture-item p {
+    font-size: 0.95rem !important;
+  }
+
+
+  /* behavior */
+
+  body.nav-system-page .nav-editorial__behavior {
+    display: block !important;
+
+    margin-top: 62px !important;
+    margin-bottom: 72px !important;
+
+    padding-top: 22px !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__behavior-copy {
+    margin-top: 28px !important;
+
+    font-size: clamp(
+      1.8rem,
+      8vw,
+      2.45rem
+    ) !important;
+
+    line-height: 0.98 !important;
+  }
+
+
+  /* next project */
+
+  body.nav-system-page .nav-editorial__next {
+    padding-top: 24px !important;
+    padding-bottom: 72px !important;
+  }
+
+  body.nav-system-page .nav-editorial__next h2 {
+    font-size: clamp(
+      2.4rem,
+      10vw,
+      3.8rem
+    ) !important;
+  }
+
+  body.nav-system-page .nav-editorial__next-arrow {
+    width: 54px !important;
+    height: 54px !important;
+    flex-basis: 54px !important;
+
+    font-size: 1.6rem !important;
+  }
+}
+@media (max-width: 760px) {
+
+  body.nav-system-page .nav-editorial__intro {
+    padding-top: 0px !important;
+    padding-bottom: 12px !important;
+  }
+
+  body.nav-system-page .nav-editorial__intro,
+  body.nav-system-page .nav-editorial__statement,
+  body.nav-system-page .nav-editorial__architecture,
+  body.nav-system-page .nav-editorial__behavior,
+  body.nav-system-page .nav-editorial__next {
+    width: calc(100% - 32px) !important;
+    margin-inline: auto !important;
+  }
+
+  body.nav-system-page .nav-editorial__meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px 16px !important;
+    align-items: start !important;
+    margin: 0 !important;
+  }
+
+  body.nav-system-page .nav-editorial__label {
+    margin: 0 0 7px !important;
+    font-size: 0.62rem !important;
+  }
+
+  body.nav-system-page .nav-editorial__title,
+  body.nav-system-page .nav-editorial__year {
+    font-size: 1.15rem !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.03em !important;
+  }
+
+  body.nav-system-page .nav-editorial__bio {
+    font-size: 0.78rem !important;
+    line-height: 1.28 !important;
+  }
+
+  body.nav-system-page .nav-editorial__stack {
+    font-size: 0.95rem !important;
+    line-height: 1.02 !important;
+    gap: 0 !important;
+  }
+
+  body.nav-system-page .nav-editorial__back {
+    margin-top: 16px !important;
+    font-size: 0.8rem !important;
+    gap: 7px !important;
+  }
+
+  body.nav-system-page .nav-editorial__back svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  body.nav-system-page .nav-editorial__demo-head {
+    display: none !important;
+  }
+
+  body.nav-system-page .nav-editorial__statement {
+    padding-top: 0px !important;
+    padding-bottom: 44px !important;
+  }
+
+  body.nav-system-page .nav-editorial__statement p {
+    max-width: none !important;
+    font-size: clamp(1.8rem, 8vw, 2.45rem) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.055em !important;
+  }
+
+  body.nav-system-page .nav-editorial__architecture {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.nav-system-page .nav-editorial__architecture-item {
+    min-height: 0 !important;
+    padding: 20px 0 !important;
+  }
+
+  body.nav-system-page .nav-editorial__num {
+    margin-bottom: 18px !important;
+  }
+
+  body.nav-system-page .nav-editorial__architecture-item h3 {
+    font-size: 1.35rem !important;
+  }
+
+  body.nav-system-page .nav-editorial__architecture-item p {
+    font-size: 0.85rem !important;
+    line-height: 1.38 !important;
+  }
+
+  body.nav-system-page .nav-editorial__behavior {
+    display: block !important;
+    margin-top: 44px !important;
+    margin-bottom: 54px !important;
+    padding-top: 18px !important;
+  }
+
+  body.nav-system-page .nav-editorial__behavior-copy {
+    margin-top: 20px !important;
+    font-size: clamp(1.65rem, 7.5vw, 2.2rem) !important;
+  }
+
+  body.nav-system-page .nav-editorial__next {
+    padding-top: 20px !important;
+    padding-bottom: 48px !important;
+  }
+
+  body.nav-system-page .nav-editorial__next h2 {
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+  }
+}
+
+.nav-editorial__meta {
+  padding-bottom: 30px !important;
+}
 </style>
