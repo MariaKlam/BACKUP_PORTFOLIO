@@ -553,4 +553,352 @@ const title = "Isekas Self-Service Checkout | Maria Klammer";
   width: 100%;
   height: auto;
 }
+
+/* =========================================================
+   NAV SYSTEM — MATCH ISEKAS / EDITORIAL META
+========================================================= */
+
+body.nav-system-page .nav-editorial__intro {
+  width: 100%;
+  max-width: var(--main-max);
+  margin-inline: auto;
+
+  padding:
+    148px
+    var(--gutter)
+    0;
+
+  box-sizing: border-box;
+}
+
+body.nav-system-page .nav-editorial__meta {
+  display: grid;
+
+  grid-template-columns:
+    1.05fr
+    1.65fr
+    1.3fr
+    0.55fr;
+
+  gap: clamp(28px, 4vw, 74px);
+
+  align-items: start;
+
+  margin: 0 0 clamp(60px, 7vw, 105px);
+}
+
+
+/* labels */
+body.nav-system-page .nav-editorial__label {
+  margin: 0 0 18px;
+
+  font-family:
+    "Oswald",
+    "Arial Narrow",
+    sans-serif;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+
+  color:
+    rgba(242, 241, 236, 0.48);
+}
+
+
+/* PROJECT TITLE — same as Isekas */
+body.nav-system-page .nav-editorial__title {
+  margin: 0;
+
+  font-family:
+    "Inter Tight",
+    var(--ui-font),
+    sans-serif;
+
+  font-size:
+    clamp(1.35rem, 1.75vw, 2rem) !important;
+
+  font-weight: 600;
+
+  line-height: 1.04;
+
+  letter-spacing: -0.035em;
+
+  color: #f2f1ec;
+}
+
+
+/* BIO — same as Isekas */
+body.nav-system-page .nav-editorial__bio {
+  max-width: 430px;
+
+  margin: 0;
+
+  font-family:
+    "Inter Tight",
+    var(--ui-font),
+    sans-serif;
+
+  font-size:
+    clamp(0.98rem, 1.05vw, 1.1rem) !important;
+
+  font-weight: 400;
+
+  line-height: 1.34;
+
+  letter-spacing: -0.012em;
+
+  color:
+    rgba(242, 241, 236, 0.72);
+}
+
+
+/* DELIVERABLES — same as Isekas */
+body.nav-system-page .nav-editorial__stack {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  margin: 0;
+
+  font-family:
+    "Inter Tight",
+    var(--ui-font),
+    sans-serif;
+
+  font-size:
+    clamp(1.25rem, 1.65vw, 1.85rem) !important;
+
+  font-weight: 500;
+
+  line-height: 1.04;
+
+  letter-spacing: -0.035em;
+
+  color: #f2f1ec;
+}
+
+
+/* YEAR — same as project title */
+body.nav-system-page .nav-editorial__year {
+  margin: 0;
+
+  font-family:
+    "Inter Tight",
+    var(--ui-font),
+    sans-serif;
+
+  font-size:
+    clamp(1.35rem, 1.75vw, 2rem) !important;
+
+  font-weight: 600;
+
+  line-height: 1.04;
+
+  letter-spacing: -0.035em;
+
+  color: #f2f1ec;
+}
+
+
+/* PROJECTS LINK — same as editorial */
+body.nav-system-page .nav-editorial__back {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 38px;
+
+  font-family:
+    "Inter Tight",
+    var(--ui-font),
+    sans-serif;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  color: #f2f1ec;
+
+  text-decoration: none;
+}
+
+body.nav-system-page .nav-editorial__back svg {
+  width: 28px;
+  height: 28px;
+}
+
+
+/* =========================================================
+   DEMO START
+   remove giant empty gap
+========================================================= */
+
+body.nav-system-page .nav-editorial__demo-head {
+  width: 100%;
+  max-width: var(--main-max);
+
+  margin:
+    0 auto 0;
+
+  padding-top:
+    26px;
+
+  border-top:
+    1px solid rgba(242, 241, 236, 0.12);
+}
+
+body.nav-system-page .nav-editorial__demo-head h2 {
+  margin:
+    10px 0 0;
+
+  font-family:
+    "Inter Tight",
+    var(--ui-font),
+    sans-serif;
+
+  font-size:
+    clamp(2rem, 3.2vw, 4rem) !important;
+
+  font-weight: 600;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.055em;
+}
+
+
+/* =========================================================
+   MOBILE — SAME META AS ISEKAS
+========================================================= */
+
+@media (max-width: 760px) {
+
+  /* hide entire demo navigation */
+  #menuMasterToggle,
+  .master-menu_mobile-header,
+  .mobile-menu-overlay,
+  .thin-sidebar-group,
+  .menu,
+  .company-sidebar,
+  .extra-thin-sidebar {
+    display: none !important;
+  }
+
+  body.nav-system-page .site-header {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  body.nav-system-page .nav-editorial {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__intro {
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+
+    padding:
+      108px
+      18px
+      0;
+
+    box-sizing: border-box;
+  }
+
+
+  body.nav-system-page .nav-editorial__meta {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr) !important;
+
+    gap:
+      34px
+      18px !important;
+
+    align-items: start;
+
+    margin:
+      0 0 54px !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__block {
+    min-width: 0;
+  }
+
+
+  body.nav-system-page .nav-editorial__label {
+    margin-bottom:
+      10px;
+
+    font-size:
+      0.66rem !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__title,
+  body.nav-system-page .nav-editorial__year {
+    font-size:
+      1.32rem !important;
+
+    line-height:
+      1.04 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__bio {
+    max-width: none;
+
+    font-size:
+      0.92rem !important;
+
+    line-height:
+      1.34 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__stack {
+    font-size:
+      1.2rem !important;
+
+    line-height:
+      1.04 !important;
+  }
+
+
+  body.nav-system-page .nav-editorial__back {
+    margin-top:
+      22px;
+  }
+
+
+  body.nav-system-page .nav-editorial__demo-head {
+    margin:
+      0 18px;
+
+    width:
+      calc(100% - 36px);
+
+    padding-top:
+      24px;
+  }
+
+
+  body.nav-system-page .nav-editorial__demo-head h2 {
+    font-size:
+      clamp(2.2rem, 11vw, 3.5rem) !important;
+  }
+}
 </style>

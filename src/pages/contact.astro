@@ -422,10 +422,14 @@ import Base from "../layouts/Base.astro";
 
     }
 
-    html,
+html,
 body.contact-shell {
   height: 100%;
-  overflow: hidden !important;
+}
+
+body.contact-shell {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 
 body.contact-shell .contact-page {

@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import "../../styles/case-editorial.css";
 
 const title = "UI Library & Token System | Maria Klammer";
 ---
@@ -10,36 +11,55 @@ const title = "UI Library & Token System | Maria Klammer";
   noWrap={true}
   hideFooter={true}
 >
+  <article class="case-editorial">
+    <div class="case-editorial__inner">
 
-  <main class="case-page">
+      <!-- ===================================================
+           META
+      ==================================================== -->
 
-    <!-- ===================================================
-         INTRO
-    ==================================================== -->
+      <section class="case-meta">
 
-    <section class="case-intro">
-      <div class="case-intro__grid">
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            project
+          </p>
 
-        <div class="case-meta">
-          <span class="case-label">project</span>
-
-          <h1>
-            UI Library<br />
-            & Token<br />
-            System
+          <h1 class="case-meta__value">
+            UI Library &<br />
+            Token System
           </h1>
 
-          <a class="case-back" href="/projects">
-            <span class="case-back__arrow">↙</span>
+          <a
+            class="case-back"
+            href="/projects"
+            aria-label="Back to projects"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 5L5 19" />
+              <path d="M5 19V8" />
+              <path d="M5 19h11" />
+            </svg>
+
             Projects
           </a>
         </div>
 
 
-        <div class="case-meta">
-          <span class="case-label">bio</span>
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            bio
+          </p>
 
-          <p class="case-bio">
+          <p class="case-meta__bio">
             A shared design system connecting visual language,
             interaction patterns and frontend implementation
             across multiple products.
@@ -47,10 +67,12 @@ const title = "UI Library & Token System | Maria Klammer";
         </div>
 
 
-        <div class="case-meta">
-          <span class="case-label">deliverables</span>
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            deliverables
+          </p>
 
-          <div class="case-deliverables">
+          <div class="case-meta__stack">
             <span>Design system</span>
             <span>Frontend</span>
             <span>Design tokens</span>
@@ -59,611 +81,576 @@ const title = "UI Library & Token System | Maria Klammer";
         </div>
 
 
-        <div class="case-meta">
-          <span class="case-label">year</span>
-          <p class="case-year">2023–2025</p>
+        <div class="case-meta__block">
+          <p class="case-meta__label">
+            year
+          </p>
+
+          <p class="case-meta__value">
+            2023–2025
+          </p>
         </div>
 
-      </div>
-    </section>
+      </section>
 
 
-    <!-- ===================================================
-         HERO
-    ==================================================== -->
+      <!-- ===================================================
+           HERO
+      ==================================================== -->
 
-    <section class="case-media case-media--hero">
-      <img
-        src="/images/tokens/hero.webp"
-        alt="UI Library and token architecture"
-      />
-    </section>
-
-
-    <!-- ===================================================
-         STATEMENT
-    ==================================================== -->
-
-    <section class="case-statement">
-      <span class="case-label">system</span>
-
-      <p>
-        One visual language.<br />
-        One token architecture.<br />
-        Multiple products.
-      </p>
-    </section>
-
-
-    <!-- ===================================================
-         THEMING
-    ==================================================== -->
-
-    <section class="case-section">
-
-      <div class="case-section__head">
-        <span class="case-label">01 / theming</span>
-
-        <h2>
-          Same components.<br />
-          Different semantics.
-        </h2>
-
-        <p>
-          Light and dark themes are driven by semantic tokens rather
-          than separate component implementations.
-        </p>
-      </div>
-
-
-      <div class="case-grid case-grid--2">
-
-        <figure class="case-figure">
-          <img
-            src="/images/tokens/dark-theme.webp"
-            alt="Dark theme token system"
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Dark theme</strong>
-            <span>semantic token mapping</span>
-          </figcaption>
-        </figure>
-
-
-        <figure class="case-figure">
-          <img
-            src="/images/tokens/light-theme-demo.webp"
-            alt="Light theme token system"
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Light theme</strong>
-            <span>same component architecture</span>
-          </figcaption>
-        </figure>
-
-      </div>
-    </section>
-
-
-    <!-- ===================================================
-         COMPONENT SYSTEM
-    ==================================================== -->
-
-    <section class="case-section">
-
-      <div class="case-section__head">
-        <span class="case-label">02 / components</span>
-
-        <h2>
-          Built for product<br />
-          UI at scale.
-        </h2>
-      </div>
-
-
-      <figure class="case-figure case-figure--wide">
+      <figure class="case-hero-media token-hero">
         <img
-          src="/images/tokens/overview.webp"
-          alt="Overview of tokenized UI components"
-          loading="lazy"
+          src="/images/tokens/hero.webp"
+          alt="UI Library and token architecture"
         />
-
-        <figcaption>
-          <strong>Component library</strong>
-          <span>navigation · forms · feedback · tables · states</span>
-        </figcaption>
       </figure>
 
-    </section>
 
+      <!-- ===================================================
+           STATEMENT
+      ==================================================== -->
 
-    <!-- ===================================================
-         DETAILS GRID
-    ==================================================== -->
+      <section class="case-statement">
 
-    <section class="case-section">
+        <p class="case-statement__text">
+          One visual language.<br />
+          One token architecture.<br />
 
-      <div class="case-section__head">
-        <span class="case-label">03 / interaction</span>
-
-        <h2>
-          Patterns instead<br />
-          of one-offs.
-        </h2>
-      </div>
-
-
-      <div class="case-grid case-grid--2">
-
-        <figure class="case-figure">
-          <img
-            src="/images/tokens/resource.webp"
-            alt="Modal component variants"
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Modal system</strong>
-            <span>shared structure · multiple contexts</span>
-          </figcaption>
-        </figure>
-
-
-        <figure class="case-figure">
-          <img
-            src="/images/tokens/thank-you-modal-2.webp"
-            alt="Thank-you modal"
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Confirmation states</strong>
-            <span>clear feedback and next actions</span>
-          </figcaption>
-        </figure>
-
-
-        <figure class="case-figure">
-          <img
-            src="/images/tokens/flex-table.webp"
-            alt="Responsive table patterns"
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Table patterns</strong>
-            <span>dense data · responsive behavior</span>
-          </figcaption>
-        </figure>
-
-
-        <figure class="case-figure">
-          <img
-            src="/images/tokens/datepicker.webp"
-            alt="Accessible custom datepicker"
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Datepicker</strong>
-            <span>keyboard-first interaction</span>
-          </figcaption>
-        </figure>
-
-      </div>
-    </section>
-
-
-    <!-- ===================================================
-         ACCESSIBILITY
-    ==================================================== -->
-
-    <section class="case-section">
-
-      <div class="case-section__head">
-        <span class="case-label">04 / accessibility</span>
-
-        <h2>
-          States belong to<br />
-          the system.
-        </h2>
-
-        <p>
-          Focus, contrast, feedback and disabled states are defined
-          centrally rather than recreated product by product.
+          <span class="case-statement__accent">
+            Multiple products.
+          </span>
         </p>
-      </div>
+
+      </section>
 
 
-      <div class="case-grid case-grid--2">
+      <!-- ===================================================
+           01 / THEMING
+      ==================================================== -->
+
+      <section class="token-section">
+
+        <div class="token-section__head">
+
+          <span class="token-eyebrow">
+            01 / theming
+          </span>
+
+          <h2>
+            Same components.<br />
+            Different semantics.
+          </h2>
+
+          <p>
+            Light and dark themes are driven by semantic tokens
+            rather than separate component implementations.
+          </p>
+
+        </div>
 
 
-        <figure class="case-figure">
+        <div class="token-grid token-grid--2">
+
+          <figure class="token-card">
+            <img
+              src="/images/tokens/dark-theme.webp"
+              alt="Dark theme token system"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Dark theme</strong>
+              <span>semantic token mapping</span>
+            </figcaption>
+          </figure>
+
+
+          <figure class="token-card">
+            <img
+              src="/images/tokens/light-theme-demo.webp"
+              alt="Light theme token system"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Light theme</strong>
+              <span>same component architecture</span>
+            </figcaption>
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           02 / COMPONENT SYSTEM
+      ==================================================== -->
+
+      <section class="token-section">
+
+        <div class="token-section__head">
+
+          <span class="token-eyebrow">
+            02 / components
+          </span>
+
+          <h2>
+            Built for product<br />
+            UI at scale.
+          </h2>
+
+          <p>
+            Reusable structures reduce visual drift and make
+            application interfaces easier to build and maintain.
+          </p>
+
+        </div>
+
+
+        <figure class="token-card token-card--wide">
+
           <img
-            src="/images/tokens/alert-soft.webp"
-            alt="Soft alert variants"
+            src="/images/tokens/overview.webp"
+            alt="Overview of tokenized UI components"
             loading="lazy"
           />
 
           <figcaption>
-            <strong>Soft feedback</strong>
-            <span>persistent non-blocking messaging</span>
+            <strong>Component library</strong>
+            <span>
+              navigation · forms · feedback · tables · states
+            </span>
           </figcaption>
+
         </figure>
 
-                <figure class="case-figure">
-          <img
-            src="/images/tokens/thanks.webp"
-            alt="Custom SVG and UI library details""
-            loading="lazy"
-          />
-
-          <figcaption>
-            <strong>Thank You</strong>
-            <span>Custom SVG  with logo font</span>
-          </figcaption>
-        </figure>
-
-      </div>
-    </section>
+      </section>
 
 
+      <!-- ===================================================
+           03 / INTERACTION
+      ==================================================== -->
+
+      <section class="token-section">
+
+        <div class="token-section__head">
+
+          <span class="token-eyebrow">
+            03 / interaction
+          </span>
+
+          <h2>
+            Patterns instead<br />
+            of one-offs.
+          </h2>
+
+          <p>
+            Shared interaction rules make complex application
+            behavior more predictable across products.
+          </p>
+
+        </div>
 
 
+        <div class="token-grid token-grid--2">
 
-   <!-- ===================================================
-     NEXT PROJECT
-==================================================== -->
+          <figure class="token-card">
 
-<a
-  class="case-next"
-  href="/case-studies/dash-case"
->
-  <div>
-    <span class="case-next__eyebrow">
-      next project
-    </span>
+            <img
+              src="/images/tokens/resource.webp"
+              alt="Modal component variants"
+              loading="lazy"
+            />
 
-    <h2 class="case-next__title">
-      Dashboard &<br />
-      Application<br />
-      Patterns
-    </h2>
-  </div>
+            <figcaption>
+              <strong>Modal system</strong>
+              <span>shared structure · multiple contexts</span>
+            </figcaption>
 
-  <span
-    class="case-next__arrow"
-    aria-hidden="true"
-  >
-    ↗
-  </span>
-</a>
-
-  </main>
+          </figure>
 
 
-  <style is:global>
+          <figure class="token-card">
+
+            <img
+              src="/images/tokens/thank-you-modal-2.webp"
+              alt="Thank-you modal"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Confirmation states</strong>
+              <span>clear feedback and next actions</span>
+            </figcaption>
+
+          </figure>
+
+
+          <figure class="token-card">
+
+            <img
+              src="/images/tokens/flex-table.webp"
+              alt="Responsive table patterns"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Table patterns</strong>
+              <span>dense data · responsive behavior</span>
+            </figcaption>
+
+          </figure>
+
+
+          <figure class="token-card">
+
+            <img
+              src="/images/tokens/datepicker.webp"
+              alt="Accessible custom datepicker"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Datepicker</strong>
+              <span>keyboard-first interaction</span>
+            </figcaption>
+
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           04 / ACCESSIBILITY
+      ==================================================== -->
+
+      <section class="token-section">
+
+        <div class="token-section__head">
+
+          <span class="token-eyebrow">
+            04 / accessibility
+          </span>
+
+          <h2>
+            States belong to<br />
+            the system.
+          </h2>
+
+          <p>
+            Focus, contrast, feedback and disabled states are
+            defined centrally rather than recreated product by
+            product.
+          </p>
+
+        </div>
+
+
+        <div class="token-grid token-grid--2">
+
+          <figure class="token-card">
+
+            <img
+              src="/images/tokens/alert-soft.webp"
+              alt="Soft alert variants"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Soft feedback</strong>
+              <span>persistent non-blocking messaging</span>
+            </figcaption>
+
+          </figure>
+
+
+          <figure class="token-card">
+
+            <img
+              src="/images/tokens/thanks.webp"
+              alt="Custom SVG and UI library details"
+              loading="lazy"
+            />
+
+            <figcaption>
+              <strong>Thank You</strong>
+              <span>custom SVG with logo font</span>
+            </figcaption>
+
+          </figure>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           NEXT PROJECT
+      ==================================================== -->
+
+      <a
+        class="case-next"
+        href="/case-studies/dash-case"
+      >
+
+        <div>
+          <span class="case-next__eyebrow">
+            next project
+          </span>
+
+          <h2 class="case-next__title">
+            Dashboard &<br />
+            Application<br />
+            Patterns
+          </h2>
+        </div>
+
+
+        <span
+          class="case-next__arrow"
+          aria-hidden="true"
+        >
+          ↗
+        </span>
+
+      </a>
+
+    </div>
+  </article>
+
+
+  <style>
 
     /* =====================================================
-       PAGE
-    ====================================================== */
+       HERO
+    ===================================================== */
 
-    html,
-    body {
-      background: #0d0f0d !important;
-    }
+    .token-hero {
+      width: 100%;
+      max-width: 1176px;
 
-    body {
-      color: #f2f1ec;
-    }
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 48px;
 
-
-    .case-page {
-      --bg: #0d0f0d;
-      --fg: #f2f1ec;
-      --muted: rgba(242, 241, 236, .46);
-      --line: rgba(242, 241, 236, .13);
-      --lime: #d8f27a;
-
-      background: var(--bg);
-      color: var(--fg);
-
-      min-height: 100vh;
-      padding-top: 1px;
+      overflow: hidden;
     }
 
 
-    .case-intro,
-    .case-section,
-    .case-statement,
-    .case-media,
-    .case-next {
-      width: calc(100% - 80px);
-      max-width: 1500px;
-      margin-inline: auto;
+    .token-hero img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      object-fit: contain;
     }
 
 
 
     /* =====================================================
-       INTRO
-    ====================================================== */
+       SECTIONS
+    ===================================================== */
 
-    .case-intro {
-      padding-top: clamp(80px, 1vw, 180px);
-      padding-bottom: clamp(90px, 9vw, 130px);
+    .token-section {
+      width: 100%;
+      max-width: 1176px;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      padding-top:
+        clamp(
+          90px,
+          9vw,
+          140px
+        );
     }
 
 
-    .case-intro__grid {
+    .token-section__head {
       display: grid;
 
       grid-template-columns:
-        1.1fr
-        1.6fr
-        1.05fr
-        .6fr;
+        .7fr
+        1.25fr
+        1fr;
 
-      gap: clamp(34px, 4vw, 76px);
+      gap:
+        clamp(
+          30px,
+          5vw,
+          80px
+        );
+
       align-items: start;
+
+      margin-bottom:
+        clamp(
+          48px,
+          6vw,
+          82px
+        );
+
+      padding-top: 28px;
+
+      border-top:
+        1px solid
+        rgba(
+          242,
+          241,
+          236,
+          .13
+        );
     }
 
 
-    .case-label {
-      display: block;
-
-      margin-bottom: 18px;
-
-      font-family: "Oswald", "Arial Narrow", sans-serif;
+    .token-eyebrow {
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
 
       font-size: 1rem;
       font-weight: 500;
 
+      line-height: 1;
+
       letter-spacing: .09em;
 
-      color: var(--muted);
+      text-transform: uppercase;
 
-      text-transform: lowercase;
+      color:
+        rgba(
+          242,
+          241,
+          236,
+          .46
+        );
     }
 
 
-    .case-meta h1 {
+    .token-section__head h2 {
       margin: 0;
 
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: clamp(3rem, 4.4vw, 5.5rem);
-      font-weight: 650;
-
-      line-height: .88;
-
-      letter-spacing: -.065em;
-    }
-
-
-    .case-bio {
-      margin: 0;
-
-      max-width: 520px;
-
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: clamp(1.05rem, 1.4vw, 1.45rem);
-
-      line-height: 1.28;
-
-      letter-spacing: -.025em;
-    }
-
-
-    .case-deliverables {
-      display: flex;
-      flex-direction: column;
-
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: clamp(1.3rem, 1.7vw, 1.8rem);
-
-      line-height: 1.07;
-
-      letter-spacing: -.035em;
-    }
-
-
-    .case-year {
-      margin: 0;
-
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: clamp(1.35rem, 1.8vw, 1.85rem);
-    }
-
-
-    .case-back {
-      display: inline-flex;
-      align-items: center;
-
-      gap: 11px;
-
-      margin-top: 44px;
-
-      color: var(--fg);
-
-      text-decoration: none;
-
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: .95rem;
-      font-weight: 500;
-    }
-
-
-    .case-back__arrow {
-      font-size: 2rem;
-      font-weight: 300;
-    }
-
-
-
-    /* =====================================================
-       MEDIA
-    ====================================================== */
-
-    .case-media img,
-    .case-figure img {
-      display: block;
-
-      width: 100%;
-
-      object-fit: cover;
-
-      background: #151815;
-    }
-
-
-.case-media--hero {
-  max-width: 1280px;
-}
-
-.case-media--hero img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 7.2;
-  object-fit: cover;
-}
-
-
-    .case-media--closing {
-      margin-top: clamp(120px, 12vw, 180px);
-    }
-
-
-    .case-media--closing img {
-      aspect-ratio: 16 / 8.6;
-    }
-
-
-
-    /* =====================================================
-       STATEMENT
-    ====================================================== */
-
-    .case-statement {
-      padding-top: clamp(130px, 13vw, 190px);
-      padding-bottom: clamp(130px, 13vw, 190px);
-    }
-
-
-    .case-statement p {
-      margin: 0;
-
-      max-width: 1250px;
-
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: clamp(3.3rem, 7vw, 8rem);
-
-      font-weight: 650;
-
-      line-height: .87;
-
-      letter-spacing: -.07em;
-    }
-
-
-
-    /* =====================================================
-       SECTION
-    ====================================================== */
-
-    .case-section {
-      padding-top: clamp(85px, 9vw, 130px);
-    }
-
-
-    .case-section__head {
-      display: grid;
-
-      grid-template-columns: .7fr 1.25fr 1fr;
-
-      gap: clamp(30px, 5vw, 80px);
-
-      margin-bottom: clamp(50px, 6vw, 90px);
-
-      padding-top: 28px;
-
-      border-top: 1px solid var(--line);
-    }
-
-
-    .case-section__head h2 {
-      margin: 0;
-
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: clamp(2.5rem, 4.5vw, 5.4rem);
+      font-family:
+        "Inter Tight",
+        var(--ui-font),
+        sans-serif;
+
+      font-size:
+        clamp(
+          2.4rem,
+          4vw,
+          4.8rem
+        );
 
       font-weight: 650;
 
       line-height: .9;
 
       letter-spacing: -.06em;
+
+      color: #f2f1ec;
     }
 
 
-    .case-section__head > p {
+    .token-section__head > p {
       margin: 0;
 
       max-width: 480px;
 
-      font-family: "Inter Tight", sans-serif;
+      font-family:
+        "Inter Tight",
+        var(--ui-font),
+        sans-serif;
 
-      font-size: clamp(1rem, 1.2vw, 1.25rem);
+      font-size:
+        clamp(
+          1rem,
+          1.15vw,
+          1.2rem
+        );
 
-      line-height: 1.4;
+      line-height: 1.42;
 
-      color: rgba(242, 241, 236, .62);
+      letter-spacing: -.02em;
+
+      color:
+        rgba(
+          242,
+          241,
+          236,
+          .62
+        );
     }
 
 
 
     /* =====================================================
-       GRID
-    ====================================================== */
+       IMAGE GRID
+    ===================================================== */
 
-    .case-grid {
+    .token-grid {
       display: grid;
+
+      width: 100%;
+
+      gap:
+        clamp(
+          34px,
+          4vw,
+          58px
+        )
+        clamp(
+          20px,
+          2.4vw,
+          34px
+        );
     }
 
 
-    .case-grid--2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-
-      gap: clamp(34px, 4vw, 62px) clamp(22px, 2.5vw, 38px);
+    .token-grid--2 {
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
     }
 
 
-    .case-figure {
+    .token-card {
+      width: 100%;
+
+      min-width: 0;
+
       margin: 0;
     }
 
 
-    .case-figure img {
-      aspect-ratio: 16 / 9;
+    .token-card img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      object-fit: contain;
+
+      background: #151815;
     }
 
 
-    .case-figure--wide img {
-      aspect-ratio: 16 / 8.5;
+    .token-card--wide {
+      width: 100%;
     }
 
 
-    .case-figure figcaption {
+    .token-card figcaption {
       display: flex;
+
       align-items: baseline;
 
       gap: 13px;
@@ -672,339 +659,164 @@ const title = "UI Library & Token System | Maria Klammer";
     }
 
 
-    .case-figure figcaption strong {
-      font-family: "Inter Tight", sans-serif;
+    .token-card figcaption strong {
+      font-family:
+        "Inter Tight",
+        var(--ui-font),
+        sans-serif;
 
-      font-size: clamp(1.15rem, 1.55vw, 1.7rem);
+      font-size:
+        clamp(
+          1.1rem,
+          1.4vw,
+          1.5rem
+        );
 
       font-weight: 600;
 
       line-height: 1;
 
       letter-spacing: -.035em;
+
+      color: #f2f1ec;
     }
 
 
-    .case-figure figcaption span {
-      font-family: "Oswald", "Arial Narrow", sans-serif;
+    .token-card figcaption span {
+      font-family:
+        "Oswald",
+        "Arial Narrow",
+        sans-serif;
 
-      font-size: 1rem;
+      font-size: .9rem;
 
       letter-spacing: .06em;
 
       text-transform: uppercase;
 
-      color: var(--muted);
+      color:
+        rgba(
+          242,
+          241,
+          236,
+          .46
+        );
     }
 
-
-
-    /* =====================================================
-       NEXT
-    ====================================================== */
-
-    .case-next {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: end;
-
-      gap: 50px;
-
-      margin-top: clamp(130px, 13vw, 190px);
-
-      padding-top: clamp(50px, 6vw, 80px);
-      padding-bottom: clamp(90px, 9vw, 130px);
-
-      border-top: 1px solid var(--line);
-
-      color: var(--fg);
-
-      text-decoration: none;
-    }
-
-
-    .case-next__eyebrow {
-      display: block;
-
-      margin-bottom: 20px;
-
-      font-family: "Oswald", "Arial Narrow", sans-serif;
-
-      font-size: .8rem;
-
-      letter-spacing: .09em;
-
-      text-transform: uppercase;
-
-      color: var(--muted);
-    }
-
-
-    .case-next__title {
-      margin: 0;
-
-      font-family: "Inter Tight", sans-serif;
-
-      font-size: clamp(3.4rem, 6.8vw, 8rem);
-
-      font-weight: 650;
-
-      line-height: .86;
-
-      letter-spacing: -.07em;
-    }
-
-
-    .case-next__arrow {
-      color: var(--lime);
-
-      font-size: clamp(5rem, 8vw, 9rem);
-
-      line-height: .7;
-
-      transition: transform .2s ease;
-    }
-
-
-    .case-next:hover .case-next__arrow {
-      transform: translate(8px, -8px);
-    }
-
-
+.token-grid--2 .token-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
 
     /* =====================================================
        TABLET
-    ====================================================== */
+    ===================================================== */
 
     @media (max-width: 1000px) {
 
-      .case-intro__grid {
-        grid-template-columns: 1fr 1fr;
+      .token-section__head {
+        grid-template-columns:
+          1fr
+          1.5fr;
       }
 
 
-      .case-section__head {
-        grid-template-columns: 1fr 1.5fr;
-      }
-
-
-      .case-section__head > p {
+      .token-section__head > p {
         grid-column: 2;
       }
 
     }
 
-    .case-next__arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 68px;
-  height: 68px;
-
-  flex: 0 0 68px;
-
-  border: 2px solid var(--lime);
-  border-radius: 50%;
-
-  color: var(--lime);
-
-  font-family: Arial, sans-serif;
-  font-size: 2.2rem;
-  font-weight: 400;
-  line-height: 1;
-
-  transition:
-    background .2s ease,
-    color .2s ease,
-    transform .2s ease;
-}
-
-.case-next:hover .case-next__arrow {
-  background: var(--lime);
-  color: #0d0f0d;
-
-  transform: translate(4px, -4px);
-}
-
-@media (max-width: 760px) {
-  .case-next__arrow {
-    width: 54px;
-    height: 54px;
-    flex-basis: 54px;
-
-    font-size: 1.8rem;
-  }
-}
-
-.case-media--closing {
-  width: min(100% - 80px, 900px);
-  margin: clamp(90px, 10vw, 140px) auto 0;
-}
-
-.case-media--closing img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: auto;
-  object-fit: contain;
-}
-
-/* =====================================================
-   MOBILE — MATCH OTHER CASE STUDIES
-===================================================== */
-
-html,
-body,
-.case-page {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-.case-intro__grid > *,
-.case-section__head > *,
-.case-grid > * {
-  min-width: 0;
-}
-
-@media (max-width: 760px) {
-
-  .case-intro,
-  .case-section,
-  .case-statement,
-  .case-media,
-  .case-next {
-    width: calc(100% - 32px);
-    max-width: none;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* same top start as the other case-study pages */
-  .case-intro {
-    padding-top: 104px;
-    padding-bottom: 72px;
-  }
-
-  /* IMPORTANT: 2 x 2 meta layout */
-  .case-intro__grid {
-    display: grid;
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 1fr);
-
-    gap: 42px 22px;
-
-    width: 100%;
-  }
-
-  .case-meta {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .case-meta h1 {
-    margin: 0;
-
-    font-size: clamp(1.8rem, 8.2vw, 2.7rem);
-    line-height: .92;
-    letter-spacing: -.055em;
-  }
-
-  .case-label {
-    margin-bottom: 10px;
-    font-size: .78rem;
-  }
-
-  .case-bio {
-    width: 100%;
-    max-width: 100%;
-
-    font-size: .95rem;
-    line-height: 1.28;
-
-    overflow-wrap: break-word;
-  }
-
-  .case-deliverables {
-    font-size: 1.08rem;
-    line-height: 1.08;
-  }
-
-  .case-year {
-    font-size: 1.15rem;
-  }
-
-  .case-back {
-    margin-top: 20px;
-
-    gap: 8px;
-
-    font-size: .9rem;
-  }
-
-  .case-back__arrow {
-    font-size: 1.65rem;
-  }
 
 
-  /* HERO */
+    /* =====================================================
+       MOBILE
+    ===================================================== */
 
-  .case-media--hero {
-    width: calc(100% - 32px);
-    max-width: none;
-  }
+    @media (max-width: 760px) {
 
-  .case-media--hero img {
-    display: block;
+      .token-hero,
+      .token-section {
+        width: 100%;
+        max-width: none;
 
-    width: 100%;
-    height: auto;
-
-    aspect-ratio: auto;
-    object-fit: contain;
-  }
+        margin-left: 0;
+        margin-right: 0;
+      }
 
 
-  /* REST OF PAGE */
+      .token-section {
+        padding-top: 90px;
+      }
 
-  .case-grid--2 {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
 
-  .case-section__head {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+      .token-section__head {
+        grid-template-columns: 1fr;
 
-  .case-section__head > p {
-    grid-column: auto;
-  }
+        gap: 20px;
 
-  .case-statement {
-    padding-top: 90px;
-    padding-bottom: 100px;
-  }
+        margin-bottom: 38px;
 
-  .case-statement p {
-    font-size: clamp(3rem, 13vw, 4.8rem);
-  }
+        padding-top: 20px;
+      }
 
-  .case-media--closing {
-    width: calc(100% - 32px);
-    margin-top: 90px;
-  }
 
-  .case-next {
-    gap: 24px;
-  }
+      .token-section__head > p {
+        grid-column: auto;
+      }
 
-  .case-next__title {
-    font-size: clamp(3rem, 13vw, 4.8rem);
-  }
-}
+
+      .token-eyebrow {
+        font-size: .8rem;
+      }
+
+
+      .token-section__head h2 {
+        font-size:
+          clamp(
+            2.2rem,
+            11vw,
+            3.5rem
+          );
+      }
+
+
+      .token-section__head > p {
+        font-size: .95rem;
+      }
+
+
+      .token-grid--2 {
+        grid-template-columns: 1fr;
+      }
+
+
+      .token-grid {
+        gap: 34px;
+      }
+
+
+      .token-card figcaption {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 7px;
+      }
+
+
+      .token-card figcaption strong {
+        font-size: 1.15rem;
+      }
+
+
+      .token-card figcaption span {
+        font-size: .8rem;
+      }
+
+    }
+
   </style>
 
 </Base>
