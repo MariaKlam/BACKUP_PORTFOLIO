@@ -167,27 +167,34 @@ const title = "Isekas Self-Service Checkout | Maria Klammer";
 
       </section>
 
-
+     
       <!-- ===================================================
-           LIFESTYLE — FULL WIDTH
+          LIFESTYLE — FULL WIDTH VIDEO
       ==================================================== -->
 
-      <section
-        class="case-gallery case-gallery--wide"
-      >
+      <section class="case-gallery case-gallery--wide">
 
-        <figure
-          class="case-gallery__item
-                 case-gallery__item--natural"
-        >
-          <img
-            src="/images/isekas/lifestyle.webp"
-            alt="Isekas lifestyle and usage environments"
-            loading="lazy"
-          />
+        <figure class="case-gallery__item case-gallery__item--natural">
+
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/images/isekas/lifestyle.webp"
+            aria-label="Isekas lifestyle and usage environments"
+          >
+            <source
+              src="/videos/iseka-roll.mp4"
+              type="video/mp4"
+            />
+          </video>
+
         </figure>
 
       </section>
+
 
 
     <!-- ===================================================
@@ -901,4 +908,40 @@ body.nav-system-page .nav-editorial__demo-head h2 {
       clamp(2.2rem, 11vw, 3.5rem) !important;
   }
 }
+
+
+.case-gallery--wide .case-gallery__item video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* Taller project screenshots */
+.case-gallery__item--landscape {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.case-gallery__item--landscape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+/* Mobile — preserve full screenshot */
+@media (max-width: 760px) {
+  .case-gallery__item--landscape {
+    aspect-ratio: auto;
+  }
+
+  .case-gallery__item--landscape img {
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+
 </style>
