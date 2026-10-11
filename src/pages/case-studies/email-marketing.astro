@@ -101,17 +101,25 @@ const title = "Email Marketing Platform | Maria Klammer";
 
       </section>
 
-
       <!-- ===================================================
-           HERO
+          HERO
       ==================================================== -->
 
       <figure class="case-hero-media">
 
-        <img
-          src="/images/email-marketing/email-marketing-hero.webp"
-          alt="Email Marketing Platform overview"
-        />
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="/images/email-marketing/email-marketing-hero.webp"
+        >
+          <source
+            src="/videos/marketing_demo.mp4"
+            type="video/mp4"
+          />
+        </video>
 
       </figure>
 
@@ -274,6 +282,12 @@ const title = "Email Marketing Platform | Maria Klammer";
       margin-left: 0;
       margin-right: 0;
     }
+
+    .case-hero-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 
     /* =====================================================
