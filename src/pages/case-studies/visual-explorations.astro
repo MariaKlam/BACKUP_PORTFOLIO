@@ -142,36 +142,53 @@ const title = "Illustration & Visual Studies | Maria Klammer";
         </div>
 
 
-        <div class="visual-grid visual-grid--2">
+<div class="visual-grid visual-grid--2 visual-grid--art">
 
-          <figure class="visual-card">
-            <img
-              src="/images/visual/gif1.gif"
-              alt="Creative JavaScript composition"
-              loading="lazy"
-            />
+  <div class="visual-column">
 
-            <figcaption>
-              <strong>Creative JavaScript composition</strong>
-              <span>CREATIVE CODE · MOTION · RHYTHM</span>
-            </figcaption>
-          </figure>
+    <figure class="visual-card">
+      <img
+        src="/images/visual/gif1.gif"
+        alt="Creative JavaScript composition"
+        loading="lazy"
+      />
+
+      <figcaption>
+        <strong>Creative JavaScript composition</strong>
+        <span>CREATIVE CODE · MOTION · RHYTHM</span>
+      </figcaption>
+    </figure>
+
+  <figure class="visual-card visual-card--nordfrog">
+    <img
+      src="/images/visual/nordfrog.webp"
+      alt="Nordfrog character and logo illustration"
+      loading="lazy"
+    />
+
+    <figcaption>
+      <strong>Nordfrog</strong>
+      <span>CHARACTER · ILLUSTRATION · LOGO</span>
+    </figcaption>
+  </figure>
+
+  </div>
 
 
-          <figure class="visual-card">
-            <img
-              src="/images/visual/supernoova.webp"
-              alt="Supernoova fashion show poster"
-              loading="lazy"
-            />
+  <figure class="visual-card visual-card--supernoova">
+    <img
+      src="/images/visual/supernoova.webp"
+      alt="Supernoova fashion show poster"
+      loading="lazy"
+    />
 
-            <figcaption>
-              <strong>Supernoova</strong>
-              <span>ILLUSTRATION · POSTER · ART DIRECTION</span>
-            </figcaption>
-          </figure>
+    <figcaption>
+      <strong>Supernoova</strong>
+      <span>ILLUSTRATION · POSTER · ART DIRECTION</span>
+    </figcaption>
+  </figure>
 
-        </div>
+</div>
 
       </section>
 
@@ -588,6 +605,7 @@ const title = "Illustration & Visual Studies | Maria Klammer";
     /* =====================================================
        HERO
     ====================================================== */
+    
 
     .visual-hero {
       margin: 0;
@@ -910,6 +928,50 @@ const title = "Illustration & Visual Studies | Maria Klammer";
         translate(4px,-4px);
     }
 
+    .visual-grid--art {
+      align-items: start;
+    }
+
+    .visual-column {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .visual-column {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .visual-card--nordfrog {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .visual-card--nordfrog img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.08);
+    }
+
+    .visual-card--nordfrog figcaption {
+      padding-top: 32px;
+    }
+    .visual-card--supernoova {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .visual-card--supernoova img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
 
     /* =====================================================
        TABLET
